@@ -11,6 +11,7 @@
 #include "ft_strlcpy.c"
 #include "ft_strlcat.c"
 #include "ft_strncmp.c"
+#include "ft_toupper.c"
 #include <stdio.h>
 #include <ctype.h>
 #include <string.h>
@@ -184,7 +185,18 @@ int	main(void)
 	printf("strncmp : a - a = 0 -> %d\n", strncmp(str12, str13, 5));
 	printf("strncmp : e - a = 4 -> %d\n", strncmp(str12, str14, 5));
 	printf("a - a = 0 -> %d\n", ft_strncmp(str12, str13, 5));
-	printf("e - a = 4 -> %d\n", ft_strncmp(str12, str14, 5));
+	printf("e - a = 4 -> %d\n ", ft_strncmp(str12, str14, 5));
 
+	printf("----------------------\n");
+
+	//ft_toupper
+	printf("----------------------\n");
+	printf("ft_toupper.c\n");
+	printf("toupper : a becomes A -> %c\n", toupper('a'));
+	printf("toupper : 0 becomes nothing -> %c\n", toupper('0'));
+	printf("z becomes Z -> %c\n", ft_toupper('z'));
+	printf("8 becomes nothing -> %c\n", ft_toupper('8'));
+	printf("toupper : int 42 result -> %c\n", toupper(42));
+	printf("int 42 result -> %c\n", ft_toupper(42));
 	printf("----------------------\n");
 }
