@@ -6,15 +6,12 @@
 /*   By: hyeslim <hyeslim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 21:06:33 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/07/06 21:16:00 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/07/06 21:56:07 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 char	*ft_strchr(const char *s, int c)
 {
-	int	i;
-
-	i = 0;
 	while (*s)
 	{
 		if (*s == c)
