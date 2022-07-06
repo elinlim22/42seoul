@@ -6,6 +6,9 @@
 #include "ft_strlen.c"
 #include "ft_memset.c"
 #include "ft_bzero.c"
+#include "ft_memcpy.c"
+// #include "ft_memmove.c"
+// #include "ft_strlcpy.c"
 #include <stdio.h>
 #include <ctype.h>
 #include <string.h>
@@ -128,6 +131,15 @@ int	main(void)
 	//ft_memcpy
 	printf("----------------------\n");
 	printf("ft_memcpy.c\n");
+
+	char str3[] = "born 2 code";
+	char str4[] = "apple";
+	memcpy(str3, str4, 4);
+	printf("memcpy : appl 2 code : %s\n", str3);
+
+	char str5[] = "born 2 code";
+	ft_memcpy(str5, str4, 4);
+	printf("appl 2 code : %s\n", str5);
 
 	printf("----------------------\n");
 }
