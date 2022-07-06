@@ -14,6 +14,7 @@
 #include "ft_toupper.c"
 #include "ft_tolower.c"
 #include "ft_strchr.c"
+#include "ft_strrchr.c"
 #include <stdio.h>
 #include <ctype.h>
 #include <string.h>
@@ -219,5 +220,13 @@ int	main(void)
 	char str15[] = "born 2 code";
 	printf("searching 'c' in the str -> %s\n", strchr(str15, 'c'));
 	printf("my result -> %s\n", ft_strchr(str15, 'c'));
+	printf("----------------------\n");
+
+	//ft_strrchr
+	printf("----------------------\n");
+	printf("ft_strrchr.c\n");
+	char str16[] = "born 2 code";
+	printf("searching 'o' in the str -> %s\n", strrchr(str16, 'o'));
+	printf("my result -> %s\n", ft_strrchr(str16, 'o'));
 	printf("----------------------\n");
 }
