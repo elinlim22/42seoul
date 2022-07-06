@@ -9,6 +9,8 @@
 #include "ft_memcpy.c"
 // #include "ft_memmove.c"
 #include "ft_strlcpy.c"
+#include "ft_strlcat.c"
+#include "ft_strncmp.c"
 #include <stdio.h>
 #include <ctype.h>
 #include <string.h>
@@ -78,6 +80,7 @@ int	main(void)
 
 	//ft_strlen
 	printf("----------------------\n");
+	printf("ft_strlen.c");
 	printf("strlen : 11 -> %lu\n", strlen("born 2 code"));
 	printf("11 -> %lu\n", ft_strlen("born 2 code"));
 	printf("----------------------\n");
@@ -159,4 +162,29 @@ int	main(void)
 	printf("born 2 CODE -> %s\n", str8);
 	printf("----------------------\n");
 
+	//ft_strlcat
+	printf("----------------------\n");
+	printf("ft_strlcat.c\n");
+	char str9[12] = "born 2";
+	char str10[] = " code";
+	printf("strlcat : 6 + 5 = 11 -> %lu\n", strlcat(str9, str10, 12));
+	printf("concatenated string -> %s\n", str9);
+	char str11[12] = "born 2";
+	printf("6 + 5 = 11 -> %lu\n", ft_strlcat(str11, str10, 12));
+	printf("concatenated string -> %s\n", str11);
+	printf("----------------------\n");
+
+	//ft_strncmp
+	printf("----------------------\n");
+	printf("ft_strncmp.c\n");
+
+	char str12[] = "apple";
+	char str13[] = "apple";
+	char str14[] = "appla";
+	printf("strncmp : a - a = 0 -> %d\n", strncmp(str12, str13, 5));
+	printf("strncmp : e - a = 4 -> %d\n", strncmp(str12, str14, 5));
+	printf("a - a = 0 -> %d\n", ft_strncmp(str12, str13, 5));
+	printf("e - a = 4 -> %d\n", ft_strncmp(str12, str14, 5));
+
+	printf("----------------------\n");
 }
