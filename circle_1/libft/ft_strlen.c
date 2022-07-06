@@ -6,16 +6,18 @@
 /*   By: hyeslim <hyeslim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 11:19:33 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/07/06 12:18:03 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/07/06 19:11:40 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-long unsigned int	ft_strlen(char *str)
+#include <stddef.h>
+
+size_t	ft_strlen(const char *str)
 {
-	long unsigned int	i;
+	size_t	i;
 
 	i = 0;
-	while (str[i] != '\0')
+	while (str[i])
 	{
 		i++;
 	}
