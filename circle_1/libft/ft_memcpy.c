@@ -6,7 +6,7 @@
 /*   By: hyeslim <hyeslim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 14:47:49 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/07/06 15:10:36 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/07/06 15:40:45 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	*ft_memcpy(void *dest, const void *src, size_t n)
 	i = 0;
 	while (i < n)
 	{
-		dest[i] = src[i];
+		((unsigned char *)dest)[i] = ((unsigned char *)src)[i];
 		i++;
 	}
 	return (dest);
