@@ -3,8 +3,13 @@
 #include "ft_isalnum.c"
 #include "ft_isascii.c"
 #include "ft_isprint.c"
+#include "ft_strlen.c"
+#include "ft_memset.c"
+#include "ft_bzero.c"
 #include <stdio.h>
 #include <ctype.h>
+#include <string.h>
+#include <strings.h>
 
 int	main(void)
 {
@@ -66,5 +71,63 @@ int	main(void)
 	printf("DEL returns 0 : %d\n", ft_isprint(127));
 	printf("1/4 returns 0 : %d\n", ft_isprint(172));
 	printf("SP returns 1 : %d\n", ft_isprint(' '));
+	printf("----------------------\n");
+
+	//ft_strlen
+	printf("----------------------\n");
+	printf("strlen : 11 : %lu\n", strlen("born 2 code"));
+	printf("11 : %lu\n", ft_strlen("born 2 code"));
+	printf("----------------------\n");
+
+	//ft_memset
+	printf("----------------------\n");
+	printf("ft_memset.c\n");
+
+	char arr1[] = "born 2 code";
+	memset(arr1, 42, 4 * sizeof(char));
+	printf("memset : 42 : %s\n", arr1);
+	char arr2[] = "born 2 code";
+	memset(arr2, 227, 4 * sizeof(char));
+	printf("memset : 227 : %s\n", arr2);
+	char arr3[] = "born 2 code";
+	memset(arr3, '4', 4 * sizeof(char));
+	printf("memset : '4' : %s\n", arr3);
+	char arr4[] = "born 2 code";
+	memset(arr4, 125, 4 * sizeof(char));
+	printf("memset : 125 : %s\n", arr4);
+
+	char mem1[] = "born 2 code";
+	ft_memset(mem1, 42, 4 * sizeof(char));
+	printf("42 : %s\n", mem1);
+	char mem2[] = "born 2 code";
+	ft_memset(mem2, 227, 4 * sizeof(char));
+	printf("227 : %s\n", mem2);
+	char mem3[] = "born 2 code";
+	ft_memset(mem3, '4', 4 * sizeof(char));
+	printf("'4' : %s\n", mem3);
+	char mem4[] = "born 2 code";
+	ft_memset(mem4, 125, 4 * sizeof(char));
+	printf("125 : %s\n", mem4);
+	printf("----------------------\n");
+
+	//ft_bzero
+	printf("----------------------\n");
+	printf("ft_bzero.c\n");
+
+	char str1[] = "born 2 code";
+	bzero((str1 + 4), 5);
+	printf("bzero : 5 zeros : %s\n", str1);
+	printf("%d\n", *(str1 + 4));
+
+	char str2[] = "born 2 code";
+	ft_bzero((str2 + 4), 5);
+	printf("5 zeros : %s\n", str2);
+	printf("%d\n", *(str2 + 4));
+	printf("----------------------\n");
+
+	//ft_memcpy
+	printf("----------------------\n");
+	printf("ft_memcpy.c\n");
+
 	printf("----------------------\n");
 }

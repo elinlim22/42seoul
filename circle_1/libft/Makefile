@@ -13,4 +13,3 @@ ${NAME} : ${OBJS}
 ${OBJS} : ${SRCS}
 	${CC} -c ${CFLAGS} ${SRCS}
 
-
