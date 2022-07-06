@@ -16,6 +16,7 @@
 #include "ft_strchr.c"
 #include "ft_strrchr.c"
 #include "ft_memchr.c"
+#include "ft_memcmp.c"
 #include <stdio.h>
 #include <ctype.h>
 #include <string.h>
@@ -237,5 +238,17 @@ int	main(void)
 	char str17[] = "born 2 code";
 	printf("searching 'c' in the str -> %s\n", memchr(str17, 'c', 12));
 	printf("my result -> %s\n", ft_memchr(str17, 'c', 12));
+	printf("----------------------\n");
+
+	//ft_memcmp
+	printf("----------------------\n");
+	printf("ft_memcmp.c\n");
+	char str18[] = "born 2 code";
+	char str19[] = "born 2 code";
+	char str20[] = "born 3 code";
+	printf("memcmp : 0 -> %d\n", memcmp(str18, str19, 12));
+	printf("memcmp : -1 -> %d\n", memcmp(str18, str20, 12));
+	printf("0 -> %d\n", ft_memcmp(str18, str19, 12));
+	printf("-1 -> %d\n", ft_memcmp(str18, str20, 12));
 	printf("----------------------\n");
 }
