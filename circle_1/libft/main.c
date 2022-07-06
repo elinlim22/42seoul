@@ -12,6 +12,7 @@
 #include "ft_strlcat.c"
 #include "ft_strncmp.c"
 #include "ft_toupper.c"
+#include "ft_tolower.c"
 #include <stdio.h>
 #include <ctype.h>
 #include <string.h>
@@ -198,5 +199,16 @@ int	main(void)
 	printf("8 becomes nothing -> %c\n", ft_toupper('8'));
 	printf("toupper : int 42 result -> %c\n", toupper(42));
 	printf("int 42 result -> %c\n", ft_toupper(42));
+	printf("----------------------\n");
+
+	//ft_tolower
+	printf("----------------------\n");
+	printf("ft_tolower.c\n");
+	printf("tolower : A becomes a -> %c\n", tolower('A'));
+	printf("tolower : 0 becomes nothing -> %c\n", tolower('0'));
+	printf("Z becomes z -> %c\n", ft_tolower('Z'));
+	printf("8 becomes nothing -> %c\n", ft_tolower('8'));
+	printf("tolower : int 42 result -> %c\n", tolower(42));
+	printf("int 42 result -> %c\n", ft_tolower(42));
 	printf("----------------------\n");
 }
