@@ -13,6 +13,7 @@
 #include "ft_strncmp.c"
 #include "ft_toupper.c"
 #include "ft_tolower.c"
+#include "ft_strchr.c"
 #include <stdio.h>
 #include <ctype.h>
 #include <string.h>
@@ -210,5 +211,13 @@ int	main(void)
 	printf("8 becomes nothing -> %c\n", ft_tolower('8'));
 	printf("tolower : int 42 result -> %c\n", tolower(42));
 	printf("int 42 result -> %c\n", ft_tolower(42));
+	printf("----------------------\n");
+
+	//ft_strchr
+	printf("----------------------\n");
+	printf("ft_strchr.c\n");
+	char str15[] = "born 2 code";
+	printf("searching 'c' in the str -> %s\n", strchr(str15, 'c'));
+	printf("my result -> %s\n", ft_strchr(str15, 'c'));
 	printf("----------------------\n");
 }
