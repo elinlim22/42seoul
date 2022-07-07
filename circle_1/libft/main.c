@@ -18,6 +18,7 @@
 #include "ft_memchr.c"
 #include "ft_memcmp.c"
 #include "ft_strnstr.c"
+#include "ft_strdup.c"
 #include <stdio.h>
 #include <ctype.h>
 #include <string.h>
@@ -294,4 +295,17 @@ int	main(void)
 */
 	printf("----------------------\n");
 
+	//ft_strdup
+	printf("----------------------\n");
+	printf("ft_strdup.c\n");
+	char str25[] = "born 2 code";
+	printf("strdup -> %s\n", strdup(str25));
+	printf("my result -> %s\n", ft_strdup(str25));
+	printf("----------------------\n");
+
+	//ft_calloc
+	printf("----------------------\n");
+	printf("ft_calloc.c\n");
+
+	printf("----------------------\n");
 }
