@@ -270,4 +270,28 @@ int	main(void)
 	printf("empty needle -> %s\n", ft_strnstr(str21, str24, 12));
 	printf("----------------------\n");
 
+	//ft_atoi
+	printf("----------------------\n");
+	printf("ft_atoi.c\n");
+/*
+	#include <stdio.h>
+	#include <stdlib.h>
+
+	int	main(int argc __attribute__((unused)), char *argv[])
+	{
+		if (argc == 1)
+		{
+			printf("%d\n", atoi("    \v  +35"));
+			printf("my result : %d\n", ft_atoi("    \v  +35"));
+		}
+		else
+		{
+			printf("%d\n", atoi(argv[1]));
+			printf("my result : %d\n", ft_atoi(argv[1]));
+		}
+		return 0;
+	}
+*/
+	printf("----------------------\n");
+
 }
