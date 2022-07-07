@@ -19,6 +19,7 @@
 #include "ft_memcmp.c"
 #include "ft_strnstr.c"
 #include "ft_strdup.c"
+#include "ft_calloc.c"
 #include <stdio.h>
 #include <ctype.h>
 #include <string.h>
@@ -306,6 +307,30 @@ int	main(void)
 	//ft_calloc
 	printf("----------------------\n");
 	printf("ft_calloc.c\n");
+/*
+	#include <stdio.h>
+	#include <stdlib.h>
+	#include "libft/ft_calloc.c"
 
+	int	main(void)
+	{
+		char *str;
+		char *str2;
+
+		str = calloc(3, 4);
+		str2 = ft_calloc(3, 4);
+
+		printf("calloc ->");
+		for (int i = 0; i < 3; i++)
+			printf(" %d", str[i]);
+		printf("\n");
+		printf("my result ->");
+		for (int i = 0; i < 3; i++)
+			printf(" %d", str2[i]);
+		printf("\n");
+
+		return 0;
+	}
+*/
 	printf("----------------------\n");
 }
