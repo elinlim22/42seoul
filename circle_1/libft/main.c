@@ -17,6 +17,7 @@
 #include "ft_strrchr.c"
 #include "ft_memchr.c"
 #include "ft_memcmp.c"
+#include "ft_strnstr.c"
 #include <stdio.h>
 #include <ctype.h>
 #include <string.h>
@@ -251,4 +252,22 @@ int	main(void)
 	printf("0 -> %d\n", ft_memcmp(str18, str19, 12));
 	printf("-1 -> %d\n", ft_memcmp(str18, str20, 12));
 	printf("----------------------\n");
+
+	//ft_strnstr
+	printf("----------------------\n");
+	printf("ft_strnstr.c\n");
+	char str21[] = "born 2 code";
+	char str22[] = "code";
+	char str23[] = "bode";
+	char str24[] = "";
+	printf("strnstr : code -> %s\n", strnstr(str21, str22, 12));
+	printf("strnstr : bode -> %s\n", strnstr(str21, str23, 12));
+	printf("strnstr : code : len == 7 -> %s\n", strnstr(str21, str22, 7));
+	printf("strnstr : empty needle -> %s\n", strnstr(str21, str24, 12));
+	printf("code -> %s\n", ft_strnstr(str21, str22, 12));
+	printf("bode -> %s\n", ft_strnstr(str21, str23, 12));
+	printf("code : len == 7 -> %s\n", ft_strnstr(str21, str22, 7));
+	printf("empty needle -> %s\n", ft_strnstr(str21, str24, 12));
+	printf("----------------------\n");
+
 }
