@@ -20,6 +20,7 @@
 #include "ft_strnstr.c"
 #include "ft_strdup.c"
 #include "ft_calloc.c"
+#include "ft_substr.c"
 #include <stdio.h>
 #include <ctype.h>
 #include <string.h>
@@ -332,5 +333,13 @@ int	main(void)
 		return 0;
 	}
 */
+	printf("----------------------\n");
+
+	//ft_substr
+	printf("----------------------\n");
+	printf("ft_substr.c\n");
+	char str26[] = "born 2 code";
+	printf("code -> %s\n", ft_substr(str26, 7, 5));
+
 	printf("----------------------\n");
 }
