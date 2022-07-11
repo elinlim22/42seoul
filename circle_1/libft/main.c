@@ -22,6 +22,8 @@
 #include "ft_calloc.c"
 #include "ft_substr.c"
 #include "ft_strjoin.c"
+// #include "ft_split.c"
+#include "ft_strtrim.c"
 #include <stdio.h>
 #include <ctype.h>
 #include <string.h>
@@ -349,5 +351,19 @@ int	main(void)
 	char str27[] = "born";
 	char str28[] = " 2 code";
 	printf("born 2 code -> %s\n", ft_strjoin(str27, str28));
+	printf("----------------------\n");
+
+	//ft_strtrim
+	printf("----------------------\n");
+	printf("ft_strtrim.c\n");
+	char str29[] = "born 2 code";
+	char str30[] = "boc";
+	printf("%s\n", ft_strtrim(str29, str30));
+	printf("----------------------\n");
+
+	//ft_split
+	printf("----------------------\n");
+	printf("ft_split.c\n");
+
 	printf("----------------------\n");
 }
