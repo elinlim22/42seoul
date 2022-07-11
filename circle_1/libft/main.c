@@ -21,6 +21,7 @@
 #include "ft_strdup.c"
 #include "ft_calloc.c"
 #include "ft_substr.c"
+#include "ft_strjoin.c"
 #include <stdio.h>
 #include <ctype.h>
 #include <string.h>
@@ -340,6 +341,13 @@ int	main(void)
 	printf("ft_substr.c\n");
 	char str26[] = "born 2 code";
 	printf("code -> %s\n", ft_substr(str26, 7, 5));
+	printf("----------------------\n");
 
+	//ft_strjoin
+	printf("----------------------\n");
+	printf("ft_strjoin.c\n");
+	char str27[] = "born";
+	char str28[] = " 2 code";
+	printf("born 2 code -> %s\n", ft_strjoin(str27, str28));
 	printf("----------------------\n");
 }
