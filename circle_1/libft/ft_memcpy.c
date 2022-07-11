@@ -6,11 +6,11 @@
 /*   By: hyeslim <hyeslim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 14:47:49 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/07/06 15:40:45 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/07/11 18:13:12 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
+#include "libft.h"
 
 void	*ft_memcpy(void *dest, const void *src, size_t n)
 {

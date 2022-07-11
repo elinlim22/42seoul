@@ -6,11 +6,11 @@
 /*   By: hyeslim <hyeslim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 15:48:39 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/07/06 17:27:11 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/07/11 18:13:58 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
+#include "libft.h"
 
 size_t	ft_strlcpy(char *dest, const char *src, size_t size)
 

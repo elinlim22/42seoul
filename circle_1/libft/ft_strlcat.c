@@ -6,23 +6,11 @@
 /*   By: hyeslim <hyeslim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 17:39:53 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/07/06 19:09:34 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/07/11 18:13:51 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
-
-// size_t	ft_strlen(char *str)
-// {
-// 	size_t	i;
-
-// 	i = 0;
-// 	while (str[i])
-// 	{
-// 		i++;
-// 	}
-// 	return (i);
-// }
+#include "libft.h"
 
 size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 {

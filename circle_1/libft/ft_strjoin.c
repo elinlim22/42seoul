@@ -6,11 +6,11 @@
 /*   By: hyeslim <hyeslim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 19:28:34 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/07/11 15:50:24 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/07/11 18:15:46 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include "libft.h"
 
 static void	ft_strcat(char *dst, const char *src)
 {
