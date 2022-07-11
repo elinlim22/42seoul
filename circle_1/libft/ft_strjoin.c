@@ -6,7 +6,7 @@
 /*   By: hyeslim <hyeslim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 19:28:34 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/07/11 15:29:30 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/07/11 15:50:24 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 static void	ft_strcat(char *dst, const char *src)
 {
-	int	i;
-	int	j;
+	size_t	i;
+	size_t	j;
 
 	i = 0;
 	j = ft_strlen(dst);
@@ -29,9 +29,9 @@ static void	ft_strcat(char *dst, const char *src)
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
-	char	*temp;
-	int		i;
-	int		j;
+	char		*temp;
+	size_t		i;
+	size_t		j;
 
 	i = ft_strlen(s1);
 	j = ft_strlen(s2);
