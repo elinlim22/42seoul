@@ -25,6 +25,10 @@
 // #include "ft_split.c"
 #include "ft_strtrim.c"
 #include "ft_itoa.c"
+#include "ft_putchar_fd.c"
+#include "ft_putendl_fd.c"
+#include "ft_putnbr_fd.c"
+#include "ft_putstr_fd.c"
 #include <stdio.h>
 #include <ctype.h>
 #include <string.h>
@@ -372,5 +376,37 @@ int	main(void)
 	printf("----------------------\n");
 	printf("ft_itoa.c\n");
 	printf("-2147483648 -> %s\n", ft_itoa(-2147483648));
+	printf("----------------------\n");
+
+	//ft_strmapi
+
+	//ft_striteri
+
+	//ft_putchar_fd
+	printf("----------------------\n");
+	printf("ft_putchar_fd.c\n");
+	ft_putchar_fd('A', 1);
+	printf("\nA\n");
+	printf("----------------------\n");
+
+	//ft_putstr_fd
+	printf("----------------------\n");
+	printf("ft_putstr_fd.c\n");
+	ft_putstr_fd("AAA", 1);
+	printf("\nAAA\n");
+	printf("----------------------\n");
+
+	//ft_putendl_fd
+	printf("----------------------\n");
+	printf("ft_putendl_fd.c\n");
+	ft_putendl_fd("AAA", 1);
+	printf("AAA\n");
+	printf("----------------------\n");
+
+	//ft_putnbr_fd
+	printf("----------------------\n");
+	printf("ft_putnbr_fd.c\n");
+	ft_putnbr_fd(-2147483648, 1);
+	printf("\n%ld\n", -2147483648);
 	printf("----------------------\n");
 }
