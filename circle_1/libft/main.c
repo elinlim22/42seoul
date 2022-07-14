@@ -24,6 +24,7 @@
 #include "ft_strjoin.c"
 // #include "ft_split.c"
 #include "ft_strtrim.c"
+#include "ft_itoa.c"
 #include <stdio.h>
 #include <ctype.h>
 #include <string.h>
@@ -365,5 +366,11 @@ int	main(void)
 	printf("----------------------\n");
 	printf("ft_split.c\n");
 
+	printf("----------------------\n");
+
+	//ft_itoa
+	printf("----------------------\n");
+	printf("ft_itoa.c\n");
+	printf("-2147483648 -> %s\n", ft_itoa(-2147483648));
 	printf("----------------------\n");
 }
