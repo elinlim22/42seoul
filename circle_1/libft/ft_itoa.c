@@ -6,11 +6,11 @@
 /*   By: hyeslim <hyeslim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 14:15:50 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/07/12 15:32:23 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/07/18 14:17:47 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+#include "libft.h"
 
 static int	count_len(int n)
 {
@@ -24,7 +24,6 @@ static int	count_len(int n)
 		n /= 10;
 		len++;
 	}
-	printf("%d\n", len);
 	return (len);
 }
 

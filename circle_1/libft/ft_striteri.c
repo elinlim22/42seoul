@@ -6,7 +6,7 @@
 /*   By: hyeslim <hyeslim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 11:57:30 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/07/14 11:59:15 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/07/18 14:19:53 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 	i = 0;
 	while (i < len)
 	{
-		f(i, &(s + i));
+		f(i, (s + i));
 		i++;
 	}
 }

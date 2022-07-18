@@ -6,13 +6,11 @@
 /*   By: hyeslim <hyeslim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 16:10:20 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/07/14 11:15:36 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/07/18 14:18:12 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-static void
 
 static size_t	count_row(char *s, char c)
 {
