@@ -6,7 +6,7 @@
 /*   By: hyeslim <hyeslim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 11:23:05 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/07/14 11:30:24 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/07/18 16:22:02 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	i = 0;
 	while (i < len)
 	{
-		result[i] = f(i, s[i]);
+		result[i] = f((unsigned int)i, (char)s[i]);
 		i++;
 	}
 	result[i] = '\0';
-	return(result);
+	return (result);
 }
