@@ -6,7 +6,7 @@
 /*   By: hyeslim <hyeslim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 21:31:26 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/07/18 15:49:27 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/07/18 19:25:38 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,17 @@
 
 void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
+	t_list	*temp;
+
 	if (!*lst || !del || !lst)
 		return ;
-	while ((*lst)->next)
+	while (*lst)
 	{
-		ft_lstdelone(*lst, del);
-		lst = NULL;
+		temp = (*lst)->next;
+		del((*lst)->content);
+		// ft_lstdelone(*lst, del);
+		free(*lst);
+		*lst = temp;
 	}
+	*lst = NULL;
 }

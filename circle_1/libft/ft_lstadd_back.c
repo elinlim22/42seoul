@@ -6,7 +6,7 @@
 /*   By: hyeslim <hyeslim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 15:46:57 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/07/15 19:00:11 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/07/18 16:49:29 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,3 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 		temp->next = new;
 	}
 }
-// if (*lst == NULL || new == NULL)
-// new->next = *lst;
-// *lst = new;
