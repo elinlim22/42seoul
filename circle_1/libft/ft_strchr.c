@@ -6,18 +6,17 @@
 /*   By: hyeslim <hyeslim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 21:06:33 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/07/06 21:56:07 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/07/18 22:17:56 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 char	*ft_strchr(const char *s, int c)
 {
-	while (*s)
+	while (*s && *s != c)
 	{
-		if (*s == c)
-			break ;
-		else
-			s++;
+		s++;
 	}
-	return ((char *)s);
+	if (*s == c)
+		return ((char *)s);
+	return (0);
 }
