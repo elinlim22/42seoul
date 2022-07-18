@@ -6,12 +6,12 @@
 #    By: hyeslim <hyeslim@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/11 14:01:08 by hyeslim           #+#    #+#              #
-#    Updated: 2022/07/11 14:01:56 by hyeslim          ###   ########.fr        #
+#    Updated: 2022/07/18 14:15:46 by hyeslim          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
-CC = gcc
+CC = cc
 CFLAGS = -Wall -Werror -Wextra
 SRCS = ft_isalpha.c \
 		ft_isdigit.c \
@@ -61,49 +61,27 @@ BOBJS = ${BSRCS:.c=.o}
 
 all : ${NAME}
 
+ifdef WITH_BONUS
+	OBJ_RESULT = ${OBJS} ${BOBJS}
+else
+	OBJ_RESULT = ${OBJS}
+endif
+
 bonus : ${NAME}
-	${CC} -c ${CFLAGS} ${BSRCS} -I./
-	ar rc ${NAME} ${BOBJS}
+	make WITH_BONUS=1 all
 
 ${NAME} : ${OBJS}
-	ar rc ${NAME} ${OBJS}
+	ar rc $@ $^
 
 ${OBJS} : ${SRCS}
-	${CC} -c ${CFLAGS} ${SRCS} -I./
+	${CC} ${CFLAGS} -c ${SRCS} -I./
 
 clean :
-	rm -f ${OBJS} ${BOBJS}
+	rm -rf ${OBJS} ${BOBJS}
 
 fclean : clean
-	rm -f ${NAME}
+	rm -rf ${NAME}
 
 re : fclean all
 
 .PHONY : all clean fclean re
-
-
-
-# NAME = libft.a
-# SRCS = ${DIR}ft_putchar.c ${DIR}ft_putstr.c ${DIR}ft_strcmp.c ${DIR}ft_strlen.c ${DIR}ft_swap.c
-# OBJS = ${SRCS:.c=.o}
-# CC = gcc
-# CFLAGS = -Wall -Werror -Wextra
-# DIR = ./srcs/
-# INC = ./includes
-
-
-# all : ${NAME}
-
-# %.o : %.c
-# 	${CC} ${CFLAGS} -c $^ -o $@ -I${INC}
-
-# ${NAME} : ${OBJS}
-# 	ar rc ${NAME} ${OBJS}
-
-# clean :
-# 	rm -f ${OBJS}
-
-# fclean : clean
-# 	rm -f ${NAME}
-
-# re : fclean all
