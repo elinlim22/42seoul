@@ -6,7 +6,7 @@
 /*   By: hyeslim <hyeslim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 15:30:58 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/07/11 22:04:27 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/07/18 20:25:10 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,24 +19,24 @@ char	*ft_strtrim(char const *s1, char const *set)
 	size_t	j;
 
 	i = 0;
-	j = ft_strlen(s1) - 1;
+	j = ft_strlen(s1);
 	if (!s1)
 		return (NULL);
 	if (!set)
 		return (ft_strdup(s1));
 	while (s1[i] && *(ft_strchr(set, s1[i])))
 		i++;
-	while (s1[j] && *(ft_strchr(set, s1[j])))
+	if (i > j - 1)
+		return (ft_strdup(""));
+	while (s1[j - 1] && *(ft_strchr(set, s1[j - 1])))
 	{
-		if (j < 0)
+		if (j - 1 < 0)
 			break ;
 		j--;
 	}
-	if (i > j)
-		return (ft_strdup(""));
-	dest = (char *)malloc(sizeof(char) * (j - i + 2));
+	dest = (char *)malloc(sizeof(char) * (j - i + 1));
 	if (!dest)
 		return (NULL);
-	ft_strlcpy(dest, s1 + i, j - i + 2);
+	ft_strlcpy(dest, s1 + i, j - i + 1);
 	return (dest);
 }
