@@ -6,7 +6,7 @@
 /*   By: hyeslim <hyeslim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 16:31:58 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/07/18 20:05:26 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/07/21 21:20:37 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 
 	if (!s)
 		return (NULL);
+	if (ft_strlen(s) <= start)
+		return (ft_strdup(""));
 	dest = (char *)malloc(sizeof(char) * (len + 1));
 	if (!dest)
 		return (NULL);
-	if (ft_strlen(s) <= start)
-		return (ft_strdup(""));
 	i = 0;
 	while ((i < len) && *(s + start + i))
 	{
