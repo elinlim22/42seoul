@@ -6,7 +6,7 @@
 /*   By: hyeslim <hyeslim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 22:19:51 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/07/21 21:38:03 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/07/22 17:55:07 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 	size_t	i;
 	size_t	j;
 
-	if (!haystack || !needle)
+	if (!haystack && !needle)
 		return (0);
 	i = 0;
 	if (*needle == 0)

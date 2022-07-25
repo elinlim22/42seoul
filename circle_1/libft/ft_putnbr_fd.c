@@ -6,7 +6,7 @@
 /*   By: hyeslim <hyeslim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 12:04:23 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/07/14 12:42:09 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/07/25 15:30:30 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,32 +38,3 @@ void	ft_putnbr_fd(int n, int fd)
 		ft_putchar_fd(c, fd);
 	}
 }
-
-/*
-void	ft_putnbr(int nb)
-{
-	char	c;
-
-	if (nb == -2147483648)
-	{
-		write(1, "-2147483648", 11);
-	}
-	else if (nb < 0)
-	{
-		write(1, "-", 1);
-		nb *= -1;
-		ft_putnbr(nb);
-	}
-	else if (nb < 10)
-	{
-		c = nb + '0';
-		write(1, &c, 1);
-	}
-	else
-	{
-		ft_putnbr(nb / 10);
-		c = nb % 10 + '0';
-		write(1, &c, 1);
-	}
-}
-*/

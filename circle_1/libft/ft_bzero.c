@@ -6,14 +6,13 @@
 /*   By: hyeslim <hyeslim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 14:10:06 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/07/18 14:17:19 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/07/22 17:38:43 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_bzero(void *s, size_t n)
+void	ft_bzero(void *s, size_t n)
 {
 	ft_memset(s, 0, n);
-	return (s);
 }

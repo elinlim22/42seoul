@@ -6,7 +6,7 @@
 #    By: hyeslim <hyeslim@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/11 14:01:08 by hyeslim           #+#    #+#              #
-#    Updated: 2022/07/20 13:59:54 by hyeslim          ###   ########.fr        #
+#    Updated: 2022/07/22 17:43:50 by hyeslim          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -82,6 +82,8 @@ clean :
 fclean : clean
 	rm -rf ${NAME}
 
-re : fclean all
+re :
+	make fclean
+	make all
 
-.PHONY : all clean fclean re
+.PHONY : all clean fclean re bonus

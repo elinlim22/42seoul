@@ -6,7 +6,7 @@
 /*   By: hyeslim <hyeslim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 15:41:25 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/07/21 21:32:08 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/07/22 17:38:29 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	*ft_memmove(void *dest, const void *src, size_t len)
 	unsigned char	*s;
 	size_t			i;
 
-	if (!dest || !src)
+	if (!dest && !src)
 		return (NULL);
 	d = (unsigned char *)dest;
 	s = (unsigned char *)src;
