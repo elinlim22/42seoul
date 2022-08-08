@@ -6,7 +6,7 @@
 /*   By: hyeslim <hyeslim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/08 20:26:43 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/08/08 20:29:10 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/08/08 21:07:34 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <unistd.h>
 # include <limits.h>
 
+char	*get_next_line(int fd);
 size_t	ft_strlen(const char *str);
 char	*ft_strdup(const char *s1);
 char	*ft_strjoin(char const *s1, char const *s2);
