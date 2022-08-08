@@ -6,15 +6,11 @@
 /*   By: hyeslim <hyeslim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/08 20:27:08 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/08/08 20:52:22 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/08/08 20:56:02 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "get_next_line_bonus.h"
-
-#include <fcntl.h>
-#include <stdio.h>
 
 static	char	*ft_line(int fd, char *buff, char *backup)
 {
@@ -109,37 +105,3 @@ char	*get_next_line(int fd)
 	backup[fd] = ft_update(temp);
 	return (temp);
 }
-
-// int main(void)
-// {
-//   int fd;
-//   int fd2;
-
-//   fd = 0;
-//   fd = open("test.txt", O_RDONLY);
-//   printf("%d\n", fd);
-//   char *line = get_next_line(fd);
-//   printf("%p\n", line);
-//   printf("%s", line);
-
-//   printf("\n---------------------------------------\n");
-//   line = get_next_line(fd);
-//   printf("%p\n", line);
-//   printf("%s", line);
-
-//   printf("\n---------------------------------------\n");
-//   fd2 = open("test2.txt", O_RDONLY);
-//   printf("%d\n", fd2);
-//   char *line2 = get_next_line(fd2);
-//   printf("%p\n", line2);
-//   printf("%s", line2);
-
-//   printf("\n---------------------------------------\n");
-//   line = get_next_line(fd);
-//   printf("%p\n", line);
-//   printf("%s", line);
-
-//   printf("\n---------------------------------------\n");
-//   system("leaks a.out > leaks_result_temp; cat leaks_result_temp | grep leaked && rm -rf leaks_result_temp");
-//   return (0);
-// }
