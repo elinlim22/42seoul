@@ -6,7 +6,7 @@
 /*   By: hyeslim <hyeslim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 17:09:27 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/08/08 19:28:19 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/08/08 20:24:06 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,44 +82,58 @@ static char	*ft_update(char *temp)
 	if (temp[i] == '\0')
 		return (NULL);
 	update = ft_substr(temp, i + 1, ft_strlen(temp) - i - 1);
-	if (!update)
+	if (!update || update[0] == '\0')
+	{
+		free(update);
+		update = NULL;
 		return (NULL);
+	}
+		// return (NULL);
+	// if (update[0] == '\0') ///memory leak?
+	// {
+	// 	free(update);
+	// 	update = NULL;
+	// 	return (NULL);
+	// }
 	temp[i + 1] = '\0';
 	return (update);
 }
 
 char	*get_next_line(int fd)
 {
-	static char	*backup;
+	static char	*backup[OPEN_MAX];
 	char		*buff;
 	char		*temp;
 
 	buff = (char *)malloc(sizeof(char) * BUFFER_SIZE + 1);
-	if (!buff)
-		return (NULL);
-	if (fd < 0 || BUFFER_SIZE <= 0)
+	// if (!buff)
+	// 	return (NULL);
+	if (!buff || fd < 0 || BUFFER_SIZE <= 0)
 	{
 		free(buff);
 		buff = NULL;
 		return (NULL);
 	}
-	temp = ft_line(fd, buff, backup);
+	temp = ft_line(fd, buff, backup[fd]);
 	printf("1 if ft_line success : %d\n", temp!=0); ///ok
 	free(buff);
 	buff = NULL;
 	if (!temp)
 		return (NULL);
-	backup = ft_update(temp);
-	printf("backup updated : \n------\n%s\n------\n", backup);
+	backup[fd] = ft_update(temp);
+	free(temp);
+	printf("backup updated : \n------\n%s\n------\n", backup[fd]);
 	return (temp);
 }
 
 int main(void)
 {
   int fd;
+  int fd2;
 
   fd = 0;
   fd = open("test.txt", O_RDONLY);
+  printf("%d\n", fd);
   char *line = get_next_line(fd);
   printf("%p\n", line);
   printf("%s", line);
@@ -130,6 +144,19 @@ int main(void)
   printf("%p\n", line);
   printf("%s", line);
 
+  printf("\n---------------------------------------\n");
+  fd2 = open("test2.txt", O_RDONLY);
+  printf("%d\n", fd2);
+  char *line2 = get_next_line(fd2);
+  printf("%p\n", line2);
+  printf("%s", line2);
 
+  printf("\n---------------------------------------\n");
+  line = get_next_line(fd);
+  printf("%p\n", line);
+  printf("%s", line);
+
+  printf("\n---------------------------------------\n");
+  system("leaks a.out > leaks_result_temp; cat leaks_result_temp | grep leaked && rm -rf leaks_result_temp");
   return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: hyeslim <hyeslim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 17:09:24 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/08/08 16:46:30 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/08/08 20:24:02 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define GET_NEXT_LINE_H
 # include <stdlib.h>
 # include <unistd.h>
+# include <limits.h>
 
 size_t	ft_strlen(const char *str);
 char	*ft_strdup(const char *s1);

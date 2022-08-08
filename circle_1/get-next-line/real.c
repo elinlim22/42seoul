@@ -6,7 +6,7 @@
 /*   By: hyeslim <hyeslim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 17:09:27 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/08/08 19:31:26 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/08/08 20:24:29 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,8 @@ static char	*ft_substr(char const *s, unsigned int start, size_t len)
 
 static char	*ft_update(char *temp)
 {
-	int		i;
 	char	*update;
+	int		i;
 
 	i = 0;
 	while (temp[i] != '\n' && temp[i] != '\0')
@@ -73,32 +73,35 @@ static char	*ft_update(char *temp)
 	if (temp[i] == '\0')
 		return (NULL);
 	update = ft_substr(temp, i + 1, ft_strlen(temp) - i - 1);
-	if (!update)
+	if (!update || update[0] == '\0')
+	{
+		free(update);
+		update = NULL;
 		return (NULL);
+	}
 	temp[i + 1] = '\0';
 	return (update);
 }
 
 char	*get_next_line(int fd)
 {
-	static char	*backup;
+	static char	*backup[OPEN_MAX];
 	char		*buff;
 	char		*temp;
 
 	buff = (char *)malloc(sizeof(char) * BUFFER_SIZE + 1);
-	if (!buff)
-		return (NULL);
-	if (fd < 0 || BUFFER_SIZE <= 0)
+	if (!buff || fd < 0 || BUFFER_SIZE <= 0)
 	{
 		free(buff);
 		buff = NULL;
 		return (NULL);
 	}
-	temp = ft_line(fd, buff, backup);
+	temp = ft_line(fd, buff, backup[fd]);
 	free(buff);
 	buff = NULL;
 	if (!temp)
 		return (NULL);
-	backup = ft_update(temp);
+	backup[fd] = ft_update(temp);
+	free(temp);
 	return (temp);
 }
