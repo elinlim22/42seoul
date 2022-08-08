@@ -1,19 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.h                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyeslim <hyeslim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/01 17:09:24 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/08/08 20:26:52 by hyeslim          ###   ########.fr       */
+/*   Created: 2022/08/08 20:26:43 by hyeslim           #+#    #+#             */
+/*   Updated: 2022/08/08 20:29:10 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#ifndef GET_NEXT_LINE_BONUS_H
+# define GET_NEXT_LINE_BONUS_H
 # include <stdlib.h>
 # include <unistd.h>
+# include <limits.h>
 
 size_t	ft_strlen(const char *str);
 char	*ft_strdup(const char *s1);
