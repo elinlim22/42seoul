@@ -1,19 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   real.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyeslim <hyeslim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 17:09:27 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/08/08 19:28:19 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/08/08 19:29:39 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-
-#include <fcntl.h>
-#include <stdio.h>
 
 static	char	*ft_line(int fd, char *buff, char *backup)
 {
@@ -24,24 +21,19 @@ static	char	*ft_line(int fd, char *buff, char *backup)
 	while (size)
 	{
 		size = read(fd, buff, BUFFER_SIZE);
-		printf("read error? size is : %d\n", size); ///ok
-		if (size == -1) ///case error
+		if (size == -1)
 			return (NULL);
-		if (size == 0) ///case EOF
+		if (size == 0)
 			break ;
 		if (!backup)
 			backup = ft_strdup("");
 		buff[size] = '\0';
 		tmp_pnt = backup;
-		printf("buff temp : %s\n", buff); ///ok
 		backup = ft_strjoin(tmp_pnt, buff);
-		printf("backup temp : %s\n", backup); ///ok
-		printf("1 if backup success : %d\n", backup!=0); ///ok
 		if (!backup)
 			return (NULL);
 		free(tmp_pnt);
 		tmp_pnt = NULL;
-		printf("1 if strchr NL in buff : %d\n", ft_strchr(buff, '\n')!= 0); ///ok
 		if (ft_strchr(buff, '\n'))
 			break ;
 	}
@@ -76,7 +68,6 @@ static char	*ft_update(char *temp)
 	char	*update;
 
 	i = 0;
-	printf("NL location is : %d\n", i); ///ok
 	while (temp[i] != '\n' && temp[i] != '\0')
 		i++;
 	if (temp[i] == '\0')
@@ -104,32 +95,10 @@ char	*get_next_line(int fd)
 		return (NULL);
 	}
 	temp = ft_line(fd, buff, backup);
-	printf("1 if ft_line success : %d\n", temp!=0); ///ok
 	free(buff);
 	buff = NULL;
 	if (!temp)
 		return (NULL);
 	backup = ft_update(temp);
-	printf("backup updated : \n------\n%s\n------\n", backup);
 	return (temp);
-}
-
-int main(void)
-{
-  int fd;
-
-  fd = 0;
-  fd = open("test.txt", O_RDONLY);
-  char *line = get_next_line(fd);
-  printf("%p\n", line);
-  printf("%s", line);
-
-
-  printf("\n---------------------------------------\n");
-  line = get_next_line(fd);
-  printf("%p\n", line);
-  printf("%s", line);
-
-
-  return (0);
 }
