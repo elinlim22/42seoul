@@ -3,29 +3,27 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: hyeslim <hyeslim@student.42.fr>            +#+  +:+       +#+         #
+#    By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/05 15:44:49 by hyeslim           #+#    #+#              #
-#    Updated: 2022/09/05 16:00:10 by hyeslim          ###   ########.fr        #
+#    Updated: 2022/09/18 17:15:50 by hyeslim          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
 CC = cc
 CFLAGS = -Wall -Werror -Wextra
-SRCS = ft_printf.c
-OBJS = ${SRC:.c=.o}
+SRCS = ft_printf.c utils.c
 
 all : ${NAME}
 
 ${NAME} : ${OBJS}
-	ar rcs ${NAME} ${OBJS}
-
-%.o : %.c
-	${CC} ${CFLAGS} -c $< -o $@
+	${CC} ${CFLAGS} -c libft/*.c -I libft/libft.h
+	${CC} ${CFLAGS} -c ${SRCS} -I ft_printf.h
+	ar rcs ${NAME} *.o
 
 clean :
-	rm -rf ${OBJS}
+	rm -rf *.o libft/*.o
 
 fclean : clean
 	rm -rf ${NAME}

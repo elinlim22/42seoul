@@ -6,7 +6,7 @@
 /*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 15:21:26 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/09/07 14:21:25 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/09/18 17:18:05 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,14 @@
 
 # include <stdarg.h>
 # include <unistd.h>
-// # include "libft.h"
+# include "libft.h"
 
-int		c(char c);
-int		s(char *str);
-int		p(void *pt);
-int		diu(int i);
-int		xX(int i, int ul);
+int	ft_printf(const char *format, ...);
+int		print_c(char c);
+int		print_s(char *str);
+// int		print_p(void *pt);
+int		print_diu(int i);
+int		print_xX(unsigned int i, int ul);
 void	hex_print(char c, int ul);
 void	ft_strupcase(char *str);
 
