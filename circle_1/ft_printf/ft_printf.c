@@ -6,7 +6,7 @@
 /*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 15:21:12 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/09/18 17:15:04 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/09/19 15:46:17 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	check_fs(char c, va_list ap)
 	else if (*idx == 's')
 		len += print_s((char *)va_arg(ap, char *));
 	// else if (*idx == 'p')
-	// 	len += print_p(va_arg(ap, void *));
+	// 	len += print_p((unsigned long)va_arg(ap, void *));
 	else if (*idx == 'd' || *idx == 'i' || *idx == 'u')
 		len += print_diu((int)va_arg(ap, int));
 	else if (*idx == 'x' || *idx == 'X')
@@ -40,22 +40,22 @@ int	check_fs(char c, va_list ap)
 	return (len);
 }
 
-int	count_args(char *str)
-{
-	int	count;
+// int	count_args(char *str)
+// {
+// 	int	count;
 
-	count = 0;
-	while (*str && *(str + 1))
-	{
-		if (*str == '%')
-		{
-			count++;
-			str++;
-		}
-		str++;
-	}
-	return (count);
-}
+// 	count = 0;
+// 	while (*str && *(str + 1))
+// 	{
+// 		if (*str == '%')
+// 		{
+// 			count++;
+// 			str++;
+// 		}
+// 		str++;
+// 	}
+// 	return (count);
+// }
 
 int	ft_printf(const char *format, ...)
 {
@@ -74,9 +74,7 @@ int	ft_printf(const char *format, ...)
 			if (format[i] == '%')
 				len += print_c('%');
 			else
-			{
 				len += check_fs(format[i], ap);
-			}
 		}
 		else
 			len += print_c(format[i]);

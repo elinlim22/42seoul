@@ -6,7 +6,7 @@
 #    By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/05 15:44:49 by hyeslim           #+#    #+#              #
-#    Updated: 2022/09/18 17:15:50 by hyeslim          ###   ########.fr        #
+#    Updated: 2022/09/19 15:49:52 by hyeslim          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ SRCS = ft_printf.c utils.c
 
 all : ${NAME}
 
-${NAME} : ${OBJS}
+${NAME} :
 	${CC} ${CFLAGS} -c libft/*.c -I libft/libft.h
 	${CC} ${CFLAGS} -c ${SRCS} -I ft_printf.h
 	ar rcs ${NAME} *.o

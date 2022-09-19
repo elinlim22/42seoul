@@ -6,7 +6,7 @@
 /*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 13:50:41 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/09/18 17:14:56 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/09/19 17:37:25 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,10 @@ int print_s(char *str)
 	return (ft_strlen(str));
 }
 
-// int print_p(void *pt)
+// int print_p(unsigned long pt)
 // {
-// 	int	address;
 
-// 	address = &pt;
-// 	ft_putstr_fd(address, 1);
-// 	return (ft_strlen(address));
+// 	return ();
 // }
 
 int	print_diu(int i)
@@ -58,10 +55,11 @@ int print_xX(unsigned int i, int lu)
 	res = 0;
 	if (lu)
 		ft_strupcase(hex);
-	while (i >= 0)
+	res += print_c(hex[i / 16]);
+	if (i > 0) /*재귀재귀..*/
 	{
-		res += print_c(hex[i % 16]);
-		i /= 16;
+		i %= 16;
+		print_xX(i, lu);
 	}
 	return (res);
 }
