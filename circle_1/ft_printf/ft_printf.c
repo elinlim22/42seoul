@@ -6,56 +6,38 @@
 /*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 15:21:12 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/09/19 15:46:17 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/09/22 17:16:00 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include "libft.h"
+#include "libft/libft.h"
 
 int	check_fs(char c, va_list ap)
 {
-	char	*fs;
-	char	*idx;
 	int		len;
 
-	fs = "cspdiuxX%%";
-	idx = ft_strchr(fs, c);
 	len = 0;
-	if (*idx == 'c')
-		len += print_c((char)va_arg(ap, void *));
-	else if (*idx == 's')
+	if (c == 'c')
+		len += ft_putchar_fd((char)va_arg(ap, void *), 1);
+	else if (c == 's')
 		len += print_s((char *)va_arg(ap, char *));
-	// else if (*idx == 'p')
-	// 	len += print_p((unsigned long)va_arg(ap, void *));
-	else if (*idx == 'd' || *idx == 'i' || *idx == 'u')
-		len += print_diu((int)va_arg(ap, int));
-	else if (*idx == 'x' || *idx == 'X')
+	else if (c == 'p')
 	{
-		if (*idx == 'x')
+		len += ft_putstr_fd("0x", 1);
+		len += print_p(va_arg(ap, void *));
+	}
+	else if (c == 'd' || c == 'i' || c == 'u')
+		len += print_diu((int)va_arg(ap, int));
+	else if (c == 'x' || c == 'X')
+	{
+		if (c == 'x')
 			len += print_xX((int)va_arg(ap, int), 0);
 		else
 			len += print_xX((int)va_arg(ap, int), 1);
 	}
 	return (len);
 }
-
-// int	count_args(char *str)
-// {
-// 	int	count;
-
-// 	count = 0;
-// 	while (*str && *(str + 1))
-// 	{
-// 		if (*str == '%')
-// 		{
-// 			count++;
-// 			str++;
-// 		}
-// 		str++;
-// 	}
-// 	return (count);
-// }
 
 int	ft_printf(const char *format, ...)
 {
@@ -72,18 +54,13 @@ int	ft_printf(const char *format, ...)
 		{
 			i++;
 			if (format[i] == '%')
-				len += print_c('%');
+				len += ft_putchar_fd('%', 1);
 			else
 				len += check_fs(format[i], ap);
 		}
 		else
-			len += print_c(format[i]);
+			len += ft_putchar_fd(format[i], 1);
 		i++;
 	}
 	return (len);
 }
-
-			// while (format/* format[i] 가 type 만날때까지 */)
-			// 	// 구조체에 각 플래그 할당!
-			// if (format[i]/* 현재 인덱스에서 format[i] 가 type인가??  */)
-			// 	// 출력모듈로 이동
