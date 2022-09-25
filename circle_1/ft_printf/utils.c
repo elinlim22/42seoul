@@ -6,63 +6,74 @@
 /*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 13:50:41 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/09/22 17:18:45 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/09/25 19:05:29 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include "libft/libft.h"
 
-int	print_s(char *str)
-{
-	return (ft_putstr_fd(str, 1));
-}
-
-int	print_p(void *pt)
+int	print_p(void *pt, int flag)
 {
 	unsigned long	ptr;
-	char			*hex;
 	static int		res;
 
 	ptr = (unsigned long)pt;
-	hex = "0123456789abcdef";
 	res = 0;
-	if (ptr > 0)
+	if (!ptr && !flag)
 	{
-		print_p((void *)(ptr / 16));
-		res += ft_putchar_fd(hex[ptr % 16], 1);
+		res += ft_putchar_fd('0', 1);
+		return (res);
+	}
+	else if (ptr > 0)
+	{
+		flag = 1;
+		print_p((void *)(ptr / 16), flag);
+		res += ft_putchar_fd("0123456789abcdef"[ptr % 16], 1);
 	}
 	return (res);
 }
 
-int	print_diu(int i)
+int	print_di(int i)
 {
 	return (ft_putnbr_fd(i, 1));
 }
 
-void	ft_strupcase(char *str)
+int	print_u(unsigned int i, int fd)
 {
-	while (*str)
+	static int	len;
+	char		c;
+
+	len = 0;
+	if (i < 10)
 	{
-		if (*str >= 'a' && *str <= 'z')
-			*str -= ('a' - 'A');
-		str++;
+		c = i + '0';
+		len += ft_putchar_fd(c, fd);
 	}
+	else
+	{
+		print_u(i / 10, fd);
+		c = i % 10 + '0';
+		len += ft_putchar_fd(c, fd);
+	}
+	return (len);
 }
 
-int	print_xX(unsigned int i, int lu)
+int	print_x(unsigned int i, int lu, int flag)
 {
-	char		*hex;
 	static int	res;
 
-	hex = "0123456789abcdef";
 	res = 0;
-	if (lu)
-		ft_strupcase(hex);
-	if (i > 0)
+	if (!i && !flag)
+		return (res += ft_putchar_fd('0', 1));
+	else if (i > 0)
 	{
-		print_xX(i / 16, lu);
-		res += ft_putchar_fd(hex[i % 16], 1);
+		flag = 1;
+		print_x(i / 16, lu, flag);
+		if (!lu)
+			res += ft_putchar_fd("0123456789abcdef"[i % 16], 1);
+		else
+			res += ft_putchar_fd("0123456789ABCDEF"[i % 16], 1);
 	}
 	return (res);
 }

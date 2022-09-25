@@ -6,7 +6,7 @@
 /*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 15:21:12 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/09/22 17:16:00 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/09/25 19:05:42 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,20 +21,22 @@ int	check_fs(char c, va_list ap)
 	if (c == 'c')
 		len += ft_putchar_fd((char)va_arg(ap, void *), 1);
 	else if (c == 's')
-		len += print_s((char *)va_arg(ap, char *));
+		len += ft_putstr_fd((char *)va_arg(ap, char *), 1);
 	else if (c == 'p')
 	{
 		len += ft_putstr_fd("0x", 1);
-		len += print_p(va_arg(ap, void *));
+		len += print_p(va_arg(ap, void *), 0);
 	}
-	else if (c == 'd' || c == 'i' || c == 'u')
-		len += print_diu((int)va_arg(ap, int));
+	else if (c == 'd' || c == 'i')
+		len += print_di((int)va_arg(ap, int));
+	else if (c == 'u')
+		len += print_u((unsigned int)va_arg(ap, unsigned int), 1);
 	else if (c == 'x' || c == 'X')
 	{
 		if (c == 'x')
-			len += print_xX((int)va_arg(ap, int), 0);
+			len += print_x((int)va_arg(ap, int), 0, 0);
 		else
-			len += print_xX((int)va_arg(ap, int), 1);
+			len += print_x((int)va_arg(ap, int), 1, 0);
 	}
 	return (len);
 }
