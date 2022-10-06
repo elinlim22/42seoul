@@ -3,17 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyeslim <hyeslim@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 14:15:29 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/10/05 21:46:34 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/10/06 17:08:49 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <stdio.h>
 
-/* 인자 파싱하기 */
+/* 인자 파싱하기
+	exit문 중 Error 제외하고 0으로 바꾸기
+	리턴값 고려하기
+	main이름 바꾸기-> 함수로 사용
+	함수 나누기
+*/
 int	main(int argc, char *argv[])
 {
 	char	*str;
@@ -24,16 +29,16 @@ int	main(int argc, char *argv[])
 
 	i = 1;
 	str = ft_strdup("");
-	// res = (char *)malloc(sizeof(char *) * (argc));
-	// if (argc < 3) //숫자 여러개가 하나의 인자로 들어올 경우는..?
-	// 	exit(0);
+	if (argc < 2)
+		exit(0);
 	while (i < argc)
 	{
-		str = ft_strjoin(str, argv[i++]); //str를 temp에??
+		if (*(argv[i]) == '\0')
+			exit(write(1, "Error\n", 6));
+		str = ft_strjoin(str, argv[i++]);
 		str = ft_strjoin(str, " ");
 	}
-	printf("str is %s\n", str);
-	res = ft_split(str, ' '); //free 잊지말기
+	res = ft_split(str, ' ');
 	i = 0;
 	j = 0;
 	/* 검사 1 */
@@ -42,12 +47,14 @@ int	main(int argc, char *argv[])
 		while (res[i][j])
 		{
 			if (!ft_isdigit(res[i][j]))
-				exit(write(1, "Error\n", 6));
+				exit(0);
 			else
 				j++;
 		}
 		i++;
 	}
+	if (i < 2 && res[0] != NULL)
+		exit(0);
 	/* ft_atoi */
 	i = 0;
 	arr = (int *)malloc(sizeof(int) * (argc - 1));
@@ -56,6 +63,7 @@ int	main(int argc, char *argv[])
 		arr[i] = ft_atoi(res[i]);
 		i++;
 	}
+	int count = i;
 	/* 검사 2 */
 	i = 0;
 	while (arr[i + 1])
@@ -70,22 +78,24 @@ int	main(int argc, char *argv[])
 		i++;
 	}
 	i = 0;
-	while (arr[i + 1])
+	while (i < count - 1)
 	{
 		if (arr[i] < arr[i + 1])
+		{
 			i++;
+			if (i + 1 == count)
+				exit(0);
+		}
 		else
 			break ;
-		if (!arr[i + 1])
-			exit(write(1, "sorted\n", 7)); //정렬 확인됨
 	}
-	free(res); //free위치 고려하기
-	free(str); //얘도
-	return (write(1, "done\n", 5));
+	free(res);
+	free(str);
+	return (write(1, "parsing done\n", 14));
 }
 
 
-/* 전처리
+/* 전처리 ::: 끝!
 	1. 인자값이 정수가 아닐때
 	2. 인자값이 정수보다 클때
 	3. 중복된 인자가 있을때
