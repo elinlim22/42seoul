@@ -6,7 +6,7 @@
 /*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 14:15:29 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/10/06 17:08:49 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/10/06 17:14:01 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 	main이름 바꾸기-> 함수로 사용
 	함수 나누기
 */
-int	main(int argc, char *argv[])
+int	arg_parsing(int argc, char *argv[])
 {
 	char	*str;
 	int		i;
