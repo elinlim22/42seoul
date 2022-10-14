@@ -6,7 +6,7 @@
 /*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 14:15:29 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/10/06 17:14:01 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/10/14 21:43:51 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 	main이름 바꾸기-> 함수로 사용
 	함수 나누기
 */
-int	arg_parsing(int argc, char *argv[])
+int	*arg_parsing(int argc, char *argv[])
 {
 	char	*str;
 	int		i;
@@ -28,6 +28,7 @@ int	arg_parsing(int argc, char *argv[])
 	int		*arr;
 
 	i = 1;
+	/* 전처리 */
 	str = ft_strdup("");
 	if (argc < 2)
 		exit(0);
@@ -91,7 +92,7 @@ int	arg_parsing(int argc, char *argv[])
 	}
 	free(res);
 	free(str);
-	return (write(1, "parsing done\n", 14));
+	return (arr);
 }
 
 
@@ -120,7 +121,7 @@ int	arg_parsing(int argc, char *argv[])
 		복사본을 만들고 원본과 대조하면서 원본에 인덱싱 처리를 한다
 	5개 미만일때 정렬
 		5개일 때 -> 4개 솔팅 함수로 빠진다
-		'4개일때 -> 3개 솔팅함수로 빠진다
+		4개일때 -> 3개 솔팅함수로 빠진다
 		3개일때 하드코딩
 		재귀로 복귀하면서
 	make b
