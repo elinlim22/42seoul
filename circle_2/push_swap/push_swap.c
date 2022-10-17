@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: hyeslim <hyeslim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 14:15:29 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/10/14 21:43:51 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/10/17 14:48:38 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,14 @@
 	main이름 바꾸기-> 함수로 사용
 	함수 나누기
 */
-int	*arg_parsing(int argc, char *argv[])
+int	main(int argc, char *argv[])
 {
 	char	*str;
 	int		i;
 	int		j;
 	char	**res;
 	int		*arr;
+	char	*temp;
 
 	i = 1;
 	/* 전처리 */
@@ -36,10 +37,15 @@ int	*arg_parsing(int argc, char *argv[])
 	{
 		if (*(argv[i]) == '\0')
 			exit(write(1, "Error\n", 6));
-		str = ft_strjoin(str, argv[i++]);
-		str = ft_strjoin(str, " ");
+		temp = str;
+		str = ft_strjoin(temp, argv[i++]);
+		free(temp);
+		temp = str;
+		str = ft_strjoin(temp, " ");
+		free(temp);
 	}
 	res = ft_split(str, ' ');
+	// free(str);
 	i = 0;
 	j = 0;
 	/* 검사 1 */
@@ -54,6 +60,9 @@ int	*arg_parsing(int argc, char *argv[])
 		}
 		i++;
 	}
+	for (i = 0; res[i]; i++)
+	{ free(res[i]); }
+	free(res);
 	if (i < 2 && res[0] != NULL)
 		exit(0);
 	/* ft_atoi */
@@ -90,9 +99,12 @@ int	*arg_parsing(int argc, char *argv[])
 		else
 			break ;
 	}
-	free(res);
-	free(str);
-	return (arr);
+	// for (i = argc - 1; i >= 0; i--)
+	// { free(res[i]); }
+	// free(res);
+	// free(str);
+	system("leaks a.out");
+	return (0);
 }
 
 
