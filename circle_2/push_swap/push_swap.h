@@ -6,7 +6,7 @@
 /*   By: hyeslim <hyeslim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 14:15:26 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/10/17 16:01:30 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/10/18 16:42:37 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 
 # include <unistd.h>
 # include <stdlib.h>
-# include <limits.h>
+# include <limits.h> //필요?
 # include "libft/libft.h"
 
 char	**set_str(int argc, char *argv[]);
 int		check_first(char **res);
 int		*do_atoi(char **res, int count);
-int		check_second(int *arr);
+int		check_second(int *arr, int count);
 int		check_sorted(int *arr, int count);
 void	free_all(char **res, int count);
 int		count_args(char **res);
