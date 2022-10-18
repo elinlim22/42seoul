@@ -6,7 +6,7 @@
 #    By: hyeslim <hyeslim@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/26 14:17:26 by hyeslim           #+#    #+#              #
-#    Updated: 2022/10/17 15:05:07 by hyeslim          ###   ########.fr        #
+#    Updated: 2022/10/18 16:09:45 by hyeslim          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,7 @@ ${NAME} :
 	ar rcs ${NAME} *.o
 #	gcc ${CFLAGS} push_swap.c push_swap.a
 	gcc ${CFLAGS} foo.c push_swap.a
+	make clean
 
 clean :
 	rm -rf *.o libft/*.o
@@ -36,5 +37,6 @@ fclean : clean
 re :
 	make fclean
 	make all
+	make clean
 
 .PHONY : all clean fclean re
