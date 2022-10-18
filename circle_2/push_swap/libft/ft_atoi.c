@@ -6,7 +6,7 @@
 /*   By: hyeslim <hyeslim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 14:36:10 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/10/05 21:12:18 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/10/18 16:47:56 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,12 @@ int	ft_atoi(const char *str)
 	}
 	while (*str >= '0' && *str <= '9')
 	{
-		if (n < -2147483648 || n > 2147483647)
-			exit(write(1, "Error\n", 6));
 		n *= 10;
 		n += *str - '0';
 		str++;
 	}
-	return ((int)n * i);
+	n *= i;
+	if (n < -2147483648 || n > 2147483647)
+		exit(write(1, "Error\n", 6));
+	return ((int)n);
 }
