@@ -6,12 +6,13 @@
 /*   By: hyeslim <hyeslim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 21:24:05 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/10/18 16:44:29 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/10/18 20:14:55 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <stdio.h>
+#include <stdio.h> //삭제
+/* t_initial 사용 고려 */
 
 /* 전처리 */
 char	**set_str(int argc, char *argv[])
@@ -65,13 +66,13 @@ int	check_first(char **res)
 	return (1);
 }
 
-int	*do_atoi(char **res, int count) //array 길이 반환
+int	*do_atoi(char **res, int size) //array 길이 반환
 {
 	int	*arr;
 	int	i;
 
 	i = 0;
-	arr = (int *)malloc(sizeof(int) * count);
+	arr = (int *)malloc(sizeof(int) * size);
 	if (!arr)
 		return (0);
 	while (res[i])
@@ -82,16 +83,16 @@ int	*do_atoi(char **res, int count) //array 길이 반환
 	return (arr);
 }
 
-int	check_second(int *arr, int count) //중복검사
+int	check_second(int *arr, int size) //중복검사
 {
 	int	i;
 	int	j;
 
 	i = 0;
-	while (i < count - 1)
+	while (i < size - 1)
 	{
 		j = i + 1;
-		while (j < count)
+		while (j < size)
 		{
 			if (arr[i] == arr[j])
 				return (0); //Error 출력
@@ -103,17 +104,17 @@ int	check_second(int *arr, int count) //중복검사
 	return (1);
 }
 
-int	check_sorted(int *arr, int count)
+int	check_sorted(int *arr, int size)
 {
 	int	i;
 
 	i = 0;
-	while (i < count - 1) //이미 정렬인지 확인
+	while (i < size - 1) //이미 정렬인지 확인
 	{
 		if (arr[i] < arr[i + 1])
 		{
 			i++;
-			if (i + 1 == count)
+			if (i + 1 == size)
 				return (0); // 모두 정렬이면 리턴0
 				// exit(0);
 		}
@@ -124,12 +125,12 @@ int	check_sorted(int *arr, int count)
 	return (1);
 }
 
-void	free_all(char **res, int count)
+void	free_all(char **res, int size)
 {
 	int	i;
 
 	i = 0;
-	while (i < count)
+	while (i < size)
 	{
 		printf("freeing cell no.%d : %s\n", i, res[i]);
 		free(res[i++]);
@@ -137,21 +138,31 @@ void	free_all(char **res, int count)
 	free(res);
 }
 
-int	count_args(char **res)
+int	size_args(char **res)
 {
 	int	i;
 
 	i = 0;
 	while (res[i])
 		i++;
-	printf("count_args : %d\n", i);
+	printf("size_args : %d\n", i);
 	return (i);
+}
+
+t_initial	setup(char **res, int *arr, int size) ///목적이 뭐야... 왜만든거지
+{
+	t_initial	set;
+
+	set.initial_arr = do_atoi(res, size);
+	set.size = size_args(res);
+
+	return (set);
 }
 
 int main(int argc, char *argv[])
 {
 	char **res = set_str(argc, argv);
-	int i = count_args(res);
+	int i = size_args(res);
 
 	if (check_first(res)) //충분한 숫자인자?
 	{
