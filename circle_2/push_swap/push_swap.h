@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyeslim <hyeslim@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 14:15:26 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/10/19 17:12:05 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/10/20 13:54:16 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,6 @@
 # include <stdlib.h>
 # include <limits.h> //필요?
 # include "libft/libft.h"
-
-char	**set_str(int argc, char *argv[]);
-int		check_first(char **res);
-int		*do_atoi(char **res, int size);
-int		check_second(int *arr, int size);
-int		check_sorted(int *arr, int size);
-void	free_all(char **res, int size);
-int		size_args(char **res);
-
-// int	*arg_parsing(int argc, char *argv[]);
 
 typedef struct s_data
 {
@@ -46,5 +36,13 @@ typedef struct	s_all
 	t_stack		*stack_b;
 	char		*command;
 }				t_all;
+
+char	**set_str(int argc, char *argv[]);
+int		check_first(char **res);
+t_data	*do_atoi(char **res, int size);
+int		check_second(int *arr, int size);
+int		check_sorted(int *arr, int size);
+void	free_all(char **res, int size);
+int		size_args(char **res);
 
 #endif

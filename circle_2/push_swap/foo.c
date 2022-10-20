@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   foo.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyeslim <hyeslim@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 21:24:05 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/10/18 20:14:55 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/10/20 15:01:43 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,21 +66,23 @@ int	check_first(char **res)
 	return (1);
 }
 
-int	*do_atoi(char **res, int size) //array 길이 반환
+t_data	*do_atoi(char **res, int size) //array 길이 반환
 {
-	int	*arr;
-	int	i;
+	int		*arr;
+	int		i;
+	t_data	*data;
 
 	i = 0;
-	arr = (int *)malloc(sizeof(int) * size);
-	if (!arr)
-		return (0);
+	// arr = (int *)malloc(sizeof(int) * size);
+	// if (!arr)
+		// return (0);
 	while (res[i])
 	{
-		arr[i] = ft_atoi(res[i]);
+		data[i].num = ft_atoi(res[i]);
+		data[i].flag = 1;
 		i++;
 	}
-	return (arr);
+	return (data);
 }
 
 int	check_second(int *arr, int size) //중복검사
@@ -149,48 +151,55 @@ int	size_args(char **res)
 	return (i);
 }
 
-t_initial	setup(char **res, int *arr, int size) ///목적이 뭐야... 왜만든거지
+t_stack	setup(char **res, int *arr, int size) ///목적 : main의 역할을 할 setup.. check역할 필요
 {
-	t_initial	set;
+	t_stack	set;
 
-	set.initial_arr = do_atoi(res, size);
-	set.size = size_args(res);
+	if (check_first(res))
+	{
+		set.stack = do_atoi(res, size); //?????
+		set.count = size_args(res);
+		if (!check_second(set.stack, set.count) || !check_sorted(set.stack, set.count))
+		{
+
+		}
+	}
 
 	return (set);
 }
 
-int main(int argc, char *argv[])
-{
-	char **res = set_str(argc, argv);
-	int i = size_args(res);
+// int main(int argc, char *argv[])
+// {
+// 	char **res = set_str(argc, argv);
+// 	int i = size_args(res);
 
-	if (check_first(res)) //충분한 숫자인자?
-	{
-		printf("숫자 맞고 개수 충분\n");
-		int *arr = do_atoi(res, i);
-		for (int j = 0; j < i; j++)
-		{ printf("%3d", arr[j]); printf("\n");}
+// 	if (check_first(res)) //충분한 숫자인자?
+// 	{
+// 		printf("숫자 맞고 개수 충분\n");
+// 		int *arr = do_atoi(res, i);
+// 		for (int j = 0; j < i; j++)
+// 		{ printf("%3d", arr[j]); printf("\n");}
 
-		if (!check_second(arr, i) || !check_sorted(arr, i)) //중복, 정렬검사
-		{
-			printf("Error\n");
-			free_all(res, i);
-			free(arr);
-			system("leaks a.out > leaks_result_temp; cat leaks_result_temp | grep leaked && rm -rf leaks_result_temp");
-			return (0);
-		}
-		else
-		{
-			printf("OK\n");
-			free_all(res, i);
-			free(arr);
-		}
-	}
-	else
-	{
-		printf("Ko : 숫자가 아니거나 인자의 개수가 부족\n");
-		free_all(res, i);
-	}
-	system("leaks a.out > leaks_result_temp; cat leaks_result_temp | grep leaked && rm -rf leaks_result_temp");
-	return (0);
-}
+// 		if (!check_second(arr, i) || !check_sorted(arr, i)) //중복, 정렬검사
+// 		{
+// 			printf("Error\n");
+// 			free_all(res, i);
+// 			free(arr);
+// 			system("leaks a.out > leaks_result_temp; cat leaks_result_temp | grep leaked && rm -rf leaks_result_temp");
+// 			return (0);
+// 		}
+// 		else
+// 		{
+// 			printf("OK\n");
+// 			free_all(res, i);
+// 			free(arr);
+// 		}
+// 	}
+// 	else
+// 	{
+// 		printf("Ko : 숫자가 아니거나 인자의 개수가 부족\n");
+// 		free_all(res, i);
+// 	}
+// 	system("leaks a.out > leaks_result_temp; cat leaks_result_temp | grep leaked && rm -rf leaks_result_temp");
+// 	return (0);
+// }
