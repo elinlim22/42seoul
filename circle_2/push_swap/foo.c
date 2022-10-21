@@ -6,7 +6,7 @@
 /*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 21:24:05 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/10/20 15:01:43 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/10/21 18:42:42 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,35 +66,33 @@ int	check_first(char **res)
 	return (1);
 }
 
-t_data	*do_atoi(char **res, int size) //array 길이 반환
+int	*do_atoi(char **res, int count) //array 길이 반환
 {
 	int		*arr;
 	int		i;
-	t_data	*data;
 
 	i = 0;
-	// arr = (int *)malloc(sizeof(int) * size);
-	// if (!arr)
-		// return (0);
+	arr = (int *)malloc(sizeof(int) * count);
+	if (!arr)
+		return (0);
 	while (res[i])
 	{
-		data[i].num = ft_atoi(res[i]);
-		data[i].flag = 1;
+		arr[i] = ft_atoi(res[i]);
 		i++;
 	}
-	return (data);
+	return (arr);
 }
 
-int	check_second(int *arr, int size) //중복검사
+int	check_second(int *arr, int count) //중복검사
 {
 	int	i;
 	int	j;
 
 	i = 0;
-	while (i < size - 1)
+	while (i < count - 1)
 	{
 		j = i + 1;
-		while (j < size)
+		while (j < count)
 		{
 			if (arr[i] == arr[j])
 				return (0); //Error 출력
@@ -106,17 +104,17 @@ int	check_second(int *arr, int size) //중복검사
 	return (1);
 }
 
-int	check_sorted(int *arr, int size)
+int	check_sorted(int *arr, int count)
 {
 	int	i;
 
 	i = 0;
-	while (i < size - 1) //이미 정렬인지 확인
+	while (i < count - 1) //이미 정렬인지 확인
 	{
 		if (arr[i] < arr[i + 1])
 		{
 			i++;
-			if (i + 1 == size)
+			if (i + 1 == count)
 				return (0); // 모두 정렬이면 리턴0
 				// exit(0);
 		}
@@ -127,12 +125,12 @@ int	check_sorted(int *arr, int size)
 	return (1);
 }
 
-void	free_all(char **res, int size)
+void	free_all(char **res, int count)
 {
 	int	i;
 
 	i = 0;
-	while (i < size)
+	while (i < count)
 	{
 		printf("freeing cell no.%d : %s\n", i, res[i]);
 		free(res[i++]);
@@ -140,7 +138,7 @@ void	free_all(char **res, int size)
 	free(res);
 }
 
-int	size_args(char **res)
+int	count_args(char **res)
 {
 	int	i;
 
@@ -151,22 +149,6 @@ int	size_args(char **res)
 	return (i);
 }
 
-t_stack	setup(char **res, int *arr, int size) ///목적 : main의 역할을 할 setup.. check역할 필요
-{
-	t_stack	set;
-
-	if (check_first(res))
-	{
-		set.stack = do_atoi(res, size); //?????
-		set.count = size_args(res);
-		if (!check_second(set.stack, set.count) || !check_sorted(set.stack, set.count))
-		{
-
-		}
-	}
-
-	return (set);
-}
 
 // int main(int argc, char *argv[])
 // {
