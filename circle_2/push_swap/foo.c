@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   foo.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: hyeslim <hyeslim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 21:24:05 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/10/21 18:42:42 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/10/23 20:43:48 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int	check_first(char **res)
 	return (1);
 }
 
-int	*do_atoi(char **res, int count) //array 길이 반환
+int	*do_atoi(char **res, int count)
 {
 	int		*arr;
 	int		i;
@@ -125,7 +125,7 @@ int	check_sorted(int *arr, int count)
 	return (1);
 }
 
-void	free_all(char **res, int count)
+void	free_all(char **res, int count, t_stack *stacks)
 {
 	int	i;
 
