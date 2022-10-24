@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: hyeslim <hyeslim@student.42.fr>            +#+  +:+       +#+         #
+#    By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/11 14:01:08 by hyeslim           #+#    #+#              #
-#    Updated: 2022/07/22 17:43:50 by hyeslim          ###   ########.fr        #
+#    Updated: 2022/10/24 15:49:57 by hyeslim          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,7 +55,12 @@ BSRCS =  ft_lstnew.c \
 		ft_lstdelone.c \
 		ft_lstclear.c \
 		ft_lstiter.c \
-		ft_lstmap.c
+		ft_lstmap.c \
+		ft_db_lstnew.c \
+		ft_db_lstadd_back.c \
+		ft_db_lstadd_front.c \
+		ft_db_lstdelone.c \
+		ft_db_lstclear.c
 OBJS = ${SRCS:.c=.o}
 BOBJS = ${BSRCS:.c=.o}
 
@@ -68,22 +73,22 @@ endif
 all : ${NAME}
 
 bonus :
-	make WITH_BONUS=1 all
+	@make WITH_BONUS=1 all
 
 ${NAME} : ${OBJ_RESULT}
-	ar rcs ${NAME} $^
+	@ar rcs ${NAME} $^
 
 %.o: %.c
-	${CC} ${CFLAGS} -c $< -o $@
+	@${CC} ${CFLAGS} -c $< -o $@
 
 clean :
-	rm -rf ${OBJS} ${BOBJS}
+	@rm -rf ${OBJS} ${BOBJS}
 
 fclean : clean
-	rm -rf ${NAME}
+	@rm -rf ${NAME}
 
 re :
-	make fclean
-	make all
+	@make fclean
+	@make all
 
 .PHONY : all clean fclean re bonus
