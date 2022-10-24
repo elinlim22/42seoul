@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: hyeslim <hyeslim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 14:02:44 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/09/22 16:14:25 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/10/23 20:55:29 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,14 @@ typedef struct s_list
 {
 	void			*content;
 	struct s_list	*next;
-}					t_list;
+}				t_list;
+
+typedef struct	s_node
+{
+	t_node	*next;
+	t_node	*prev;
+	int		data;
+}				t_node;
 
 int		ft_atoi(const char *str);
 void	ft_bzero(void *s, size_t n);
@@ -64,5 +71,10 @@ char	*ft_strtrim(char const *s1, char const *set);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 int		ft_tolower(int c);
 int		ft_toupper(int c);
+t_node	*ft_db_lstnew(int data);
+void	ft_db_lstadd_back(t_node **head, t_node *new);
+void	ft_db_lstadd_front(t_node **head, t_node *new);
+void	ft_db_lstdelone(t_node *node);
+void	ft_db_lstclear(t_node **head);
 
 #endif
