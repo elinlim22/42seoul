@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_db_lstdelone.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyeslim <hyeslim@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 19:23:31 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/10/23 19:30:13 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/10/24 15:38:11 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,5 @@ void	ft_db_lstdelone(t_node *node)
 	n = node->next;
 	p->next = n;
 	n->prev = p;
-	free(node->data);
 	free(node);
 }
