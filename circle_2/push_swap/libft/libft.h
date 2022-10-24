@@ -6,7 +6,7 @@
 /*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 14:02:44 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/10/24 15:33:29 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/10/24 16:18:42 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@ typedef struct s_list
 	struct s_list	*next;
 }				t_list;
 
-typedef struct	s_node
+typedef struct s_node
 {
 	struct s_node	*next;
 	struct s_node	*prev;
-	int		data;
+	int				data;
 }				t_node;
 
 int		ft_atoi(const char *str);
