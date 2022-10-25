@@ -3,16 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   foo.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyeslim <hyeslim@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 21:24:05 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/10/23 20:43:48 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/10/25 15:24:32 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <stdio.h> //삭제
-/* t_initial 사용 고려 */
 
 /* 전처리 */
 char	**set_str(int argc, char *argv[])
@@ -130,6 +129,13 @@ void	free_all(char **res, int count, t_stack *stacks)
 	int	i;
 
 	i = 0;
+	if (!stacks)
+	{
+		ft_db_lstclear(&(stacks->stack_a));
+		ft_db_lstclear(&(stacks->stack_b));
+		free(stacks->command);
+		free(stacks);
+	}
 	while (i < count)
 	{
 		printf("freeing cell no.%d : %s\n", i, res[i]);
