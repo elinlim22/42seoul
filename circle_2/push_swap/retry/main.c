@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyeslim <hyeslim@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 15:34:30 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/10/24 15:16:35 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/10/25 15:25:31 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,11 @@ int	main(int argc, char *argv[])
 		{
 			// sorting(모래시계 정렬 함수);
 			ft_putstr_fd(stacks->commands, 1);
-			//commands strjoin한거 free하기
-			free_all(res, count); //stack도 free필요
+			free_all(res, count, stacks);
 			free(arr);
 		}
 	}
 	else
-		free_all(res, count);
-	exit (0);
+		free_all(res, count, NULL);
+	return (0);
 }
