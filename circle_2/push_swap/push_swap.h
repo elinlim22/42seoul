@@ -6,7 +6,7 @@
 /*   By: hyeslim <hyeslim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 14:15:26 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/10/24 15:19:38 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/10/28 19:17:27 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,12 @@
 // 	int	count;
 // }				t_stack;
 
-typedef struct s_node
-{
-	t_node	*prev;
-	t_node	*next;
-	int		data;
-}				t_node;
+// typedef struct s_node
+// {
+// 	t_node	*prev;
+// 	t_node	*next;
+// 	int		data;
+// }				t_node;
 
 typedef struct	s_stack
 {
@@ -54,5 +54,14 @@ int		count_args(char **res);
 // t_stack	set_initial(int *arr, int count);
 // t_all	*set_all(int count);
 // t_stack	check_all(char **res, int *arr, int count);
+
+
+
+void	init_stacks(int *arr, int count, t_stack *stacks);
+
+int	ft_push(t_node **head, t_node *node);
+t_node	*ft_pop(t_node **head, unsigned int index);
+char	*swaper(t_stack *stacks, char a_or_b);
+char	*pusher(t_stack *stacks, char a_or_b);
 
 #endif
