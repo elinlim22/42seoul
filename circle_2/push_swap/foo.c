@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   foo.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: hyeslim <hyeslim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 21:24:05 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/10/25 15:24:32 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/11/03 16:38:57 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,7 +133,7 @@ void	free_all(char **res, int count, t_stack *stacks)
 	{
 		ft_db_lstclear(&(stacks->stack_a));
 		ft_db_lstclear(&(stacks->stack_b));
-		free(stacks->command);
+		free(stacks->commands);
 		free(stacks);
 	}
 	while (i < count)

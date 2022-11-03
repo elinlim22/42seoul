@@ -5,108 +5,179 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyeslim <hyeslim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/18 20:15:24 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/10/20 10:48:46 by hyeslim          ###   ########.fr       */
+/*   Created: 2022/10/25 15:07:48 by hyeslim           #+#    #+#             */
+/*   Updated: 2022/11/03 16:30:01 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	swaper(t_stack *target)
+/* 단축 : sa+sa, sb+sb, ss+ss, pa+pb, pb+pa, ra+rra, rb+rrb, rr+rrr */
+
+/* push & pop 구현 */
+int	ft_push(t_node **where, t_node *popped)
 {
-	t_data	temp;
-
-	temp = target->stack[0];
-	target->stack[0] = target->stack[1];
-	target->stack[1] = temp;
-}
-
-int	sa(t_all *all)
-{
-	swaper(all->stack_a);
-	ft_strjoin(all->command, "sa\n");
-
-	return (0);
-}
-
-int	sb(t_all *all)
-{
-	swaper(all->stack_b);
-	ft_strjoin(all->command, "sb\n");
-
-	return (0);
-}
-
-int	ss(t_all *all)
-{
-	swaper(all->stack_a);
-	swaper(all->stack_b);
-	ft_strjoin(all->command, "ss\n");
-
-	return (0);
-}
-
-void	pusher(t_stack *src, t_stack *dst, int size) ///size 말고 stack->count
-{
-	t_data	temp;
-	int		i;
-
-	i = 0;
-	temp = src->stack[0];
-	while ((i + 1) < size)
+	//전체 자료 숫자 이상 넘어갈 시 오버플로우 예외처리(그럴일없을것같지만,,)
+	//head 포인터가 가리키는 곳에 ft_db_lstadd_front하기
+	if (!popped)
+		return (0);
+	else if ((*where)->type == 0)
 	{
-		src->stack[i] = src->stack[i + 1];
-		i++;
+		ft_db_lstadd_front(where, popped);
+		return (1);
 	}
-	src->count -= 1;
-	while (i > 0)
+	else if ((*where)->type == 2)
 	{
-		dst->stack[i] = dst->stack[i - 1];
-		i--;
+		ft_db_lstadd_back(where, popped);
+		return (1);
 	}
-	dst->count += 1;
-	dst->stack[0] = temp;
+	else
+		return (0);
 }
 
-int	pa(t_all *all, t_stack *initial)
+// t_node	*ft_pop(t_node **head, unsigned int index) //고쳐.. 인덱스꺼 꺼내
+// {
+// 	t_node	*target;
+// 	int		res;
+
+// 	//빈 리스트 예외처리
+// 	if (!*head || !(*head)->next)
+// 		return (NULL); //->pop실행안함 -> strjoin 실행x 예외처리
+// 	target = *head;
+// 	//두번째 리스트를 꺼낸..노우
+// 	while (target->next && index--)
+// 		target = target->next;
+// 	if (!target->next) //??
+// 		return (NULL);
+// 	res = target->data;
+// 	ft_db_lstdelone(target);
+// 	target = ft_db_lstnew(res);
+// 	return (target);
+// }
+
+
+t_node	*ft_pop(t_node **where, unsigned int index)
 {
-	pusher(all->stack_b, all->stack_a, initial->count);
-	ft_strjoin(all->command, "pa\n");
+	t_node	*target;
+	int		res;
 
-	return (0);
-}
-
-int	pb(t_all *all, t_stack *initial)
-{
-	pusher(all->stack_a, all->stack_a, initial->count);
-	ft_strjoin(all->command, "pb\n");
-
-	return (0);
-}
-
-void	rotater(t_stack *target, int direction)
-{
-	t_data	temp;
-	int		i;
-
-	i = 0;
-	if (direction == -1) //rotate up
+	target = *where;
+	if (!*where)
+		return (NULL);
+	if ((*where)->type == 0)
 	{
-		temp = target->stack[0];
-		while ((i + 1) < target->count)
-		{
-			target->stack[i] = target->stack[i + 1];
-			i++;
-		}
-		target->stack[i] = temp;
+		while (target->next && index--)
+			target = target->next;
+		// if (!temp->next)
+		// 	return (NULL);
 	}
-	else if (direction == 1) //rotate down : rra/rrb/rrr
+	else if ((*where)->type == 2)
 	{
-		i = target->count;
-		temp = target->stack[i - 1];
-		while (i > 0)
-		{
-
-		}
+		while (target->prev && index--)
+			target = target->prev;
+		// if (!temp->prev)
+		// 	return (NULL);
 	}
+	else
+		return (NULL);
+	res = target->data;
+	ft_db_lstdelone(target);
+	target = ft_db_lstnew(res);
+	return (target);
 }
+
+char	*swaper(t_stack *stacks, char a_or_b)
+{
+	t_node	*temp;
+	t_node	*popped;
+	char	*res;
+
+	if (a_or_b == 'a')
+	{
+		temp = stacks->stack_a;
+		res = "sa\n";
+	}
+	else if (a_or_b == 'b')
+	{
+		temp = stacks->stack_b;
+		res = "sb\n";
+	}
+	else
+		return (NULL);
+	popped = ft_pop(&temp, 2);
+	if (!popped)
+		return (NULL);
+	ft_push(&temp, popped);
+	return (res);
+}
+
+char	*pusher(t_stack *stacks, char a_or_b)
+{
+	t_node	*popped;
+	char	*res;
+
+	res = NULL;
+	if (a_or_b == 'a')
+	{
+		popped = ft_pop(&stacks->stack_b, 1);
+		if (ft_push(&stacks->stack_a, popped))
+			res = "pa\n";
+	}
+	else if (a_or_b == 'b')
+	{
+		popped = ft_pop(&stacks->stack_a, 1);
+		if (ft_push(&stacks->stack_b, popped))
+			res = "pb\n";
+	}
+	return (res);
+}
+
+char	*rotater(t_stack *stacks, char a_or_b)
+{
+	t_node	*popped;
+	char	*res;
+
+	res = NULL;
+	if (a_or_b == 'a')
+	{
+		popped = ft_pop(&stacks->stack_a, 1);
+		if (ft_push(&stacks->tail_a, popped))
+			res = "ra\n";
+	}
+	else if (a_or_b == 'b')
+	{
+		popped = ft_pop(&stacks->stack_b, 1);
+		if (ft_push(&stacks->tail_b, popped))
+			res = "rb\n";
+	}
+	return (res);
+}
+
+char	*rev_rotater(t_stack *stacks, char a_or_b)
+{
+	t_node	*popped;
+	char	*res;
+
+	res = NULL;
+	if (a_or_b == 'a')
+	{
+		popped = ft_pop(&stacks->tail_a, 1);
+		if (ft_push(&stacks->stack_a, popped))
+			res = "rra\n";
+	}
+	else if (a_or_b == 'b')
+	{
+		popped = ft_pop(&stacks->tail_b, 1);
+		if (ft_push(&stacks->stack_b, popped))
+			res = "rrb\n";
+	}
+	return (res);
+}
+
+
+
+/* sa, sb, ss */
+
+/* pa, pb */
+
+/* ra, rb, rr, rra, rrb, rrr */

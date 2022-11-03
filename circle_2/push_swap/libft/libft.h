@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: hyeslim <hyeslim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 14:02:44 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/10/25 22:30:53 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/11/03 16:36:48 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ typedef struct s_node
 	struct s_node	*next;
 	struct s_node	*prev;
 	int				data;
+	int				type;
 }				t_node;
 
 int		ft_atoi(const char *str);
