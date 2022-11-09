@@ -23,7 +23,7 @@ int	main(int argc, char *argv[]) {
 		{
 
 			/* before */
-			printf("< < < < < < < < BEFORE > > > > > > > > >\n");
+			printf("< < < BEFORE > > >\n");
 			t_node	*curr = NULL;
 			printf("Stack A ::: ");
 			for (curr = stacks->stack_a->next; curr->next; curr = curr->next) {
@@ -38,7 +38,7 @@ int	main(int argc, char *argv[]) {
 			printf("\n\n\n\n");
 
 			/* scanning... */
-			printf("< < < < < < < < SCANNING > > > > > > > > >\n");
+			printf("< < < SCANNING > > >\n");
 			char	commands[4];
 			scanf("%s", commands);
 
@@ -71,7 +71,7 @@ int	main(int argc, char *argv[]) {
 			printf("\n\n\n\n");
 
 			/* after */
-			printf("< < < < < < < < AFTER > > > > > > > > >\n");
+			printf("< < < AFTER > > > \n");
 			curr = stacks->stack_a;
 			printf("Stack A ::: ");
 			for (curr = stacks->stack_a->next; curr->next; curr = curr->next) {
@@ -88,7 +88,7 @@ int	main(int argc, char *argv[]) {
 			scanf("%s", commands);
 	}
 			// sorting(모래시계 정렬 함수);
-			printf("< < < < < < < < COMMANDS > > > > > > > >\n");
+			printf("< < < COMMANDS > > >\n");
 			ft_putstr_fd(stacks->commands, 1);
 			printf("\n\n\n\n");
 			free_all(res, count, stacks);
