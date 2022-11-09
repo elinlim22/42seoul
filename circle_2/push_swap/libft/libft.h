@@ -6,7 +6,7 @@
 /*   By: hyeslim <hyeslim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 14:02:44 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/11/03 16:36:48 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/11/09 19:39:49 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,5 +77,7 @@ void	ft_db_lstadd_back(t_node **head, t_node *new);
 void	ft_db_lstadd_front(t_node **head, t_node *new);
 void	ft_db_lstdelone(t_node *node);
 void	ft_db_lstclear(t_node **head);
+void	ft_sort(int *tab, int size);
+void	ft_swap(int *i, int *j);
 
 #endif

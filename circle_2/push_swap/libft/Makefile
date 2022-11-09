@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+         #
+#    By: hyeslim <hyeslim@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/11 14:01:08 by hyeslim           #+#    #+#              #
-#    Updated: 2022/10/24 15:49:57 by hyeslim          ###   ########.fr        #
+#    Updated: 2022/11/09 19:39:16 by hyeslim          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,7 +60,8 @@ BSRCS =  ft_lstnew.c \
 		ft_db_lstadd_back.c \
 		ft_db_lstadd_front.c \
 		ft_db_lstdelone.c \
-		ft_db_lstclear.c
+		ft_db_lstclear.c \
+		ft_sort_int_tab.c
 OBJS = ${SRCS:.c=.o}
 BOBJS = ${BSRCS:.c=.o}
 
