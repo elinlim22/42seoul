@@ -6,7 +6,7 @@
 /*   By: hyeslim <hyeslim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 18:49:19 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/11/09 20:06:11 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/11/09 20:11:53 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ void	free_all(char **res, int count, t_stack *stacks)
 		ft_db_lstclear(&(stacks->stack_a));
 		ft_db_lstclear(&(stacks->stack_b));
 		free(stacks->commands);
+		free(stacks->index);
 		free(stacks);
 	}
 	while (i < count)
