@@ -1,45 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   foo.c                                              :+:      :+:    :+:   */
+/*   check.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyeslim <hyeslim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 21:24:05 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/11/03 16:38:57 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/11/09 19:30:31 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <stdio.h> //삭제
-
-/* 전처리 */
-char	**set_str(int argc, char *argv[])
-{
-	char	*str;
-	char	**res;
-	int		i;
-	char	*temp;
-
-	i = 1;
-	str = ft_strdup("");
-	if (argc < 2)
-		exit (0);
-	while (i < argc)
-	{
-		if (*(argv[i]) == '\0')
-			exit(write(1, "Error\n", 6));
-		temp = str;
-		str = ft_strjoin(temp, argv[i++]);
-		free(temp);
-		temp = str;
-		str = ft_strjoin(temp, " ");
-		free(temp);
-	}
-	res = ft_split(str, ' ');
-	free(str);
-	return (res);
-}
 
 int	check_first(char **res)
 {
@@ -123,38 +94,6 @@ int	check_sorted(int *arr, int count)
 	printf("정렬 안됨\n");
 	return (1);
 }
-
-void	free_all(char **res, int count, t_stack *stacks)
-{
-	int	i;
-
-	i = 0;
-	if (!stacks)
-	{
-		ft_db_lstclear(&(stacks->stack_a));
-		ft_db_lstclear(&(stacks->stack_b));
-		free(stacks->commands);
-		free(stacks);
-	}
-	while (i < count)
-	{
-		printf("freeing cell no.%d : %s\n", i, res[i]);
-		free(res[i++]);
-	}
-	free(res);
-}
-
-int	count_args(char **res)
-{
-	int	i;
-
-	i = 0;
-	while (res[i])
-		i++;
-	printf("size_args : %d\n", i);
-	return (i);
-}
-
 
 // int main(int argc, char *argv[])
 // {
