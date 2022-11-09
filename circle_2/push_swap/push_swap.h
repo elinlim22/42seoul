@@ -6,7 +6,7 @@
 /*   By: hyeslim <hyeslim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 14:15:26 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/11/03 16:38:42 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/11/09 20:06:17 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef struct s_stack
 	t_node	*tail_a;
 	t_node	*tail_b;
 	char	*commands;
+	int		*index;
 }				t_stack;
 
 char	**set_str(int argc, char *argv[]);
@@ -41,6 +42,7 @@ int		check_sorted(int *arr, int size);
 void	free_all(char **res, int size, t_stack *stacks);
 int		count_args(char **res);
 void	init_stacks(int *arr, int count, t_stack *stacks);
+int		*indexing(int *arr, int count);
 // t_stack	set_initial(int *arr, int count);
 // t_all	*set_all(int count);
 
