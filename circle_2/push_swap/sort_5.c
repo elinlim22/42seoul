@@ -6,13 +6,13 @@
 /*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 15:34:30 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/11/12 16:11:23 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/11/12 16:53:30 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	find_max(t_stack *stack);
+int		find_max(t_stack *stack);
 void	sort_three(t_stack *stack);
 void	sort_five(t_stack *stack, int count);
 void	sort_five_rot(t_stack *stack, int state, int count);
