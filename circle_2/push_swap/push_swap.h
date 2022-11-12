@@ -6,7 +6,7 @@
 /*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 14:15:26 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/11/12 16:10:29 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/11/12 16:52:59 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,6 @@ int		check_second(int *arr, int size);
 int		check_sorted(int *arr, int size);
 
 // commands.c
-int	ft_push(t_node **where, t_node *popped);
-t_node	*ft_pop(t_node **where, unsigned int index);
 char	*swaper(t_stack *stacks, char a_or_b);
 char	*pusher(t_stack *stacks, char a_or_b);
 char	*rotater(t_stack *stacks, char a_or_b);
@@ -47,8 +45,13 @@ void	free_all(char **res, int size, t_stack *stacks);
 int		count_args(char **res);
 int		*indexing(int *arr, int count);
 
+// push_pop.c
+int		ft_push(t_node **where, t_node *popped);
+t_node	*ft_pop(t_node **where, unsigned int index);
+
+
 // sort_5.c
-int	find_max(t_stack *stack);
+int		find_max(t_stack *stack);
 void	sort_three(t_stack *stack);
 void	sort_five(t_stack *stack, int count);
 void	sort_five_rot(t_stack *stack, int state, int count);
