@@ -12,6 +12,13 @@
 
 #include "push_swap.h"
 
+int	ft_push(t_node **where, t_node *popped);
+t_node	*ft_pop(t_node **where, unsigned int index);
+char	*swaper(t_stack *stacks, char a_or_b);
+char	*pusher(t_stack *stacks, char a_or_b);
+char	*rotater(t_stack *stacks, char a_or_b);
+char	*rev_rotater(t_stack *stacks, char a_or_b);
+
 /* 단축 : sa+sa, sb+sb, ss+ss, pa+pb, pb+pa, ra+rra, rb+rrb, rr+rrr */
 
 /* push & pop 구현 */
@@ -34,27 +41,6 @@ int	ft_push(t_node **where, t_node *popped)
 	else
 		return (0);
 }
-
-// t_node	*ft_pop(t_node **head, unsigned int index) //고쳐.. 인덱스꺼 꺼내
-// {
-// 	t_node	*target;
-// 	int		res;
-
-// 	//빈 리스트 예외처리
-// 	if (!*head || !(*head)->next)
-// 		return (NULL); //->pop실행안함 -> strjoin 실행x 예외처리
-// 	target = *head;
-// 	//두번째 리스트를 꺼낸..노우
-// 	while (target->next && index--)
-// 		target = target->next;
-// 	if (!target->next) //??
-// 		return (NULL);
-// 	res = target->data;
-// 	ft_db_lstdelone(target);
-// 	target = ft_db_lstnew(res);
-// 	return (target);
-// }
-
 
 t_node	*ft_pop(t_node **where, unsigned int index)
 {

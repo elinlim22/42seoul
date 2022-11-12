@@ -42,52 +42,52 @@ int	main(int argc, char *argv[]) {
 			char	commands[4];
 			scanf("%s", commands);
 
-	while (commands[0] != 'x')
-	{
-			if (commands[0] == 'p')
+			while (commands[0] != 'x')
 			{
-				char *tmp = stacks->commands;
-				stacks->commands = ft_strjoin(tmp, pusher(stacks, commands[1]));
-				free(tmp);
-			}
-			else if (commands[0] == 's')
-			{
-				char *tmp = stacks->commands;
-				stacks->commands = ft_strjoin(tmp, swaper(stacks, commands[1]));
-				free(tmp);
-			}
-			else if (commands[0] == 'r' && commands[1] != 'r')
-			{
-				char *tmp = stacks->commands;
-				stacks->commands = ft_strjoin(tmp, rotater(stacks, commands[1]));
-				free(tmp);
-			}
-			else if (commands[0] == 'r' && commands[1] == 'r')
-			{
-				char *tmp = stacks->commands;
-				stacks->commands = ft_strjoin(tmp, rev_rotater(stacks, commands[2]));
-				free(tmp);
-			}
-			printf("\n\n\n\n");
+					if (commands[0] == 'p')
+					{
+						char *tmp = stacks->commands;
+						stacks->commands = ft_strjoin(tmp, pusher(stacks, commands[1]));
+						free(tmp);
+					}
+					else if (commands[0] == 's')
+					{
+						char *tmp = stacks->commands;
+						stacks->commands = ft_strjoin(tmp, swaper(stacks, commands[1]));
+						free(tmp);
+					}
+					else if (commands[0] == 'r' && commands[1] != 'r')
+					{
+						char *tmp = stacks->commands;
+						stacks->commands = ft_strjoin(tmp, rotater(stacks, commands[1]));
+						free(tmp);
+					}
+					else if (commands[0] == 'r' && commands[1] == 'r')
+					{
+						char *tmp = stacks->commands;
+						stacks->commands = ft_strjoin(tmp, rev_rotater(stacks, commands[2]));
+						free(tmp);
+					}
+					printf("\n\n\n\n");
 
-			/* after */
-			printf("< < < AFTER > > > \n");
-			curr = stacks->stack_a;
-			printf("Stack A ::: ");
-			for (curr = stacks->stack_a->next; curr->next; curr = curr->next) {
-				printf("%d -> ", curr->data);
-			}
-			printf("\n\n");
+					/* after */
+					printf("< < < AFTER > > > \n");
+					curr = stacks->stack_a;
+					printf("Stack A ::: ");
+					for (curr = stacks->stack_a->next; curr->next; curr = curr->next) {
+						printf("%d -> ", curr->data);
+					}
+					printf("\n\n");
 
-			printf("Stack B ::: ");
-			for (curr = stacks->stack_b->next; curr->next; curr = curr->next) {
-				printf("%d -> ", curr->data);
-			}
-			printf("\n\n\n\n");
+					printf("Stack B ::: ");
+					for (curr = stacks->stack_b->next; curr->next; curr = curr->next) {
+						printf("%d -> ", curr->data);
+					}
+					printf("\n\n\n\n");
 
-			scanf("%s", commands);
-	}
-			// sorting(모래시계 정렬 함수);
+					scanf("%s", commands);
+			}
+
 			printf("< < < COMMANDS > > >\n");
 			ft_putstr_fd(stacks->commands, 1);
 			printf("\n\n\n\n");

@@ -12,6 +12,11 @@
 
 #include "push_swap.h"
 
+int		check_first(char **res);
+int		*do_atoi(char **res, int size);
+int		check_second(int *arr, int size);
+int		check_sorted(int *arr, int size);
+
 int	check_first(char **res)
 {
 	int	i;
@@ -23,7 +28,8 @@ int	check_first(char **res)
 		j = 0;
 		while (res[i][j])
 		{
-			if (!ft_isdigit(res[i][j]) && j != 0 && res[i][j] == '-') //숫자가 맞는지 확인
+			if (!ft_isdigit(res[i][j]) &&
+				j != 0 && res[i][j] == '-') //숫자가 맞는지 확인
 				return (0);//아니면 0리턴 -> Error 출력
 				// exit(0);
 			else
@@ -94,39 +100,3 @@ int	check_sorted(int *arr, int count)
 	printf("정렬 안됨\n");
 	return (1);
 }
-
-// int main(int argc, char *argv[])
-// {
-// 	char **res = set_str(argc, argv);
-// 	int i = size_args(res);
-
-// 	if (check_first(res)) //충분한 숫자인자?
-// 	{
-// 		printf("숫자 맞고 개수 충분\n");
-// 		int *arr = do_atoi(res, i);
-// 		for (int j = 0; j < i; j++)
-// 		{ printf("%3d", arr[j]); printf("\n");}
-
-// 		if (!check_second(arr, i) || !check_sorted(arr, i)) //중복, 정렬검사
-// 		{
-// 			printf("Error\n");
-// 			free_all(res, i);
-// 			free(arr);
-// 			system("leaks a.out > leaks_result_temp; cat leaks_result_temp | grep leaked && rm -rf leaks_result_temp");
-// 			return (0);
-// 		}
-// 		else
-// 		{
-// 			printf("OK\n");
-// 			free_all(res, i);
-// 			free(arr);
-// 		}
-// 	}
-// 	else
-// 	{
-// 		printf("Ko : 숫자가 아니거나 인자의 개수가 부족\n");
-// 		free_all(res, i);
-// 	}
-// 	system("leaks a.out > leaks_result_temp; cat leaks_result_temp | grep leaked && rm -rf leaks_result_temp");
-// 	return (0);
-// }

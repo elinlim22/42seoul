@@ -12,6 +12,12 @@
 
 #include "push_swap.h"
 
+void	init_stacks(int *arr, int count, t_stack *stacks);
+char	**set_str(int argc, char *argv[]);
+void	free_all(char **res, int size, t_stack *stacks);
+int		count_args(char **res);
+int		*indexing(int *arr, int count);
+
 void	init_stacks(int *arr, int count, t_stack *stacks)
 {
 	int	i;

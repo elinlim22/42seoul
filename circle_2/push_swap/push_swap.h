@@ -3,26 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyeslim <hyeslim@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 14:15:26 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/11/09 20:06:17 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/11/12 16:10:29 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
-
 # include "libft/libft.h"
-# include <stdlib.h>
+// # include <stdlib.h>
 # include <stdio.h> //remove
-
-// typedef struct s_node
-// {
-// 	struct s_node	*prev;
-// 	struct s_node	*next;
-// 	int				data;
-// }				t_node;
 
 typedef struct s_stack
 {
@@ -34,23 +26,31 @@ typedef struct s_stack
 	int		*index;
 }				t_stack;
 
-char	**set_str(int argc, char *argv[]);
+// check.c
 int		check_first(char **res);
 int		*do_atoi(char **res, int size);
 int		check_second(int *arr, int size);
 int		check_sorted(int *arr, int size);
-void	free_all(char **res, int size, t_stack *stacks);
-int		count_args(char **res);
-void	init_stacks(int *arr, int count, t_stack *stacks);
-int		*indexing(int *arr, int count);
-// t_stack	set_initial(int *arr, int count);
-// t_all	*set_all(int count);
 
+// commands.c
 int	ft_push(t_node **where, t_node *popped);
 t_node	*ft_pop(t_node **where, unsigned int index);
 char	*swaper(t_stack *stacks, char a_or_b);
 char	*pusher(t_stack *stacks, char a_or_b);
 char	*rotater(t_stack *stacks, char a_or_b);
 char	*rev_rotater(t_stack *stacks, char a_or_b);
+
+// init.c
+void	init_stacks(int *arr, int count, t_stack *stacks);
+char	**set_str(int argc, char *argv[]);
+void	free_all(char **res, int size, t_stack *stacks);
+int		count_args(char **res);
+int		*indexing(int *arr, int count);
+
+// sort_5.c
+int	find_max(t_stack *stack);
+void	sort_three(t_stack *stack);
+void	sort_five(t_stack *stack, int count);
+void	sort_five_rot(t_stack *stack, int state, int count);
 
 #endif
