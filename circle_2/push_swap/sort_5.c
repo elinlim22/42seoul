@@ -3,14 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   sort_5.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyeslim <hyeslim@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 15:34:30 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/11/09 22:05:29 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/11/12 16:11:23 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+int	find_max(t_stack *stack);
+void	sort_three(t_stack *stack);
+void	sort_five(t_stack *stack, int count);
+void	sort_five_rot(t_stack *stack, int state, int count);
 
 int	find_max(t_stack *stack)
 {
@@ -25,6 +30,7 @@ int	find_max(t_stack *stack)
 			res = curr->data;
 		curr = curr->next;
 	}
+	printf("MAX : %d\n", res);
 	return (res);
 }
 
@@ -33,11 +39,11 @@ void	sort_three(t_stack *stack)
 	int	max;
 
 	max = find_max(stack);
-	if (stack->stack_a->data == max)
-		rotater(stack, 'a');
 	if (stack->stack_a->next->data == max)
+		rotater(stack, 'a');
+	if (stack->stack_a->next->next->data == max)
 		rev_rotater(stack, 'a');
-	if (stack->stack_a->data > stack->stack_a->next->data)
+	if (stack->stack_a->next->data > stack->stack_a->next->next->data)
 		swaper(stack, 'a');
 }
 
@@ -51,9 +57,10 @@ void	sort_five(t_stack *stack, int count)
 	if (count < 4)
 		return ;
 	curr = stack->stack_a->next;
-	min = stack->stack_a->data;
+	min = curr->data;
 	state = 0;
-	while (curr->next)
+	i = 0;
+	while (curr->type == 1)
 	{
 		if (curr->data < min)
 		{
@@ -63,12 +70,13 @@ void	sort_five(t_stack *stack, int count)
 		curr = curr->next;
 		i++;
 	}
-	sort_five_rot(stack, state);
+	printf("state : %d\n", state);
+	sort_five_rot(stack, state, count);
 	pusher(stack, 'b');
 	sort_five(stack, --count);
 }
 
-void	sort_five_rot(t_stack *stack, int state)
+void	sort_five_rot(t_stack *stack, int state, int count)
 {
 	if (state <= 2)
 	{
@@ -77,7 +85,7 @@ void	sort_five_rot(t_stack *stack, int state)
 	}
 	else
 	{
-		state = 5 - state;
+		state = count - state;
 		while (state--)
 			rev_rotater(stack, 'a');
 	}
