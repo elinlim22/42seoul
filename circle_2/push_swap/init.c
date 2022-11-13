@@ -6,7 +6,7 @@
 /*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 18:49:19 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/11/13 14:08:57 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/11/13 14:33:52 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,18 +23,11 @@ void	init_stacks(int *arr, int count, t_stack *stacks)
 	int	i;
 
 	i = 0;
-	// /* indexing */
-	// stacks->index = indexing(arr, count);
-	// if (!stacks->index)
-	// 	exit(0);
 	/* stack a setting... */
 	stacks->stack_a = ft_db_lstnew(0); //head
 	stacks->stack_a->type = 0;
 	while (i < count)
-	{
 		indexing(&stacks->stack_a, ft_db_lstnew(arr[i++]));
-		// ft_db_lstadd_back(&stacks->stack_a, ft_db_lstnew(arr[i++]));
-	}
 	stacks->tail_a = ft_db_lstnew(0);
 	stacks->tail_a->type = 2;
 	ft_db_lstadd_back(&stacks->stack_a, stacks->tail_a); //tail
@@ -107,37 +100,23 @@ int	count_args(char **res)
 	return (i);
 }
 
-// int	*indexing(int *arr, int count)
-// {
-// 	int	*index;
-// 	int	i;
-
-// 	i = -1;
-// 	index = (int *)malloc(sizeof(int) * count);
-// 	if (!index)
-// 		return (0);
-// 	while (++i < count)
-// 	{
-// 		index[i] = arr[i];
-// 	}
-// 	i = -1;
-// 	ft_sort(index, count);
-// 	return (index);
-// }
-
 void	indexing(t_node **where, t_node *new)
 {
 	t_node	*curr;
 
-	curr = *where->next;
+	curr = *where;
 	while (curr->next)
 	{
-		if (curr->data < new->data)
+		if (curr->type == 1 && curr->data < new->data)
 			(new->index)++;
-		else
+		else if (curr->type == 1)
 			(curr->index)++;
 		curr = curr->next;
 	}
+	if (curr->type == 1 && curr->data < new->data)
+		(new->index)++;
+	else if (curr->type == 1)
+		(curr->index)++;
 	curr->next = new;
 	new->prev = curr;
 }
