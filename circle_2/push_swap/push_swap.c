@@ -29,9 +29,9 @@ int	set_chunk(int count)
 	if (count <= 2000)
 		return (65);
 	if (count <= 5000)
-		return (150);
+		return (300);
 	else
-		return (200);
+		return (300);
 }
 
 void	ps_b(t_stack *stack, int count, int num)
@@ -75,19 +75,20 @@ void	ps_a(t_stack *stack, int count)
 	curr = stack->stack_b->next;
 	while (curr->type == 1)
 	{
-		where = find_node(stack, count);
-		if (where > count)
-			exit(0);
-		if (where < count / 2)
+		where = find_node(stack, count - 1);
+		if (where)
 		{
-			while (where--)
-				stack->commands = ft_strjoin(stack->commands, rotater(stack, 'b'));
-		}
-		else
-		{
-			where = count - where;
-			while (where--)
-				stack->commands = ft_strjoin(stack->commands, rev_rotater(stack, 'b'));
+			if (where < count / 2)
+			{
+				while (where--)
+					stack->commands = ft_strjoin(stack->commands, rotater(stack, 'b'));
+			}
+			else if (where >= count / 2)
+			{
+				where = count - where;
+				while (where--)
+					stack->commands = ft_strjoin(stack->commands, rev_rotater(stack, 'b'));
+			}
 		}
 		stack->commands = ft_strjoin(stack->commands, pusher(stack, 'a'));
 		count--;
