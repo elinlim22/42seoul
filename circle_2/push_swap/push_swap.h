@@ -6,7 +6,7 @@
 /*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 14:15:26 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/11/12 16:52:59 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/11/12 21:59:09 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	init_stacks(int *arr, int count, t_stack *stacks);
 char	**set_str(int argc, char *argv[]);
 void	free_all(char **res, int size, t_stack *stacks);
 int		count_args(char **res);
-int		*indexing(int *arr, int count);
+void	indexing(t_node **where, t_node *new);
 
 // push_pop.c
 int		ft_push(t_node **where, t_node *popped);
@@ -55,5 +55,8 @@ int		find_max(t_stack *stack);
 void	sort_three(t_stack *stack);
 void	sort_five(t_stack *stack, int count);
 void	sort_five_rot(t_stack *stack, int state, int count);
+
+// push_swap.c
+void	push_swap(t_stack *stack, int count);
 
 #endif

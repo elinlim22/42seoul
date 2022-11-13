@@ -10,103 +10,63 @@
 // /*                                                                            */
 // /* ************************************************************************** */
 
-// #include "push_swap.h"
-// #include <stdio.h>
+#include "push_swap.h"
 
-// /* 인자 파싱하기
-// 	exit문 중 Error 제외하고 0으로 바꾸기
-// 	리턴값 고려하기
-// 	main이름 바꾸기-> 함수로 사용
-// 	함수 나누기
-// */
-// int	main(int argc, char *argv[])
-// {
-// 	char	*str;
-// 	int		i;
-// 	int		j;
-// 	char	**res;
-// 	int		*arr;
-// 	char	*temp;
+void	push_swap(t_stack *stack, int count);
+int	set_chunk(int count);
 
-// 	i = 1;
-// 	/* 전처리 */
-// 	str = ft_strdup("");
-// 	if (argc < 2)
-// 		exit(0);
-// 	while (i < argc)
-// 	{
-// 		if (*(argv[i]) == '\0')
-// 			exit(write(1, "Error\n", 6));
-// 		temp = str;
-// 		str = ft_strjoin(temp, argv[i++]);
-// 		free(temp);
-// 		temp = str;
-// 		str = ft_strjoin(temp, " ");
-// 		free(temp);
-// 	}
-// 	res = ft_split(str, ' ');
-// 	// free(str);
-// 	i = 0;
-// 	j = 0;
-// 	/* 검사 1 */
-// 	while (res[i])
-// 	{
-// 		while (res[i][j])
-// 		{
-// 			if (!ft_isdigit(res[i][j]))
-// 				exit(0);
-// 			else
-// 				j++;
-// 		}
-// 		i++;
-// 	}
-// 	for (i = 0; res[i]; i++)
-// 	{ free(res[i]); }
-// 	free(res);
-// 	if (i < 2 && res[0] != NULL)
-// 		exit(0);
-// 	/* ft_atoi */
-// 	i = 0;
-// 	arr = (int *)malloc(sizeof(int) * (argc - 1));
-// 	while (res[i])
-// 	{
-// 		arr[i] = ft_atoi(res[i]);
-// 		i++;
-// 	}
-// 	int count = i;
-// 	/* 검사 2 */
-// 	i = 0;
-// 	while (arr[i + 1])
-// 	{
-// 		j = i + 1;
-// 		while (arr[j])
-// 		{
-// 			if (arr[i] == arr[j])
-// 				exit(write(1, "Error\n", 6));
-// 			j++;
-// 		}
-// 		i++;
-// 	}
-// 	i = 0;
-// 	while (i < count - 1)
-// 	{
-// 		if (arr[i] < arr[i + 1])
-// 		{
-// 			i++;
-// 			if (i + 1 == count)
-// 				exit(0);
-// 		}
-// 		else
-// 			break ;
-// 	}
-// 	// for (i = argc - 1; i >= 0; i--)
-// 	// { free(res[i]); }
-// 	// free(res);
-// 	// free(str);
-// 	system("leaks a.out");
-// 	return (0);
-// }
+int	set_chunk(int count)
+{
+	if (count < 30)
+		return (5);
+	if (count < 100)
+		return (15);
+	if (count < 500)
+		return (30);
+	if (count < 1000)
+		return (45);
+	if (count < 2000)
+		return (65);
+	if (count < 5000)
+		return (150);
+	else
+		return (200);
+}
 
+void	push_swap(t_stack *stack, int count)
+{
+	int	chunk;
+	int	i;
+	static int	size;
+	t_node	*curr;
+
+	chunk = set_chunk(count);
+	i = 0;
+	size = count;
+	curr = stack->stack_a->next;
+	if (curr->type != 1)
+		return ;
+	// stack->index = indexing(arr, size);
+	while (curr->type == 1)
+	{
+		while (i + chunk < count)
+		{
+			if (curr->data <= stack->index[i])
+				pusher(stack, 'b');
+			else if (stack->index[i] < curr->data && curr->data <= stack->index[i + chunk])
+			{
+				pusher(stack, 'b');
+				rotater(stack, 'b');
+			}
+			else
+				rotater(stack, 'a');
+			i++;
+		}
+		curr = curr->next; //curr가 free되어버리면 어떻게 탐색하지?
+		free(stack->index);
+	}
+	push_swap(stack, size);
+}
 
 // /* 전처리 ::: 끝!
 // 	1. 인자값이 정수가 아닐때
@@ -128,7 +88,6 @@
 // 	1. 명령어 함수
 // */
 
-// /*
 // 	인자 전처리&인덱싱하기
 // 		복사본을 만들고 원본과 대조하면서 원본에 인덱싱 처리를 한다
 // 	5개 미만일때 정렬
@@ -144,4 +103,3 @@
 // 		i++;
 // 	move to a
 // 	명령어 출력
-// */

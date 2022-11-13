@@ -13,16 +13,16 @@ int	main(int argc, char *argv[])
 			exit(write(1, "Error\n", 6));
 		else
 		{
-			sort_five(stacks, count);
-			sort_three(stacks);
-			for (int i = 0; i < count - 3; i++) {
-				pusher(stacks, 'a');
-			}
+			// sort_five(stacks, count);
+			// sort_three(stacks);
+			// for (int i = 0; i < count - 3; i++) {
+			// 	pusher(stacks, 'a');
+			// }
 			printf(" < < < result > > >\n\n\n");
 			t_node *curr = NULL;
 			printf("Stack A -------\n");
 			for (curr = stacks->stack_a->next; curr->next; curr = curr->next) {
-				printf("%d -> ", curr->data);
+				printf("%d(%d) -> ", curr->data, curr->index);
 			}
 			printf("\n\n");
 

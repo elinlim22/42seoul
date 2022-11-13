@@ -6,14 +6,14 @@
 #    By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/26 14:17:26 by hyeslim           #+#    #+#              #
-#    Updated: 2022/11/12 16:50:15 by hyeslim          ###   ########.fr        #
+#    Updated: 2022/11/12 21:58:36 by hyeslim          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = push_swap.a
 CC = cc
 CFLAGS = -Wall -Werror -Wextra
-SRCS = check.c commands.c init.c push_pop.c sort_5.c sort.c #fixxxxx
+SRCS = check.c commands.c init.c push_pop.c sort_5.c sort_5_tester.c #fixxxxx
 #rm a.out 삭제해야함
 #line 26 삭제
 
