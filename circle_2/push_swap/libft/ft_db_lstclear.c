@@ -6,7 +6,7 @@
 /*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 20:44:43 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/10/24 16:05:46 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/11/13 20:25:26 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ void	ft_db_lstclear(t_node **head)
 		return ;
 	while (*head)
 	{
-		printf("freeing %p...\n", *head);
 		temp = (*head)->next;
 		free(*head);
 		*head = temp;

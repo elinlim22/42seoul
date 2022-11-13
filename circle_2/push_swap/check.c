@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyeslim <hyeslim@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 21:24:05 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/11/09 19:30:31 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/11/13 15:47:23 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,6 @@ int	check_second(int *arr, int count) //중복검사
 		}
 		i++;
 	}
-	printf("중복 없음\n");
 	return (1);
 }
 
@@ -97,6 +96,5 @@ int	check_sorted(int *arr, int count)
 		else
 			break ;
 	}
-	printf("정렬 안됨\n");
 	return (1);
 }

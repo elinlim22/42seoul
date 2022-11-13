@@ -6,7 +6,7 @@
 /*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 18:49:19 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/11/13 14:33:52 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/11/13 20:24:52 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,17 @@ void	init_stacks(int *arr, int count, t_stack *stacks)
 
 	i = 0;
 	/* stack a setting... */
-	stacks->stack_a = ft_db_lstnew(0); //head
+	stacks->stack_a = ft_db_lstnew(0, 0); //head
 	stacks->stack_a->type = 0;
 	while (i < count)
-		indexing(&stacks->stack_a, ft_db_lstnew(arr[i++]));
-	stacks->tail_a = ft_db_lstnew(0);
+		indexing(&stacks->stack_a, ft_db_lstnew(arr[i++], 0));
+	stacks->tail_a = ft_db_lstnew(0, 0);
 	stacks->tail_a->type = 2;
 	ft_db_lstadd_back(&stacks->stack_a, stacks->tail_a); //tail
 	/* stack b setting... */
-	stacks->stack_b = ft_db_lstnew(0); //head
+	stacks->stack_b = ft_db_lstnew(0, 0); //head
 	stacks->stack_b->type = 0;
-	stacks->tail_b = ft_db_lstnew(0);
+	stacks->tail_b = ft_db_lstnew(0, 0);
 	stacks->tail_b->type = 2;
 	ft_db_lstadd_back(&stacks->stack_b, stacks->tail_b); //tail
 	/* commands setting... */
@@ -78,14 +78,10 @@ void	free_all(char **res, int count, t_stack *stacks)
 		ft_db_lstclear(&(stacks->stack_a));
 		ft_db_lstclear(&(stacks->stack_b));
 		free(stacks->commands);
-		free(stacks->index);
 		free(stacks);
 	}
 	while (i < count)
-	{
-		printf("freeing cell no.%d : %s\n", i, res[i]);
 		free(res[i++]);
-	}
 	free(res);
 }
 
@@ -96,7 +92,6 @@ int	count_args(char **res)
 	i = 0;
 	while (res[i])
 		i++;
-	printf("size_args : %d\n", i);
 	return (i);
 }
 

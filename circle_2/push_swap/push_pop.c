@@ -6,7 +6,7 @@
 /*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 16:49:32 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/11/12 16:51:21 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/11/13 15:36:45 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ t_node	*ft_pop(t_node **where, unsigned int index)
 {
 	t_node	*target;
 	int		res;
+	int		idx;
 
 	target = *where;
 	if (!*where)
@@ -57,7 +58,8 @@ t_node	*ft_pop(t_node **where, unsigned int index)
 	else
 		return (NULL);
 	res = target->data;
+	idx = target->index;
 	ft_db_lstdelone(target);
-	target = ft_db_lstnew(res);
+	target = ft_db_lstnew(res, idx);
 	return (target);
 }

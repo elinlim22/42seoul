@@ -6,7 +6,7 @@
 /*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 14:02:44 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/11/12 21:42:17 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/11/13 15:35:00 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ char	*ft_strtrim(char const *s1, char const *set);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 int		ft_tolower(int c);
 int		ft_toupper(int c);
-t_node	*ft_db_lstnew(int data);
+t_node	*ft_db_lstnew(int data, int index);
 void	ft_db_lstadd_back(t_node **head, t_node *new);
 void	ft_db_lstadd_front(t_node **head, t_node *new);
 void	ft_db_lstdelone(t_node *node);

@@ -6,14 +6,13 @@
 /*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 14:15:26 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/11/12 21:59:09 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/11/13 19:48:00 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 # include "libft/libft.h"
-// # include <stdlib.h>
 # include <stdio.h> //remove
 
 typedef struct s_stack
@@ -23,7 +22,6 @@ typedef struct s_stack
 	t_node	*tail_a;
 	t_node	*tail_b;
 	char	*commands;
-	int		*index;
 }				t_stack;
 
 // check.c
@@ -49,14 +47,16 @@ void	indexing(t_node **where, t_node *new);
 int		ft_push(t_node **where, t_node *popped);
 t_node	*ft_pop(t_node **where, unsigned int index);
 
-
 // sort_5.c
 int		find_max(t_stack *stack);
+int		find_node(t_stack *stack, int target);
 void	sort_three(t_stack *stack);
 void	sort_five(t_stack *stack, int count);
 void	sort_five_rot(t_stack *stack, int state, int count);
 
 // push_swap.c
-void	push_swap(t_stack *stack, int count);
+void	ps_b(t_stack *stack, int count, int num);
+int		set_chunk(int count);
+void	ps_a(t_stack *stack, int num);
 
 #endif
