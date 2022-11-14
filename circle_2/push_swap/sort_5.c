@@ -6,7 +6,7 @@
 /*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 15:34:30 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/11/13 20:22:07 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/11/14 14:05:44 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,11 +60,11 @@ void	sort_three(t_stack *stack)
 
 	max = find_max(stack);
 	if (stack->stack_a->next->data == max)
-		stack->commands = ft_strjoin(stack->commands, rotater(stack, 'a'));
+		addstr(stack, rotater(stack, 'a'));
 	if (stack->stack_a->next->next->data == max)
-		stack->commands = ft_strjoin(stack->commands, rev_rotater(stack, 'a'));
+		addstr(stack, rev_rotater(stack, 'a'));
 	if (stack->stack_a->next->data > stack->stack_a->next->next->data)
-		stack->commands = ft_strjoin(stack->commands, swaper(stack, 'a'));
+		addstr(stack, swaper(stack, 'a'));
 }
 
 void	sort_five(t_stack *stack, int count)
@@ -91,7 +91,7 @@ void	sort_five(t_stack *stack, int count)
 		i++;
 	}
 	sort_five_rot(stack, state, count);
-	stack->commands = ft_strjoin(stack->commands, pusher(stack, 'b'));
+	addstr(stack, pusher(stack, 'b'));
 	sort_five(stack, --count);
 }
 
@@ -100,12 +100,12 @@ void	sort_five_rot(t_stack *stack, int state, int count)
 	if (state <= 2)
 	{
 		while (state--)
-			stack->commands = ft_strjoin(stack->commands, rotater(stack, 'a'));
+			addstr(stack, rotater(stack, 'a'));
 	}
 	else
 	{
 		state = count - state;
 		while (state--)
-			stack->commands = ft_strjoin(stack->commands, rev_rotater(stack, 'a'));
+			addstr(stack, rev_rotater(stack, 'a'));
 	}
 }

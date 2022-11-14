@@ -6,7 +6,7 @@
 /*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 16:49:32 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/11/13 15:36:45 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/11/14 13:46:18 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,6 @@
 int		ft_push(t_node **where, t_node *popped);
 t_node	*ft_pop(t_node **where, unsigned int index);
 
-	//전체 자료 숫자 이상 넘어갈 시 오버플로우 예외처리(그럴일없을것같지만,,)
-	//head 포인터가 가리키는 곳에 ft_db_lstadd_front하기
-/* push & pop 구현 */
 int	ft_push(t_node **where, t_node *popped)
 {
 	if (!popped)

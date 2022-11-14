@@ -6,7 +6,7 @@
 /*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 15:07:48 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/11/12 16:50:31 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/11/14 13:45:29 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@ char	*swaper(t_stack *stacks, char a_or_b);
 char	*pusher(t_stack *stacks, char a_or_b);
 char	*rotater(t_stack *stacks, char a_or_b);
 char	*rev_rotater(t_stack *stacks, char a_or_b);
-
-/* 단축 : sa+sa, sb+sb, ss+ss, pa+pb, pb+pa, ra+rra, rb+rrb, rr+rrr */
 
 char	*swaper(t_stack *stacks, char a_or_b)
 {
@@ -106,9 +104,3 @@ char	*rev_rotater(t_stack *stacks, char a_or_b)
 	}
 	return (res);
 }
-
-/* sa, sb, ss */
-
-/* pa, pb */
-
-/* ra, rb, rr, rra, rrb, rrr */

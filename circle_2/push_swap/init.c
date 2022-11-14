@@ -6,7 +6,7 @@
 /*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 18:49:19 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/11/13 20:24:52 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/11/14 17:44:50 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,21 +23,18 @@ void	init_stacks(int *arr, int count, t_stack *stacks)
 	int	i;
 
 	i = 0;
-	/* stack a setting... */
-	stacks->stack_a = ft_db_lstnew(0, 0); //head
+	stacks->stack_a = ft_db_lstnew(0, 0);
 	stacks->stack_a->type = 0;
 	while (i < count)
 		indexing(&stacks->stack_a, ft_db_lstnew(arr[i++], 0));
 	stacks->tail_a = ft_db_lstnew(0, 0);
 	stacks->tail_a->type = 2;
-	ft_db_lstadd_back(&stacks->stack_a, stacks->tail_a); //tail
-	/* stack b setting... */
-	stacks->stack_b = ft_db_lstnew(0, 0); //head
+	ft_db_lstadd_back(&stacks->stack_a, stacks->tail_a);
+	stacks->stack_b = ft_db_lstnew(0, 0);
 	stacks->stack_b->type = 0;
 	stacks->tail_b = ft_db_lstnew(0, 0);
 	stacks->tail_b->type = 2;
-	ft_db_lstadd_back(&stacks->stack_b, stacks->tail_b); //tail
-	/* commands setting... */
+	ft_db_lstadd_back(&stacks->stack_b, stacks->tail_b);
 	stacks->commands = ft_strdup("");
 }
 
@@ -70,19 +67,17 @@ char	**set_str(int argc, char *argv[])
 
 void	free_all(char **res, int count, t_stack *stacks)
 {
-	int	i;
-
-	i = 0;
-	if (!stacks)
+	if (stacks)
 	{
 		ft_db_lstclear(&(stacks->stack_a));
 		ft_db_lstclear(&(stacks->stack_b));
 		free(stacks->commands);
 		free(stacks);
 	}
-	while (i < count)
-		free(res[i++]);
+	while (count--)
+		free(res[count]);
 	free(res);
+	write(1, "Error\n", 6);
 }
 
 int	count_args(char **res)
