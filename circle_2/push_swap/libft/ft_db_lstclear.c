@@ -6,12 +6,11 @@
 /*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 20:44:43 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/11/13 20:25:26 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/11/14 13:42:30 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
 
 void	ft_db_lstclear(t_node **head)
 {
