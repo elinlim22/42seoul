@@ -6,7 +6,7 @@
 /*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 13:50:51 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/11/14 17:43:50 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/11/16 16:59:05 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,9 @@ int		main(int argc, char *argv[]);
 
 void	push_swap(t_stack *stack, int count)
 {
-	if (count > 5)
+	if (count == 2)
+		addstr(stack, swaper(stack, 'a'));
+	else if (count > 5)
 	{
 		ps_b(stack, count, 0);
 		ps_a(stack, count);
