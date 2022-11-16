@@ -6,7 +6,7 @@
 #    By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/26 14:17:26 by hyeslim           #+#    #+#              #
-#    Updated: 2022/11/16 17:43:21 by hyeslim          ###   ########.fr        #
+#    Updated: 2022/11/16 19:32:32 by hyeslim          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,7 @@ clean :
 
 fclean : clean
 	rm -rf ${NAME}
-	rm a.out
+	rm push_swap
 
 re :
 	make fclean
