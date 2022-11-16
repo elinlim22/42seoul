@@ -6,7 +6,7 @@
 /*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 13:50:51 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/11/16 17:41:48 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/11/16 21:50:44 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,5 @@ int	main(int argc, char *argv[])
 	}
 	else
 		free_all(res, count, NULL);
-	system("leaks a.out");
 	return (0);
 }

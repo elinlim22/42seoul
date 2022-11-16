@@ -6,7 +6,7 @@
 /*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 13:48:17 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/11/14 15:59:38 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/11/16 21:52:16 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	ps_b(t_stack *stack, int count, int num)
 	curr = stack->stack_a->next;
 	while (curr->type == 1)
 	{
-		if (curr->index > num + chunk)
+		if (curr->index > num + chunk) //여기서 경우를 2개로 나누면 터지는 케이스 해결 가능 : https://velog.io/@asroq1/42Seoul-pushswap
 		{
 			addstr(stack, rotater(stack, 'a'));
 			curr = curr->next;
