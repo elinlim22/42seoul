@@ -6,14 +6,14 @@
 /*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 15:21:12 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/09/25 19:05:42 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/11/18 19:48:00 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include "libft/libft.h"
 
-int	check_fs(char c, va_list ap)
+static int	check_fs(char c, va_list ap)
 {
 	int		len;
 
