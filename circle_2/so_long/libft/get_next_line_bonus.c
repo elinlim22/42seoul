@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyeslim <hyeslim@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/08 20:27:08 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/08/09 15:39:43 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/11/18 19:19:33 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line_bonus.h"
+#include "libft.h"
 
 static	char	*ft_line(int fd, char *buff, char *backup)
 {
@@ -38,28 +38,6 @@ static	char	*ft_line(int fd, char *buff, char *backup)
 			break ;
 	}
 	return (backup);
-}
-
-static char	*ft_substr(char const *s, unsigned int start, size_t len)
-{
-	char	*dest;
-	size_t	i;
-
-	if (!s)
-		return (NULL);
-	if (ft_strlen(s) <= start)
-		return (ft_strdup(""));
-	dest = (char *)malloc(sizeof(char) * (len + 1));
-	if (!dest)
-		return (NULL);
-	i = 0;
-	while ((i < len) && *(s + start + i))
-	{
-		*(dest + i) = *(s + start + i);
-		i++;
-	}
-	*(dest + i) = '\0';
-	return (dest);
 }
 
 static char	*ft_update(char *temp)

@@ -6,14 +6,16 @@
 /*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 14:02:44 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/11/13 15:35:00 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/11/18 19:19:19 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
+# define BUFFER_SIZE 1024
 # include <stdlib.h>
 # include <unistd.h>
+# include <limits.h>
 
 typedef struct s_list
 {
@@ -80,5 +82,6 @@ void	ft_db_lstdelone(t_node *node);
 void	ft_db_lstclear(t_node **head);
 void	ft_sort(int *tab, int size);
 void	ft_swap(int *i, int *j);
+char	*get_next_line(int fd);
 
 #endif
