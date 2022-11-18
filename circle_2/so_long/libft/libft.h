@@ -6,7 +6,7 @@
 /*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 14:02:44 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/11/18 19:19:19 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/11/18 19:52:16 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define LIBFT_H
 # define BUFFER_SIZE 1024
 # include <stdlib.h>
+# include <stdarg.h>
 # include <unistd.h>
 # include <limits.h>
 
@@ -75,6 +76,8 @@ char	*ft_strtrim(char const *s1, char const *set);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 int		ft_tolower(int c);
 int		ft_toupper(int c);
+
+// push_swap
 t_node	*ft_db_lstnew(int data, int index);
 void	ft_db_lstadd_back(t_node **head, t_node *new);
 void	ft_db_lstadd_front(t_node **head, t_node *new);
@@ -82,6 +85,15 @@ void	ft_db_lstdelone(t_node *node);
 void	ft_db_lstclear(t_node **head);
 void	ft_sort(int *tab, int size);
 void	ft_swap(int *i, int *j);
+
+// get_next_line
 char	*get_next_line(int fd);
+
+// ft_printf
+int		ft_printf(const char *format, ...);
+int		print_p(void *pt, int flag);
+int		print_di(int i);
+int		print_u(unsigned int i, int fd);
+int		print_x(unsigned int i, int ul, int flag);
 
 #endif

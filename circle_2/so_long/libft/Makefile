@@ -6,7 +6,7 @@
 #    By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/11 14:01:08 by hyeslim           #+#    #+#              #
-#    Updated: 2022/11/18 19:17:42 by hyeslim          ###   ########.fr        #
+#    Updated: 2022/11/18 19:56:03 by hyeslim          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,7 +62,9 @@ BSRCS =  ft_lstnew.c \
 		ft_db_lstdelone.c \
 		ft_db_lstclear.c \
 		ft_sort_int_tab.c \
-		get_next_line_bonus.c
+		get_next_line_bonus.c \
+		ft_printf.c \
+		ft_printf_utils.c
 OBJS = ${SRCS:.c=.o}
 BOBJS = ${BSRCS:.c=.o}
 
