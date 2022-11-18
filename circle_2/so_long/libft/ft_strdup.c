@@ -3,14 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyeslim <hyeslim@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 15:29:32 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/07/07 16:04:14 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/11/17 16:44:49 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include <stdlib.h>
 
 char	*ft_strdup(const char *s1)
 {
