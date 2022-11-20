@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyeslim <hyeslim@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 19:21:50 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/11/19 16:22:57 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/11/20 20:36:04 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,28 @@
 
 #include "so_long.h"
 
-int	main(void)
+void	map_par(char **map, char *file)
+{
+	int	fd;
+	char	*str;
+
+	char	*line;
+
+	fd = open(file, O_RDONLY);
+	if (fd <= 0)
+		exit(write(1, "Error\n", 6));
+	str = ft_strdup("");
+	while (line)
+	{
+		line = get_next_line(fd);
+		addstr(str, line);
+	}
+	close(fd);
+
+}
+
+int	check_map(char **map)
 {
 
 }
+
