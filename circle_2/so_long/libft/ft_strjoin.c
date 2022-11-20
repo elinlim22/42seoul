@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyeslim <hyeslim@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 19:28:34 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/07/18 19:33:43 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/11/20 18:07:14 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,13 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	ft_strcat(temp, s1);
 	ft_strcat(temp, s2);
 	return (temp);
+}
+
+void	addstr(char *dst, char *src)
+{
+	char	*tmp;
+
+	tmp = dst;
+	dst = ft_strjoin(tmp, src);
+	free(tmp);
 }
