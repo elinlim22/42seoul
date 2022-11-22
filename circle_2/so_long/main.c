@@ -6,7 +6,7 @@
 /*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 19:21:50 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/11/21 16:56:37 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/11/22 15:54:11 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,13 @@
 
 #include "so_long.h"
 
+void	map_par(char ***map, char *file);
+int		check_rect(char ***map);
+int		check_ber(char *argv);
+
 void	map_par(char ***map, char *file)
 {
-	int	fd;
+	int		fd;
 	char	*str;
 	char	*line;
 
@@ -35,7 +39,7 @@ void	map_par(char ***map, char *file)
 	free(str);
 }
 
-int	check_map(char ***map)
+int	check_rect(char ***map)
 {
 	int	i;
 	int	j;
@@ -57,9 +61,26 @@ int	check_map(char ***map)
 	return (1);
 }
 
-int	main(int argc, char *argv[])
+int	check_ber(char *argv)
 {
-	if (argc != 2)
+	if (ft_strlen(ft_strnstr(argv, ".ber", ft_strlen(argv))) != 4)
 		return (0);
-	// if ()
+	return (1);
+}
+// #include <stdio.h>
+// int	main(int argc __attribute__((unused)), char *argv[])
+// {
+// 	printf("res : %d\n", check_ber(argv[1]));
+// 	return (0);
+// }
+
+
+int	main(void)
+{
+	void	*mlx;
+	void	*mlx_win;
+
+	mlx = mlx_init();
+	mlx_win = mlx_new_window(mlx, 1920, 1080, "Hello world!");
+	mlx_loop(mlx);
 }

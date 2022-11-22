@@ -6,9 +6,11 @@
 /*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 15:29:32 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/11/17 16:44:49 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/11/22 14:24:43 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft.h"
 
 char	*ft_strdup(const char *s1)
 {
