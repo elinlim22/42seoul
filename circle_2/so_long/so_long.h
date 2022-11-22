@@ -6,7 +6,7 @@
 /*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 19:11:22 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/11/22 15:51:57 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/11/22 19:44:08 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,5 @@
 # include <fcntl.h>
 # include <mlx.h>
 # include "libft/libft.h"
-
-
 
 #endif
