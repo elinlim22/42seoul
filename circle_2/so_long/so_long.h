@@ -6,14 +6,14 @@
 /*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 19:11:22 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/11/23 21:05:26 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/11/23 21:34:37 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-# include <stdio.h>
+// # include <stdio.h>
 # include <unistd.h>
 # include <stdlib.h>
 # include <fcntl.h>
@@ -34,4 +34,6 @@ int		check_rect(t_map *ber);
 int		check_wall(t_map *ber);
 int		check_factors(t_map *ber);
 
+// err_msg
+void	err_msg(char *msg);
 #endif

@@ -6,7 +6,7 @@
 /*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 20:57:52 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/11/23 21:07:09 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/11/23 21:28:36 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	map_par(t_map **ber, char *file)
 
 	fd = open(file, O_RDONLY);
 	if (fd <= 0)
-		exit(write(1, "Error\n", 6));
+		err_msg("cannot open the file");
 	str = ft_strdup("");
 	line = get_next_line(fd);
 	(*ber)->width = (int)ft_strlen(line) - 1;
@@ -45,7 +45,7 @@ void	map_par(t_map **ber, char *file)
 int	check_ber(char *argv)
 {
 	if (ft_strlen(ft_strnstr(argv, ".ber", ft_strlen(argv))) != 4)
-		return (0);
+		err_msg("not ber file");
 	return (1);
 }
 
@@ -57,7 +57,7 @@ int	check_rect(t_map *ber)
 	while (ber->map[i])
 	{
 		if ((int)ft_strlen(ber->map[i]) != ber->width)
-			return (0);
+			err_msg("not rectangular");
 		i++;
 	}
 	return (1);
@@ -73,19 +73,19 @@ int	check_wall(t_map *ber)
 	while (i < len)
 	{
 		if (ber->map[0][i++] != '1')
-			return (0);
+			err_msg("not surrounded by wall");
 	}
 	i = 0;
 	while (ber->map[++i] && i < ber->hight)
 	{
 		if (ber->map[i][len - 1] != '1' || ber->map[i][0] != '1')
-			return (0);
+			err_msg("not surrounded by wall");
 	}
 	i--;
 	while (len--)
 	{
 		if (ber->map[i][len] != '1')
-			return (0);
+			err_msg("not surrounded by wall");
 	}
 	return (1);
 }
@@ -114,6 +114,6 @@ int	check_factors(t_map *ber)
 		(ber->map)++;
 	}
 	if (exit != 1 || coll < 1 || posi != 1)
-		return (0);
+		err_msg("not proper components");
 	return (1);
 }

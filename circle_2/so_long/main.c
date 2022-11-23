@@ -6,7 +6,7 @@
 /*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 19:21:50 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/11/23 21:05:05 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/11/23 21:35:52 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,32 @@
 
 #include "so_long.h"
 
-#include <stdio.h>
-int	main(int argc __attribute__((unused)), char *argv[])
+void	err_msg(char *msg)
+{
+	ft_printf("Error\n");
+	ft_printf("%s\n", msg);
+	exit(1);
+}
+
+int	main(int argc, char *argv[])
 {
 	t_map	*ber;
 
+	if (argc != 2)
+		err_msg("too many arguments");
 	ber = (t_map *)malloc(sizeof(t_map));
 	map_par(&ber, argv[1]); // 메모리 누수 오져요~
 	int	i = 0, j = 0;
 	while (ber->map[i++])
 		j++;
 	for (int i = 0; i < j; i++)
-		printf("%s\n", ber->map[i]);
-	printf("check_ber : %d\n", check_ber(argv[1]));
-	printf("check_rect : %d\n", check_rect(ber));
-	printf("check_wall : %d\n", check_wall(ber));
-	printf("check_factors : %d\n", check_factors(ber));
-	return (0);
+		ft_printf("%s\n", ber->map[i]);
+	ft_printf("check_ber : %d\n", check_ber(argv[1]));
+	ft_printf("check_rect : %d\n", check_rect(ber));
+	ft_printf("check_wall : %d\n", check_wall(ber));
+	ft_printf("check_factors : %d\n", check_factors(ber));
+	err_msg("test");
+	exit(0);
 }
 
 // int	main(void)
