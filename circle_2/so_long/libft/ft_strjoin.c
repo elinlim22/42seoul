@@ -6,7 +6,7 @@
 /*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 19:28:34 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/11/20 18:07:14 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/11/23 17:28:00 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,11 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	return (temp);
 }
 
-void	addstr(char *dst, char *src)
+void	addstr(char **dst, char *src)
 {
 	char	*tmp;
 
-	tmp = dst;
-	dst = ft_strjoin(tmp, src);
+	tmp = *dst;
+	*dst = ft_strjoin(tmp, src);
 	free(tmp);
 }
