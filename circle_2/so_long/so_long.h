@@ -6,7 +6,7 @@
 /*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 19:11:22 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/11/23 20:52:42 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/11/23 21:05:26 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,6 @@ void	map_par(t_map **ber, char *file);
 int		check_ber(char *argv);
 int		check_rect(t_map *ber);
 int		check_wall(t_map *ber);
+int		check_factors(t_map *ber);
 
 #endif

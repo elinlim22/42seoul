@@ -6,7 +6,7 @@
 /*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 20:57:52 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/11/23 20:58:17 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/11/23 21:07:09 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	map_par(t_map **ber, char *file);
 int		check_ber(char *argv);
 int		check_rect(t_map *ber);
 int		check_wall(t_map *ber);
+int		check_factors(t_map *ber);
 
 void	map_par(t_map **ber, char *file)
 {
@@ -86,5 +87,33 @@ int	check_wall(t_map *ber)
 		if (ber->map[i][len] != '1')
 			return (0);
 	}
+	return (1);
+}
+
+int	check_factors(t_map *ber)
+{
+	int	exit;
+	int	coll;
+	int	posi;
+
+	exit = 0;
+	coll = 0;
+	posi = 0;
+	while (*(ber->map))
+	{
+		while (**(ber->map))
+		{
+			if (**(ber->map) == 'E')
+				exit++;
+			else if (**(ber->map) == 'C')
+				coll++;
+			else if (**(ber->map) == 'P')
+				posi++;
+			(*(ber->map))++;
+		}
+		(ber->map)++;
+	}
+	if (exit != 1 || coll < 1 || posi != 1)
+		return (0);
 	return (1);
 }

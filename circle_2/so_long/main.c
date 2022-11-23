@@ -6,7 +6,7 @@
 /*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 19:21:50 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/11/23 20:58:26 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/11/23 21:05:05 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int	main(int argc __attribute__((unused)), char *argv[])
 	printf("check_ber : %d\n", check_ber(argv[1]));
 	printf("check_rect : %d\n", check_rect(ber));
 	printf("check_wall : %d\n", check_wall(ber));
+	printf("check_factors : %d\n", check_factors(ber));
 	return (0);
 }
 
