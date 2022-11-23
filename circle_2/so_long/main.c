@@ -6,7 +6,7 @@
 /*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 19:21:50 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/11/22 21:49:02 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/11/23 20:38:20 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,33 @@
 
 #include "so_long.h"
 
-void	map_par(char ***map, char *file);
+typedef struct s_map
+{
+	char	**map;
+	int		hight;
+	int		width;
+}				t_map;
+
+size_t	ft_db_strlen(char **str);
+void	map_par(t_map **ber, char *file);
 int		check_rect(char ***map);
 int		check_ber(char *argv);
+int	check_wall(t_map *ber);
 
-void	map_par(char ***map, char *file)
+size_t	ft_db_strlen(char **str)
+{
+	size_t	i;
+
+	i = 0;
+	if (str)
+	{
+		while (str[i])
+			i++;
+	}
+	return (i);
+}
+
+void	map_par(t_map **ber, char *file)
 {
 	int		fd;
 	char	*str;
@@ -29,13 +51,16 @@ void	map_par(char ***map, char *file)
 		exit(write(1, "Error\n", 6));
 	str = ft_strdup("");
 	line = get_next_line(fd);
+	(*ber)->width = (int)ft_strlen(line);
 	while (line) //??
 	{
-		addstr(str, line);
+		addstr(&str, line);
 		line = get_next_line(fd);
 	}
 	close(fd);
-	*map = ft_split(str, '\n');
+	(*ber)->map = ft_split(str, '\n');
+	(*ber)->hight = ft_db_strlen((*ber)->map);
+	free(line);
 	free(str);
 }
 
@@ -62,24 +87,48 @@ int	check_ber(char *argv)
 	return (1);
 }
 
-#include <stdio.h>
-int	main(int argc __attribute__((unused)), char *argv[] __attribute__((unused)))
+int	check_wall(t_map *ber)
 {
-	char **str = (char **)malloc(sizeof(char *) * 5);
-	for (int i = 0; i < 4; i++)
+	int	len;
+	int	i;
+
+	len = (int)ft_strlen(ber->map[0]);
+	i = 0;
+	while (i < len)
 	{
-		str[i] = (char *)malloc(sizeof(char) * 5);
-		// for (int j = 0; j < 4; j++)
-		// {
-		// 	str[i][j] = 'a';
-		// }
-		// str[i][4] = '\0';
+		if (ber->map[0][i++] != '1')
+			return (0);
 	}
-	// str[4] = NULL;
-	printf("\n\n");
-	map_par(&str, argv[1]);
+	i = 0;
+	while (ber->map[++i] && i < ber->hight)
+	{
+		if (ber->map[i][len - 1] != '1' || ber->map[i][0] != '1')
+			return (0);
+	}
+	i--;
+	while (len--)
+	{
+		if (ber->map[i][len] != '1')
+			return (0);
+	}
+	return (1);
+}
+
+#include <stdio.h>
+int	main(int argc __attribute__((unused)), char *argv[])
+{
+	t_map	*ber;
+
+	ber = (t_map *)malloc(sizeof(t_map));
+	map_par(&ber, argv[1]); // 메모리 누수 오져요~
+	int	i = 0, j = 0;
+	while (ber->map[i++])
+		j++;
+	for (int i = 0; i < j; i++)
+		printf("%s\n", ber->map[i]);
 	printf("check_ber : %d\n", check_ber(argv[1]));
-	printf("check_rect : %d\n", check_rect(&str));
+	printf("check_rect : %d\n", check_rect(&(ber->map)));
+	printf("check_wall : %d\n", check_wall(ber));
 	return (0);
 }
 
