@@ -6,7 +6,7 @@
 #    By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/16 19:07:47 by hyeslim           #+#    #+#              #
-#    Updated: 2022/11/23 16:46:54 by hyeslim          ###   ########.fr        #
+#    Updated: 2022/11/23 16:51:29 by hyeslim          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,6 +37,7 @@ fclean : clean
 	@rm -rf ${NAME}
 #	@rm libmlx.dylib
 	@rm so_long
+	@rm libft.a
 
 re :
 	@make fclean
