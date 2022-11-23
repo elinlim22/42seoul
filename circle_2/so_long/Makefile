@@ -6,7 +6,7 @@
 #    By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/16 19:07:47 by hyeslim           #+#    #+#              #
-#    Updated: 2022/11/22 22:03:52 by hyeslim          ###   ########.fr        #
+#    Updated: 2022/11/23 16:46:54 by hyeslim          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,20 +22,20 @@ ${NAME} :
 	@make bonus -C libft
 	@mv libft/libft.a ./
 	@${CC} ${CFLAGS} -c ${SRCS} -I so_long.h
-	@make -C mlx
+#	@make -C mlx
 	@ar rcs ${NAME} *.o
 	@make clean
 	@${CC} ${CFLAGS} ${MLX} main.c so_long.a libft.a -I so_long.h -o so_long
-	@mv mlx/libmlx.dylib ./
+#	@mv mlx/libmlx.dylib ./
 
 clean :
 	@rm -rf *.o
 	@rm -rf libft/*.o
-	@rm -rf mlx/*.o
+#	@rm -rf mlx/*.o
 
 fclean : clean
 	@rm -rf ${NAME}
-	@rm libmlx.dylib
+#	@rm libmlx.dylib
 	@rm so_long
 
 re :
