@@ -6,7 +6,7 @@
 /*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 19:21:50 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/11/23 20:38:20 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/11/23 20:49:31 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,13 @@ typedef struct s_map
 	int		width;
 }				t_map;
 
-size_t	ft_db_strlen(char **str);
+size_t	ft_strlen_db(char **str);
 void	map_par(t_map **ber, char *file);
-int		check_rect(char ***map);
 int		check_ber(char *argv);
-int	check_wall(t_map *ber);
+int		check_rect(t_map *ber);
+int		check_wall(t_map *ber);
 
-size_t	ft_db_strlen(char **str)
+size_t	ft_strlen_db(char **str)
 {
 	size_t	i;
 
@@ -51,7 +51,7 @@ void	map_par(t_map **ber, char *file)
 		exit(write(1, "Error\n", 6));
 	str = ft_strdup("");
 	line = get_next_line(fd);
-	(*ber)->width = (int)ft_strlen(line);
+	(*ber)->width = (int)ft_strlen(line) - 1;
 	while (line) //??
 	{
 		addstr(&str, line);
@@ -59,31 +59,29 @@ void	map_par(t_map **ber, char *file)
 	}
 	close(fd);
 	(*ber)->map = ft_split(str, '\n');
-	(*ber)->hight = ft_db_strlen((*ber)->map);
+	(*ber)->hight = ft_strlen_db((*ber)->map);
 	free(line);
 	free(str);
-}
-
-int	check_rect(char ***map)
-{
-	int	i;
-	int	temp;
-
-	temp = (int)ft_strlen((*map)[0]);
-	i = 1;
-	while ((*map)[i])
-	{
-		if ((int)ft_strlen((*map)[i]) != temp)
-			return (0);
-		i++;
-	}
-	return (1);
 }
 
 int	check_ber(char *argv)
 {
 	if (ft_strlen(ft_strnstr(argv, ".ber", ft_strlen(argv))) != 4)
 		return (0);
+	return (1);
+}
+
+int	check_rect(t_map *ber)
+{
+	int	i;
+
+	i = 1;
+	while (ber->map[i])
+	{
+		if ((int)ft_strlen(ber->map[i]) != ber->width)
+			return (0);
+		i++;
+	}
 	return (1);
 }
 
@@ -127,7 +125,7 @@ int	main(int argc __attribute__((unused)), char *argv[])
 	for (int i = 0; i < j; i++)
 		printf("%s\n", ber->map[i]);
 	printf("check_ber : %d\n", check_ber(argv[1]));
-	printf("check_rect : %d\n", check_rect(&(ber->map)));
+	printf("check_rect : %d\n", check_rect(ber));
 	printf("check_wall : %d\n", check_wall(ber));
 	return (0);
 }
