@@ -6,7 +6,7 @@
 /*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 19:21:50 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/11/23 20:49:31 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/11/23 20:52:03 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,31 +14,10 @@
 
 #include "so_long.h"
 
-typedef struct s_map
-{
-	char	**map;
-	int		hight;
-	int		width;
-}				t_map;
-
-size_t	ft_strlen_db(char **str);
 void	map_par(t_map **ber, char *file);
 int		check_ber(char *argv);
 int		check_rect(t_map *ber);
 int		check_wall(t_map *ber);
-
-size_t	ft_strlen_db(char **str)
-{
-	size_t	i;
-
-	i = 0;
-	if (str)
-	{
-		while (str[i])
-			i++;
-	}
-	return (i);
-}
 
 void	map_par(t_map **ber, char *file)
 {
