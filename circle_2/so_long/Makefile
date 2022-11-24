@@ -25,7 +25,7 @@ ${NAME} :
 #	@make -C mlx
 	@ar rcs ${NAME} *.o
 	@make clean
-	@${CC} ${CFLAGS} ${MLX} main.c so_long.a libft.a -I so_long.h -o so_long
+	@${CC} ${CFLAGS} ${MLX} main.c so_long.a libft.a -o so_long
 #	@mv mlx/libmlx.dylib ./
 
 clean :
