@@ -35,6 +35,6 @@ int	ft_atoi(const char *str)
 	}
 	n *= i;
 	if (n < -2147483648 || n > 2147483647)
-		exit(write(1, "Error\n", 6));
+		exit(1);
 	return ((int)n);
 }
