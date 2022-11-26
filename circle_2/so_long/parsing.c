@@ -6,7 +6,7 @@
 /*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 20:57:52 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/11/23 21:28:36 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/11/26 21:23:49 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	map_par(t_map **ber, char *file)
 	}
 	close(fd);
 	(*ber)->map = ft_split(str, '\n');
-	(*ber)->hight = ft_strlen_db((*ber)->map);
+	(*ber)->height = ft_strlen_db((*ber)->map);
 	free(line);
 	free(str);
 }
@@ -76,7 +76,7 @@ int	check_wall(t_map *ber)
 			err_msg("not surrounded by wall");
 	}
 	i = 0;
-	while (ber->map[++i] && i < ber->hight)
+	while (ber->map[++i] && i < ber->height)
 	{
 		if (ber->map[i][len - 1] != '1' || ber->map[i][0] != '1')
 			err_msg("not surrounded by wall");
@@ -92,26 +92,24 @@ int	check_wall(t_map *ber)
 
 int	check_factors(t_map *ber)
 {
+	int	i;
 	int	exit;
 	int	coll;
 	int	posi;
 
+	i = 0;
 	exit = 0;
 	coll = 0;
 	posi = 0;
-	while (*(ber->map))
+	while (ber->map[i])
 	{
-		while (**(ber->map))
-		{
-			if (**(ber->map) == 'E')
-				exit++;
-			else if (**(ber->map) == 'C')
-				coll++;
-			else if (**(ber->map) == 'P')
-				posi++;
-			(*(ber->map))++;
-		}
-		(ber->map)++;
+		if (ft_strchr(ber->map[i], 'E'))
+			exit++;
+		if (ft_strchr(ber->map[i], 'C'))
+			coll++;
+		if (ft_strchr(ber->map[i], 'P'))
+			posi++;
+		i++;
 	}
 	if (exit != 1 || coll < 1 || posi != 1)
 		err_msg("not proper components");
