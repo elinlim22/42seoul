@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: hyeslim <hyeslim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 19:21:50 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/11/26 22:09:42 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/11/27 00:34:39 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,28 @@ int	key(int k, t_game *game)
 	if (k == K_D)
 		game->x += 64;
 	return (0);
+}
+
+void	locate_p(t_map *ber, t_game *game)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (ber->map[i])
+	{
+		while (ber->map[i][j])
+		{
+			if (ber->map[i][j] == 'P')
+			{
+				game->x = j;
+				game->y = i;
+				return ;
+			}
+			j++;
+		}
+		i++;
+	}
 }
 
 int	exit_game(t_game *game)
@@ -70,8 +92,7 @@ int	main(int argc, char *argv[])
 		game.mlx = mlx_init();
 		game.win = mlx_new_window(game.mlx, 64 * ber->width, 64 * ber->height, "Hyeslim's rocket");
 		game.count = 0;
-		game.x = 0;
-		game.y = 0;
+		locate_p(ber, &game);
 		img_init(&tile, game.mlx);
 		draw_map(ber, &game, &tile);
 
