@@ -6,26 +6,24 @@
 /*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 19:11:22 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/11/24 17:01:09 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/11/26 21:26:20 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-// # include <stdio.h>
 # include <unistd.h>
 # include <stdlib.h>
 # include <fcntl.h>
 # include <mlx.h>
 # include "libft/libft.h"
 
-typedef struct	s_map
+typedef struct	s_game
 {
-	char	**map;
-	int		hight;
-	int		width;
-}				t_map;
+	void	*mlx;
+	void	*win;
+}				t_game;
 
 typedef struct	s_tile
 {
@@ -35,6 +33,13 @@ typedef struct	s_tile
 	void	*wall;
 	void	*exit;
 }				t_tile;
+
+typedef struct	s_map
+{
+	char	**map;
+	int		height;
+	int		width;
+}				t_map;
 
 // parsing and checkers
 void	map_par(t_map **ber, char *file);
