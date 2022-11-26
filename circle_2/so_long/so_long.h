@@ -6,12 +6,21 @@
 /*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 19:11:22 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/11/26 21:31:59 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/11/26 22:07:04 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
+
+# define X_EVENT_KEY_PRESS	2
+// # define X_EVENT_KEY_RELEASE	3
+# define X_EVENT_KEY_EXIT	17
+# define K_ESC	53
+# define K_W	13
+# define K_A	0
+# define K_S	1
+# define K_D	2
 
 # include <unistd.h>
 # include <stdlib.h>
@@ -19,13 +28,16 @@
 # include <mlx.h>
 # include "libft/libft.h"
 
-typedef struct	s_game
+typedef struct s_game
 {
 	void	*mlx;
 	void	*win;
+	int		x;
+	int		y;
+	int		count;
 }				t_game;
 
-typedef struct	s_tile
+typedef struct s_tile
 {
 	void	*space;
 	void	*star;
@@ -34,7 +46,7 @@ typedef struct	s_tile
 	void	*exit;
 }				t_tile;
 
-typedef struct	s_map
+typedef struct s_map
 {
 	char	**map;
 	int		height;
