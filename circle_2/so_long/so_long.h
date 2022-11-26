@@ -6,7 +6,7 @@
 /*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 19:11:22 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/11/26 21:26:20 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/11/26 21:31:59 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,5 +52,7 @@ int		check_factors(t_map *ber);
 void	err_msg(char *msg);
 
 // tile
+void	img_init(t_tile *tile, void *mlx);
+void	draw_map(t_map *ber, t_game *game, t_tile *tile);
 
 #endif
