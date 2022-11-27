@@ -6,11 +6,9 @@
 /*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 19:21:50 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/11/28 00:18:39 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/11/28 00:20:45 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-// https://velog.io/@chez_bono/solong-zq9xy27q
 
 #include "so_long.h"
 
