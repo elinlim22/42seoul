@@ -6,7 +6,7 @@
 /*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 20:03:45 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/11/28 00:00:33 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/11/28 01:34:35 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,19 @@ void	sl_memcpy(char ***dest, char **src, int height)
 int	validity(t_game *game)
 {
 	t_chk	chk;
+	int		len;
 
 	sl_memcpy(&(chk.map), game->ber->map, game->ber->height);
 	chk.exit = 0;
 	chk.star = 0;
+	len = ft_strlen_db(chk.map);
 	map_check(game, &chk, game->x, game->y);
 	if (chk.exit != 1 || (chk.star != game->ber->coll))
 		err_msg("the map has no valid path");
+	free(chk.map[len]);
+	while (--len)
+		free(chk.map[len]);
+	free(chk.map);
 	return (1);
 }
 
