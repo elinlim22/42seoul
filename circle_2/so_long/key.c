@@ -6,7 +6,7 @@
 /*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 22:04:58 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/11/27 17:45:14 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/11/27 20:03:12 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ void	mv_w(t_game *game)
 	}
 	game->tile.rocket = mlx_xpm_file_to_image(game->mlx, "./xpm/up.xpm", &fix, &fix);
 	draw_map(game);
-	return ; // 벽면이면 그냥 아무것도 하지 않음
 }
 
 void	mv_a(t_game *game)
@@ -68,7 +67,6 @@ void	mv_a(t_game *game)
 	}
 	game->tile.rocket = mlx_xpm_file_to_image(game->mlx, "./xpm/left.xpm", &fix, &fix);
 	draw_map(game);
-	return ;
 }
 
 void	mv_s(t_game *game)
@@ -95,7 +93,6 @@ void	mv_s(t_game *game)
 	}
 	game->tile.rocket = mlx_xpm_file_to_image(game->mlx, "./xpm/down.xpm", &fix, &fix);
 	draw_map(game);
-	return ;
 }
 
 void	mv_d(t_game *game)
@@ -122,5 +119,4 @@ void	mv_d(t_game *game)
 	}
 	game->tile.rocket = mlx_xpm_file_to_image(game->mlx, "./xpm/right.xpm", &fix, &fix);
 	draw_map(game);
-	return ;
 }

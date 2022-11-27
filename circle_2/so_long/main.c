@@ -6,7 +6,7 @@
 /*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 19:21:50 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/11/27 19:08:38 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/11/27 23:43:42 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,10 @@ void	err_msg(char *msg)
 int	key(int k, t_game *game)
 {
 	if (k == K_ESC)
-		exit_game(game);
+	{
+		mlx_destroy_window(game->mlx, game->win);
+		exit(0);
+	}
 	if (k == K_W)
 		mv_w(game);
 	if (k == K_A)
@@ -75,7 +78,8 @@ int	exit_game(t_game *game)
 		if (ft_strchr(game->ber->map[i++], 'C'))
 		{
 			ft_printf("LOSE : you did not clear the map\n");
-			break ;
+			mlx_destroy_window(game->mlx, game->win);
+			exit(0);
 		}
 	}
 	mlx_destroy_window(game->mlx, game->win);
@@ -94,22 +98,23 @@ int	main(int argc, char *argv[])
 	ber = (t_map *)malloc(sizeof(t_map));
 	map_par(&ber, argv[1]); // 메모리 누수 오져요~
 	game.ber = ber;
+	locate_p(&game);
+	game.ber->coll = count_coll(game.ber, 'C');
 
 	/* show xpm file */
-	// int	i = 0, j = 0;
-	// while (ber->map[i++])
-	// 	j++;
-	// for (int i = 0; i < j; i++)
-	// 	ft_printf("%s\n", ber->map[i]);
+	int	i = 0, j = 0;
+	while (ber->map[i++])
+		j++;
+	for (int i = 0; i < j; i++)
+		ft_printf("%s\n", ber->map[i]);
 
 
-	if (check_ber(argv[1]) && check_rect(ber) && check_wall(ber) && check_factors(ber))
+	if (check_ber(argv[1]) && check_rect(ber) && check_wall(ber) && check_factors(ber) && validity(&game))
 	{
 		t_tile	tile;
 		game.mlx = mlx_init();
 		game.win = mlx_new_window(game.mlx, 64 * game.ber->width, 64 * game.ber->height, "Hyeslim's rocket");
 		game.count = 0;
-		locate_p(&game);
 		img_init(&tile, game.mlx);
 		game.tile = tile;
 		draw_map(&game);
@@ -122,5 +127,3 @@ int	main(int argc, char *argv[])
 	}
 	exit (0);
 }
-
-// starting position 이미지 바꾸기 : 로켓이 안보임,, 배경도 회색으로 좀 바꾸기

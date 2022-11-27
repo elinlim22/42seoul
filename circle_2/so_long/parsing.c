@@ -6,7 +6,7 @@
 /*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 20:57:52 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/11/27 17:28:16 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/11/27 23:42:37 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,19 +98,20 @@ int	check_factors(t_map *ber)
 	int	posi;
 
 	i = 0;
-	exit = 0;
-	coll = 0;
-	posi = 0;
-	while (ber->map[i])
-	{
-		if (ft_strchr(ber->map[i], 'E'))
-			exit++;
-		if (ft_strchr(ber->map[i], 'C'))
-			coll++;
-		if (ft_strchr(ber->map[i], 'P'))
-			posi++;
-		i++;
-	}
+	exit = count_coll(ber, 'E');
+	coll = count_coll(ber, 'C');
+	posi = count_coll(ber, 'P');
+
+	// while (ber->map[i])
+	// {
+	// 	if (ft_strchr(ber->map[i], 'E'))
+	// 		exit++;
+	// 	if (ft_strchr(ber->map[i], 'C'))
+	// 		coll++;
+	// 	if (ft_strchr(ber->map[i], 'P'))
+	// 		posi++;
+	// 	i++;
+	// }
 	if (exit != 1 || coll < 1 || posi != 1)
 		err_msg("not proper components");
 	return (1);

@@ -6,7 +6,7 @@
 /*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 17:01:14 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/11/27 17:28:03 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/11/27 23:42:03 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	img_init(t_tile *tile, void *mlx);
 void	draw_map(t_game *game);
+int		count_coll(t_map *ber, char c);
 
 void	img_init(t_tile *tile, void *mlx)
 {
@@ -27,6 +28,28 @@ void	img_init(t_tile *tile, void *mlx)
 	tile->star = mlx_xpm_file_to_image(mlx, "./xpm/star.xpm", &w, &h);
 	tile->exit = mlx_xpm_file_to_image(mlx, "./xpm/exit.xpm", &w, &h);
 	tile->rocket = mlx_xpm_file_to_image(mlx, "./xpm/up.xpm", &w, &h);
+}
+
+int	count_coll(t_map *ber, char c)
+{
+	int	i;
+	int	j;
+	int	res;
+
+	i = 0;
+	res = 0;
+	while (ber->map[i])
+	{
+		j = 0;
+		while (ber->map[i][j])
+		{
+			if (ber->map[i][j] == c)
+				res++;
+			j++;
+		}
+		i++;
+	}
+	return (res);
 }
 
 void	draw_map(t_game *game)
