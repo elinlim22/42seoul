@@ -6,11 +6,12 @@
 /*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 22:04:58 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/11/27 20:03:12 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/11/27 23:53:10 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
 void	mv_w(t_game *game);
 void	mv_a(t_game *game);
 void	mv_s(t_game *game);

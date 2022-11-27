@@ -6,7 +6,7 @@
 /*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 19:11:22 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/11/27 23:43:57 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/11/27 23:54:36 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define SO_LONG_H
 
 # define X_EVENT_KEY_PRESS	2
-// # define X_EVENT_KEY_RELEASE	3
 # define X_EVENT_KEY_EXIT	17
 # define K_ESC	53
 # define K_W	13
@@ -78,8 +77,8 @@ void	locate_p(t_game *game);
 
 // tile
 void	img_init(t_tile *tile, void *mlx);
-void	draw_map(t_game *game);
 int		count_coll(t_map *ber, char c);
+void	draw_map(t_game *game);
 
 
 // key

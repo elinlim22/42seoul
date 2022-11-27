@@ -6,15 +6,15 @@
 /*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 17:01:14 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/11/27 23:42:03 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/11/27 23:54:06 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
 void	img_init(t_tile *tile, void *mlx);
-void	draw_map(t_game *game);
 int		count_coll(t_map *ber, char c);
+void	draw_map(t_game *game);
 
 void	img_init(t_tile *tile, void *mlx)
 {

@@ -6,7 +6,7 @@
 /*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 20:57:52 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/11/27 23:42:37 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/11/27 23:53:45 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	map_par(t_map **ber, char *file)
 	str = ft_strdup("");
 	line = get_next_line(fd);
 	(*ber)->width = (int)ft_strlen(line) - 1;
-	while (line) //??
+	while (line)
 	{
 		addstr(&str, line);
 		line = get_next_line(fd);
@@ -92,26 +92,13 @@ int	check_wall(t_map *ber)
 
 int	check_factors(t_map *ber)
 {
-	int	i;
 	int	exit;
 	int	coll;
 	int	posi;
 
-	i = 0;
 	exit = count_coll(ber, 'E');
 	coll = count_coll(ber, 'C');
 	posi = count_coll(ber, 'P');
-
-	// while (ber->map[i])
-	// {
-	// 	if (ft_strchr(ber->map[i], 'E'))
-	// 		exit++;
-	// 	if (ft_strchr(ber->map[i], 'C'))
-	// 		coll++;
-	// 	if (ft_strchr(ber->map[i], 'P'))
-	// 		posi++;
-	// 	i++;
-	// }
 	if (exit != 1 || coll < 1 || posi != 1)
 		err_msg("not proper components");
 	return (1);
