@@ -6,7 +6,7 @@
 /*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 19:11:22 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/11/26 22:07:04 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/11/27 16:02:50 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,15 +28,6 @@
 # include <mlx.h>
 # include "libft/libft.h"
 
-typedef struct s_game
-{
-	void	*mlx;
-	void	*win;
-	int		x;
-	int		y;
-	int		count;
-}				t_game;
-
 typedef struct s_tile
 {
 	void	*space;
@@ -53,6 +44,17 @@ typedef struct s_map
 	int		width;
 }				t_map;
 
+typedef struct s_game
+{
+	void	*mlx;
+	void	*win;
+	int		x;
+	int		y;
+	int		count;
+	t_map	*ber;
+	t_tile	tile;
+}				t_game;
+
 // parsing and checkers
 void	map_par(t_map **ber, char *file);
 int		check_ber(char *argv);
@@ -62,9 +64,17 @@ int		check_factors(t_map *ber);
 
 // err_msg
 void	err_msg(char *msg);
+int		exit_game(t_game *game);
+int		key(int k, t_game *game);
+void	locate_p(t_game *game);
 
 // tile
 void	img_init(t_tile *tile, void *mlx);
-void	draw_map(t_map *ber, t_game *game, t_tile *tile);
+void	draw_map(t_game *game);
 
+// key
+void	mv_w(t_game *game);
+void	mv_a(t_game *game);
+void	mv_s(t_game *game);
+void	mv_d(t_game *game);
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyeslim <hyeslim@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 19:21:50 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/11/27 00:34:39 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/11/27 17:43:53 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,9 @@
 
 void	err_msg(char *msg);
 int		exit_game(t_game *game);
+int		key(int k, t_game *game);
+void	locate_p(t_game *game);
+
 
 void	err_msg(char *msg)
 {
@@ -29,27 +32,28 @@ int	key(int k, t_game *game)
 	if (k == K_ESC)
 		exit_game(game);
 	if (k == K_W)
-		game->y += 64;
+		mv_w(game);
 	if (k == K_A)
-		game->x -= 64;
+		mv_a(game);
 	if (k == K_S)
-		game->y -= 64;
+		mv_s(game);
 	if (k == K_D)
-		game->x += 64;
+		mv_d(game);
 	return (0);
 }
 
-void	locate_p(t_map *ber, t_game *game)
+void	locate_p(t_game *game)
 {
 	int	i;
 	int	j;
 
 	i = 0;
-	while (ber->map[i])
+	while (game->ber->map[i])
 	{
-		while (ber->map[i][j])
+		j = 0;
+		while (game->ber->map[i][j])
 		{
-			if (ber->map[i][j] == 'P')
+			if (game->ber->map[i][j] == 'P')
 			{
 				game->x = j;
 				game->y = i;
@@ -63,19 +67,32 @@ void	locate_p(t_map *ber, t_game *game)
 
 int	exit_game(t_game *game)
 {
+	int	i;
+
+	i = 0;
+	while (game->ber->map[i])
+	{
+		if (ft_strchr(game->ber->map[i++], 'C'))
+		{
+			ft_printf("you lose\n");
+			break ;
+		}
+	}
 	mlx_destroy_window(game->mlx, game->win);
+	ft_printf("move : %d\n", game->count);
 	exit(0);
 }
 
 int	main(int argc, char *argv[])
 {
 	t_map	*ber;
+	t_game	game;
 
 	if (argc != 2)
 		err_msg("too many arguments");
 	ber = (t_map *)malloc(sizeof(t_map));
 	map_par(&ber, argv[1]); // 메모리 누수 오져요~
-
+	game.ber = ber;
 
 	/* show xpm file */
 	// int	i = 0, j = 0;
@@ -88,13 +105,13 @@ int	main(int argc, char *argv[])
 	if (check_ber(argv[1]) && check_rect(ber) && check_wall(ber) && check_factors(ber))
 	{
 		t_tile	tile;
-		t_game	game;
 		game.mlx = mlx_init();
-		game.win = mlx_new_window(game.mlx, 64 * ber->width, 64 * ber->height, "Hyeslim's rocket");
+		game.win = mlx_new_window(game.mlx, 64 * game.ber->width, 64 * game.ber->height, "Hyeslim's rocket");
 		game.count = 0;
-		locate_p(ber, &game);
+		locate_p(&game);
 		img_init(&tile, game.mlx);
-		draw_map(ber, &game, &tile);
+		game.tile = tile;
+		draw_map(&game);
 
 		// hook 넣을 자리
 		mlx_hook(game.win, X_EVENT_KEY_PRESS, 0, &key, &game);
@@ -102,8 +119,7 @@ int	main(int argc, char *argv[])
 
 		mlx_loop(game.mlx);
 	}
-	else
-		return (0);
+	exit (0);
 }
 
 // starting position 이미지 바꾸기 : 로켓이 안보임,, 배경도 회색으로 좀 바꾸기
