@@ -6,7 +6,7 @@
 /*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 20:03:45 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/11/27 23:51:29 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/11/28 00:00:33 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,33 +54,23 @@ int	validity(t_game *game)
 
 void	map_check(t_game *game, t_chk *chk, int x, int y)
 {
-	const int	arr[4][2] = {{(x - 1), y}, {x, (y - 1)}, {x, (y + 1)}, {(x + 1), y}};
+	const int	arr[4][2] = \
+				{{(x - 1), y}, {x, (y - 1)}, {x, (y + 1)}, {(x + 1), y}};
 	int			i;
 
 	i = 0;
-	if (!(x <= 0 || y <= 0 || x >= game->ber->width || y >= game->ber->height))
+	while (i < 4)
 	{
-		while (i < 4)
+		chk->map[y][x] = '1';
+		if (chk->map[arr[i][1]][arr[i][0]] == '1')
 		{
-			chk->map[y][x] = '1';
-			if (chk->map[arr[i][1]][arr[i][0]] == '1')
-			{
-				i++;
-				continue ;
-			}
-			else if (chk->map[arr[i][1]][arr[i][0]] == 'C')
-			{
-				chk->star++;
-				map_check(game, chk, arr[i][0], arr[i][1]);
-			}
-			else if (chk->map[arr[i][1]][arr[i][0]] == 'E')
-			{
-				chk->exit++;
-				map_check(game, chk, arr[i][0], arr[i][1]);
-			}
-			else
-				map_check(game, chk, arr[i][0], arr[i][1]);
+			i++;
+			continue ;
 		}
-		return ;
+		else if (chk->map[arr[i][1]][arr[i][0]] == 'C')
+			chk->star++;
+		else if (chk->map[arr[i][1]][arr[i][0]] == 'E')
+			chk->exit++;
+		map_check(game, chk, arr[i][0], arr[i][1]);
 	}
 }

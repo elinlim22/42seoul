@@ -6,7 +6,7 @@
 /*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 17:01:14 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/11/27 23:54:06 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/11/28 00:09:24 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	img_init(t_tile *tile, void *mlx);
 int		count_coll(t_map *ber, char c);
 void	draw_map(t_game *game);
+void	put_image(t_game *game, char c, int i, int j);
 
 void	img_init(t_tile *tile, void *mlx)
 {
@@ -63,18 +64,23 @@ void	draw_map(t_game *game)
 		j = 0;
 		while (game->ber->map[i][j])
 		{
-			if (game->ber->map[i][j] == '1')
-				mlx_put_image_to_window(game->mlx, game->win, game->tile.wall, 64 * j, 64 * i);
-			else if (game->ber->map[i][j] == '0' || game->ber->map[i][j] == 'G') // G 옵션 삭제
-				mlx_put_image_to_window(game->mlx, game->win, game->tile.space, 64 * j, 64 * i);
-			else if (game->ber->map[i][j] == 'C')
-				mlx_put_image_to_window(game->mlx, game->win, game->tile.star, 64 * j, 64 * i);
-			else if (game->ber->map[i][j] == 'E')
-				mlx_put_image_to_window(game->mlx, game->win, game->tile.exit, 64 * j, 64 * i);
-			else
-				mlx_put_image_to_window(game->mlx, game->win, game->tile.rocket, 64 * j, 64 * i);
+			put_image(game, game->ber->map[i][j], 64 * i, 64 * j);
 			j++;
 		}
 		i++;
 	}
+}
+
+void	put_image(t_game *game, char c, int i, int j)
+{
+	if (c == '1')
+		mlx_put_image_to_window(game->mlx, game->win, game->tile.wall, j, i);
+	else if (c == '0')
+		mlx_put_image_to_window(game->mlx, game->win, game->tile.space, j, i);
+	else if (c == 'C')
+		mlx_put_image_to_window(game->mlx, game->win, game->tile.star, j, i);
+	else if (c == 'E')
+		mlx_put_image_to_window(game->mlx, game->win, game->tile.exit, j, i);
+	else
+		mlx_put_image_to_window(game->mlx, game->win, game->tile.rocket, j, i);
 }

@@ -6,7 +6,7 @@
 /*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 19:11:22 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/11/27 23:54:36 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/11/28 00:19:04 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,16 +72,16 @@ int		check_factors(t_map *ber);
 // err_msg
 void	err_msg(char *msg);
 int		exit_game(t_game *game);
-int		key(int k, t_game *game);
 void	locate_p(t_game *game);
 
 // tile
 void	img_init(t_tile *tile, void *mlx);
 int		count_coll(t_map *ber, char c);
 void	draw_map(t_game *game);
-
+void	put_image(t_game *game, char c, int i, int j);
 
 // key
+int		key(int k, t_game *game);
 void	mv_w(t_game *game);
 void	mv_a(t_game *game);
 void	mv_s(t_game *game);
