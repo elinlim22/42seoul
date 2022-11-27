@@ -6,7 +6,7 @@
 /*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 17:01:14 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/11/28 00:09:24 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/11/28 00:33:56 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,11 @@ void	put_image(t_game *game, char c, int i, int j)
 		mlx_put_image_to_window(game->mlx, game->win, game->tile.star, j, i);
 	else if (c == 'E')
 		mlx_put_image_to_window(game->mlx, game->win, game->tile.exit, j, i);
-	else
+	else if (c == 'P')
 		mlx_put_image_to_window(game->mlx, game->win, game->tile.rocket, j, i);
+	else
+	{
+		mlx_destroy_window(game->mlx, game->win);
+		err_msg("wrong factor detected");
+	}
 }

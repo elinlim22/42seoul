@@ -6,7 +6,7 @@
 /*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 19:21:50 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/11/28 00:20:45 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/11/28 00:37:31 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ int	main(int argc, char *argv[])
 	t_tile	tile;
 
 	if (argc != 2)
-		err_msg("too many arguments");
+		err_msg("which file?");
 	ber = (t_map *)malloc(sizeof(t_map));
 	map_par(&ber, argv[1]);
 	game.ber = ber;
