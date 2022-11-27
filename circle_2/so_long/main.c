@@ -6,7 +6,7 @@
 /*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 19:21:50 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/11/27 17:43:53 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/11/27 19:08:38 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,11 +74,12 @@ int	exit_game(t_game *game)
 	{
 		if (ft_strchr(game->ber->map[i++], 'C'))
 		{
-			ft_printf("you lose\n");
+			ft_printf("LOSE : you did not clear the map\n");
 			break ;
 		}
 	}
 	mlx_destroy_window(game->mlx, game->win);
+	ft_printf("WIN : you cleared the map\n");
 	ft_printf("move : %d\n", game->count);
 	exit(0);
 }
