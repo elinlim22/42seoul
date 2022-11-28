@@ -6,7 +6,7 @@
 /*   By: hyeslim <hyeslim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 00:51:04 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/11/29 00:51:56 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/11/29 02:37:38 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,7 @@
 # define PIPEX_H
 
 # include "libft/libft.h"
+# include <fcntl.h>
+# include <sys/wait.h>
 
 #endif
