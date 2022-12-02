@@ -6,7 +6,7 @@
 /*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 20:03:45 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/11/28 01:34:35 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/12/02 17:00:07 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ int	validity(t_game *game)
 	free(chk.map[len]);
 	while (--len)
 		free(chk.map[len]);
+	free(chk.map[0]);
 	free(chk.map);
 	return (1);
 }

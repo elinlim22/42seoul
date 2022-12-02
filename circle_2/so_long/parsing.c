@@ -6,7 +6,7 @@
 /*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 20:57:52 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/11/27 23:53:45 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/12/02 17:00:55 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,15 +30,18 @@ void	map_par(t_map **ber, char *file)
 	str = ft_strdup("");
 	line = get_next_line(fd);
 	(*ber)->width = (int)ft_strlen(line) - 1;
+	addstr(&str, line);
+	free(line);
 	while (line)
 	{
-		addstr(&str, line);
 		line = get_next_line(fd);
+		if (line)
+			addstr(&str, line);
+		free(line);
 	}
 	close(fd);
 	(*ber)->map = ft_split(str, '\n');
 	(*ber)->height = ft_strlen_db((*ber)->map);
-	free(line);
 	free(str);
 }
 
