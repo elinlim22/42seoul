@@ -6,7 +6,7 @@
 /*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 20:57:52 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/12/02 17:00:55 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/12/03 16:19:44 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ void	map_par(t_map **ber, char *file)
 		err_msg("cannot open the file");
 	str = ft_strdup("");
 	line = get_next_line(fd);
+	if (!line)
+		err_msg("empty file");
 	(*ber)->width = (int)ft_strlen(line) - 1;
 	addstr(&str, line);
 	free(line);
