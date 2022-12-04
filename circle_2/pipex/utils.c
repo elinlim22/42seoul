@@ -1,40 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/29 00:51:04 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/12/04 21:41:01 by hyeslim          ###   ########.fr       */
+/*   Created: 2022/12/04 21:39:39 by hyeslim           #+#    #+#             */
+/*   Updated: 2022/12/04 22:01:43 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-# define PIPEX_H
+#include "pipex.h"
 
-# include "libft/libft.h"
-# include <fcntl.h>
-# include <stdio.h>
-# include <sys/wait.h>
-
-# define STDOUT_HD (2)
-# define CHILD (0)
-# define ERROR (-1)
-
-typedef struct s_pipe
+char	**get_path(char **envp)
 {
-	int	hd;
-	int	fd_in;
-	int	fd_out;
-}				t_pipe;
+	int		i;
+	char	**res;
 
-typedef struct s_args
-{
-	int		argc;
-	char	**argv;
-	char	**envp;
-}				t_args; //굳이?
-
-
-#endif
+	i = 0;
+	while (*envp)
+	{
+		if (ft_strnstr(*envp, "PATH", 4))
+		{
+			res = ft_split(*envp + 5, ':');
+			return (res);
+		}
+		(*envp)++;
+	}
+	return (NULL);
+}
