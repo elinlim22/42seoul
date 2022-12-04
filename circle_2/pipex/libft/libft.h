@@ -6,7 +6,7 @@
 /*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 14:02:44 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/11/23 20:56:46 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/12/04 17:02:15 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,5 +97,6 @@ int		print_p(void *pt, int flag);
 int		print_di(int i);
 int		print_u(unsigned int i, int fd);
 int		print_x(unsigned int i, int ul, int flag);
+void	err_msg(char *msg);
 
 #endif
