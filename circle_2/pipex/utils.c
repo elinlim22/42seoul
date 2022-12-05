@@ -6,7 +6,7 @@
 /*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 21:39:39 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/12/04 22:01:43 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/12/05 16:19:12 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,4 +28,20 @@ char	**get_path(char **envp)
 		(*envp)++;
 	}
 	return (NULL);
+}
+
+void	execve_path(char **list_path, char *cmd, char **argv, char **envp)
+{
+	char *tmp;
+	while (*list_path)
+	{
+		tmp = *list_path;
+		addstr(&tmp, cmd);
+		if (!access(tmp, X_OK))
+			if (execve(tmp, argv, envp) == -1)
+				err_msg_fd("cannot exec the command", 2);
+		else
+			*list_path++;
+	}
+	err_msg_fd("no sufficient PATH", 2);
 }

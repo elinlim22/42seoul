@@ -6,7 +6,7 @@
 /*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 00:51:04 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/12/04 21:41:01 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/12/05 16:23:36 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,16 @@ typedef struct s_args
 	char	**argv;
 	char	**envp;
 }				t_args; //굳이?
+
+
+// main
+int		opener(char *file, int status);
+void	piper(t_pipe *pipe, t_args *args, char **list_path);
+void	forker(char *argv, char **list_path);
+
+// utils
+char	**get_path(char **envp);
+void	execve_path(char **list_path, char *cmd, char **argv, char **envp);
 
 
 #endif

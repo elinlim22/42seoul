@@ -6,7 +6,7 @@
 /*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 00:50:47 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/12/04 21:41:08 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/12/05 16:23:55 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int	opener(char *file, int status)
 	return (fd);
 }
 
-void	piper(t_pipe *pipe, t_args *args)
+void	piper(t_pipe *pipe, t_args *args, char **list_path)
 {
 	int	i;
 
@@ -69,7 +69,7 @@ void	piper(t_pipe *pipe, t_args *args)
 	//execve함수 자리
 }
 
-void	forker(char *argv, char **envp)
+void	forker(char *argv, char **list_path)
 {
 	int	fd[2];
 	pid_t	pid;
@@ -84,6 +84,7 @@ void	forker(char *argv, char **envp)
 		dup2(fd[1], STDOUT_FILENO);
 		close(fd[0]);
 		//execve함수 자리
+
 	}
 	else
 	{
@@ -98,10 +99,12 @@ int	main(int argc, char *argv[], char **envp)
 {
 	t_pipe	pipe;
 	t_args	args;
+	char	**list_path;
 
 	args.argc = argc;
 	args.argv = argv;
 	args.envp = envp;
+	list_path = get_path(envp);
 	if (argc < 2)
 		err_msg("not enough arguments");
 	else
@@ -119,7 +122,7 @@ int	main(int argc, char *argv[], char **envp)
 			pipe.fd_out = opener(argv[argc - 1], STDOUT_FILENO);
 			dup2(pipe.fd_in, 0);
 		}
-		piper(&pipe, &args);
+		piper(&pipe, &args, list_path);
 	}
 	exit(0);
 }
