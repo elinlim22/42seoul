@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/07 16:35:12 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/12/07 23:01:16 by hyeslim          ###   ########.fr       */
+/*   Created: 2022/11/29 00:51:04 by hyeslim           #+#    #+#             */
+/*   Updated: 2022/12/07 14:44:26 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,31 +18,34 @@
 # include <stdio.h>
 # include <sys/wait.h>
 
+# define STDOUT_HD (2)
 # define CHILD (0)
+# define ERROR (-1)
 
-typedef struct s_fd
+typedef struct s_pipe
 {
-	int	in;
-	int	out;
-}				t_fd;
-
-typedef struct s_pipex
-{
-	int		hd;
-	t_fd	fd;
+	int	hd;
+	int	fd_in;
+	int	fd_out;
 	char	**list_path;
-	char	**n_av;
-}				t_pipex;
+}				t_pipe;
 
-void	piper(char *cmd, t_pipex *all);
+typedef struct s_args
+{
+	int		argc;
+	char	**argv;
+	char	**envp;
+}				t_args; //굳이?
 
-extern char	**environ;
 
+// main
+int		opener(char *file, int status);
+void	piper(t_pipe *pipe, t_args *args, char **list_path);
+void	forker(char *argv, char **list_path);
 
-char	*get_cmd(char *argv, char **list);
-void	get_path(t_pipex *pipe);
-void	get_av(t_pipex *all, char *argv);
-
+// utils
+char	**get_path(char **envp);
+void	execve_path(t_pipe *pipe, char *cmd, char **argv, char **envp);
 
 
 #endif

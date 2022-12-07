@@ -5,43 +5,61 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/04 21:39:39 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/12/07 14:22:08 by hyeslim          ###   ########.fr       */
+/*   Created: 2022/12/07 17:12:01 by hyeslim           #+#    #+#             */
+/*   Updated: 2022/12/07 23:04:08 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-char	**get_path(char **envp)
+char	*get_cmd(char *argv, char **list)
 {
-	int		i;
-	char	**res;
+	int	i;
+	char	*tmp;
 
 	i = 0;
-	while (*envp)
+	tmp = NULL;
+	while (list[i])
 	{
-		if (ft_strnstr(*envp, "PATH", 4))
-		{
-			res = ft_split(*envp + 5, ':');
-			return (res);
-		}
-		(*envp)++;
+		tmp = ft_strdup(list[i]);
+		if (!ft_strchr(tmp, '/')) //strchr 함수 리턴값 확인 필요
+			addstr(&tmp, argv);
+		// tmp = ft_strjoin(tmp, argv);
+		if (access(tmp, X_OK) == 0)
+			return (tmp);
+		free(tmp);
+		i++;
 	}
 	return (NULL);
 }
 
-void	execve_path(char **list_path, char *cmd, char **argv, char **envp)
+void	get_path(t_pipex *pipe)
 {
-	char *tmp;
-	while (*list_path)
+	int	i;
+
+	i = 0;
+	while (environ[i])
 	{
-		tmp = *list_path;
-		addstr(&tmp, cmd);
-		if (!access(tmp, X_OK))
-			if (execve(tmp, argv, envp) == -1)
-				err_msg_fd("cannot exec the command", 2);
-		else
-			*list_path++;
+		if (ft_strnstr(environ[i], "PATH", 4))
+		{
+			pipe->list_path = ft_split(environ[i] + 5, ':');
+			i = 0;
+			while (pipe->list_path[i])
+				addstr(&(pipe->list_path[i++]), "/");
+			return ;
+		}
+		i++;
 	}
-	err_msg_fd("no sufficient PATH", 2);
+	err_msg_fd("no path", 2);
+}
+
+void	get_av(t_pipex *all, char *argv)
+{
+	// char	**n_av;
+	if (all->n_av)
+		all->n_av = NULL;
+	all->n_av = ft_split(argv, ' ');
+	if (!all->n_av) //필요?
+		err_msg("n_av split fail");
+	// return (n_av);
 }

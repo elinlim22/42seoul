@@ -5,124 +5,98 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/29 00:50:47 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/12/07 14:22:08 by hyeslim          ###   ########.fr       */
+/*   Created: 2022/12/07 16:34:52 by hyeslim           #+#    #+#             */
+/*   Updated: 2022/12/07 23:05:35 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-/* 풀이 순서
-	1. 받는 인자 체크
-	2. pipe함수 예외처리
-	3. fork 예외처리
-		** fork : 새로운 자식 프로세스를 만듬
-	4. pid를 활용하여 부모자식 분기 : 부모 프로세스에 waitpid 적용
-	5. ...
+void	piper(char *cmd, t_pipex *all)
+{
+	pid_t	pid;
+	int		fd[2];
 
+	pipe(fd);
+	pid = fork();
+	if (pid == -1)
+		err_msg_fd("fork error", 2);
+	if (pid == CHILD)
+	{
+		// const char *test[2] = {"/bin/ls", "-al"};
+		// execve("/bin/ls", test, envp);
+		close(fd[0]);
+		dup2(fd[1], STDOUT_FILENO);
+		// ft_putstr_fd(cmd, 2);
+		// ft_putstr_fd("\n", 2);
+		// ft_putstr_fd(all->n_av[0], 2);
+		// ft_putstr_fd("\n", 2);
+		// ft_putstr_fd(all->n_av[1], 2);
+		// ft_putstr_fd("\n", 2);
 
-	허용함수
-	open : O_WRONLY | O_CREAT(파일이 없으면 접근권한을 지정해서 새롭게 생성) | mode(chomod할 때 그거)
-	close
-	read / write
-	malloc / free
-	perror / strerror
-	access : 파일 권한 확인
-	dup : object descriptor를 calling process에 복제하여 넘기고 새로운 파일 디스크립터 리턴 :  (fildes2 = dup(fildes))
-	dup2 : fildes2가 specified(ex : dup2(infilefd, STDIN_FILENO))
-	execve : calling process를 new process로 전환... 실행
-	exit
-	fork : 새로운 자식 프로세스를 만듬
-	pipe
-	unlink
-	wait / waitpid
+		execve(cmd, all->n_av, environ);
+	}
+	else
+	{
+		close(fd[1]);
+		dup2(fd[0], STDIN_FILENO);
+		waitpid(pid, NULL, 0);
+	}
+}
+
+/*
+
+ls -al | cat infile kasljdlasjd | grep hello
+
+exeve -> argv -> [ls] [-al]
+
+커맨드 에러처리(/bin/..가 같이 들어왔을때 join하면 안됨)
+구조체 이름 pipe 바꾸기
+argv 바꾸기(new_argv)
+fd 꼼꼼하게 닫기
+echo $? : EXIT_STATUS확인하기
+
+ps : 프로세스 상태
+lsof -p (pid) : 프로세스 fd확인
 
 
 */
 
-int	opener(char *file, int status)
+
+int	main(int argc, char *argv[])
 {
-	int	fd;
+	t_pipex	all;
+	int		i;
+	char	*cmd;
 
-	fd = 0;
-	if (status == STDIN_FILENO)
-		fd = open(file, O_RDONLY);
-	else if (status == STDOUT_FILENO)
-		fd = open(file, O_WRONLY | O_CREAT, 0777);
-	else if (status == STDOUT_HD)
+	i = 1;
+	get_path(&all);
+	if (argc >= 5)
 	{
-		//here_doc일 때 처리
-	}
-	if (fd <= ERROR)
-		err_msg_fd("fail to open", 2);
-	return (fd);
-}
-
-void	piper(t_pipe *pipe, t_args *args, char **list_path)
-{
-	int	i;
-
-	i = 2 + pipe->hd;
-	while (i < args->argc - 2)
-		forker(args->argv[i++], args->envp);
-	dup2(pipe->fd_out, 1);
-	//execve함수 자리
-}
-
-void	forker(char *argv, char **list_path)
-{
-	int	fd[2];
-	pid_t	pid;
-
-	if (pipe(fd) == ERROR)
-		err_msg_fd("pipe error", 2);
-	pid = fork();
-	if (pid == ERROR)
-		err_msg_fd("fork error", 2);
-	if (pid == CHILD) //자식 프로세스
-	{
-		dup2(fd[1], STDOUT_FILENO);
-		close(fd[0]);
-		//execve함수 자리
-		execve_path(list_path, argv,  )
-	}
-	else
-	{
-		dup2(fd[0], STDIN_FILENO); //부모 프로세스
-		close(fd[1]);
-		waitpid(pid, NULL, 0);
-		//execve함수 자리
-	}
-}
-
-int	main(int argc, char *argv[], char **envp)
-{
-	t_pipe	pipe;
-	t_args	args;
-	char	**list_path;
-
-	args.argc = argc;
-	args.argv = argv;
-	args.envp = envp;
-	list_path = get_path(envp);
-	if (argc < 2)
-		err_msg("not enough arguments");
-	else
-	{
-		if (!ft_strncmp(argv[1], "here_doc", 8))
+		// if (ft_strnstr(argv[1], "here_doc", 8) == 0) //리턴값 확인해보기
+		// {
+		// 	all.hd = 1;
+		// 	all.fd.out = open(argv[argc - 1], O_WRONLY | O_CREAT, 0777);
+		// 	//heredoc
+		// }
+		// else
+		// {
+			all.hd = 0;
+			all.fd.in = open(argv[1], O_RDONLY | O_CREAT, 0777);
+			all.fd.out = open(argv[argc - 1], O_WRONLY | O_CREAT, 0777);
+			dup2(all.fd.in, STDIN_FILENO);
+		// }
+		while (++i + all.hd < argc - 2)
 		{
-			pipe.hd = 1;
-			//here_doc일땐 꺾쇠 두개 (>>, <<) 처리 : O_APPEND 사용해서 open
+			get_av(&all, argv[i + all.hd]);
+			cmd = get_cmd(all.n_av[0], all.list_path); //수정 필요
+			piper(cmd, &all);
 		}
-		else
-		{
-			pipe.hd = 0;
-			//here_doc 아닐 때 pipe처리
-			pipe.fd_in = opener(argv[1], STDIN_FILENO);
-			pipe.fd_out = opener(argv[argc - 1], STDOUT_FILENO);
-			dup2(pipe.fd_in, 0);
-		}
-		piper(&pipe, &args, list_path);
+		dup2(all.fd.out, STDOUT_FILENO);
+		cmd = get_cmd(argv[i + all.hd], all.list_path);
+		if (!cmd)
+			err_msg_fd("access error", 2);
+		execve(cmd, all.n_av, environ);
 	}
-	exit(0);
+	err_msg_fd("arguments invalid", 2);
 }

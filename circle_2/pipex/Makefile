@@ -3,15 +3,15 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: hyeslim <hyeslim@student.42.fr>            +#+  +:+       +#+         #
+#    By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/29 00:42:27 by hyeslim           #+#    #+#              #
-#    Updated: 2022/11/29 00:50:25 by hyeslim          ###   ########.fr        #
+#    Updated: 2022/12/07 22:26:46 by hyeslim          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = pipex
-CC = cc
+CC = cc -g -fsanitize=address
 CFLAGS = -Wall -Werror -Wextra
 SRCS = *.c
 INCL = *.h
@@ -20,6 +20,7 @@ all : ${NAME}
 
 ${NAME} :
 	@make bonus -C libft
+	@make clean -C libft
 	@mv libft/libft.a ./
 	@${CC} ${CFLAGS} -c ${SRCS} -I ${INCL}
 	@ar rcs pipex.a *.o

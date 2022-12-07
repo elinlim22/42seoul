@@ -6,7 +6,7 @@
 /*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 17:01:44 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/12/04 21:37:58 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/12/07 22:23:54 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,5 @@ void	err_msg(char *msg)
 void	err_msg_fd(char *msg, int fd)
 {
 	ft_putstr_fd(msg, fd);
-	exit(1);
+	exit(fd);
 }
