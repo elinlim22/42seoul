@@ -6,7 +6,7 @@
 /*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 16:34:52 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/12/07 23:05:35 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/12/07 23:17:38 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ exeve -> argv -> [ls] [-al]
 
 커맨드 에러처리(/bin/..가 같이 들어왔을때 join하면 안됨)
 구조체 이름 pipe 바꾸기
-argv 바꾸기(new_argv)
+argv 바꾸기(new_argv) : https://www.it-note.kr/157
 fd 꼼꼼하게 닫기
 echo $? : EXIT_STATUS확인하기
 
