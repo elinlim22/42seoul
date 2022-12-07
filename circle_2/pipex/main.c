@@ -6,7 +6,7 @@
 /*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 00:50:47 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/12/05 16:23:55 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/12/07 14:22:08 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ void	forker(char *argv, char **list_path)
 		dup2(fd[1], STDOUT_FILENO);
 		close(fd[0]);
 		//execve함수 자리
-
+		execve_path(list_path, argv,  )
 	}
 	else
 	{
