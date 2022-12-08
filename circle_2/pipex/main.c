@@ -6,7 +6,7 @@
 /*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 16:34:52 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/12/07 23:17:38 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/12/08 16:48:28 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ exeve -> argv -> [ls] [-al]
 argv 바꾸기(new_argv) : https://www.it-note.kr/157
 fd 꼼꼼하게 닫기
 echo $? : EXIT_STATUS확인하기
+0777 -> 0644 : why??
 
 ps : 프로세스 상태
 lsof -p (pid) : 프로세스 fd확인
@@ -76,14 +77,14 @@ int	main(int argc, char *argv[])
 		// if (ft_strnstr(argv[1], "here_doc", 8) == 0) //리턴값 확인해보기
 		// {
 		// 	all.hd = 1;
-		// 	all.fd.out = open(argv[argc - 1], O_WRONLY | O_CREAT, 0777);
+		// 	all.fd.out = open(argv[argc - 1], O_WRONLY | O_CREAT, 0644);
 		// 	//heredoc
 		// }
 		// else
 		// {
 			all.hd = 0;
-			all.fd.in = open(argv[1], O_RDONLY | O_CREAT, 0777);
-			all.fd.out = open(argv[argc - 1], O_WRONLY | O_CREAT, 0777);
+			all.fd.in = open(argv[1], O_RDONLY | O_CREAT, 0644);
+			all.fd.out = open(argv[argc - 1], O_WRONLY | O_CREAT, 0644);
 			dup2(all.fd.in, STDIN_FILENO);
 		// }
 		while (++i + all.hd < argc - 2)
@@ -93,7 +94,7 @@ int	main(int argc, char *argv[])
 			piper(cmd, &all);
 		}
 		dup2(all.fd.out, STDOUT_FILENO);
-		cmd = get_cmd(argv[i + all.hd], all.list_path);
+		cmd = get_cmd(all.n_av[0], all.list_path);
 		if (!cmd)
 			err_msg_fd("access error", 2);
 		execve(cmd, all.n_av, environ);

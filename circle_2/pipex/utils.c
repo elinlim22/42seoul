@@ -6,7 +6,7 @@
 /*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 17:12:01 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/12/07 23:04:08 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/12/08 17:37:35 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*get_cmd(char *argv, char **list)
 	while (list[i])
 	{
 		tmp = ft_strdup(list[i]);
-		if (!ft_strchr(tmp, '/')) //strchr 함수 리턴값 확인 필요
+		if (!ft_strchr(argv, '/')) //strchr 함수 리턴값 확인 필요
 			addstr(&tmp, argv);
 		// tmp = ft_strjoin(tmp, argv);
 		if (access(tmp, X_OK) == 0)
