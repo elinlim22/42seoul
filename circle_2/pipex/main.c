@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: hyeslim <hyeslim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 16:34:52 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/12/08 16:48:28 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/12/09 23:14:26 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ void	piper(char *cmd, t_pipex *all)
 		// ft_putstr_fd("\n", 2);
 		// ft_putstr_fd(all->n_av[1], 2);
 		// ft_putstr_fd("\n", 2);
-
 		execve(cmd, all->n_av, environ);
 	}
 	else
@@ -94,9 +93,8 @@ int	main(int argc, char *argv[])
 			piper(cmd, &all);
 		}
 		dup2(all.fd.out, STDOUT_FILENO);
+		waitpid(0, NULL, 0);
 		cmd = get_cmd(all.n_av[0], all.list_path);
-		if (!cmd)
-			err_msg_fd("access error", 2);
 		execve(cmd, all.n_av, environ);
 	}
 	err_msg_fd("arguments invalid", 2);
