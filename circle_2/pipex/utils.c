@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: hyeslim <hyeslim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 17:12:01 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/12/08 17:37:35 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/12/09 16:35:24 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ char	*get_cmd(char *argv, char **list)
 		free(tmp);
 		i++;
 	}
+	if (!tmp)
+		err_msg_fd("access error", 2);
 	return (NULL);
 }
 
