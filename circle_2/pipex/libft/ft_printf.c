@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: hyeslim <hyeslim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 15:21:12 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/11/18 19:53:50 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/12/09 22:16:53 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static int	check_fs(char c, va_list ap)
 
 	len = 0;
 	if (c == 'c')
-		len += ft_putchar_fd((char)va_arg(ap, void *), 1);
+		len += ft_putchar_fd((uintptr_t)va_arg(ap, void *), 1);
 	else if (c == 's')
 		len += ft_putstr_fd((char *)va_arg(ap, char *), 1);
 	else if (c == 'p')
