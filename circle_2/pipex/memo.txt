@@ -1,0 +1,18 @@
+
+/*
+
+ls -al | cat infile kasljdlasjd | grep hello
+exeve -> argv -> [ls] [-al]
+
+커맨드 에러처리(/bin/..가 같이 들어왔을때 join하면 안됨) ///
+구조체 이름 pipe 바꾸기 ///
+argv 바꾸기(new_argv) : https://www.it-note.kr/157 ///
+fd 꼼꼼하게 닫기
+echo $? : EXIT_STATUS확인하기
+0777 -> 0644 : why??
+
+ps : 프로세스 상태
+lsof -p (pid) : 프로세스 fd확인
+
+
+*/
