@@ -6,7 +6,7 @@
 /*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 16:35:12 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/12/10 19:01:43 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/12/10 20:58:42 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ void	here_doc(char *limiter);
 void	get_cmd(char **cmd, char *argv, char **list);
 void	get_path(t_pipex *pipe);
 void	get_av(t_pipex *all, char *argv);
-
 
 
 #endif
