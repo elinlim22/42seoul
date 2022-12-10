@@ -6,7 +6,7 @@
 /*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 16:35:12 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/12/07 23:01:16 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/12/10 19:01:43 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,15 @@ typedef struct s_pipex
 	char	**n_av;
 }				t_pipex;
 
-void	piper(char *cmd, t_pipex *all);
-
 extern char	**environ;
 
+// main.c
+void	piper(char *cmd, t_pipex *all);
+void	here_doc(char *limiter);
+///
 
-char	*get_cmd(char *argv, char **list);
+// utils.c
+void	get_cmd(char **cmd, char *argv, char **list);
 void	get_path(t_pipex *pipe);
 void	get_av(t_pipex *all, char *argv);
 
