@@ -6,7 +6,7 @@
 #    By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/29 00:42:27 by hyeslim           #+#    #+#              #
-#    Updated: 2022/12/10 20:10:47 by hyeslim          ###   ########.fr        #
+#    Updated: 2022/12/11 15:56:13 by hyeslim          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,7 @@ ${NAME} :
 	@${CC} ${CFLAGS} -c ${SRCS} -I ${INCL}
 	@ar rcs pipex.a *.o
 	@${CC} ${CFLAGS} main.c libft.a pipex.a -o ${NAME}
+	@make clean
 
 clean :
 	@rm -rf *.o
