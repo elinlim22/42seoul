@@ -6,7 +6,7 @@
 /*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 16:35:12 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/12/10 20:58:42 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/12/11 21:13:39 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ typedef struct s_pipex
 	t_fd	fd;
 	char	**list_path;
 	char	**n_av;
+	pid_t	last_pid;
+	int		status;
 }				t_pipex;
 
 extern char	**environ;
@@ -46,5 +48,7 @@ void	get_cmd(char **cmd, char *argv, char **list);
 void	get_path(t_pipex *pipe);
 void	get_av(t_pipex *all, char *argv);
 
+void	opener(t_pipex *all, int argc, char **argv, int p_case);
+void	pipe_and_fork(int (*fd)[2], pid_t *pid);
 
 #endif
