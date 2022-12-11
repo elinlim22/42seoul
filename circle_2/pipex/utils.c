@@ -6,7 +6,7 @@
 /*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 17:12:01 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/12/10 17:32:36 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/12/11 21:32:20 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	get_cmd(char **cmd, char *argv, char **list)
 		tmp = ft_strdup(list[i]);
 		if (!ft_strchr(argv, '/'))
 			addstr(&tmp, argv);
-		if (access(tmp, X_OK) == 0)
+		if (access(tmp, X_OK | F_OK) == 0)
 		{
 			*cmd = tmp;
 			return ;

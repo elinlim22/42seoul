@@ -6,7 +6,7 @@
 /*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 16:34:52 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/12/10 20:58:49 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/12/11 21:31:40 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,22 +17,20 @@ void	piper(char *cmd, t_pipex *all)
 	pid_t	pid;
 	int		fd[2];
 
-	if (pipe(fd) == -1)
-		err_msg_fd("pipe error", 2, 1);
-	pid = fork();
-	if (pid == -1)
-		err_msg_fd("fork error", 2, 1);
+	pipe_and_fork(&fd, &pid);
+	all->last_pid = pid;
 	if (pid == CHILD)
 	{
-		close(fd[0]);
 		dup2(fd[1], STDOUT_FILENO);
+		close(fd[0]);
+		close(fd[1]);
 		execve(cmd, all->n_av, environ);
 	}
 	else
 	{
-		close(fd[1]);
 		dup2(fd[0], STDIN_FILENO);
-		waitpid(pid, NULL, 0);
+		close(fd[1]);
+		close(fd[0]);
 	}
 }
 
@@ -42,11 +40,7 @@ void	here_doc(char *limiter)
 	int		fd[2];
 	char	*line;
 
-	if (pipe(fd) == -1)
-		err_msg_fd("pipe error", 2, 1);
-	pid = fork();
-	if (pid == -1)
-		err_msg_fd("fork error", 2, 1);
+	pipe_and_fork(&fd, &pid);
 	if (pid == CHILD)
 	{
 		close(fd[0]);
@@ -58,13 +52,15 @@ void	here_doc(char *limiter)
 			line = get_next_line(STDIN_FILENO);
 		}
 		free(line);
+		dup2(fd[1], STDOUT_FILENO);
+		close(fd[1]);
 		exit(0);
 	}
 	else
 	{
-		close(fd[1]);
 		dup2(fd[0], STDIN_FILENO);
-		waitpid(pid, NULL, 0);
+		close(fd[1]);
+		close(fd[0]);
 	}
 }
 
@@ -72,38 +68,37 @@ int	main(int argc, char *argv[])
 {
 	t_pipex	all;
 	int		i;
+	int		res;
 	char	*cmd;
 
 	i = 1;
+	res = 0;
 	get_path(&all);
-	if (argc >= 5)
+	if (argc < 5)
+		err_msg_fd("arguments invalid", 2, 1);
+	if (ft_strnstr(argv[1], "here_doc", 8) != 0)
+		opener(&all, argc, argv, 1);
+	else
+		opener(&all, argc, argv, 0);
+	while (++i + all.hd <= argc - 2)
 	{
-		if (ft_strnstr(argv[1], "here_doc", 8) != 0)
-		{
-			all.hd = 1;
-			all.fd.out = \
-				open(argv[argc - 1], O_WRONLY | O_CREAT | O_APPEND, 0644);
-			here_doc(argv[i + all.hd]);
-		}
-		else
-		{
-			all.hd = 0;
-			all.fd.out = \
-				open(argv[argc - 1], O_WRONLY | O_CREAT | O_TRUNC, 0644);
-			all.fd.in = open(argv[1], O_RDONLY | O_CREAT, 0644);
-			dup2(all.fd.in, STDIN_FILENO);
-		}
-		while (++i + all.hd < argc - 2)
-		{
-			get_av(&all, argv[i + all.hd]);
-			get_cmd(&cmd, all.n_av[0], all.list_path);
-			piper(cmd, &all);
-			free(cmd);
-		}
-		dup2(all.fd.out, STDOUT_FILENO);
 		get_av(&all, argv[i + all.hd]);
 		get_cmd(&cmd, all.n_av[0], all.list_path);
-		execve(cmd, all.n_av, environ);
+		if (i + all.hd != argc - 2)
+			piper(cmd, &all);
+		else
+		{
+			dup2(all.fd.out, STDOUT_FILENO);
+			get_av(&all, argv[i + all.hd]);
+			get_cmd(&cmd, all.n_av[0], all.list_path);
+			execve(cmd, all.n_av, environ); //fork하ㄴ번더해!!!
+		}
+		free(cmd);
 	}
-	err_msg_fd("arguments invalid", 2, 1);
+	while (i--)
+	{
+		if (wait(&all.status) == all.last_pid)
+			res = all.status;
+	}//wait
+	return (res);
 }
