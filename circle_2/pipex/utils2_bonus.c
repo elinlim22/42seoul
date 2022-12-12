@@ -1,28 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils2.c                                           :+:      :+:    :+:   */
+/*   utils2_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 15:49:01 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/12/12 17:14:01 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/12/12 17:10:46 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "pipex_bonus.h"
 
-void	opener(t_pipex *all, int argc, char **argv);
+void	opener(t_pipex *all, int argc, char **argv, int p_case);
 void	pipe_and_fork(int (*fd)[2], pid_t *pid);
+void	here_doc_input(int (*fd)[2], char *limiter);
 void	fork_last(t_pipex *all);
 void	do_cmds(t_pipex *all, int end, char **argv, int *i);
 
-void	opener(t_pipex *all, int argc, char **argv)
+void	opener(t_pipex *all, int argc, char **argv, int p_case)
 {
-	all->hd = 0;
-	all->fd.out = open(argv[argc - 1], O_WRONLY | O_CREAT | O_TRUNC, 0644);
-	all->fd.in = open(argv[1], O_RDONLY | O_CREAT, 0644);
-	dup2(all->fd.in, STDIN_FILENO);
+	if (p_case == 1)
+	{
+		all->hd = 1;
+		all->fd.out = open(argv[argc - 1], O_WRONLY | O_CREAT | O_APPEND, 0644);
+		here_doc(argv[2]);
+	}
+	else if (p_case == 0)
+	{
+		all->hd = 0;
+		all->fd.out = open(argv[argc - 1], O_WRONLY | O_CREAT | O_TRUNC, 0644);
+		all->fd.in = open(argv[1], O_RDONLY | O_CREAT, 0644);
+		dup2(all->fd.in, STDIN_FILENO);
+	}
 }
 
 void	pipe_and_fork(int (*fd)[2], pid_t *pid)
@@ -32,6 +42,21 @@ void	pipe_and_fork(int (*fd)[2], pid_t *pid)
 	*pid = fork();
 	if (*pid == -1)
 		err_msg_fd("fork error", 2, 1);
+}
+
+void	here_doc_input(int (*fd)[2], char *limiter)
+{
+	char	*line;
+
+	close((*fd)[0]);
+	line = get_next_line(STDIN_FILENO);
+	while (ft_strnstr(line, limiter, ft_strlen(limiter)) == 0)
+	{
+		ft_putstr_fd(line, (*fd)[1]);
+		free(line);
+		line = get_next_line(STDIN_FILENO);
+	}
+	free(line);
 }
 
 void	fork_last(t_pipex *all)

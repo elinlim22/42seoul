@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   pipex_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 16:35:12 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/12/12 17:13:58 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/12/12 17:13:24 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-# define PIPEX_H
+#ifndef PIPEX_BONUS_H
+# define PIPEX_BONUS_H
 
 # include "libft/libft.h"
 # include <fcntl.h>
@@ -50,7 +50,7 @@ void	get_av(t_pipex *all, char *argv);
 void	get_list(t_pipex *all, char **argv, int i);
 
 // utils2.c
-void	opener(t_pipex *all, int argc, char **argv);
+void	opener(t_pipex *all, int argc, char **argv, int p_case);
 void	pipe_and_fork(int (*fd)[2], pid_t *pid);
 void	here_doc_input(int (*fd)[2], char *limiter);
 void	fork_last(t_pipex *all);
