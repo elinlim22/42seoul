@@ -6,7 +6,7 @@
 /*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 15:49:01 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/12/12 17:14:01 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/12/12 17:43:47 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ void	do_cmds(t_pipex *all, int end, char **argv, int *i)
 {
 	while (++(*i) + all->hd <= end)
 	{
+		all->n_av = NULL;
 		get_list(all, argv, (*i));
 		if ((*i) + all->hd != end)
 			piper(all);

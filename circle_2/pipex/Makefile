@@ -6,13 +6,13 @@
 #    By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/29 00:42:27 by hyeslim           #+#    #+#              #
-#    Updated: 2022/12/12 17:34:46 by hyeslim          ###   ########.fr        #
+#    Updated: 2022/12/12 17:45:14 by hyeslim          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = pipex
 CC = cc
-CFLAGS = -Wall -Werror -Wextra -fsanitize=address ##
+CFLAGS = -Wall -Werror -Wextra
 SRCS = pipex.c utils.c utils2.c
 BSRCS = pipex_bonus.c utils_bonus.c utils2_bonus.c
 OBJS = ${SRCS:.c=.o}

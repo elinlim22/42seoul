@@ -6,7 +6,7 @@
 /*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 17:12:01 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/12/12 17:10:37 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/12/12 17:43:21 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,17 @@ void	get_path(t_pipex *all)
 
 void	get_av(t_pipex *all, char *argv)
 {
+	int	len;
+
+	len = 0;
 	if (all->n_av)
-		free_all(&all->n_av);
+	{
+		len = ft_strlen_db(all->n_av);
+		while (--len)
+			free(all->n_av[len]);
+		free(all->n_av[0]);
+		free(all->n_av);
+	}
 	all->n_av = NULL;
 	all->n_av = ft_split(argv, ' ');
 	if (!all->n_av)

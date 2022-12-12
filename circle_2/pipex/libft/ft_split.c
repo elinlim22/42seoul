@@ -6,7 +6,7 @@
 /*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 16:10:20 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/12/12 16:21:00 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/12/12 17:38:48 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,13 +82,13 @@ char	**ft_split(char const *s, char c)
 	return (res);
 }
 
-void	free_all(char ***str)
-{
-	int	len;
+// void	free_all(char ***str)
+// {
+// 	int	len;
 
-	len = ft_strlen_db(*str);
-	while (--len)
-		free((*str)[len]);
-	free((*str)[0]);
-	free(*str);
-}
+// 	len = ft_strlen_db(*str);
+// 	while (--len)
+// 		free((*str)[len]);
+// 	free((*str)[0]);
+// 	free(*str);
+// }
