@@ -6,11 +6,16 @@
 /*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 17:12:01 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/12/11 21:32:20 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/12/12 15:49:38 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
+
+void	get_cmd(char **cmd, char *argv, char **list);
+void	get_path(t_pipex *all);
+void	get_av(t_pipex *all, char *argv);
+void	get_list(t_pipex *all, char **argv, int i);
 
 void	get_cmd(char **cmd, char *argv, char **list)
 {
@@ -34,10 +39,10 @@ void	get_cmd(char **cmd, char *argv, char **list)
 		i++;
 		free(tmp);
 	}
-	err_msg_fd("argument invalid", 2, 127); //EXIT_STATUS == 127
+	err_msg_fd("argument invalid", 2, 127);
 }
 
-void	get_path(t_pipex *pipe)
+void	get_path(t_pipex *all)
 {
 	int	i;
 
@@ -46,10 +51,10 @@ void	get_path(t_pipex *pipe)
 	{
 		if (ft_strnstr(environ[i], "PATH", 4))
 		{
-			pipe->list_path = ft_split(environ[i] + 5, ':');
+			all->list_path = ft_split(environ[i] + 5, ':');
 			i = 0;
-			while (pipe->list_path[i])
-				addstr(&(pipe->list_path[i++]), "/");
+			while (all->list_path[i])
+				addstr(&(all->list_path[i++]), "/");
 			return ;
 		}
 		i++;
@@ -62,6 +67,12 @@ void	get_av(t_pipex *all, char *argv)
 	if (all->n_av)
 		all->n_av = NULL;
 	all->n_av = ft_split(argv, ' ');
-	if (!all->n_av) //필요?
+	if (!all->n_av)
 		err_msg("n_av split fail");
+}
+
+void	get_list(t_pipex *all, char **argv, int i)
+{
+	get_av(all, argv[i + all->hd]);
+	get_cmd(&all->cmd, all->n_av[0], all->list_path);
 }

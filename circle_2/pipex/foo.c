@@ -1,5 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   foo.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/12/12 15:49:01 by hyeslim           #+#    #+#             */
+/*   Updated: 2022/12/12 15:49:12 by hyeslim          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "pipex.h"
+
+void	opener(t_pipex *all, int argc, char **argv, int p_case);
+void	pipe_and_fork(int (*fd)[2], pid_t *pid);
+void	here_doc_input(int (*fd)[2], char *limiter);
+void	fork_last(t_pipex *all);
+void	do_cmds(t_pipex *all, int end, char **argv, int *i);
 
 void	opener(t_pipex *all, int argc, char **argv, int p_case)
 {
@@ -25,4 +42,45 @@ void	pipe_and_fork(int (*fd)[2], pid_t *pid)
 	*pid = fork();
 	if (*pid == -1)
 		err_msg_fd("fork error", 2, 1);
+}
+
+void	here_doc_input(int (*fd)[2], char *limiter)
+{
+	char	*line;
+
+	close((*fd)[0]);
+	line = get_next_line(STDIN_FILENO);
+	while (ft_strnstr(line, limiter, ft_strlen(limiter)) == 0)
+	{
+		ft_putstr_fd(line, (*fd)[1]);
+		free(line);
+		line = get_next_line(STDIN_FILENO);
+	}
+	free(line);
+}
+
+void	fork_last(t_pipex *all)
+{
+	pid_t	pid;
+
+	pid = fork();
+	if (pid == 0)
+		execve(all->cmd, all->n_av, environ);
+}
+
+void	do_cmds(t_pipex *all, int end, char **argv, int *i)
+{
+	while (++(*i) + all->hd <= end)
+	{
+		get_list(all, argv, (*i));
+		if ((*i) + all->hd != end)
+			piper(all);
+		else
+		{
+			dup2(all->fd.out, STDOUT_FILENO);
+			get_list(all, argv, (*i));
+			fork_last(all);
+		}
+		free(all->cmd);
+	}
 }
