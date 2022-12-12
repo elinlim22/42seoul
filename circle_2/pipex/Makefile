@@ -6,7 +6,7 @@
 #    By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/29 00:42:27 by hyeslim           #+#    #+#              #
-#    Updated: 2022/12/12 15:53:57 by hyeslim          ###   ########.fr        #
+#    Updated: 2022/12/12 15:55:21 by hyeslim          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ ${NAME} :
 	@mv libft/libft.a ./
 	@${CC} ${CFLAGS} -c ${SRCS} -I ${INCL}
 	@ar rcs pipex.a *.o
-	@${CC} ${CFLAGS} main.c libft.a pipex.a -o ${NAME}
+	@${CC} ${CFLAGS} pipex.c libft.a pipex.a -o ${NAME}
 	@make clean
 
 clean :
