@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyeslim <hyeslim@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 16:10:20 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/07/20 18:01:26 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/12/12 16:21:00 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static int	ft_count(char *s, char c)
 	return (count);
 }
 
-static char	**free_all(char **s, int i)
+static char	**ft_free_all(char **s, int i)
 {
 	while (--i >= 0)
 	{
@@ -75,9 +75,20 @@ char	**ft_split(char const *s, char c)
 			break ;
 		res[i] = ft_substr(temp, 0, ft_len(temp, c));
 		if (!res[i])
-			return (free_all(res, i));
+			return (ft_free_all(res, i));
 		i++;
 		temp += ft_len(temp, c);
 	}
 	return (res);
+}
+
+void	free_all(char ***str)
+{
+	int	len;
+
+	len = ft_strlen_db(*str);
+	while (--len)
+		free((*str)[len]);
+	free((*str)[0]);
+	free(*str);
 }
