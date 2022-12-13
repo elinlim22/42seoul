@@ -6,7 +6,7 @@
 /*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 15:49:01 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/12/12 17:43:44 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/12/13 19:24:17 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ void	opener(t_pipex *all, int argc, char **argv, int p_case)
 		all->hd = 0;
 		all->fd.out = open(argv[argc - 1], O_WRONLY | O_CREAT | O_TRUNC, 0644);
 		all->fd.in = open(argv[1], O_RDONLY | O_CREAT, 0644);
+		if (all->fd.out == -1 && all->fd.in == -1)
+			err_msg_fd("Permission denied", 2, 1);
 		dup2(all->fd.in, STDIN_FILENO);
 	}
 }
@@ -65,7 +67,11 @@ void	fork_last(t_pipex *all)
 
 	pid = fork();
 	if (pid == 0)
+	{
 		execve(all->cmd, all->n_av, environ);
+		perror(all->cmd);
+		exit(1);
+	}
 }
 
 void	do_cmds(t_pipex *all, int end, char **argv, int *i)
@@ -73,9 +79,8 @@ void	do_cmds(t_pipex *all, int end, char **argv, int *i)
 	while (++(*i) + all->hd <= end)
 	{
 		all->n_av = NULL;
-		get_list(all, argv, (*i));
 		if ((*i) + all->hd != end)
-			piper(all);
+			piper(all, argv, i);
 		else
 		{
 			dup2(all->fd.out, STDOUT_FILENO);

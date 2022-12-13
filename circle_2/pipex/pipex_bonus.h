@@ -6,7 +6,7 @@
 /*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 16:35:12 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/12/12 17:13:24 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/12/13 19:18:48 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ typedef struct s_pipex
 extern char	**environ;
 
 // pipex.c
-void	piper(t_pipex *all);
+void	piper(t_pipex *all, char **argv, int *i);
 void	here_doc(char *limiter);
 
 // utils.c

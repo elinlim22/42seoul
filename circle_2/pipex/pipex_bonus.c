@@ -6,13 +6,13 @@
 /*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 16:34:52 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/12/12 17:14:33 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/12/13 19:24:00 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex_bonus.h"
 
-void	piper(t_pipex *all)
+void	piper(t_pipex *all, char **argv, int *i)
 {
 	pid_t	pid;
 	int		fd[2];
@@ -24,7 +24,9 @@ void	piper(t_pipex *all)
 		dup2(fd[1], STDOUT_FILENO);
 		close(fd[0]);
 		close(fd[1]);
-		execve(all->cmd, all->n_av, environ);
+		get_list(all, argv, (*i));
+		perror(all->cmd);
+		exit(1);
 	}
 	else
 	{
@@ -73,9 +75,9 @@ int	main(int argc, char *argv[])
 	do_cmds(&all, argc - 2, argv, &i);
 	while (i--)
 	{
-		if (wait(&all.status) == all.last_pid)
+		if (all.last_pid == wait(&all.status))
 			res_status = all.status;
 	}
 	free(all.n_av);
-	return (res_status);
+	return ((res_status >> 8) & 0xFF);
 }

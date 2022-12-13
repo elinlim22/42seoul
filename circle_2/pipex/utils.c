@@ -6,7 +6,7 @@
 /*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 17:12:01 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/12/12 17:42:27 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/12/13 19:21:41 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,8 @@ void	get_cmd(char **cmd, char *argv, char **list)
 		i++;
 		free(tmp);
 	}
-	err_msg_fd("argument invalid", 2, 127);
+	ft_putstr_fd(argv, 2);
+	perror(": command not found");
 }
 
 void	get_path(t_pipex *all)
@@ -85,4 +86,5 @@ void	get_list(t_pipex *all, char **argv, int i)
 {
 	get_av(all, argv[i + all->hd]);
 	get_cmd(&all->cmd, all->n_av[0], all->list_path);
+	execve(all->cmd, all->n_av, environ);
 }
