@@ -6,7 +6,7 @@
 /*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 16:34:52 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/12/13 19:24:04 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/12/13 20:38:47 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ void	piper(t_pipex *all, char **argv, int *i)
 		close(fd[0]);
 		close(fd[1]);
 		get_list(all, argv, (*i));
-		perror(all->cmd);
 		exit(1);
 	}
 	else

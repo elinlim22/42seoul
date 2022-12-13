@@ -6,7 +6,7 @@
 /*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 15:49:01 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/12/13 19:24:20 by hyeslim          ###   ########.fr       */
+/*   Updated: 2022/12/13 20:41:30 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	opener(t_pipex *all, int argc, char **argv)
 {
 	all->hd = 0;
 	all->fd.out = open(argv[argc - 1], O_WRONLY | O_CREAT | O_TRUNC, 0644);
-	all->fd.in = open(argv[1], O_RDONLY | O_CREAT, 0644);
+	all->fd.in = open(argv[1], O_RDONLY, 0644);
 	if (all->fd.out == -1 && all->fd.in == -1)
 		err_msg_fd("Permission denied", 2, 1);
 	dup2(all->fd.in, STDIN_FILENO);
