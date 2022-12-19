@@ -58,11 +58,18 @@ int ft_printf(const char *str, ...) {
 
 int main(int argc __attribute__((unused)), char *argv[]) {
 	int i = atoi(argv[2]);
-	printf("printf s : %s\n", argv[1]);
-	printf("printf d : %d\n", i);
-	printf("printf x : %x\n", i);
-	ft_printf("ft_printf s : %s\n", argv[1]);
-	ft_printf("ft_printf d : %d\n", i);
-	ft_printf("ft_printf x : %x\n", i);
+
+	int s = printf("printf s : %s\n", argv[1]);
+	printf("s : %d\n", s);
+	int d = printf("printf d : %d\n", i);
+	printf("d : %d\n", d);
+	int x = printf("printf x : %x\n", i);
+	printf("x : %d\n", x);
+	int fs = ft_printf("ft_printf s : %s\n", argv[1]);
+	printf("fs : %d\n", fs);
+	int fd = ft_printf("ft_printf d : %d\n", i);
+	printf("fd : %d\n", fd);
+	int fx = ft_printf("ft_printf x : %x\n", i);
+	printf("fx : %d\n", fx);
 	return 0;
 }
