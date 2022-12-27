@@ -6,24 +6,28 @@
 #    By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/20 18:32:09 by hyeslim           #+#    #+#              #
-#    Updated: 2022/12/20 18:41:03 by hyeslim          ###   ########.fr        #
+#    Updated: 2022/12/27 20:49:12 by hyeslim          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
-SRCS =
+SRCS = minishell.c
 OBJS = ${SRCS:.c=.o}
 CC = cc
-CFLAGS = -Wall -Werror -Wextra -fsanitize=address ##
+CFLAGS = -Wall -Werror -Wextra -fsanitize=address -lreadline ##
 
 all : ${NAME}
 	@make bonus -C libft
 	@make clean -C libft
 	@mv libft/libft.a ./
-	@${CC} ${CFLAGS} -c ${SRCS} -I minishell.h
-	@ar rcs minishell.a ${OBJS}
+	@${CC} ${CFLAGS} ${SRCS} -I minishell.h
+# @ar rcs minishell.a ${OBJS}
 	@${CC} ${CFLAGS} minishell.c libft.a minishell.a -o ${NAME}
 	@make clean
+# @${CC} ${CFLAGS} -c libft/*.c ${SRCS}
+# @ar rcs minishell.a *.o
+# @${CC} ${CFLAGS} minishell.a -o ${NAME}
+# @make clean
 
 re :
 	@make fclean
