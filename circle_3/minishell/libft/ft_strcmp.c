@@ -1,38 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: huipark <huipark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/07 14:36:10 by hyeslim           #+#    #+#             */
-/*   Updated: 2023/01/08 13:02:25 by huipark          ###   ########.fr       */
+/*   Created: 2023/01/08 11:58:26 by huipark           #+#    #+#             */
+/*   Updated: 2023/01/08 12:00:14 by huipark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "./libft.h"
 
-int	ft_atoi(const char *str)
+int	ft_strcmp(const char *s1, const char *s2)
 {
-	long long	n;
-	int			i;
+	size_t	i;
 
-	i = 1;
-	n = 0;
-	while ((*str >= 9 && *str <= 13) || *str == ' ')
-		str++;
-	if (*str == '-' || *str == '+')
+	i = 0;
+	while (s1[i] || s2[i])
 	{
-		if (*str == '-')
-			i *= -1;
-		str++;
+		if (s1[i] != s2[i])
+			return (((unsigned char *)s1)[i] - ((unsigned char *)s2)[i]);
+		i++;
 	}
-	while (*str >= '0' && *str <= '9')
-	{
-		n *= 10;
-		n += *str - '0';
-		str++;
-	}
-	n *= i;
-	return ((int)n);
+	return (0);
 }

@@ -1,32 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
+/*   ft_wrap_malloc.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/20 18:41:13 by hyeslim           #+#    #+#             */
-/*   Updated: 2022/12/27 20:47:16 by hyeslim          ###   ########.fr       */
+/*   Created: 2023/01/05 15:30:27 by huipark           #+#    #+#             */
+/*   Updated: 2023/01/05 17:44:49 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-int	main(int argc __attribute__((unused)), char *argv[] __attribute__((unused)))
+void	*ft_wrap_malloc(size_t s)
 {
-	char *str;
-	while (1)
-	{
-		str = readline("waiting : ");
-		if (ft_strncmp(str, "exit", 4) == 0)
-		{
-			printf("exit!!\n");
-			break ;
-		}
-		else
-			printf("res : %s\n\n", str);
-		add_history(str);
-		free(str);
-	}
-	return (0);
+	void	*ret;
+
+	ret = malloc(s);
+	if (ret == NULL)
+		exit (1);
+	return (ret);
 }
