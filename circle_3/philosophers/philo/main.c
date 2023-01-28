@@ -3,10 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyeslim <hyeslim@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 01:36:48 by hyeslim           #+#    #+#             */
-/*   Updated: 2023/01/20 01:36:48 by hyeslim          ###   ########.fr       */
+/*   Updated: 2023/01/28 19:40:15 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "philo.h"
+
+int	main(int argc, char *argv[])
+{
+
+	return (0);
+}

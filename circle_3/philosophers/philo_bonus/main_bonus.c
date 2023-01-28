@@ -3,10 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyeslim <hyeslim@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 01:36:50 by hyeslim           #+#    #+#             */
-/*   Updated: 2023/01/20 01:36:51 by hyeslim          ###   ########.fr       */
+/*   Updated: 2023/01/28 19:39:50 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "philo_bonus.h"
+
+int	main(int argc, char *argv[])
+{
+
+	return (0);
+}
