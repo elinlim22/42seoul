@@ -6,16 +6,16 @@
 /*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 01:24:21 by hyeslim           #+#    #+#             */
-/*   Updated: 2023/01/28 21:50:42 by hyeslim          ###   ########.fr       */
+/*   Updated: 2023/01/30 17:06:46 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILO_H
 # define PHILO_H
 
-# include <pthread.h> //pthread_detach, pthread_join, \
-						pthread_mutex_init, pthread_mutex_destroy, \
-						pthread_mutex_lock, pthread_mutex_unlock
+# include <pthread.h> //pthread_detach, pthread_join,
+//						pthread_mutex_init, pthread_mutex_destroy,
+//						pthread_mutex_lock, pthread_mutex_unlock
 # include <stdlib.h> //malloc, free
 # include <stdio.h> //printf
 # include <string.h> //memset
@@ -33,6 +33,7 @@ typedef struct s_all
 
 typedef struct s_pth
 {
-	pthread_t
+	pthread_t	*philo;
+	int			pth_id;
 }				t_pth;
 #endif
