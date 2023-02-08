@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyeslim <hyeslim@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 01:24:21 by hyeslim           #+#    #+#             */
-/*   Updated: 2023/02/01 21:27:30 by hyeslim          ###   ########.fr       */
+/*   Updated: 2023/02/08 20:39:32 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,13 @@ typedef struct s_all
 	int				time_to_sleep;
 	int				number_of_times_each_philosopher_must_eat;
 	pthread_mutex_t	*fork;
+	pthread_mutex_t	pen;
 }				t_all;
 
 typedef struct s_pth
 {
 	pthread_t	pth;
-	// int			pth_id;
+	int			pth_id;
 	int			l_fork;
 	int			r_fork;
 	int			count_eat;
@@ -52,8 +53,9 @@ int		init_args(t_all *args, char *argv[]);
 int		init_philo(t_all *args, t_pth **philo);
 void	start_philos(t_all *args, t_pth **philo);
 // void	free_philos(t_all *args, t_pth *philo);
-void	timestamp(void);
+int		timestamp(t_pth **philo, char *status);
 void	*dinner_time(t_pth **philo);
 void	monitor(t_all *args, t_pth **philo);
 int		init_forks(t_all *args, t_pth **philo);
+
 #endif

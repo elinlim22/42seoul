@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyeslim <hyeslim@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 17:45:25 by hyeslim           #+#    #+#             */
-/*   Updated: 2023/02/01 21:37:07 by hyeslim          ###   ########.fr       */
+/*   Updated: 2023/02/08 20:42:56 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	init_philo(t_all *args, t_pth **philo)
 		(*philo)[i].count_eat = 0;
 		(*philo)[i].l_fork = (i + 1) % args->number_of_philosophers;
 		(*philo)[i].r_fork = i;
-		(*philo)[i].pth = i;
+		(*philo)[i].pth_id = i;
 		if (args->number_of_times_each_philosopher_must_eat)
 			(*philo)[i].max_eat
 				= args->number_of_times_each_philosopher_must_eat; //line too long : 변수명 수정 필요
@@ -45,6 +45,7 @@ int	init_args(t_all *args, char *argv[])
 	args->number_of_times_each_philosopher_must_eat = 0;
 	if (argv[5])
 		args->number_of_times_each_philosopher_must_eat = ft_atoi(argv[5]);
+	pthread_mutex_init(&args->pen, NULL);
 	return (check_args(args));
 }
 
