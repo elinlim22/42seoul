@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+         #
+#    By: hyeslim <hyeslim@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/20 01:21:19 by hyeslim           #+#    #+#              #
-#    Updated: 2023/01/28 19:38:24 by hyeslim          ###   ########.fr        #
+#    Updated: 2023/02/12 18:02:17 by hyeslim          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,9 +14,9 @@ NAME = philo
 
 CC = cc
 CFLAGS = -Wall -Werror -Wextra
-TFLAGS = -g3 -fsanitize=address ###
+TFLAGS = -g3 -fsanitize=thread ###
 
-FILE = main
+FILE = main init philo utils works
 SRCS = ${addsuffix .c, ${FILE}}
 
 all : ${NAME}

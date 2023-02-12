@@ -3,73 +3,95 @@
 /*                                                        :::      ::::::::   */
 /*   philo.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: hyeslim <hyeslim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 18:35:41 by hyeslim           #+#    #+#             */
-/*   Updated: 2023/02/08 20:58:12 by hyeslim          ###   ########.fr       */
+/*   Updated: 2023/02/12 18:01:07 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
+void	start_philos(t_all *args, t_pth **philo);
+int		timestamp(t_pth *philo, char *status);
+void	monitor(t_pth **philo, t_all *args);
+void	*monitor_limit(void *philo_v);
+
 void	start_philos(t_all *args, t_pth **philo)
 {
-	int	i;
+	pthread_t	mommy;
+	int			i;
 
 	i = 0;
+	if (args->number_of_times_each_philosopher_must_eat)
+	{
+		if (pthread_create(&mommy, NULL, monitor_limit, philo))
+		{
+			ft_error("Mommy create error\n");
+			return ;
+		}
+		pthread_detach(mommy);
+	}
 	while (i < args->number_of_philosophers)
 	{
-		if (pthread_create((*philo)[i].pth, NULL, dinner_time, &((*philo)[i])))
+		if (pthread_create(&((*philo)[i].pth), NULL, dinner_time, &((*philo)[i])))
 		{
 			ft_error("Pthread create error\n");
 			return ;
 		}
+		pthread_detach((*philo)[i].pth);
 		i++;
 	}
-	monitor(args, philo);
-}
-
-long long	get_time(void)
-{
-	static struct timeval	tv;
-
-	gettimeofday(&tv, NULL);
-	return ((tv.tv_sec * (uint64_t)1000) + (tv.tv_usec / 1000));
+	monitor(philo, args);
 }
 
 //출력 모듈
-int	timestamp(t_pth **philo, char *status)
+int	timestamp(t_pth *philo, char *status)
 {
-	pthread_mutex_lock(&(*philo)->args->pen);
-	printf("%ld\t", get_time());
-	printf("%d %s", (*philo)->pth_id, status);
-	pthread_mutex_unlock(&(*philo)->args->pen);
+	pthread_mutex_lock(&(philo->args->pen));
+	printf("%lld\t", get_time() - philo->args->start);
+	printf("%d %s\n", philo->pth_id, status);
+	pthread_mutex_unlock(&(philo->args->pen));
 	return (SUCCESS);
 }
 
-//비둘기야 밥먹자 구구구구ㅜㄱ구ㅜ
-void	*dinner_time(t_pth **philo)
+void	monitor(t_pth **philo, t_all *args)
 {
-	pthread_mutex_lock(&(*philo)->args->fork[(*philo)->l_fork]);
-	timestamp(philo, "has taken a fork\n");
-	pthread_mutex_lock((*philo)->r_fork);
-	timestamp(philo, "has taken a fork\n");
-	usleep(1000 * (*philo)->args->time_to_eat);
-	sleep_time(philo);
-	think_time(philo);
+	uint64_t	now;
+	int			i;
+
+	i = 0;
+	while (i < args->number_of_philosophers)
+	{
+		now = get_time();
+		if (now - philo[i]->last_eat >= (uint64_t)(args->time_to_die))
+		{
+			timestamp(philo[i], "died");
+			return ;
+		}
+		i++;
+	}
 }
 
-void	sleep_time(t_pth **philo)
+void	*monitor_limit(void *philo_v)
 {
+	// t_pth	*philo;
 
-}
+	// philo = (t_pth *)philo_v;
+	// uint64_t	now;
+	// int			i;
 
-void	think_time(t_pth **philo)
-{
-
-}
-
-void	monitor(t_all *args, t_pth **philo)
-{
-
+	// i = 0;
+	// while (i < args->number_of_philosophers)
+	// {
+	// 	now = get_time();
+	// 	if (now - (*philo)[i].last_eat >= args->time_to_die)
+	// 	{
+	// 		timestamp(&(*philo)[i], "died");
+	// 		return ;
+	// 	}
+	// 	i++;
+	// }
+	(void)philo_v;
+	return (NULL);
 }

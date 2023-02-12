@@ -6,7 +6,7 @@
 /*   By: hyeslim <hyeslim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 01:36:48 by hyeslim           #+#    #+#             */
-/*   Updated: 2023/02/01 21:28:15 by hyeslim          ###   ########.fr       */
+/*   Updated: 2023/02/11 18:48:51 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@ int	main(int argc, char *argv[])
 	t_all	args;
 	t_pth	*philo;
 
-	if (argc != 5 || argc != 6)
+	if (argc != 5 && argc != 6)
 		return (ft_error("Wrong arguments\n"));
 	if (init_args(&args, argv))
 		return (ft_error("Args init error\n"));
 	if (init_philo(&args, &philo))
 		return (ft_error("Philos init error\n"));
-	if (init_forks(&args, &philo))
+	if (init_forks(&args))
 		return (ft_error("Forks init error\n"));
 	start_philos(&args, &philo);
 	free(philo);

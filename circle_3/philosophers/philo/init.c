@@ -3,14 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: hyeslim <hyeslim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 17:45:25 by hyeslim           #+#    #+#             */
-/*   Updated: 2023/02/08 20:42:56 by hyeslim          ###   ########.fr       */
+/*   Updated: 2023/02/12 18:00:49 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+int	init_philo(t_all *args, t_pth **philo);
+int	init_args(t_all *args, char *argv[]);
+int	check_args(t_all *args);
+int	init_forks(t_all *args);
 
 int	init_philo(t_all *args, t_pth **philo)
 {
@@ -22,6 +27,7 @@ int	init_philo(t_all *args, t_pth **philo)
 		return (ERROR);
 	while (i < args->number_of_philosophers)
 	{
+		(*philo)[i].args = args;
 		(*philo)[i].count_eat = 0;
 		(*philo)[i].l_fork = (i + 1) % args->number_of_philosophers;
 		(*philo)[i].r_fork = i;
@@ -38,6 +44,7 @@ int	init_args(t_all *args, char *argv[])
 {
 	// memset(args, 0, )
 	args->fork = NULL;
+	args->start = get_time();
 	args->number_of_philosophers = ft_atoi(argv[1]);
 	args->time_to_die = ft_atoi(argv[2]);
 	args->time_to_eat = ft_atoi(argv[3]);
@@ -59,7 +66,7 @@ int	check_args(t_all *args)
 	return (SUCCESS);
 }
 
-int	init_forks(t_all *args, t_pth **philo)
+int	init_forks(t_all *args)
 {
 	int	i;
 
