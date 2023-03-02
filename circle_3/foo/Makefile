@@ -6,7 +6,7 @@
 #    By: hyeslim <hyeslim@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/20 01:21:19 by hyeslim           #+#    #+#              #
-#    Updated: 2023/02/12 18:02:17 by hyeslim          ###   ########.fr        #
+#    Updated: 2023/02/12 22:21:31 by hyeslim          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ CC = cc
 CFLAGS = -Wall -Werror -Wextra
 TFLAGS = -g3 -fsanitize=thread ###
 
-FILE = main init philo utils works
+FILE = main init philo utils
 SRCS = ${addsuffix .c, ${FILE}}
 
 all : ${NAME}

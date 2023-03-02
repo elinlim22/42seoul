@@ -5,16 +5,32 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyeslim <hyeslim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/31 17:47:42 by hyeslim           #+#    #+#             */
-/*   Updated: 2023/02/11 18:43:39 by hyeslim          ###   ########.fr       */
+/*   Created: 2023/02/12 19:15:38 by hyeslim           #+#    #+#             */
+/*   Updated: 2023/02/12 21:51:54 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
+void		smart_timer(int time);
 int			ft_atoi(const char *str);
 int			ft_error(char *msg);
-uint64_t	get_time(void);
+long long	get_time(void);
+int			timestamp(t_pth *philo, char *status);
+
+void	smart_timer(int time)
+{
+	long long	start;
+	long long	now;
+
+	now = 0;
+	start = get_time();
+	while ((now - start) <= (long long)time)
+	{
+		now = get_time();
+		usleep(100);
+	}
+}
 
 int	ft_atoi(const char *str)
 {
@@ -47,10 +63,19 @@ int	ft_error(char *msg)
 	return (ERROR);
 }
 
-uint64_t	get_time(void)
+long long	get_time(void)
 {
 	static struct timeval	tv;
 
 	gettimeofday(&tv, NULL);
-	return ((tv.tv_sec * (uint64_t)1000) + (tv.tv_usec / 1000));
+	return ((tv.tv_sec * 1000) + (tv.tv_usec / 1000));
+}
+
+int	timestamp(t_pth *philo, char *status)
+{
+	pthread_mutex_lock(&(philo->arg->pen));
+	printf("%lld\t", get_time() - philo->arg->start);
+	printf("%d %s\n", philo->pth_id, status);
+	pthread_mutex_unlock(&(philo->arg->pen));
+	return (SUCCESS);
 }
