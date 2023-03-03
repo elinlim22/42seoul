@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyeslim <hyeslim@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 19:15:38 by hyeslim           #+#    #+#             */
-/*   Updated: 2023/02/12 21:51:54 by hyeslim          ###   ########.fr       */
+/*   Updated: 2023/03/02 18:33:14 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	smart_timer(int time)
 	while ((now - start) <= (long long)time)
 	{
 		now = get_time();
-		usleep(100);
+		usleep(500);
 	}
 }
 

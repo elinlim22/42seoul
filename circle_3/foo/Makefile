@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: hyeslim <hyeslim@student.42.fr>            +#+  +:+       +#+         #
+#    By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/20 01:21:19 by hyeslim           #+#    #+#              #
-#    Updated: 2023/02/12 22:21:31 by hyeslim          ###   ########.fr        #
+#    Updated: 2023/03/02 18:25:35 by hyeslim          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ SRCS = ${addsuffix .c, ${FILE}}
 all : ${NAME}
 
 ${NAME} : ###
-	@${CC} ${CFLAGS} ${TFLAGS} ${SRCS} -o ${NAME}
+	@${CC} ${CFLAGS} ${SRCS} -o ${NAME}
 
 re :
 	@make fclean
