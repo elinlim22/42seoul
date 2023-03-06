@@ -6,7 +6,7 @@
 #    By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/20 01:21:19 by hyeslim           #+#    #+#              #
-#    Updated: 2023/03/02 18:25:35 by hyeslim          ###   ########.fr        #
+#    Updated: 2023/03/06 17:24:20 by hyeslim          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ SRCS = ${addsuffix .c, ${FILE}}
 all : ${NAME}
 
 ${NAME} : ###
-	@${CC} ${CFLAGS} ${SRCS} -o ${NAME}
+	@${CC} ${CFLAGS} ${TFLAGS} ${SRCS} -o ${NAME}
 
 re :
 	@make fclean

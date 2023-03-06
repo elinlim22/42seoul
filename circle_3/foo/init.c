@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyeslim <hyeslim@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 18:48:32 by hyeslim           #+#    #+#             */
-/*   Updated: 2023/02/12 22:16:51 by hyeslim          ###   ########.fr       */
+/*   Updated: 2023/03/06 17:22:04 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,11 @@ int	init_args(t_arg *args, char *argv[])
 	args->time_to_eat = ft_atoi(argv[3]);
 	args->time_to_sleep = ft_atoi(argv[4]);
 	args->number_of_times_eat = -1;
+	args->dead = 0;
 	if (argv[5])
 		args->number_of_times_eat = ft_atoi(argv[5]);
 	pthread_mutex_init(&args->pen, NULL);
-	pthread_mutex_unlock(&args->pen);
+	pthread_mutex_init(&args->m_dead, NULL);
 	return (check_args(args));
 }
 
@@ -58,6 +59,7 @@ int	init_philo(t_arg *args, t_pth **philo)
 		(*philo)[i].count_eat = 0;
 		(*philo)[i].l_fork = (i + 1) % args->number_of_philosophers;
 		(*philo)[i].r_fork = i;
+		pthread_mutex_init(&(*philo)[i].m_last_eat, NULL);
 		if (args->number_of_times_eat)
 			(*philo)[i].max_eat = args->number_of_times_eat;
 		i++;

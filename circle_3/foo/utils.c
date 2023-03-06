@@ -6,7 +6,7 @@
 /*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 19:15:38 by hyeslim           #+#    #+#             */
-/*   Updated: 2023/03/02 18:33:14 by hyeslim          ###   ########.fr       */
+/*   Updated: 2023/03/06 17:34:08 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,9 +73,14 @@ long long	get_time(void)
 
 int	timestamp(t_pth *philo, char *status)
 {
-	pthread_mutex_lock(&(philo->arg->pen));
-	printf("%lld\t", get_time() - philo->arg->start);
-	printf("%d %s\n", philo->pth_id, status);
-	pthread_mutex_unlock(&(philo->arg->pen));
+	pthread_mutex_lock(&philo->arg->m_dead);
+	if (!philo->arg->dead)
+	{
+		pthread_mutex_lock(&(philo->arg->pen));
+		printf("%lld\t", get_time() - philo->arg->start);
+		printf("%d %s\n", philo->pth_id, status);
+		pthread_mutex_unlock(&(philo->arg->pen));
+	}
+	pthread_mutex_unlock(&philo->arg->m_dead);
 	return (SUCCESS);
 }

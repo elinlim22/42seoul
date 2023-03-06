@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyeslim <hyeslim@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 18:48:26 by hyeslim           #+#    #+#             */
-/*   Updated: 2023/02/12 21:42:19 by hyeslim          ###   ########.fr       */
+/*   Updated: 2023/03/06 17:22:30 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,9 @@ void	free_thread(t_arg *arg, t_pth *philo)
 	i = 0;
 	while (i < arg->number_of_philosophers)
 		pthread_mutex_destroy(&(arg->fork[i++]));
+	pthread_mutex_destroy(&(arg->pen));
+	pthread_mutex_destroy(&philo->m_last_eat);
+	pthread_mutex_destroy(&arg->m_dead);
 	free(philo);
 	free(arg->fork);
 }
