@@ -6,7 +6,7 @@
 /*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 01:24:21 by hyeslim           #+#    #+#             */
-/*   Updated: 2023/03/06 17:16:34 by hyeslim          ###   ########.fr       */
+/*   Updated: 2023/03/07 17:03:17 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ typedef struct s_arg
 	pthread_mutex_t	*fork;
 	pthread_mutex_t	pen;
 	long long		start;
-	int				flag;
+	// int				flag;
 	int				dead;
 	pthread_mutex_t	m_dead;
 }				t_arg;
@@ -45,7 +45,7 @@ typedef struct s_pth
 	int				pth_id;
 	pthread_t		pth;
 	int				count_eat;
-	int				max_eat;
+	// int				max_eat;
 	int				l_fork;
 	int				r_fork;
 	long long		last_eat;
