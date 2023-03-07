@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: hyeslim <hyeslim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 01:24:21 by hyeslim           #+#    #+#             */
-/*   Updated: 2023/03/07 17:03:17 by hyeslim          ###   ########.fr       */
+/*   Updated: 2023/03/07 18:09:45 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ typedef struct s_pth
 	int				pth_id;
 	pthread_t		pth;
 	int				count_eat;
-	// int				max_eat;
+	int				max_eat;
 	int				l_fork;
 	int				r_fork;
 	long long		last_eat;

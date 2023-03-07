@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: hyeslim <hyeslim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 18:48:32 by hyeslim           #+#    #+#             */
-/*   Updated: 2023/03/06 17:22:04 by hyeslim          ###   ########.fr       */
+/*   Updated: 2023/03/07 18:09:50 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	check_args(t_arg *args)
 	if (args->number_of_philosophers < 2 || args->time_to_die <= 0
 		|| args->time_to_eat <= 0 || args->time_to_sleep <= 0)
 		return (ERROR);
-	if (!args->number_of_philosophers)
+	if (!args->number_of_times_eat)
 		return (ERROR);
 	return (SUCCESS);
 }
