@@ -6,7 +6,7 @@
 /*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 19:15:38 by hyeslim           #+#    #+#             */
-/*   Updated: 2023/03/06 17:34:08 by hyeslim          ###   ########.fr       */
+/*   Updated: 2023/03/16 19:53:04 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,10 @@ int	timestamp(t_pth *philo, char *status)
 	{
 		pthread_mutex_lock(&(philo->arg->pen));
 		printf("%lld\t", get_time() - philo->arg->start);
-		printf("%d %s\n", philo->pth_id, status);
+		if (!status)
+			printf("Everyone has done eating\n");
+		else
+			printf("%d %s\n", philo->pth_id, status);
 		pthread_mutex_unlock(&(philo->arg->pen));
 	}
 	pthread_mutex_unlock(&philo->arg->m_dead);

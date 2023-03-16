@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyeslim <hyeslim@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 18:48:32 by hyeslim           #+#    #+#             */
-/*   Updated: 2023/03/07 18:09:50 by hyeslim          ###   ########.fr       */
+/*   Updated: 2023/03/16 18:06:42 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,13 @@ int	init_args(t_arg *args, char *argv[])
 	args->time_to_eat = ft_atoi(argv[3]);
 	args->time_to_sleep = ft_atoi(argv[4]);
 	args->number_of_times_eat = -1;
+	args->count_philo_ate = 0;
 	args->dead = 0;
 	if (argv[5])
 		args->number_of_times_eat = ft_atoi(argv[5]);
 	pthread_mutex_init(&args->pen, NULL);
 	pthread_mutex_init(&args->m_dead, NULL);
+	pthread_mutex_init(&args->m_count_philo_ate, NULL);
 	return (check_args(args));
 }
 

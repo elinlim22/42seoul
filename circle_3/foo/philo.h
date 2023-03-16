@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyeslim <hyeslim@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 01:24:21 by hyeslim           #+#    #+#             */
-/*   Updated: 2023/03/07 18:09:45 by hyeslim          ###   ########.fr       */
+/*   Updated: 2023/03/16 21:47:16 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 # define SUCCESS 0
 # define ERROR 1
+# define DEAD 0
+# define DONE 1
 
 # include <pthread.h> //pthread_detach, pthread_join,
 //						pthread_mutex_init, pthread_mutex_destroy,
@@ -35,8 +37,9 @@ typedef struct s_arg
 	pthread_mutex_t	*fork;
 	pthread_mutex_t	pen;
 	long long		start;
-	// int				flag;
 	int				dead;
+	int				count_philo_ate;
+	pthread_mutex_t	m_count_philo_ate;
 	pthread_mutex_t	m_dead;
 }				t_arg;
 
@@ -60,11 +63,11 @@ int			init_philo(t_arg *args, t_pth **philo);
 int			init_forks(t_arg *args);
 
 // philo.c
-int			start_philo(t_arg *args, t_pth *philo);
 void		monitor(t_arg *args, t_pth *philo);
-void		*routine_limit(void *data);
-// void		*routine(void *data);
+void		*routine(void *data);
 void		philo_work(t_pth *philo);
+void		detector(t_arg *args, t_pth *philo, int flag);
+int			breaker(t_pth *philo);
 
 // utils.c
 void		smart_timer(int time);
@@ -74,71 +77,8 @@ long long	get_time(void);
 int			timestamp(t_pth *philo, char *status);
 
 // main.c
-void		free_thread(t_arg *arg, t_pth *philo);
-/*
+void		free_thread(t_arg *args, t_pth *philo);
+int			start_philo(t_arg *args, t_pth *philo);
+int			main(int argc, char *argv[]);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// typedef struct s_all
-// {
-// 	int				number_of_philosophers;
-// 	int				time_to_die;
-// 	int				time_to_eat;
-// 	int				time_to_sleep;
-// 	int				number_of_times_each_philosopher_must_eat;
-// 	pthread_mutex_t	*fork;
-// 	pthread_mutex_t	pen;
-// 	uint64_t		start;
-// }				t_all;
-
-// typedef struct s_pth
-// {
-// 	pthread_t	pth;
-// 	int			pth_id;
-// 	int			l_fork;
-// 	int			r_fork;
-// 	int			count_eat;
-// 	int			max_eat;
-// 	t_all		*args;
-// 	uint64_t	last_eat;
-// }				t_pth;
-
-// // utils.c
-// int			ft_atoi(const char *str);
-// int			ft_error(char *msg);
-// uint64_t	get_time(void);
-
-// // init.c
-// int			init_philo(t_all *args, t_pth **philo);
-// int			init_args(t_all *args, char *argv[]);
-// int			check_args(t_all *args);
-// int			init_forks(t_all *args);
-
-// // philo.c
-// void		start_philos(t_all *args, t_pth **philo);
-// int			timestamp(t_pth *philo, char *status);
-// void		monitor(t_pth **philo, t_all *args);
-// void		*monitor_limit(void *philo_v);
-
-// // works.c
-// void		*dinner_time(void *philo_v);
-// void		routine(t_all *args, t_pth *philo);
-// // void		sleep_time(t_pth **philo);
-
-// void	free_philos(t_all *args, t_pth *philo);
-#endif
-*/
 #endif
