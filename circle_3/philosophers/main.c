@@ -6,7 +6,7 @@
 /*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 18:48:26 by hyeslim           #+#    #+#             */
-/*   Updated: 2023/03/16 23:17:58 by hyeslim          ###   ########.fr       */
+/*   Updated: 2023/03/16 23:37:39 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,14 +61,12 @@ int	main(int argc, char *argv[])
 	t_pth	*philo;
 
 	if (!(argc == 5 || argc == 6))
-		return (printf("Arg error\n"));
+		return ((void)printf("Arg error\n"), ERROR);
 	if (init_args(&args, argv))
-		return (ft_error("args init error\n"));
+		return ((void)printf("args init error\n"), ERROR);
 	if (init_forks(&args))
-		return (ft_error("forks init error\n"));
+		return ((void)printf("forks init error\n"), ERROR);
 	if (init_philo(&args, &philo))
-		return (ft_error("philo init error\n"));
-	if (start_philo(&args, philo))
-		return (ERROR);
-	return (SUCCESS);
+		return ((void)printf("philo init error\n"), ERROR);
+	return (start_philo(&args, philo));
 }

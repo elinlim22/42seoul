@@ -6,7 +6,7 @@
 /*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 01:24:21 by hyeslim           #+#    #+#             */
-/*   Updated: 2023/03/16 23:21:28 by hyeslim          ###   ########.fr       */
+/*   Updated: 2023/03/16 23:46:26 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,6 @@ int			breaker(t_pth *philo);
 // utils.c
 void		smart_timer(int time);
 int			ft_atoi(const char *str);
-int			ft_error(char *msg);
 long long	get_time(void);
 int			timestamp(t_pth *philo, char *status);
 

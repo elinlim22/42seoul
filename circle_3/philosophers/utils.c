@@ -6,7 +6,7 @@
 /*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 19:15:38 by hyeslim           #+#    #+#             */
-/*   Updated: 2023/03/16 22:29:07 by hyeslim          ###   ########.fr       */
+/*   Updated: 2023/03/16 23:46:34 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void		smart_timer(int time);
 int			ft_atoi(const char *str);
-int			ft_error(char *msg);
 long long	get_time(void);
 int			timestamp(t_pth *philo, char *status);
 
@@ -50,12 +49,6 @@ int	ft_atoi(const char *str)
 	}
 	n *= i;
 	return ((int)n);
-}
-
-int	ft_error(char *msg)
-{
-	printf("%s", msg);
-	return (ERROR);
 }
 
 long long	get_time(void)
