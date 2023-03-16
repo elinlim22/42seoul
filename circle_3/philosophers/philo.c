@@ -6,7 +6,7 @@
 /*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 18:48:22 by hyeslim           #+#    #+#             */
-/*   Updated: 2023/03/16 21:47:36 by hyeslim          ###   ########.fr       */
+/*   Updated: 2023/03/16 22:38:34 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ void	monitor(t_arg *args, t_pth *philo)
 		i = 0;
 		while (i < args->number_of_philosophers)
 		{
-			now = get_time();
 			pthread_mutex_lock(&philo[i].m_last_eat);
+			now = get_time();
 			if (now - philo[i].last_eat >= (long long)(args->time_to_die))
 				return (detector(args, &philo[i], DEAD));
 			pthread_mutex_unlock(&philo[i].m_last_eat);

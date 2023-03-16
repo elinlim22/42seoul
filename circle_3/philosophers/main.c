@@ -6,7 +6,7 @@
 /*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 18:48:26 by hyeslim           #+#    #+#             */
-/*   Updated: 2023/03/16 21:47:44 by hyeslim          ###   ########.fr       */
+/*   Updated: 2023/03/16 23:17:58 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,11 @@ int	start_philo(t_arg *args, t_pth *philo)
 	}
 	monitor(args, philo);
 	i = 0;
-	while (i < args->number_of_philosophers)
-		pthread_join(philo[i++].pth, NULL);
+	if (args->number_of_philosophers == 1)
+		pthread_detach(philo[i].pth);
+	else
+		while (i < args->number_of_philosophers)
+			pthread_join(philo[i++].pth, NULL);
 	free_thread(args, philo);
 	return (SUCCESS);
 }

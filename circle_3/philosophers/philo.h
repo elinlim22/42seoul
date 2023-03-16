@@ -6,7 +6,7 @@
 /*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 01:24:21 by hyeslim           #+#    #+#             */
-/*   Updated: 2023/03/16 21:47:16 by hyeslim          ###   ########.fr       */
+/*   Updated: 2023/03/16 23:21:28 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,11 @@
 # define DEAD 0
 # define DONE 1
 
-# include <pthread.h> //pthread_detach, pthread_join,
-//						pthread_mutex_init, pthread_mutex_destroy,
-//						pthread_mutex_lock, pthread_mutex_unlock
-# include <stdlib.h> //malloc, free
-# include <stdio.h> //printf
-# include <string.h> //memset
-# include <sys/time.h> //gettimeofday
-# include <unistd.h> //write, usleep
+# include <pthread.h>
+# include <stdlib.h>
+# include <stdio.h>
+# include <sys/time.h>
+# include <unistd.h>
 
 typedef struct s_arg
 {
@@ -62,6 +59,11 @@ int			check_args(t_arg *args);
 int			init_philo(t_arg *args, t_pth **philo);
 int			init_forks(t_arg *args);
 
+// main.c
+void		free_thread(t_arg *args, t_pth *philo);
+int			start_philo(t_arg *args, t_pth *philo);
+int			main(int argc, char *argv[]);
+
 // philo.c
 void		monitor(t_arg *args, t_pth *philo);
 void		*routine(void *data);
@@ -75,10 +77,5 @@ int			ft_atoi(const char *str);
 int			ft_error(char *msg);
 long long	get_time(void);
 int			timestamp(t_pth *philo, char *status);
-
-// main.c
-void		free_thread(t_arg *args, t_pth *philo);
-int			start_philo(t_arg *args, t_pth *philo);
-int			main(int argc, char *argv[]);
 
 #endif

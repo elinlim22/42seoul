@@ -6,7 +6,7 @@
 /*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 19:15:38 by hyeslim           #+#    #+#             */
-/*   Updated: 2023/03/16 19:53:04 by hyeslim          ###   ########.fr       */
+/*   Updated: 2023/03/16 22:29:07 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,11 @@ int			timestamp(t_pth *philo, char *status);
 
 void	smart_timer(int time)
 {
-	long long	start;
-	long long	now;
+	long long	target_time;
 
-	now = 0;
-	start = get_time();
-	while ((now - start) <= (long long)time)
-	{
-		now = get_time();
+	target_time = get_time() + (long long)time;
+	while (target_time > get_time())
 		usleep(500);
-	}
 }
 
 int	ft_atoi(const char *str)

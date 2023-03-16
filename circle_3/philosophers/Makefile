@@ -5,35 +5,33 @@
 #                                                     +:+ +:+         +:+      #
 #    By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/01/20 01:36:38 by hyeslim           #+#    #+#              #
-#    Updated: 2023/01/28 19:38:28 by hyeslim          ###   ########.fr        #
+#    Created: 2023/01/20 01:21:19 by hyeslim           #+#    #+#              #
+#    Updated: 2023/03/16 23:14:42 by hyeslim          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = philo_bonus
+NAME = philo
 
 CC = cc
 CFLAGS = -Wall -Werror -Wextra
-TFLAGS = -g3 -fsanitize=address ###
 
-FILE = main_bonus
+FILE = main init philo utils
 SRCS = ${addsuffix .c, ${FILE}}
 
 all : ${NAME}
 
-${NAME} : ###
-	@${CC} ${CFLAGS} ${TFLAGS} ${SRCS} -o ${NAME}
+${NAME} :
+	@${CC} ${CFLAGS} ${SRCS} -I philo.h -o ${NAME}
 
 re :
 	@make fclean
 	@make all
 	@make clean
 
-clean : ###
-	@rm -rf
+clean :
+	@rm -rf *.o
 
 fclean :
-	@make clean
 	@rm -rf ${NAME}
 
 .PHONY : all re clean fclean

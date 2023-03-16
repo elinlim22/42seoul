@@ -6,7 +6,7 @@
 /*   By: hyeslim <hyeslim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 18:48:32 by hyeslim           #+#    #+#             */
-/*   Updated: 2023/03/16 18:06:42 by hyeslim          ###   ########.fr       */
+/*   Updated: 2023/03/16 21:59:24 by hyeslim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	init_args(t_arg *args, char *argv[])
 
 int	check_args(t_arg *args)
 {
-	if (args->number_of_philosophers < 2 || args->time_to_die <= 0
+	if (args->number_of_philosophers < 1 || args->time_to_die <= 0
 		|| args->time_to_eat <= 0 || args->time_to_sleep <= 0)
 		return (ERROR);
 	if (!args->number_of_times_eat)
