@@ -1,59 +1,43 @@
 #include <iostream>
-#include <string>
+// #include <string>
 
-class Date {
-	private :
-		int year_;
-		int month_;
-		int day_;
+class string {
+  char *str;
+  int len;
 
-	public :
-		void SetDate(int year, int month, int date) {
-			year_ = year;
-			month_ = month;
-			day_ = date;
-		};
-		void AddYear(int inc) {
-			year_ += inc;
-		};
-		void AddMonth(int inc) {
-			if (12 - month_ >= inc) {
-				month_ += inc;
-			} else {
-				month_ += (inc - 12);
-				year_++;
-			}
-		};
-		void AddDay(int inc) {
-			int max = 31;
-			if (month_ == 2) {
-				max = 28;
-			} else if (month_ % 2) {
-				max = 30;
-			}
-			if (max - day_ >= inc) {
-				day_ += inc;
-			} else {
-				day_ += (inc - max);
-				month_++;
-			}
-		};
+ public:
+  string(char c, int n);  // 문자 c 가 n 개 있는 문자열로 정의
+  string(const char *s);
+  string(const string &s);
+  ~string();
 
-		void ShowDate() {
-			std::cout << "Year : " << year_ << std::endl;
-			std::cout << "Month : " << month_ << std::endl;
-			std::cout << "Date : " << day_ << std::endl;
-		};
+  void add_string(const string &s);   // str 뒤에 s 를 붙인다.
+  void copy_string(const string &s);  // str 에 s 를 복사한다.
+  int strlen();                       // 문자열 길이 리턴
 };
 
-int main() {
-	class Date date;
+string::string(char c, int n) {
+	str = new char[n + 1];
+	for (len = 0; len < n; len++) str[len] = c;
+	str[len] = '\0';
+};
 
-	date.SetDate(2023, 4, 4);
-	date.AddYear(3);
-	date.AddMonth(9);
-	date.AddDay(30);
+string::string(const char *s) {
+	for (len = 0; s[len] != '\0'; len++) ;
+	str = new char[len + 1];
+	for (int i = 0; i < len; i++) str[i] = s[i];
+};
 
-	date.ShowDate();
-	return 0;
+string::string(const string &s) {
+	str = new char[s.len + 1];
+	for (len = 0; len < s.len; len++) str[len] = s.str[len];
+	str[len] = '\0';
+};
+
+string::~string() {
+	if (str != NULL) delete []str;
+};
+
+void string::add_string(const string &s) {
+
 }
