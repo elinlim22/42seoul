@@ -23,10 +23,9 @@ typedef struct s_base {
 	t_shape s;
 }				t_base;
 
-
-static int base_check(t_base *t) {
-	return (t->w <= 0 || t->w > 300 || t->h <= 0 || t->h > 300);
-}
+static int base_check(t_base *t) { return (t->w <= 0 || t->w > 300 || t->h <= 0 || t->h > 300); }
+static int shape_check(t_base *t) { return (!(t->s.cs == 'c' || t->s.cs == 'C') || t->s.rad <= 0); }
+static float calc(float x, float y) { return (sqrtf(powf(x, 2) + powf(y, 2))); }
 
 static int base_fill(t_base *t) {
 	int count = fscanf(t->fp, "%d %d %c\n", &t->w, &t->h, &t->back);
@@ -37,22 +36,14 @@ static int base_fill(t_base *t) {
 	return (SUCCESS);
 }
 
-static int shape_check(t_base *t) {
-	return (!(t->s.cs == 'c' || t->s.cs == 'C') || t->s.rad <= 0);
-}
-
-static float calc(float x, float y) {
-	return (sqrtf(powf(x, 2) + powf(y, 2)));
-}
-
 static int shape_fill_check(float i, float j, t_base *t) {
 	if (calc(i - t->s.y, j - t->s.x) <= t->s.rad) {
 		if (t->s.cs == 'c') {
-			if (t->s.rad - calc(i - t->s.y, j - t->s.x) < 1) return (1);
-			else return (0);
+			if (t->s.rad - calc(i - t->s.y, j - t->s.x) < 1) return 1;
+			else return 0;
 		}
-		else return (1);
-	} else return (0);
+		else return 1;
+	} else return 0;
 }
 
 static int shape_fill(t_base *t) {
