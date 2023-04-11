@@ -7,7 +7,6 @@
 #define ERROR 1
 #define SUCCESS 0
 #define CHECK(x) ((x > 0) && (x <= 300)) ? (x) : (0)
-// #define DIFF(x) (x < 0) ? (-x) : (x)
 
 typedef struct s_base {
 	int w;
@@ -92,7 +91,6 @@ int main(int argc, char *argv[]) {
 
 	fp = fopen(argv[1], "r");
 
-	// printf("%f\n", DIFF((5.5-7.3)));
 	if (back_fill(fp, &t)) return (ERROR);
 	if (read_draw(fp, &t, &s)) return (ERROR);
 	print(&t);
