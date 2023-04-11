@@ -57,6 +57,7 @@ static int shape_fill_check(float i, float j, t_base *t) {
 
 static int shape_fill(t_base *t) {
 	int count = fscanf(t->fp, "%c %f %f %f %c\n", &t->s.cs, &t->s.x, &t->s.y, &t->s.rad, &t->s.fill);
+	if (count == -1) return (SUCCESS);
 	if (count != 5 || shape_check(t)) return ((void)printf("1\n"), ERROR);
 	for (; count == 5; count = fscanf(t->fp, "%c %f %f %f %c\n", &t->s.cs, &t->s.x, &t->s.y, &t->s.rad, &t->s.fill)) {
 		if (shape_check(t)) return ((void)printf("2\n"), ERROR);
