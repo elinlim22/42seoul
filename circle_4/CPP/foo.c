@@ -2,7 +2,7 @@
 
 int main() {
 	int a = 10;
-	int &another_a = a;
-	printf("%s\n", str);
-	return 0;
+	if (a == 10) {int j = 5;}
+	else {int j = 3;}
+	printf("%d\n", j);
 }
