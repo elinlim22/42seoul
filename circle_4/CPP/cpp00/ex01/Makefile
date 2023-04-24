@@ -1,5 +1,6 @@
-NAME = ??
-SRCS = ??.cpp
+NAME = phonebook
+SRCS = phonebook.cpp contacts.cpp
+INCL = phonebook.hpp ##contacts.hpp?
 CPP = c++ -Wall -Werror -Wextra -std=c++98
 OBJS = ${SRCS:.cpp=.o}
 
@@ -9,7 +10,7 @@ ${NAME} : ${OBJS}
 	${CPP} ${OBJS} -o ${NAME}
 
 %.o: %.cpp
-	${CPP} -c $< -o $@
+	${CPP} -c $< -o $@ -I ${INCL}
 
 re :
 	@make fclean
