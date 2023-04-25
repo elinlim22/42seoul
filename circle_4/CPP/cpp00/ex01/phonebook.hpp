@@ -11,6 +11,7 @@ class PhoneBook {
 	public:
 		PhoneBook();
 		~PhoneBook();
+		void showall();
 		void add();
 		void search();
 };

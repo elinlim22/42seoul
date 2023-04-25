@@ -7,10 +7,10 @@ OBJS = ${SRCS:.cpp=.o}
 all : ${NAME}
 
 ${NAME} : ${OBJS}
-	${CPP} ${OBJS} -o ${NAME}
+	@${CPP} ${OBJS} -o ${NAME}
 
 %.o: %.cpp
-	${CPP} -c $< -o $@ -I ${INCL}
+	@${CPP} -c $< -o $@ -I ${INCL}
 
 re :
 	@make fclean

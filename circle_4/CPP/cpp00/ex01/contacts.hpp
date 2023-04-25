@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <string>
+#include <iomanip>
 
 class Contacts {
 	private:
@@ -15,8 +16,9 @@ class Contacts {
 	public:
 		Contacts();
 		~Contacts();
+		void tell(std::string *dest);
 		void add();
-		void showall();
+		void showall(int i);
 		void display();
 };
 

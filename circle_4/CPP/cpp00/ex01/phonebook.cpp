@@ -28,9 +28,16 @@ void PhoneBook::add() {
 	list[count].add();
 };
 
+void PhoneBook::showall() {
+	for (int i = 0; i < 8; i++) {
+		list[i].showall(i);
+	}
+}
+
 void PhoneBook::search() {
-	list[0].showall();
-	std::cout << "===== Please enter the index number =====" << std::endl;
+	std::cout << "===== List =====" << std::endl;
+	showall();
+	std::cout << "===== Please enter the index number =====" << std::endl << "index : ";
 	std::string temp;
 	int i;
 	while (std::getline(std::cin, temp)) {
@@ -51,9 +58,9 @@ int main() {
 		std::cout << std::endl << "Please type a command" << std::endl << ">> ";
 		std::getline(std::cin, cmd);
 		std::cout << std::endl;
-		if (cmd == "EXIT") break ;
-		else if (cmd == "ADD") pb.add();
-		else if (cmd == "SEARCH") pb.search();
+		if (!cmd.compare("EXIT")) break ;
+		else if (!cmd.compare("ADD")) pb.add();
+		else if (!cmd.compare("SEARCH")) pb.search();
 		else std::cout << "Wrong command: commands [ADD, SEARCH, EXIT]";
 	}
 	std::cout << "Dobby is free!" << std::endl;
