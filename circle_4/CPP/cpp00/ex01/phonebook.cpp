@@ -56,7 +56,10 @@ int main() {
 
 	while (1) {
 		std::cout << std::endl << "Please type a command" << std::endl << ">> ";
-		std::getline(std::cin, cmd);
+		if (!std::getline(std::cin, cmd)) {
+			std::cout << "** EOF input **" << std::endl << std::endl;
+			break;
+		}
 		std::cout << std::endl;
 		if (!cmd.compare("EXIT")) break ;
 		else if (!cmd.compare("ADD")) pb.add();

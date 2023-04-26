@@ -8,34 +8,20 @@ Contacts::Contacts() {};
 Contacts::~Contacts() {};
 
 void Contacts::tell(std::string *dest) {
-	while (!std::getline(std::cin, *dest) && (*dest).empty()) {
+	while (std::getline(std::cin, *dest) && (*dest).empty()) {
 		std::cout << "Type something!" << std::endl;
 		std::cin.clear();
 	}
-} /////////////////////////////////////////////////////////////////반복된 null입력에 반응 못함 정신못차림
+}
 
 void Contacts::add() {
 	println("===== Please type the following info =====");
 
-	std::cout << "first name : ";
-	tell(&first);
-
-	std::cout << "last name : ";
-	std::getline(std::cin, last);
-	tell(&last);
-
-	std::cout << "nick name : ";
-	std::getline(std::cin, nick);
-	tell(&nick);
-
-	std::cout << "phone number : ";
-	std::getline(std::cin, pnbr);
-	tell(&pnbr);
-
-	std::cout << "darkest secret : ";
-	std::getline(std::cin, secret);
-	tell(&secret);
-
+	std::cout << "first name : "; tell(&first);
+	std::cout << "last name : "; tell(&last);
+	std::cout << "nick name : "; tell(&nick);
+	std::cout << "phone number : "; tell(&pnbr);
+	std::cout << "darkest secret : "; tell(&secret);
 	println("===== Contact added =====");
 }
 
