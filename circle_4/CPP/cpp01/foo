@@ -1,0 +1,3 @@
+ex03 : human a is initialized with weapon but human b should set a weapon
+if attack without set_weapon segfault
+
