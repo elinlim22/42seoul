@@ -9,8 +9,8 @@ all : ${NAME}
 ${NAME} : ${OBJS}
 	@${CPP} ${OBJS} -o ${NAME}
 
-%.o: %.cpp #-I ${INCL}
-	@${CPP} -c $< -o $@
+%.o: %.cpp
+	@${CPP} -c $< -o $@ -I ${INCL}
 
 re :
 	@make fclean
