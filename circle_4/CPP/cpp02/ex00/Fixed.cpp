@@ -5,12 +5,12 @@
 /* -------------------------------------------------------------------------- */
 Fixed::Fixed() : num(0) { std::cout << "Default constructor called" << std::endl; }
 
-Fixed::Fixed(const Fixed &a) {
+Fixed::Fixed(const Fixed& a) {
 	std::cout << "Copy constructor called" << std::endl;
 	this->num = a.getRawBits();
 }
 
-Fixed& Fixed::operator= (const Fixed &a) {
+Fixed& Fixed::operator= (const Fixed& a) {
 	std::cout << "Copy assignment operator called" << std::endl;
 	this->num = a.getRawBits();
 	return *this;

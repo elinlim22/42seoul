@@ -20,8 +20,8 @@ class Fixed {
 		static const int bit = 8; //store the number of fractional bits. always be the integer literal 8.
 	public:
 		Fixed();
-		Fixed(const Fixed &a);
-		Fixed& operator= (const Fixed &a);
+		Fixed(const Fixed& a);
+		Fixed& operator= (const Fixed& a);
 		~Fixed();
 		int getRawBits(void) const; //returns the raw value of the fixed-point value
 		void setRawBits(int const raw); //sets the raw value of the fixed-point number
