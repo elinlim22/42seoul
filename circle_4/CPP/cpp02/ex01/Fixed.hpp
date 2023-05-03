@@ -22,14 +22,15 @@ class Fixed {
 		Fixed();
 		Fixed(const Fixed &a);
 		Fixed(const int i);
-		Fixed(const float i);
+		Fixed(const float f);
 		Fixed& operator= (const Fixed &a);
-		std::ostream& operator<< (const Fixed &a);
 		~Fixed();
 		int getRawBits(void) const; //returns the raw value of the fixed-point value
 		void setRawBits(int const raw); //sets the raw value of the fixed-point number
 		float toFloat(void) const;
 		int toInt(void) const;
 };
+
+std::ostream& operator<< (std::ostream& out, const Fixed &a);
 
 #endif
