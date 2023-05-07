@@ -8,3 +8,5 @@
 			A &operator= (const A &a); -> 할당 연산자 오버로딩
 		};
 */
+
+alias gl="git log --pretty=format:'%C(yellow)%h%Creset -     %C(cyan)%an, %ar%Creset : %s' --graph"
