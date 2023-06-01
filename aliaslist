@@ -12,3 +12,4 @@ alias paco=/Users/hyeslim/francinette/tester.sh
 alias gccd="gcc -Wall -Werror -Wextra -D"
 code () { VSCODE_CWD="$PWD" open -n "/Applications/Visual Studio Code.app" --args $* ;}
 
+//https://inpa.tistory.com/entry/LINUX-%EC%89%98-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D-%ED%95%B5%EC%8B%AC-%EB%AC%B8%EB%B2%95-%EC%B4%9D%EC%A0%95%EB%A6%AC
