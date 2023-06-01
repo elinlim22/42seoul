@@ -1,0 +1,14 @@
+alias gcc="gcc -Wall -Werror -Wextra"
+alias cc="cc -Wall -Werror -Wextra"
+alias norm="norminette -R CheckForbiddenSourceHeader"
+alias normd="norminette -R CheckDefine"
+alias ccc="clang++ -Wall -Werror -Wextra -std=c++98"
+alias shsh="sh ~/clear.sh"
+alias c.="cd ../"
+alias find="find . -maxdepth 1 2>/dev/null -name"
+alias gl="git log --stat --pretty=format:'%C(yellow)%h%Creset -     %C(cyan)%an, %ar%Creset : %s' --graph"
+alias francinette=/Users/hyeslim/francinette/tester.sh
+alias paco=/Users/hyeslim/francinette/tester.sh
+alias gccd="gcc -Wall -Werror -Wextra -D"
+code () { VSCODE_CWD="$PWD" open -n "/Applications/Visual Studio Code.app" --args $* ;}
+
