@@ -33,7 +33,7 @@ int main(int argc, char *argv[], char *envp[]) {
 			/* subCASE parent */
 			else {
 				close(tmp);
-				while(waitpid(-1, NULL, WUNTRACED) != -1) ;
+				while(waitpid(-1, NULL, WUNTRACED) != -1) ; // -1 :
 				tmp = dup(STDIN_FILENO);
 			}
 		}
