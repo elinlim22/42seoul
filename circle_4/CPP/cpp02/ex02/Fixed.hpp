@@ -27,26 +27,29 @@ class Fixed {
 		Fixed(const Fixed& a);
 		Fixed(const int i);
 		Fixed(const float f);
+		Fixed& operator= (const Fixed& a);
 
 		/* -------------------------------------------------------------------------- */
 		/*                              Operator overload                             */
 		/* -------------------------------------------------------------------------- */
 		// 6 comparison operators
-		Fixed& operator= (const Fixed& a);
-		Fixed& operator> (const Fixed& a);
-		Fixed& operator< (const Fixed& a);
-		Fixed& operator>= (const Fixed& a);
-		Fixed& operator<= (const Fixed& a);
-		Fixed& operator== (const Fixed& a);
-		Fixed& operator!= (const Fixed& a);
+		// Fixed& operator= (const Fixed& a);
+		bool operator> (const Fixed& a);
+		bool operator< (const Fixed& a);
+		bool operator>= (const Fixed& a);
+		bool operator<= (const Fixed& a);
+		bool operator== (const Fixed& a);
+		bool operator!= (const Fixed& a);
 		// 4 arithmetic operators
-		Fixed& operator+ (const Fixed& a);
-		Fixed& operator- (const Fixed& a);
-		Fixed& operator* (const Fixed& a);
-		Fixed& operator/ (const Fixed& a);
+		Fixed operator+ (const Fixed& a);
+		Fixed operator- (const Fixed& a);
+		Fixed operator* (const Fixed& a);
+		Fixed operator/ (const Fixed& a);
 		// 4 increment/decrement operators
-		Fixed& operator++ (const Fixed& a);
-		Fixed& operator-- (const Fixed& a);
+		Fixed& operator++ (void);
+		const Fixed operator++ (int);
+		Fixed& operator-- (void);
+		const Fixed operator-- (int);
 
 
 		/* -------------------------------------------------------------------------- */
@@ -63,10 +66,10 @@ class Fixed {
 		float toFloat(void) const;
 		int toInt(void) const;
 		// added
-		Fixed& min(Fixed& a, Fixed& b);
-		Fixed& min(const Fixed& a, const Fixed& b);
-		Fixed& max(Fixed& a, Fixed& b);
-		Fixed& max(const Fixed& a, const Fixed& b);
+		static Fixed& min(Fixed& a, Fixed& b);
+		static const Fixed& min(const Fixed& a, const Fixed& b);
+		static Fixed& max(Fixed& a, Fixed& b);
+		static const Fixed& max(const Fixed& a, const Fixed& b);
 };
 
 std::ostream& operator<< (std::ostream& out, const Fixed& a);
