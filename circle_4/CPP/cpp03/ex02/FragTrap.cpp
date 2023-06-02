@@ -9,29 +9,29 @@
 		};
 */
 
-#include "ScavTrap.hpp"
+#include "FragTrap.hpp"
 
 /* -------------------------------------------------------------------------- */
 /*                                 Constructor                                */
 /* -------------------------------------------------------------------------- */
-ScavTrap::ScavTrap() {
-	std::cout << "<<< ScavTrap Constructor called >>>" << std::endl;
-	this->name = "Scav";
+FragTrap::FragTrap() {
+	std::cout << "<<< FragTrap Constructor called >>>" << std::endl;
+	this->name = "Frag";
 	this->hit_points = 100;
-	this->energy_points = 50;
-	this->attack_damage = 20;
+	this->energy_points = 100;
+	this->attack_damage = 30;
 }
 
-ScavTrap::ScavTrap(std::string _name) {
-	std::cout << "<<< ScavTrap Constructor called >>>" << std::endl;
+FragTrap::FragTrap(std::string _name) {
+	std::cout << "<<< FragTrap Constructor called >>>" << std::endl;
 	this->name = _name;
 	this->hit_points = 100;
-	this->energy_points = 50;
-	this->attack_damage = 20;
+	this->energy_points = 100;
+	this->attack_damage = 30;
 }
 
-ScavTrap::ScavTrap(const ScavTrap &a) {
-	std::cout << "<<< ScavTrap Constructor called >>>" << std::endl;
+FragTrap::FragTrap(const FragTrap &a) {
+	std::cout << "<<< FragTrap Constructor called >>>" << std::endl;
 	*this = a;
 }
 
@@ -39,57 +39,59 @@ ScavTrap::ScavTrap(const ScavTrap &a) {
 /* -------------------------------------------------------------------------- */
 /*                                 Destructor                                 */
 /* -------------------------------------------------------------------------- */
-ScavTrap::~ScavTrap() {
-	std::cout << "<<< ScavTrap Destructor called >>>" << std::endl;
+FragTrap::~FragTrap() {
+	std::cout << "<<< FragTrap Destructor called >>>" << std::endl;
 }
 
 /* -------------------------------------------------------------------------- */
 /*                              Member functions                              */
 /* -------------------------------------------------------------------------- */
-void ScavTrap::attack(const std::string& target) {
+void FragTrap::attack(const std::string& target) {
 	if (hit_points <= 0 || energy_points <= 0) return ;
-	std::cout << "ScavTrap " << name << " attacks " << target << ", causing " << attack_damage << " points of damage!" << std::endl;
+	std::cout << "FragTrap " << name << " attacks " << target << ", causing " << attack_damage << " points of damage!" << std::endl;
 	this->energy_points--;
 }
 
-void ScavTrap::takeDamage(unsigned int amount) {
+void FragTrap::takeDamage(unsigned int amount) {
 	if (hit_points <= 0 || energy_points <= 0) return ;
-	std::cout << "ScavTrap " << name << " took " << amount << " points of damage!" << std::endl;
+	std::cout << "FragTrap " << name << " took " << amount << " points of damage!" << std::endl;
 	if (amount > this->hit_points) amount = hit_points;
 	this->hit_points -= amount;
 }
 
-void ScavTrap::beRepaired(unsigned int amount) {
+void FragTrap::beRepaired(unsigned int amount) {
 	if (energy_points <= 0) return ;
-	std::cout << "ScavTrap " << name << " repaired " << amount << " hit points." << std::endl;
+	std::cout << "FragTrap " << name << " repaired " << amount << " hit points." << std::endl;
 	if (std::numeric_limits<unsigned int>::max() - amount < this->hit_points) amount = std::numeric_limits<unsigned int>::max() - this->hit_points;
 	this->hit_points += amount;
 	this->energy_points--;
 	callStatus(*this);
 }
 
-void ScavTrap::action_attack(ScavTrap& target) {
+void FragTrap::action_attack(FragTrap& target) {
 	this->attack(target.getName());
 	target.takeDamage(this->attack_damage);
 	callStatus(*this);
 	callStatus(target);
 }
 
-void ScavTrap::callStatus(ScavTrap& a) {
-	std::cout << "ScavTrap " << a.name << "'s info --" << std::endl;
+void FragTrap::callStatus(FragTrap& a) {
+	std::cout << "FragTrap " << a.name << "'s info --" << std::endl;
 	std::cout << "\thit points : " << a.hit_points << std::endl;
 	std::cout << "\tenergy points : " << a.energy_points << std::endl;
 	std::cout << "\tattack damage : " << a.attack_damage << std::endl;
 }
-
-void ScavTrap::guardGate() {
-	std::cout << this->name << "is in Gate keeper mode." << std::endl;
+void FragTrap::highFivesGuys(void) {
+	std::cout << this->name << " requested high fives!" << std::endl;
 }
+// void FragTrap::guardGate() {
+// 	std::cout << this->name << "is in Gate keeper mode." << std::endl;
+// }
 
 /* -------------------------------------------------------------------------- */
 /*                             Operator overloaded                            */
 /* -------------------------------------------------------------------------- */
-ScavTrap& ScavTrap::operator= (const ScavTrap &a) {
+FragTrap& FragTrap::operator= (const FragTrap &a) {
 	if (this == &a)
 		return *this;
 	this->name = a.name;

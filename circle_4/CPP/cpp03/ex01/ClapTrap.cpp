@@ -1,36 +1,18 @@
-/*
-class ClapTrap {
-	private:
-		std::string name;
-		unsigned int hit_points;
-		unsigned int energy_points;
-		unsigned int attack_damage;
-	public:
-		ClapTrap();
-		~ClapTrap();
-		ClapTrap(const ClapTrap &a);
-		ClapTrap& operator= (const ClapTrap &a);
-		void attack(const std::string& target);
-		void takeDamage(unsigned int amount);
-		void beRepaired(unsigned int amount);
-};
-*/
-
 #include "ClapTrap.hpp"
 
 /* -------------------------------------------------------------------------- */
 /*                                 Constructor                                */
 /* -------------------------------------------------------------------------- */
-ClapTrap::ClapTrap() : name("Somebody"), hit_points(10), energy_points(10), attack_damage(0) {
-	std::cout << "<<< Constructor called >>>" << std::endl;
+ClapTrap::ClapTrap() : name("Clap"), hit_points(10), energy_points(10), attack_damage(0) {
+	std::cout << "<<< ClapTrap Constructor called >>>" << std::endl;
 }
 
 ClapTrap::ClapTrap(std::string _name) : name(_name), hit_points(10), energy_points(10), attack_damage(0) {
-	std::cout << "<<< Constructor called >>>" << std::endl;
+	std::cout << "<<< ClapTrap Constructor called >>>" << std::endl;
 }
 
 ClapTrap::ClapTrap(const ClapTrap &a) {
-	std::cout << "<<< Constructor called >>>" << std::endl;
+	std::cout << "<<< ClapTrap Constructor called >>>" << std::endl;
 	*this = a;
 }
 
@@ -38,7 +20,7 @@ ClapTrap::ClapTrap(const ClapTrap &a) {
 /*                                 Destructor                                 */
 /* -------------------------------------------------------------------------- */
 ClapTrap::~ClapTrap() {
-	std::cout << "<<< Destructor called >>>" << std::endl;
+	std::cout << "<<< ClapTrap Destructor called >>>" << std::endl;
 }
 
 /* -------------------------------------------------------------------------- */
@@ -90,7 +72,7 @@ void ClapTrap::action_attack(ClapTrap& target) {
 }
 
 void ClapTrap::callStatus(ClapTrap& a) {
-	std::cout << a.name << "'s info --" << std::endl;
+	std::cout << "ClapTrap " << a.name << "'s info --" << std::endl;
 	std::cout << "\thit points : " << a.hit_points << std::endl;
 	std::cout << "\tenergy points : " << a.energy_points << std::endl;
 	std::cout << "\tattack damage : " << a.attack_damage << std::endl;
