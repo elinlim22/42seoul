@@ -44,7 +44,6 @@ class Dog : public Animal {
 		//Member functions
 		void makeSound() const;
 		std::string getType() const;
-		// void makeSound();
 };
 
 class Cat : public Animal {
@@ -61,7 +60,6 @@ class Cat : public Animal {
 		//Member functions
 		void makeSound() const;
 		std::string getType() const;
-		// void makeSound();
 };
 
 #endif
