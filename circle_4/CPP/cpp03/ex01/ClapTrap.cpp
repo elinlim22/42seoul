@@ -11,7 +11,7 @@ ClapTrap::ClapTrap(std::string _name) : name(_name), hit_points(10), energy_poin
 	std::cout << "<<< ClapTrap Constructor called >>>" << std::endl;
 }
 
-ClapTrap::ClapTrap(const ClapTrap &a) {
+ClapTrap::ClapTrap(const ClapTrap& a) {
 	std::cout << "<<< ClapTrap Constructor called >>>" << std::endl;
 	*this = a;
 }

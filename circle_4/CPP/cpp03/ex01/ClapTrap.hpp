@@ -1,14 +1,3 @@
-/*
-	OCCF (모듈2부터)
-		class A
-		{
-			A(); -> 기본생성자
-			~A(); -> 기본소멸자
-			A(const A &a); -> 복사생성자
-			A &operator= (const A &a); -> 할당 연산자 오버로딩
-		};
-*/
-
 #ifndef CLAPTRAP_HPP
 #define CLAPTRAP_HPP
 
@@ -22,11 +11,15 @@ class ClapTrap {
 		unsigned int energy_points;
 		unsigned int attack_damage;
 	public:
+		//Constructors
 		ClapTrap();
 		ClapTrap(std::string _name);
+		ClapTrap(const ClapTrap& a);
+		//Destructor
 		~ClapTrap();
-		ClapTrap(const ClapTrap &a);
-		ClapTrap &operator= (const ClapTrap &a);
+		//Operator overloaded
+		ClapTrap &operator= (const ClapTrap& a);
+		//Member functions
 		void attack(const std::string& target);
 		void takeDamage(unsigned int amount);
 		void beRepaired(unsigned int amount);

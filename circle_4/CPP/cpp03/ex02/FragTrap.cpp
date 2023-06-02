@@ -30,11 +30,23 @@ FragTrap::FragTrap(std::string _name) {
 	this->attack_damage = 30;
 }
 
-FragTrap::FragTrap(const FragTrap &a) {
+FragTrap::FragTrap(const FragTrap& a) {
 	std::cout << "<<< FragTrap Constructor called >>>" << std::endl;
 	*this = a;
 }
 
+/* -------------------------------------------------------------------------- */
+/*                             Operator overloaded                            */
+/* -------------------------------------------------------------------------- */
+FragTrap& FragTrap::operator= (const FragTrap& a) {
+	if (this == &a)
+		return *this;
+	this->name = a.name;
+	this->hit_points = a.hit_points;
+	this->energy_points = a.energy_points;
+	this->attack_damage = a.attack_damage;
+	return *this;
+}
 
 /* -------------------------------------------------------------------------- */
 /*                                 Destructor                                 */
@@ -83,20 +95,4 @@ void FragTrap::callStatus(FragTrap& a) {
 }
 void FragTrap::highFivesGuys(void) {
 	std::cout << this->name << " requested high fives!" << std::endl;
-}
-// void FragTrap::guardGate() {
-// 	std::cout << this->name << "is in Gate keeper mode." << std::endl;
-// }
-
-/* -------------------------------------------------------------------------- */
-/*                             Operator overloaded                            */
-/* -------------------------------------------------------------------------- */
-FragTrap& FragTrap::operator= (const FragTrap &a) {
-	if (this == &a)
-		return *this;
-	this->name = a.name;
-	this->hit_points = a.hit_points;
-	this->energy_points = a.energy_points;
-	this->attack_damage = a.attack_damage;
-	return *this;
 }
