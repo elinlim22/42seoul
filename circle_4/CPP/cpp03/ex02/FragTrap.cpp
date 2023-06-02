@@ -39,12 +39,12 @@ FragTrap::FragTrap(const FragTrap& a) {
 /*                             Operator overloaded                            */
 /* -------------------------------------------------------------------------- */
 FragTrap& FragTrap::operator= (const FragTrap& a) {
-	if (this == &a)
-		return *this;
-	this->name = a.name;
-	this->hit_points = a.hit_points;
-	this->energy_points = a.energy_points;
-	this->attack_damage = a.attack_damage;
+ 	if (this != &a) {
+		this->name = a.name;
+		this->hit_points = a.hit_points;
+		this->energy_points = a.energy_points;
+		this->attack_damage = a.attack_damage;
+	}
 	return *this;
 }
 
