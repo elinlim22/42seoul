@@ -28,6 +28,8 @@ ClapTrap::~ClapTrap() {
 /*                             Operator overloaded                            */
 /* -------------------------------------------------------------------------- */
 ClapTrap& ClapTrap::operator= (const ClapTrap& a) {
+	if (this == &a)
+		return *this;
 	name = a.name;
 	hit_points = a.hit_points; //health of the ClapTrap
 	energy_points = a.energy_points;

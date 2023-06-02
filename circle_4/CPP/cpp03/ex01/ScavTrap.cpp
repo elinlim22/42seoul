@@ -90,6 +90,8 @@ void ScavTrap::guardGate() {
 /*                             Operator overloaded                            */
 /* -------------------------------------------------------------------------- */
 ScavTrap& ScavTrap::operator= (const ScavTrap &a) {
+	if (this == &a)
+		return *this;
 	this->name = a.name;
 	this->hit_points = a.hit_points;
 	this->energy_points = a.energy_points;
