@@ -1,29 +1,20 @@
-/*
-class ClapTrap {
-	private:
-		std::string name;
-		unsigned int hit_points;
-		unsigned int energy_points;
-		unsigned int attack_damage;
-	public:
-		ClapTrap();
-		~ClapTrap();
-		ClapTrap(const ClapTrap &a);
-		ClapTrap& operator= (const ClapTrap &a);
-		void attack(const std::string& target);
-		void takeDamage(unsigned int amount);
-		void beRepaired(unsigned int amount);
-};
-*/
-
 #include "ClapTrap.hpp"
 
 /* -------------------------------------------------------------------------- */
 /*                                 Constructor                                */
 /* -------------------------------------------------------------------------- */
+ClapTrap::ClapTrap() : name("Somebody"), hit_points(10), energy_points(10), attack_damage(0) {
+	std::cout << "<<< Constructor called >>>" << std::endl;
+}
+
 ClapTrap::ClapTrap(std::string _name) : name(_name), hit_points(10), energy_points(10), attack_damage(0) {
 	std::cout << "<<< Constructor called >>>" << std::endl;
 	callStatus(*this);
+}
+
+ClapTrap::ClapTrap(const ClapTrap &a) {
+	std::cout << "<<< Constructor called >>>" << std::endl;
+	*this = a;
 }
 
 /* -------------------------------------------------------------------------- */
@@ -31,7 +22,6 @@ ClapTrap::ClapTrap(std::string _name) : name(_name), hit_points(10), energy_poin
 /* -------------------------------------------------------------------------- */
 ClapTrap::~ClapTrap() {
 	std::cout << "<<< Destructor called >>>" << std::endl;
-	callStatus(*this);
 }
 
 /* -------------------------------------------------------------------------- */
