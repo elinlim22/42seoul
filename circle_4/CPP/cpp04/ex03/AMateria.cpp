@@ -3,33 +3,70 @@
 /* -------------------------------------------------------------------------- */
 /*                                  AMateria                                  */
 /* -------------------------------------------------------------------------- */
-AMateria::AMateria() {}
+AMateria::AMateria() : type("Default Materia") {
+	std::cout << "<<< AMateria Constructor called >>>" << std::endl;
+}
 
-AMateria::AMateria(const AMateria& a) {}
+AMateria::AMateria() {
+	std::cout << "<<< AMateria Constructor called >>>" << std::endl;
+	this->type = "Default Materia";
+}
 
-AMateria::AMateria(std::string const& type) {}
+AMateria::AMateria(const AMateria& a) {
+	std::cout << "<<< AMateria Copy Constructor called >>>" << std::endl;
+	*this = a;
+}
 
-AMateria::~AMateria() {}
+AMateria::AMateria(std::string const& type) {
+	std::cout << "<<< AMateria Constructor called >>>" << std::endl;
+	this->type = type;
+}
 
-AMateria& AMateria::operator= (const AMateria& a) {}
+AMateria::~AMateria() {
+	std::cout << "<<< AMateria Destructor called >>>" << std::endl;
 
-std::string const& AMateria::getType() const {}
+}
 
-AMateria* AMateria::clone() const {}
+AMateria& AMateria::operator= (const AMateria& a) {
+	if (this != &a) {
+		this->type = a.type;
+	}
+	return *this;
+}
+
+std::string const& AMateria::getType() const {
+	return this->type;
+}
+
+// AMateria* AMateria::clone() const {}
 
 void AMateria::use(ICharacter& target) {}
 
 /* -------------------------------------------------------------------------- */
 /*                          Interface Materia Source                          */
 /* -------------------------------------------------------------------------- */
-MateriaSource::MateriaSource() {}
+MateriaSource::MateriaSource() : type("Default MateriaSource") {
+	std::cout << "<<< MateriaSource Constructor called >>>" << std::endl;
+}
 
-MateriaSource::MateriaSource(const MateriaSource& a) {}
+MateriaSource::MateriaSource(const MateriaSource& a) {
+	std::cout << "<<< MateriaSource Copy Constructor called >>>" << std::endl;
+	*this = a;
+}
 
-MateriaSource::~MateriaSource() {}
+MateriaSource::~MateriaSource() {
+	std::cout << "<<< MateriaSource Destructor called >>>" << std::endl;
+}
 
-MateriaSource& MateriaSource::operator= (const MateriaSource& a) {}
+MateriaSource& MateriaSource::operator= (const MateriaSource& a) {
+	if (this != &a) {
+		this->type = a.type;
+	}
+	return *this;
+}
 
-void MateriaSource::learnMateria(AMateria*) {}
+void MateriaSource::learnMateria(AMateria*) {
+
+}
 
 AMateria* MateriaSource::createMateria(std::string const& type) {}

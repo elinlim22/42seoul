@@ -47,6 +47,7 @@ class IMateriaSource {
 
 class MateriaSource : public IMateriaSource {
 	private:
+		std::string type;
 	public:
 		//Constructors
 		MateriaSource();
