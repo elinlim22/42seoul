@@ -19,7 +19,7 @@ int main(int argc, char *av[], char* ev[]) {
 	while (av[i] && av[i + 1]) {
 		av = &av[i + 1];
 		i = 0;
-		while (av[i] != NULL && !strcmp(av[i], ";") && !strcmp(av[i], "|")) i++;
+		while (av[i] != NULL && strcmp(av[i], ";") && strcmp(av[i], "|")) i++;
 		if (!strcmp(av[0], "cd")) {
 			if (i != 2) {/* args error */}
 			else if (chdir(av[0])) {/* chdir error */}
@@ -37,15 +37,18 @@ int main(int argc, char *av[], char* ev[]) {
 		else if (i != 0 && !strcmp(av[i], "|")) {
 			pipe(fd);
 			if (fork() == 0) {
+				dup2(fd[1], STDOUT_FILENO); // fd[1]에 OUT 보내야지 바보야..
 				close(fd[0]);
-				close(tmp);
+				close(fd[1]); //보냈으면 닫아야지..
+				// close(tmp); 이건뭐야.. 건들지마
 				if (ft_exec(av, i, tmp, ev)) return 1;
 			}
 			else {
 				close(fd[1]);
 				close(tmp);
-				close(fd[0]);
-				tmp = dup(STDIN_FILENO);
+				// close(fd[0]);
+				// tmp = dup(STDIN_FILENO);
+				tmp = fd[0]; //fd[0]으로 받은거 standard input으로 받아야지...
 			}
 		}
 	}
