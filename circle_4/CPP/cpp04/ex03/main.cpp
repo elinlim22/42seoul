@@ -1,5 +1,9 @@
 #include "IceCure.hpp"
 
+void leaks() {
+	system("leaks AMateria");
+}
+
 int main() {
 	IMateriaSource* src = new MateriaSource();
 	src->learnMateria(new Ice());
@@ -31,7 +35,9 @@ int main() {
 	delete bob;
 	delete me;
 	delete src;
+	leaks();
 
+	atexit(leaks);
 	return 0;
 }
 
