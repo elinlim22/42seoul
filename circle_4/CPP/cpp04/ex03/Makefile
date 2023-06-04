@@ -1,16 +1,16 @@
 NAME = AMateria
-SRCS = ${addsuffix .cpp, }
-INCL = ${addsuffix .hpp, }
-CC = c++ -Wall -Werror -Wextra -std=c++98
+SRCS = ${addsuffix .cpp, main AMateria IceCure ICharacter}
+INCL = ${addsuffix .hpp, AMateria IceCure ICharacter}
+CC = c++ -Wall -Werror -Wextra -std=c++98 -fsanitize=address -g3
 OBJS = ${SRCS:.cpp=.o}
 
 all : ${NAME}
 
-${NAME} : ${INCL} ${OBJS}
-	@${CPP} ${OBJS} -o ${NAME}
+${NAME} : ${OBJS} ${INCL}
+	@${CC} ${OBJS} -o ${NAME}
 
-%.o: %.cpp ${INCL}
-	@${CPP} -c $< -o $@
+%.o: %.cpp #${INCL}
+	@${CC} -c $< -o $@
 
 re :
 	@make fclean

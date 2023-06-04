@@ -1,5 +1,3 @@
-#include <iostream>
-
 #ifndef AMATERIA_HPP
 #define AMATERIA_HPP
 
@@ -27,27 +25,19 @@ class AMateria {
 
 };
 
-// class Materia : public AMateria {
-// 	private:
-// 		std::string type;
-// 	public:
-// 		AMateria* clone() const override;
-// 		void use(ICharacter& target) override;
-// };
-
 /* -------------------------------------------------------------------------- */
 /*                        Interface class MateriaSource                       */
 /* -------------------------------------------------------------------------- */
 class IMateriaSource {
 	public:
-		virtual ~IMateriaSource();
+		virtual ~IMateriaSource() {};
 		virtual void learnMateria(AMateria*) = 0;
 		virtual AMateria* createMateria(std::string const& type) = 0;
 };
 
 class MateriaSource : public IMateriaSource {
 	private:
-		std::string type;
+		AMateria* list[4];
 	public:
 		//Constructors
 		MateriaSource();
@@ -58,8 +48,8 @@ class MateriaSource : public IMateriaSource {
 		MateriaSource& operator= (const MateriaSource& a);
 
 		//Member functions
-		void learnMateria(AMateria*) override;
-		AMateria* createMateria(std::string const& type) override;
+		void learnMateria(AMateria*);
+		AMateria* createMateria(std::string const& type);
 };
 
 #endif

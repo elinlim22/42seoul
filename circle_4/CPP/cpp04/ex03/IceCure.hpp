@@ -1,5 +1,5 @@
-#ifndef ICE_HPP
-#define ICE_HPP
+#ifndef ICECURE_HPP
+#define ICECURE_HPP
 
 #include "AMateria.hpp"
 
@@ -13,9 +13,9 @@ class Ice : public AMateria {
 		virtual ~Ice();
 		//Operator overloaded
 		Ice& operator= (const Ice& a);
-
 		//Member functions
-		AMateria* clone() const override;
+		AMateria* clone() const;
+		void use(ICharacter& target);
 };
 
 class Cure : public AMateria {
@@ -28,9 +28,9 @@ class Cure : public AMateria {
 		virtual ~Cure();
 		//Operator overloaded
 		Cure& operator= (const Cure& a);
-
 		//Member functions
-		AMateria* clone() const override;
+		AMateria* clone() const;
+		void use(ICharacter& target);
 };
 
 #endif
