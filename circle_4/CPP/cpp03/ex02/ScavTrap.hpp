@@ -18,10 +18,6 @@ class ScavTrap : public ClapTrap {
 		//Member functions
 		void guardGate();
 		void attack(const std::string& target);
-		void takeDamage(unsigned int amount);
-		void beRepaired(unsigned int amount);
-		void action_attack(ScavTrap& target);
-		void callStatus(ScavTrap& a);
 };
 
 #endif

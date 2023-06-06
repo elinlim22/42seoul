@@ -12,16 +12,12 @@ class ScavTrap : public ClapTrap {
 		ScavTrap(std::string _name);
 		ScavTrap(const ScavTrap& a);
 		//Destructor
-		~ScavTrap();
+		virtual ~ScavTrap();
 		//Operator overloaded
 		ScavTrap &operator= (const ScavTrap& a);
 		//Member functions
-		void guardGate();
 		void attack(const std::string& target);
-		void takeDamage(unsigned int amount);
-		void beRepaired(unsigned int amount);
-		void action_attack(ScavTrap& target);
-		void callStatus(ScavTrap& a);
+		void guardGate();
 };
 
 #endif

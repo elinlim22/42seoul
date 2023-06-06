@@ -41,24 +41,24 @@ ClapTrap& ClapTrap::operator= (const ClapTrap& a) {
 /* -------------------------------------------------------------------------- */
 void ClapTrap::attack(const std::string& target) {
 	if (hit_points <= 0 || energy_points <= 0) return ;
-	std::cout << "CalpTrap " << name << " attacks " << target << ", causing " << attack_damage << " points of damage!" << std::endl;
+	std::cout << "ClapTrap " << name << " attacks " << target << ", causing " << attack_damage << " points of damage!" << std::endl;
 	this->energy_points--;
 }
 
 void ClapTrap::takeDamage(unsigned int amount) {
 	if (hit_points <= 0 || energy_points <= 0) return ;
-	std::cout << "CalpTrap " << name << " took " << amount << " points of damage!" << std::endl;
+	std::cout << "ClapTrap " << name << " took " << amount << " points of damage!" << std::endl;
 	if (amount > this->hit_points) amount = hit_points;
 	this->hit_points -= amount;
 }
 
 void ClapTrap::beRepaired(unsigned int amount) {
 	if (energy_points <= 0) return ;
-	std::cout << "CalpTrap " << name << " repaired " << amount << " hit points." << std::endl;
+	std::cout << "ClapTrap " << name << " repaired " << amount << " hit points." << std::endl;
 	if (std::numeric_limits<unsigned int>::max() - amount < this->hit_points) amount = std::numeric_limits<unsigned int>::max() - this->hit_points;
 	this->hit_points += amount;
 	this->energy_points--;
-	callStatus(*this);
+	// callStatus(*this);
 }
 
 const std::string ClapTrap::getName() {
@@ -68,8 +68,8 @@ const std::string ClapTrap::getName() {
 void ClapTrap::action_attack(ClapTrap& target) {
 	this->attack(target.getName());
 	target.takeDamage(this->attack_damage);
-	callStatus(*this);
-	callStatus(target);
+	// callStatus(*this);
+	// callStatus(target);
 }
 
 void ClapTrap::callStatus(ClapTrap& a) {

@@ -1,12 +1,19 @@
 #include "ScavTrap.hpp"
 
 int main() {
-	ScavTrap A;
+	ClapTrap* A = new ScavTrap();
 	ScavTrap B("Ben");
+	// ScavTrap C;
+	// ClapTrap D;
 
-	A.action_attack(B);
+	A->actionAttack(B);
 	B.beRepaired(10);
-	// std::cout << A.getName() << std::endl;
+
+	delete A;
+	// C = A;
+	// std::cout << C.getName() << std::endl;
+	// D = C;
+	// std::cout << D.getName() << std::endl;
 	// std::cout << B.getName() << std::endl;
 
 	// std::cout << A.hit_points << std::endl;

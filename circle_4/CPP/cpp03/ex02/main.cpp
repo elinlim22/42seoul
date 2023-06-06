@@ -9,7 +9,7 @@ int main() {
 	Frag_a.action_attack(B);
 	B.beRepaired(10);
 	B.highFivesGuys();
-	Clap_a.callStatus(Clap_a);
+	// Clap_a.callStatus(Clap_a);
 	// std::cout << A.getName() << std::endl;
 	// std::cout << B.getName() << std::endl;
 
