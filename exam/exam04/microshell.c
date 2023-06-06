@@ -2,6 +2,17 @@
 #include <unistd.h>
 #include <sys/wait.h>
 
+int	ft_putstr_fd2(char *str, char *arg)
+{
+	while (*str)
+		write(2, str++, 1);
+	if (arg)
+		while(*arg)
+			write(2, arg++, 1);
+	write(2, "\n", 1);
+	return (1);
+}
+
 int main(int argc, char *argv[], char *envp[]) {
 	(void)argc;
 	int tmp = dup(STDIN_FILENO);
