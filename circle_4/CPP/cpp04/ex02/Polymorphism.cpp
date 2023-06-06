@@ -49,12 +49,15 @@ Dog::~Dog() {
 }
 
 Dog& Dog::operator= (const Dog& a) {
-	if (this != &a)
+	if (this != &a) {
 		type = a.type;
+		delete this->ideas;
+		this->ideas = new Brain(*a.ideas);
+	}
 	return *this;
 }
 
-void Dog::makeSound() {
+void Dog::makeSound() const {
 	std::cout << "Wof!" << std::endl;
 }
 
@@ -81,12 +84,15 @@ Cat::~Cat() {
 }
 
 Cat& Cat::operator= (const Cat& a) {
-	if (this != &a)
+	if (this != &a) {
 		type = a.type;
+		delete this->ideas;
+		this->ideas = new Brain(*a.ideas);
+	}
 	return *this;
 }
 
-void Cat::makeSound() {
+void Cat::makeSound() const {
 	std::cout << "Meow~" << std::endl;
 }
 

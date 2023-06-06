@@ -32,7 +32,7 @@ class Dog : public AbstAnimal {
 		//Operator overloaded
 		Dog& operator= (const Dog& a);
 		//Member functions
-		void makeSound();
+		void makeSound() const;
 		std::string getType() const;
 };
 
@@ -49,7 +49,7 @@ class Cat : public AbstAnimal {
 		//Operator overloaded
 		Cat& operator= (const Cat& a);
 		//Member functions
-		void makeSound();
+		void makeSound() const;
 		std::string getType() const;
 };
 
