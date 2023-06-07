@@ -1,39 +1,40 @@
-#include "Brain.hpp"
+#include "Animal.hpp"
 
 /* -------------------------------------------------------------------------- */
 /*                                Constructors                                */
 /* -------------------------------------------------------------------------- */
-Brain::Brain() {
-	std::cout << "<<< Brain Constructor called >>>" << std::endl;
+Animal::Animal() : type("notype") {
+	std::cout << "<<< Animal Constructor called >>>" << std::endl;
 }
 
-Brain::Brain(const Brain& a) {
-	std::cout << "<<< Brain Copy Constructor called >>>" << std::endl;
+Animal::Animal(const Animal& a) {
+	std::cout << "<<< Animal Copy Constructor called >>>" << std::endl;
 	*this = a;
 }
 
 /* -------------------------------------------------------------------------- */
 /*                                 Destructor                                 */
 /* -------------------------------------------------------------------------- */
-Brain::~Brain() {
-	std::cout << "<<< Brain Destructor called >>>" << std::endl;
+Animal::~Animal() {
+	std::cout << "<<< Animal Destructor called >>>" << std::endl;
 }
 
 /* -------------------------------------------------------------------------- */
 /*                             Operator overloaded                            */
 /* -------------------------------------------------------------------------- */
-Brain& Brain::operator= (const Brain& a) {
-	if (this != &a) {
-		for (int i = 0; i < 100; i++) {
-			this->ideas[i] = a.ideas[i];
-		}
-	}
+Animal& Animal::operator= (const Animal& a) {
+	if (this != &a)
+		type = a.type;
 	return *this;
 }
 
 /* -------------------------------------------------------------------------- */
 /*                              Member functions                              */
 /* -------------------------------------------------------------------------- */
-std::string* Brain::getBrain() {
-	return this->ideas;
+void Animal::makeSound() const {
+	std::cout << "I AM NOT AN ANIMAL!" << std::endl;
+}
+
+std::string Animal::getType() const {
+	return type;
 }

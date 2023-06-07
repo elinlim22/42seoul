@@ -1,32 +1,34 @@
-#include "Brain.hpp"
+#include "Cat.hpp"
 
 /* -------------------------------------------------------------------------- */
 /*                                Constructors                                */
 /* -------------------------------------------------------------------------- */
-Brain::Brain() {
-	std::cout << "<<< Brain Constructor called >>>" << std::endl;
+Cat::Cat() : type("Cat") {
+	std::cout << "<<< Cat Constructor called >>>" << std::endl;
+	this->ideas = new Brain();
 }
 
-Brain::Brain(const Brain& a) {
-	std::cout << "<<< Brain Copy Constructor called >>>" << std::endl;
+Cat::Cat(const Cat& a) {
+	std::cout << "<<< Cat Copy Constructor called >>>" << std::endl;
 	*this = a;
 }
 
 /* -------------------------------------------------------------------------- */
 /*                                 Destructor                                 */
 /* -------------------------------------------------------------------------- */
-Brain::~Brain() {
-	std::cout << "<<< Brain Destructor called >>>" << std::endl;
+Cat::~Cat() {
+	std::cout << "<<< Cat Destructor called >>>" << std::endl;
+	delete ideas;
 }
 
 /* -------------------------------------------------------------------------- */
 /*                             Operator overloaded                            */
 /* -------------------------------------------------------------------------- */
-Brain& Brain::operator= (const Brain& a) {
+Cat& Cat::operator= (const Cat& a) {
 	if (this != &a) {
-		for (int i = 0; i < 100; i++) {
-			this->ideas[i] = a.ideas[i];
-		}
+		type = a.type;
+		delete this->ideas;
+		this->ideas = new Brain(*a.ideas);
 	}
 	return *this;
 }
@@ -34,6 +36,10 @@ Brain& Brain::operator= (const Brain& a) {
 /* -------------------------------------------------------------------------- */
 /*                              Member functions                              */
 /* -------------------------------------------------------------------------- */
-std::string* Brain::getBrain() {
-	return this->ideas;
+void Cat::makeSound() const {
+	std::cout << "Meow~" << std::endl;
+}
+
+std::string Cat::getType() const {
+	return type;
 }
