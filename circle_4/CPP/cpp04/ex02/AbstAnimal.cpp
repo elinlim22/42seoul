@@ -1,39 +1,36 @@
-#include "Brain.hpp"
+#include "AbstAnimal.hpp"
 
 /* -------------------------------------------------------------------------- */
 /*                                Constructors                                */
 /* -------------------------------------------------------------------------- */
-Brain::Brain() {
-	std::cout << "<<< Brain Constructor called >>>" << std::endl;
+AbstAnimal::AbstAnimal() : type("notype") {
+	std::cout << "<<< AbstAnimal Constructor called >>>" << std::endl;
 }
 
-Brain::Brain(const Brain& a) {
-	std::cout << "<<< Brain Copy Constructor called >>>" << std::endl;
+AbstAnimal::AbstAnimal(const AbstAnimal& a) {
+	std::cout << "<<< AbstAnimal Copy Constructor called >>>" << std::endl;
 	*this = a;
 }
 
 /* -------------------------------------------------------------------------- */
 /*                                 Destructor                                 */
 /* -------------------------------------------------------------------------- */
-Brain::~Brain() {
-	std::cout << "<<< Brain Destructor called >>>" << std::endl;
+AbstAnimal::~AbstAnimal() {
+	std::cout << "<<< AbstAnimal Destructor called >>>" << std::endl;
 }
 
 /* -------------------------------------------------------------------------- */
 /*                             Operator overloaded                            */
 /* -------------------------------------------------------------------------- */
-Brain& Brain::operator= (const Brain& a) {
-	if (this != &a) {
-		for (int i = 0; i < 100; i++) {
-			this->ideas[i] = a.ideas[i];
-		}
-	}
+AbstAnimal& AbstAnimal::operator= (const AbstAnimal& a) {
+	if (this != &a)
+		type = a.type;
 	return *this;
 }
 
 /* -------------------------------------------------------------------------- */
 /*                              Member functions                              */
 /* -------------------------------------------------------------------------- */
-const std::string* Brain::getBrain() const {
-	return ideas;
+std::string AbstAnimal::getType() const {
+	return type;
 }

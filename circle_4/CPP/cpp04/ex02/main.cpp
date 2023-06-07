@@ -1,4 +1,7 @@
-#include "Polymorphism.hpp"
+// #include "Brain.hpp"
+// #include "AbstAnimal.hpp"
+#include "Dog.hpp"
+#include "Cat.hpp"
 
 int main() {
 	AbstAnimal* list[100];

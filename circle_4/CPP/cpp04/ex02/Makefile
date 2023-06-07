@@ -1,6 +1,6 @@
 NAME = Brain
-SRCS = ${addsuffix .cpp, main Brain Polymorphism}
-INCL = ${addsuffix .hpp, Brain Polymorphism}
+SRCS = ${addsuffix .cpp, main Brain AbstAnimal Dog Cat}
+INCL = ${addsuffix .hpp, Brain AbstAnimal Dog Cat}
 CPP = c++ -Wall -Werror -Wextra -std=c++98
 OBJS = ${SRCS:.cpp=.o}
 
