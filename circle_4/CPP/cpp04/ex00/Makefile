@@ -1,6 +1,6 @@
-NAME = Polymorphism
-SRCS = ${addsuffix .cpp, main Polymorphism Wrong}
-INCL = ${addsuffix .hpp, Polymorphism Wrong}
+NAME = Animal
+SRCS = ${addsuffix .cpp, main Animal Dog Cat WrongAnimal WrongCat}
+INCL = ${addsuffix .hpp, Animal Dog Cat WrongAnimal WrongCat}
 CPP = c++ -Wall -Werror -Wextra -std=c++98
 OBJS = ${SRCS:.cpp=.o}
 
