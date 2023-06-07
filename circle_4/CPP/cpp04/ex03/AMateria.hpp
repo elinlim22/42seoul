@@ -25,31 +25,4 @@ class AMateria {
 
 };
 
-/* -------------------------------------------------------------------------- */
-/*                        Interface class MateriaSource                       */
-/* -------------------------------------------------------------------------- */
-class IMateriaSource {
-	public:
-		virtual ~IMateriaSource() {};
-		virtual void learnMateria(AMateria*) = 0;
-		virtual AMateria* createMateria(std::string const& type) = 0;
-};
-
-class MateriaSource : public IMateriaSource {
-	private:
-		AMateria* list[4];
-	public:
-		//Constructors
-		MateriaSource();
-		MateriaSource(const MateriaSource& a);
-		//Destructor
-		virtual ~MateriaSource();
-		//Operator overloaded
-		MateriaSource& operator= (const MateriaSource& a);
-
-		//Member functions
-		void learnMateria(AMateria*);
-		AMateria* createMateria(std::string const& type);
-};
-
 #endif

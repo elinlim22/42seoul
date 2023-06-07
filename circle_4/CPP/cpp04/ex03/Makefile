@@ -1,6 +1,6 @@
 NAME = AMateria
-SRCS = ${addsuffix .cpp, main AMateria IceCure ICharacter}
-INCL = ${addsuffix .hpp, AMateria IceCure ICharacter}
+SRCS = ${addsuffix .cpp, main AMateria Ice Cure Character MateriaSource}
+INCL = ${addsuffix .hpp, AMateria Ice Cure Character ICharacter MateriaSource IMateriaSource}
 CC = c++ -Wall -Werror -Wextra -std=c++98 # -fsanitize=address -g3
 OBJS = ${SRCS:.cpp=.o}
 

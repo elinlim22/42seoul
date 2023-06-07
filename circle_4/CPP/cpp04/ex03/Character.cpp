@@ -1,3 +1,4 @@
+#include "Character.hpp"
 #include "AMateria.hpp"
 
 Character::Character() : name("Default") {

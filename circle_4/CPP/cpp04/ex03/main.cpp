@@ -1,8 +1,12 @@
-#include "IceCure.hpp"
+// #include "IceCure.hpp"
+#include "Ice.hpp"
+#include "Cure.hpp"
+#include "MateriaSource.hpp"
+#include "Character.hpp"
 
-void leaks() {
-	system("leaks AMateria");
-}
+// void leaks() {
+// 	system("leaks AMateria");
+// }
 
 int main() {
 	IMateriaSource* src = new MateriaSource();
@@ -35,9 +39,9 @@ int main() {
 	delete bob;
 	delete me;
 	delete src;
-	leaks();
+	// leaks();
 
-	atexit(leaks);
+	// atexit(leaks);
 	return 0;
 }
 

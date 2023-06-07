@@ -1,22 +1,7 @@
-#ifndef ICECURE_HPP
-#define ICECURE_HPP
+#ifndef CURE_HPP
+#define CURE_HPP
 
 #include "AMateria.hpp"
-
-class Ice : public AMateria {
-	private:
-	public:
-		//Constructors
-		Ice();
-		Ice(const Ice& a);
-		//Destructor
-		virtual ~Ice();
-		//Operator overloaded
-		Ice& operator= (const Ice& a);
-		//Member functions
-		AMateria* clone() const;
-		void use(ICharacter& target);
-};
 
 class Cure : public AMateria {
 	private:
