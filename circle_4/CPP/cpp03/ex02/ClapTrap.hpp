@@ -16,11 +16,11 @@ class ClapTrap {
 		ClapTrap(std::string _name);
 		ClapTrap(const ClapTrap& a);
 		//Destructor
-		~ClapTrap();
+		virtual ~ClapTrap();
 		//Operator overloaded
 		ClapTrap &operator= (const ClapTrap& a);
 		//Member functions
-		void attack(const std::string& target);
+		virtual void attack(const std::string& target);
 		void takeDamage(unsigned int amount);
 		void beRepaired(unsigned int amount);
 		const std::string getName() const;

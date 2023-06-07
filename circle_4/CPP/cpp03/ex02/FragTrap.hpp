@@ -12,7 +12,7 @@ class FragTrap : public ClapTrap {
 		FragTrap(std::string _name);
 		FragTrap(const FragTrap& a);
 		//Destructor
-		~FragTrap();
+		virtual ~FragTrap();
 		//Operator overloaded
 		FragTrap &operator= (const FragTrap& a);
 		//Member functions

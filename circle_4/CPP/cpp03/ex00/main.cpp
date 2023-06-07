@@ -4,7 +4,7 @@ int main() {
 	ClapTrap A("Adam");
 	ClapTrap B("Ben");
 
-	A.action_attack(B);
+	A.actionAttack(B);
 	B.beRepaired(10);
 
 	return 0;

@@ -12,7 +12,7 @@ class ScavTrap : public ClapTrap {
 		ScavTrap(std::string _name);
 		ScavTrap(const ScavTrap& a);
 		//Destructor
-		~ScavTrap();
+		virtual ~ScavTrap();
 		//Operator overloaded
 		ScavTrap &operator= (const ScavTrap& a);
 		//Member functions
