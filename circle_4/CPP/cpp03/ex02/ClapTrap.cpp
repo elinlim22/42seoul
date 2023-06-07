@@ -61,7 +61,7 @@ void ClapTrap::beRepaired(unsigned int amount) {
 	// callStatus(*this);
 }
 
-const std::string ClapTrap::getName() {
+const std::string ClapTrap::getName() const {
 	return (this->name);
 }
 
