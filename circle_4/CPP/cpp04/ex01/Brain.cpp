@@ -34,6 +34,6 @@ Brain& Brain::operator= (const Brain& a) {
 /* -------------------------------------------------------------------------- */
 /*                              Member functions                              */
 /* -------------------------------------------------------------------------- */
-std::string* Brain::getBrain() {
+const std::string* Brain::getBrain() const {
 	return this->ideas;
 }

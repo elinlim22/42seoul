@@ -1,5 +1,3 @@
-#include "Brain.hpp"
-#include "Animal.hpp"
 #include "Dog.hpp"
 #include "Cat.hpp"
 
@@ -16,6 +14,5 @@ int main() {
 		delete list[i];
 	}
 
-	system("leaks Brain");
 	return 0;
 }

@@ -15,7 +15,7 @@ class Brain {
 		//Operator overloaded
 		Brain& operator= (const Brain& a);
 		//Member functions
-		std::string* getBrain();
+		const std::string* getBrain() const;
 };
 
 #endif
