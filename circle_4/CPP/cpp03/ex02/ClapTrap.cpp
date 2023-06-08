@@ -73,7 +73,7 @@ void ClapTrap::action_attack(ClapTrap& target) {
 }
 
 void ClapTrap::callStatus(ClapTrap& a) {
-	std::cout << "ClapTrap " << a.name << "'s info --" << std::endl;
+	std::cout << a.name << "'s info --" << std::endl;
 	std::cout << "\thit points : " << a.hit_points << std::endl;
 	std::cout << "\tenergy points : " << a.energy_points << std::endl;
 	std::cout << "\tattack damage : " << a.attack_damage << std::endl;
