@@ -1,6 +1,9 @@
 #include "MateriaSource.hpp"
 #include "AMateria.hpp"
 
+/* -------------------------------------------------------------------------- */
+/*                                Constructors                                */
+/* -------------------------------------------------------------------------- */
 MateriaSource::MateriaSource() {
 	// std::cout << "<<< MateriaSource Constructor called >>>" << std::endl;
 	for (int i = 0; i < 4; i++) {
@@ -13,10 +16,19 @@ MateriaSource::MateriaSource(const MateriaSource& a) {
 	*this = a;
 }
 
+/* -------------------------------------------------------------------------- */
+/*                                 Destructor                                 */
+/* -------------------------------------------------------------------------- */
 MateriaSource::~MateriaSource() {
 	// std::cout << "<<< MateriaSource Destructor called >>>" << std::endl;
+	for (int i = 0; i < 4; i++) {
+		delete list[i];
+	}
 }
 
+/* -------------------------------------------------------------------------- */
+/*                             Operator overloaded                            */
+/* -------------------------------------------------------------------------- */
 MateriaSource& MateriaSource::operator= (const MateriaSource& a) {
 	if (this != &a) {
 		for (int i = 0; i < 4; i++) {
@@ -27,6 +39,9 @@ MateriaSource& MateriaSource::operator= (const MateriaSource& a) {
 	return *this;
 }
 
+/* -------------------------------------------------------------------------- */
+/*                              Member functions                              */
+/* -------------------------------------------------------------------------- */
 void MateriaSource::learnMateria(AMateria* fancyStuff) {
 	int i = 0;
 	for (; i < 4; i++) {

@@ -1,6 +1,9 @@
 #include "Character.hpp"
 #include "AMateria.hpp"
 
+/* -------------------------------------------------------------------------- */
+/*                                Constructors                                */
+/* -------------------------------------------------------------------------- */
 Character::Character() : name("Default") {
 	// std::cout << "<<< Character Constructor called >>>" << std::endl;
 	for (int i = 0; i < 4; i++) {
@@ -21,6 +24,9 @@ Character::Character(const Character& a) {
 	*this = a;
 }
 
+/* -------------------------------------------------------------------------- */
+/*                                 Destructor                                 */
+/* -------------------------------------------------------------------------- */
 Character::~Character() {
 	// std::cout << "<<< Character Destructor called >>>" << std::endl;
 	for (int i = 0; i < 4; i++) {
@@ -28,6 +34,9 @@ Character::~Character() {
 	}
 }
 
+/* -------------------------------------------------------------------------- */
+/*                             Operator overloaded                            */
+/* -------------------------------------------------------------------------- */
 Character& Character::operator= (const Character& a) {
 	if (this != &a) {
 		for (int i = 0; i < 4; i++) {
@@ -39,6 +48,9 @@ Character& Character::operator= (const Character& a) {
 	return *this;
 }
 
+/* -------------------------------------------------------------------------- */
+/*                              Member functions                              */
+/* -------------------------------------------------------------------------- */
 std::string const& Character::getName() const {
 	return name;
 }

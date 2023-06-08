@@ -4,9 +4,9 @@
 #include "MateriaSource.hpp"
 #include "Character.hpp"
 
-// void leaks() {
-// 	system("leaks AMateria");
-// }
+void leaks() {
+	system("leaks AMateria");
+}
 
 int main() {
 	IMateriaSource* src = new MateriaSource();
@@ -26,9 +26,9 @@ int main() {
 	// tmp = src->createMateria("cure");
 	// me->equip(tmp);
 
-	// me->unequip(3);
-	// me->unequip(2);
-	// me->unequip(1);
+	me->unequip(3);
+	me->unequip(2);
+	me->unequip(1);
 	// me->unequip(0);
 
 	ICharacter* bob = new Character("bob");
@@ -41,7 +41,7 @@ int main() {
 	delete src;
 	// leaks();
 
-	// atexit(leaks);
+	atexit(leaks);
 	return 0;
 }
 

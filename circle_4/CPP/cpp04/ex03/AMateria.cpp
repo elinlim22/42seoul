@@ -1,7 +1,7 @@
 #include "AMateria.hpp"
 
 /* -------------------------------------------------------------------------- */
-/*                                  AMateria                                  */
+/*                                Constructors                                */
 /* -------------------------------------------------------------------------- */
 AMateria::AMateria() {
 	// std::cout << "<<< AMateria Constructor called >>>" << std::endl;
@@ -17,10 +17,16 @@ AMateria::AMateria(std::string const& type) {
 	this->type = type;
 }
 
+/* -------------------------------------------------------------------------- */
+/*                                 Destructor                                 */
+/* -------------------------------------------------------------------------- */
 AMateria::~AMateria() {
 	// std::cout << "<<< AMateria Destructor called >>>" << std::endl;
 }
 
+/* -------------------------------------------------------------------------- */
+/*                             Operator overloaded                            */
+/* -------------------------------------------------------------------------- */
 AMateria& AMateria::operator= (const AMateria& a) {
 	if (this != &a) {
 		type = a.type;
@@ -28,6 +34,9 @@ AMateria& AMateria::operator= (const AMateria& a) {
 	return *this;
 }
 
+/* -------------------------------------------------------------------------- */
+/*                              Member functions                              */
+/* -------------------------------------------------------------------------- */
 std::string const& AMateria::getType() const {
 	return type;
 }
