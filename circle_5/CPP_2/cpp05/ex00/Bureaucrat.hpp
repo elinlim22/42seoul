@@ -8,10 +8,14 @@ class Bureaucrat {
 	private:
 		const std::string name;
 		unsigned int grade;
+
 	public:
 		//Constructors
 		Bureaucrat();
 		Bureaucrat(unsigned int n);
+		Bureaucrat(const std::string _name);
+		Bureaucrat(const std::string _name, unsigned int n);
+		Bureaucrat(const Bureaucrat& a);
 		//Destructor
 		virtual ~Bureaucrat();
 		//Operator overloaded
@@ -19,12 +23,18 @@ class Bureaucrat {
 		//Member functions
 		const std::string getName() const;
 		unsigned int getGrade() const;
-		void incrementGrade(int n);
-		void decrementGrade(int n);
-		//Exception functions
-		void GradeTooHighException();
-		void GradeTooLowException();
-
+		void setGrade(unsigned int n);
+		void incrementGrade(unsigned int n);
+		void decrementGrade(unsigned int n);
+		//Exception classes
+		class GradeTooHighException : public std::exception {
+			public :
+				const char* what() const throw();
+		};
+		class GradeTooLowException : public std::exception {
+			public :
+				const char* what() const throw();
+		};
 };
 
 class Exception : public std::exception {
