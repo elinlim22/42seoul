@@ -10,10 +10,10 @@ Bureaucrat::Bureaucrat(unsigned int n) : name("Default") {
 	this->setGrade(n);
 }
 
-Bureaucrat::Bureaucrat(const std::string _name) : name(_name), grade(1) {
+Bureaucrat::Bureaucrat(const std::string& _name) : name(_name), grade(1) {
 }
 
-Bureaucrat::Bureaucrat(const std::string _name, unsigned int n) : name(_name) {
+Bureaucrat::Bureaucrat(const std::string& _name, unsigned int n) : name(_name) {
 	this->setGrade(n);
 }
 

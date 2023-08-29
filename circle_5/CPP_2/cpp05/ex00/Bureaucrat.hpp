@@ -13,8 +13,8 @@ class Bureaucrat {
 		//Constructors
 		Bureaucrat();
 		Bureaucrat(unsigned int n);
-		Bureaucrat(const std::string _name);
-		Bureaucrat(const std::string _name, unsigned int n);
+		Bureaucrat(const std::string& _name);
+		Bureaucrat(const std::string& _name, unsigned int n);
 		Bureaucrat(const Bureaucrat& a);
 		//Destructor
 		virtual ~Bureaucrat();

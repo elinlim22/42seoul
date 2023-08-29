@@ -1,22 +1,29 @@
 #include "Bureaucrat.hpp"
 
 int main(void) {
-	Bureaucrat A("Apple", 30);
-	Bureaucrat B("Banana", 1);
-	Bureaucrat C(B);
+	int i = 10;
+	Bureaucrat A("A", i);
 	std::cout << A;
+	i = 30;
+	Bureaucrat B("B", i);
+	// B = A;
 	std::cout << B;
-	std::cout << "C : " << C;
+	// Bureaucrat A("Apple", 30);
+	// Bureaucrat B("Banana", 1);
+	// Bureaucrat C(B);
+	// std::cout << A;
+	// std::cout << B;
+	// std::cout << "C : " << C;
 
-	try {
-		A.decrementGrade(15);
-		std::cout << A;
-		B.decrementGrade(5);
-		std::cout << B;
-		B.incrementGrade(6);
-		std::cout << B;
-	} catch (const std::exception& e) {
-		std::cerr << "Error: " << e.what();
-	}
+	// try {
+	// 	A.decrementGrade(15);
+	// 	std::cout << A;
+	// 	B.decrementGrade(5);
+	// 	std::cout << B;
+	// 	B.incrementGrade(6);
+	// 	std::cout << B;
+	// } catch (const std::exception& e) {
+	// 	std::cerr << "Error: " << e.what();
+	// }
 	return 0;
 }
