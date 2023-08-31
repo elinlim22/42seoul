@@ -75,6 +75,13 @@ void Bureaucrat::decrementGrade(unsigned int n) {
 	}
 }
 
+void Bureaucrat::signForm() { //Form이 Signed되면(besigned) 메세지 출력 / Signed되지 않으면 다른 메세지 출력
+	try {
+		if ////////////////////////
+	} catch (std::exception& e) {
+		std::cout << this->name << " couldn't sign " << Form << " because " << e.what();
+	}
+}
 /* -------------------------------------------------------------------------- */
 /*                              Exception classes                             */
 /* -------------------------------------------------------------------------- */
