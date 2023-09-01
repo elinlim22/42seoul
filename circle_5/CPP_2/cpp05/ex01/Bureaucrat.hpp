@@ -4,6 +4,11 @@
 #include <iostream>
 #include <exception>
 
+#define SIGNED true
+#define UNSIGNED false
+
+class Form;
+
 class Bureaucrat {
 	private:
 		const std::string name;
@@ -26,7 +31,7 @@ class Bureaucrat {
 		void setGrade(unsigned int n);
 		void incrementGrade(unsigned int n);
 		void decrementGrade(unsigned int n);
-		void signForm();
+		void signForm(Form& f);
 		//Exception classes
 		class GradeTooHighException : public std::exception {
 			public :

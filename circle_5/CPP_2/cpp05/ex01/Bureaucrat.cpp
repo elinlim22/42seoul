@@ -1,4 +1,5 @@
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 
 /* -------------------------------------------------------------------------- */
 /*                                Constructors                                */
@@ -75,11 +76,12 @@ void Bureaucrat::decrementGrade(unsigned int n) {
 	}
 }
 
-void Bureaucrat::signForm() { //Form이 Signed되면(besigned) 메세지 출력 / Signed되지 않으면 다른 메세지 출력
+void Bureaucrat::signForm(Form& f) { //Form이 Signed되면(besigned) 메세지 출력 / Signed되지 않으면 다른 메세지 출력
 	try {
-		if ////////////////////////
+		f.beSigned(*this);
+			std::cout << this->name << " signed " << f.getName() << "\n";
 	} catch (std::exception& e) {
-		std::cout << this->name << " couldn't sign " << Form << " because " << e.what();
+		std::cout << this->getName() << " couldn't sign " << f.getName() << " because " << e.what();
 	}
 }
 /* -------------------------------------------------------------------------- */

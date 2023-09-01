@@ -12,6 +12,7 @@ class Form {
 	public:
 		//Constructors
 		Form();
+		Form(std::string _name, unsigned int gSign, unsigned int gExec);
 		Form(const Form& a);
 		//Destructor
 		~Form();

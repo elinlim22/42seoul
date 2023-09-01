@@ -7,6 +7,10 @@ Form::Form() : name("Default Form"), gradeSigned(0), gradeExecute(0), s(false) {
 
 }
 
+Form::Form(std::string _name, unsigned int gSign, unsigned int gExec) {
+
+}
+
 Form::Form(const Form& a) : name(a.name), gradeSigned(a.gradeSigned), gradeExecute(a.gradeExecute) {
 	this->s = a.s;
 }
@@ -53,10 +57,8 @@ const std::string Form::getName() const {
 }
 
 void Form::beSigned(const Bureaucrat& b) { //점수가 충분히 높으면 Form의 상태를 Signed로 (this->s를 true로)
-	try {
-
-	} catch (bool) {
-	}
+	if (b.getGrade() <= this->getGradeSigned()) this->s = SIGNED;
+	else throw GradeTooLowException();
 }
 
 /* -------------------------------------------------------------------------- */
