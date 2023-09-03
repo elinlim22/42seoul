@@ -7,15 +7,15 @@
 Bureaucrat::Bureaucrat() : name("Default"), grade(1) {
 }
 
-Bureaucrat::Bureaucrat(unsigned int n) : name("Default") {
-	this->setGrade(n);
+Bureaucrat::Bureaucrat(unsigned int _grade) : name("Default") {
+	this->setGrade(_grade);
 }
 
 Bureaucrat::Bureaucrat(const std::string _name) : name(_name), grade(1) {
 }
 
-Bureaucrat::Bureaucrat(const std::string _name, unsigned int n) : name(_name) {
-	this->setGrade(n);
+Bureaucrat::Bureaucrat(const std::string _name, unsigned int _grade) : name(_name) {
+	this->setGrade(_grade);
 }
 
 Bureaucrat::Bureaucrat(const Bureaucrat& a) : name(a.name) {
@@ -79,7 +79,7 @@ void Bureaucrat::decrementGrade(unsigned int n) {
 void Bureaucrat::signForm(Form& f) { //Form이 Signed되면(besigned) 메세지 출력 / Signed되지 않으면 다른 메세지 출력
 	try {
 		f.beSigned(*this);
-			std::cout << this->name << " signed " << f.getName() << "\n";
+		std::cout << this->name << " signed " << f.getName() << "\n";
 	} catch (std::exception& e) {
 		std::cout << this->getName() << " couldn't sign " << f.getName() << " because " << e.what();
 	}

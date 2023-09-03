@@ -12,16 +12,17 @@ class Form {
 	public:
 		//Constructors
 		Form();
-		Form(std::string _name, unsigned int gSign, unsigned int gExec);
+		Form(std::string _name, unsigned int _gSign, unsigned int _gExec);
 		Form(const Form& a);
 		//Destructor
 		~Form();
 		//Operator overloaded
 		Form& operator= (const Form& a);
 		//Member functions
-		const bool getSigned() const;
-		const unsigned int getGradeSigned() const;
-		const unsigned int getGradeExecute() const;
+		bool getSigned() const;
+		void unsign();
+		unsigned int getGradeSigned() const;
+		unsigned int getGradeExecute() const;
 		const std::string getName() const;
 		void beSigned(const Bureaucrat& b);
 		//Exception classes

@@ -3,11 +3,11 @@
 /* -------------------------------------------------------------------------- */
 /*                                Constructors                                */
 /* -------------------------------------------------------------------------- */
-Form::Form() : name("Default Form"), gradeSigned(0), gradeExecute(0), s(false) {
+Form::Form() : name("Default Form"), s(false), gradeSigned(10), gradeExecute(10) {
 
 }
 
-Form::Form(std::string _name, unsigned int gSign, unsigned int gExec) {
+Form::Form(std::string _name, unsigned int _gSign, unsigned int _gExec) : name(_name), s(false), gradeSigned(_gSign), gradeExecute(_gExec) {
 
 }
 
@@ -40,15 +40,19 @@ std::ostream& operator<< (std::ostream& out, const Form& a) {
 /* -------------------------------------------------------------------------- */
 /*                              Member functions                              */
 /* -------------------------------------------------------------------------- */
-const bool Form::getSigned() const {
+bool Form::getSigned() const {
 	return this->s;
 }
 
-const unsigned int Form::getGradeSigned() const {
+void Form::unsign() {
+	this->s = false;
+}
+
+unsigned int Form::getGradeSigned() const {
 	return this->gradeSigned;
 }
 
-const unsigned int Form::getGradeExecute() const {
+unsigned int Form::getGradeExecute() const {
 	return this->gradeExecute;
 }
 
@@ -57,8 +61,9 @@ const std::string Form::getName() const {
 }
 
 void Form::beSigned(const Bureaucrat& b) { //점수가 충분히 높으면 Form의 상태를 Signed로 (this->s를 true로)
-	if (b.getGrade() <= this->getGradeSigned()) this->s = SIGNED;
-	else throw GradeTooLowException();
+	if (b.getGrade() <= this->getGradeSigned() && !this->s) this->s = SIGNED;
+	else if (!this->s) throw GradeTooLowException();
+	else throw std::runtime_error("The form has been already signed\n");
 }
 
 /* -------------------------------------------------------------------------- */
