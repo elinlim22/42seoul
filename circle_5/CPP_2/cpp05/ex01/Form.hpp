@@ -19,8 +19,8 @@ class Form {
 		//Operator overloaded
 		Form& operator= (const Form& a);
 		//Member functions
-		bool getSigned() const;
 		void unsign();
+		bool getSigned() const;
 		unsigned int getGradeSigned() const;
 		unsigned int getGradeExecute() const;
 		const std::string getName() const;
