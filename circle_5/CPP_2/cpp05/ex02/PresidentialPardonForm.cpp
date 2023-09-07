@@ -23,7 +23,7 @@ PresidentialPardonForm::~PresidentialPardonForm() {
 /* -------------------------------------------------------------------------- */
 PresidentialPardonForm& PresidentialPardonForm::operator= (const PresidentialPardonForm& a) {
 	if (this != &a) {
-
+		this->s = a.s;
 	}
 	return *this;
 }
@@ -31,3 +31,6 @@ PresidentialPardonForm& PresidentialPardonForm::operator= (const PresidentialPar
 /* -------------------------------------------------------------------------- */
 /*                              Member functions                              */
 /* -------------------------------------------------------------------------- */
+void PresidentialPardonForm::execute(Bureaucrat const& executor) {
+
+}

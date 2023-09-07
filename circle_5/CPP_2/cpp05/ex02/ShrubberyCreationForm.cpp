@@ -23,7 +23,7 @@ ShrubberyCreationForm::~ShrubberyCreationForm() {
 /* -------------------------------------------------------------------------- */
 ShrubberyCreationForm& ShrubberyCreationForm::operator= (const ShrubberyCreationForm& a) {
 	if (this != &a) {
-		this->s
+		this->s = a.s;
 	}
 	return *this;
 }
@@ -31,3 +31,6 @@ ShrubberyCreationForm& ShrubberyCreationForm::operator= (const ShrubberyCreation
 /* -------------------------------------------------------------------------- */
 /*                              Member functions                              */
 /* -------------------------------------------------------------------------- */
+void ShrubberyCreationForm::execute(Bureaucrat const& executor) {
+
+}

@@ -18,6 +18,7 @@ class RobotomyRequestForm : public AForm {
 		//Operator overloaded
 		RobotomyRequestForm& operator= (const RobotomyRequestForm& a);
 		//Member functions
+		void execute(Bureaucrat const& executor);
 };
 
 #endif

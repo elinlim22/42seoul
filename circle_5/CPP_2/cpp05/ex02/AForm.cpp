@@ -1,19 +1,19 @@
 #include "AForm.hpp"
 
-// /* -------------------------------------------------------------------------- */
-// /*                                Constructors                                */
-// /* -------------------------------------------------------------------------- */
-// AForm::AForm() : name("Default AForm"), s(false), gradeSigned(10), gradeExecute(10) {
+/* -------------------------------------------------------------------------- */
+/*                                Constructors                                */
+/* -------------------------------------------------------------------------- */
+AForm::AForm() : name("Default AForm"), s(false), gradeSigned(10), gradeExecute(10) {
 
-// }
+}
 
-// AForm::AForm(std::string _name, unsigned int _gSign, unsigned int _gExec) : name(_name), s(false), gradeSigned(_gSign), gradeExecute(_gExec) {
+AForm::AForm(std::string _name, unsigned int _gSign, unsigned int _gExec) : name(_name), s(false), gradeSigned(_gSign), gradeExecute(_gExec) {
 
-// }
+}
 
-// AForm::AForm(const AForm& a) : name(a.name), gradeSigned(a.gradeSigned), gradeExecute(a.gradeExecute) {
-// 	this->s = a.s;
-// }
+AForm::AForm(const AForm& a) : name(a.name), gradeSigned(a.gradeSigned), gradeExecute(a.gradeExecute) {
+	this->s = a.s;
+}
 
 /* -------------------------------------------------------------------------- */
 /*                                 Destructor                                 */

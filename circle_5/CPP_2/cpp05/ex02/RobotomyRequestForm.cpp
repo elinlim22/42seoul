@@ -23,7 +23,7 @@ RobotomyRequestForm::~RobotomyRequestForm() {
 /* -------------------------------------------------------------------------- */
 RobotomyRequestForm& RobotomyRequestForm::operator= (const RobotomyRequestForm& a) {
 	if (this != &a) {
-
+		this->s = a.s;
 	}
 	return *this;
 }
@@ -31,3 +31,6 @@ RobotomyRequestForm& RobotomyRequestForm::operator= (const RobotomyRequestForm& 
 /* -------------------------------------------------------------------------- */
 /*                              Member functions                              */
 /* -------------------------------------------------------------------------- */
+void RobotomyRequestForm::execute(Bureaucrat const& executor) {
+
+}

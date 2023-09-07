@@ -18,6 +18,7 @@ class ShrubberyCreationForm : public AForm {
 		//Operator overloaded
 		ShrubberyCreationForm& operator= (const ShrubberyCreationForm& a);
 		//Member functions
+		void execute(Bureaucrat const& executor);
 };
 
 #endif

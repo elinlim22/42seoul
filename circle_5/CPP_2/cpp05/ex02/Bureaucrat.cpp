@@ -84,6 +84,11 @@ void Bureaucrat::signForm(AForm& f) { //Form이 Signed되면(besigned) 메세지
 		std::cout << this->getName() << " couldn't sign " << f.getName() << " because " << e.what();
 	}
 }
+
+void Bureaucrat::executeForm(const AForm& form) {
+	form.execute(*this);
+}
+
 /* -------------------------------------------------------------------------- */
 /*                              Exception classes                             */
 /* -------------------------------------------------------------------------- */

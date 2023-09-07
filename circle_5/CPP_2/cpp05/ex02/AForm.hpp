@@ -10,11 +10,11 @@ class AForm {
 		const unsigned int gradeSigned;
 		const unsigned int gradeExecute;
 	public:
-		// //Constructors
-		// AForm();
-		// AForm(std::string _name, unsigned int _gSign, unsigned int _gExec);
-		// AForm(const AForm& a);
-		//Destructor
+		//Constructors
+		AForm();
+		AForm(std::string _name, unsigned int _gSign, unsigned int _gExec);
+		AForm(const AForm& a);
+		// Destructor
 		virtual ~AForm();
 		//Operator overloaded
 		AForm& operator= (const AForm& a);
@@ -25,6 +25,7 @@ class AForm {
 		virtual unsigned int getGradeExecute() const;
 		virtual const std::string getName() const;
 		virtual void beSigned(const Bureaucrat& b);
+		virtual void execute(const Bureaucrat& executor) = 0;
 		//Exception classes
 		class GradeTooHighException : public std::exception {
 			public :

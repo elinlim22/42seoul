@@ -18,6 +18,7 @@ class PresidentialPardonForm : public AForm {
 		//Operator overloaded
 		PresidentialPardonForm& operator= (const PresidentialPardonForm& a);
 		//Member functions
+		void execute(Bureaucrat const& executor);
 };
 
 #endif
