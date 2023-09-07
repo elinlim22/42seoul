@@ -5,10 +5,10 @@
 
 class PresidentialPardonForm : public AForm {
 	private:
-		const std::string name;
+	// 	const std::string name;
 		bool s;
-		const unsigned int gradeSigned;
-		const unsigned int gradeExecute;
+	// 	const unsigned int gradeSigned;
+	// 	const unsigned int gradeExecute;
 	public:
 		//Constructors
 		PresidentialPardonForm();
@@ -18,7 +18,7 @@ class PresidentialPardonForm : public AForm {
 		//Operator overloaded
 		PresidentialPardonForm& operator= (const PresidentialPardonForm& a);
 		//Member functions
-		void execute(Bureaucrat const& executor);
+		void execute(const Bureaucrat& executor) const;
 };
 
 #endif

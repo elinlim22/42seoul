@@ -3,11 +3,11 @@
 /* -------------------------------------------------------------------------- */
 /*                                Constructors                                */
 /* -------------------------------------------------------------------------- */
-ShrubberyCreationForm::ShrubberyCreationForm() : name("ShrubberyCreationForm"), s(false), gradeSigned(25), gradeExecute(5) {
+ShrubberyCreationForm::ShrubberyCreationForm() : AForm("ShrubberyCreationForm", 25, 5) {
 
 }
 
-ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& a) : name("ShrubberyCreationForm"), gradeSigned(25), gradeExecute(5) {
+ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& a) : AForm("ShrubberyCreationForm", 25, 5) {
 	*this = a;
 }
 
@@ -31,6 +31,8 @@ ShrubberyCreationForm& ShrubberyCreationForm::operator= (const ShrubberyCreation
 /* -------------------------------------------------------------------------- */
 /*                              Member functions                              */
 /* -------------------------------------------------------------------------- */
-void ShrubberyCreationForm::execute(Bureaucrat const& executor) {
-
+void ShrubberyCreationForm::execute(const Bureaucrat& executor) const {
+	if (executor.getGrade() > this->getGradeExecute())
+		throw GradeTooLowException();
+	else if (this->getSigned() == UNSIGNED) throw std::runtime_error("The form has not been signed yet.\n");
 }

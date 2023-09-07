@@ -39,7 +39,7 @@ Bureaucrat& Bureaucrat::operator= (const Bureaucrat& a) {
 }
 
 std::ostream& operator<< (std::ostream& out, const Bureaucrat& a) {
-	out << a.getName() << ", bureaucrat grade " << a.getGrade() << ".\n";
+	out << a.getName() << ", bureaucrat grade " << a.getGrade() << ".";
 	return out;
 }
 
@@ -79,14 +79,19 @@ void Bureaucrat::decrementGrade(unsigned int n) {
 void Bureaucrat::signForm(AForm& f) { //Form이 Signed되면(besigned) 메세지 출력 / Signed되지 않으면 다른 메세지 출력
 	try {
 		f.beSigned(*this);
-		std::cout << this->name << " signed " << f.getName() << "\n";
+		std::cout << this->name << " signed " << f.getName() << ".\n";
 	} catch (std::exception& e) {
 		std::cout << this->getName() << " couldn't sign " << f.getName() << " because " << e.what();
 	}
 }
 
 void Bureaucrat::executeForm(const AForm& form) {
-	form.execute(*this);
+	try {
+		form.execute(*this);
+		std::cout << this->getName() << " executed " << form.getName() << ".\n";
+	} catch (std::exception& e) {
+		std::cout << this->getName() << " couldn't execute " << form.getName() << " because " << e.what();
+	}
 }
 
 /* -------------------------------------------------------------------------- */

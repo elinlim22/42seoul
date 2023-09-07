@@ -5,10 +5,10 @@
 
 class RobotomyRequestForm : public AForm {
 	private:
-		const std::string name;
+		// const std::string name;
 		bool s;
-		const unsigned int gradeSigned;
-		const unsigned int gradeExecute;
+		// const unsigned int gradeSigned;
+		// const unsigned int gradeExecute;
 	public:
 		//Constructors
 		RobotomyRequestForm();
@@ -18,7 +18,7 @@ class RobotomyRequestForm : public AForm {
 		//Operator overloaded
 		RobotomyRequestForm& operator= (const RobotomyRequestForm& a);
 		//Member functions
-		void execute(Bureaucrat const& executor);
+		void execute(const Bureaucrat& executor) const;
 };
 
 #endif

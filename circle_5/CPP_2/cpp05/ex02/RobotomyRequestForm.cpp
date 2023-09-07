@@ -3,11 +3,11 @@
 /* -------------------------------------------------------------------------- */
 /*                                Constructors                                */
 /* -------------------------------------------------------------------------- */
-RobotomyRequestForm::RobotomyRequestForm() : name("RobotomyRequestForm"), s(false), gradeSigned(72), gradeExecute(45) {
+RobotomyRequestForm::RobotomyRequestForm() : AForm("RobotomyRequestForm", 72, 45) {
 
 }
 
-RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm& a) : name("RobotomyRequestForm"), gradeSigned(72), gradeExecute(45) {
+RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm& a) : AForm("RobotomyRequestForm", 72, 45) {
 	*this = a;
 }
 
@@ -31,6 +31,8 @@ RobotomyRequestForm& RobotomyRequestForm::operator= (const RobotomyRequestForm& 
 /* -------------------------------------------------------------------------- */
 /*                              Member functions                              */
 /* -------------------------------------------------------------------------- */
-void RobotomyRequestForm::execute(Bureaucrat const& executor) {
-
+void RobotomyRequestForm::execute(const Bureaucrat& executor) const {
+	if (executor.getGrade() > this->getGradeExecute())
+		throw GradeTooLowException();
+	else if (this->getSigned() == UNSIGNED) throw std::runtime_error("The form has not been signed yet.\n");
 }

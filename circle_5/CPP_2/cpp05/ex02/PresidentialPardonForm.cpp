@@ -3,11 +3,11 @@
 /* -------------------------------------------------------------------------- */
 /*                                Constructors                                */
 /* -------------------------------------------------------------------------- */
-PresidentialPardonForm::PresidentialPardonForm() : name("PresidentialPardonForm"), s(false), gradeSigned(145), gradeExecute(137) {
+PresidentialPardonForm::PresidentialPardonForm() : AForm("PresidentialPardonForm", 145, 137) {
 
 }
 
-PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm& a) : name("PresidentialPardonForm"), gradeSigned(145), gradeExecute(137) {
+PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm& a) : AForm("PresidentialPardonForm", 145, 137) {
 	*this = a;
 }
 
@@ -31,6 +31,8 @@ PresidentialPardonForm& PresidentialPardonForm::operator= (const PresidentialPar
 /* -------------------------------------------------------------------------- */
 /*                              Member functions                              */
 /* -------------------------------------------------------------------------- */
-void PresidentialPardonForm::execute(Bureaucrat const& executor) {
-
+void PresidentialPardonForm::execute(const Bureaucrat& executor) const {
+	if (executor.getGrade() > this->getGradeExecute())
+		throw GradeTooLowException();
+	else if (this->getSigned() == UNSIGNED) throw std::runtime_error("The form has not been signed yet.\n");
 }

@@ -9,7 +9,7 @@ int main(void) {
 	try {
 		//Case Form got already signed
 		A.signForm(Af);
-		B.signForm(Af);
+		A.signForm(Af);
 		Af.unsign();
 
 		std::cout << "\n\n";
