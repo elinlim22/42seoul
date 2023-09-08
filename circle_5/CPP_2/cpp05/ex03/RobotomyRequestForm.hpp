@@ -1,23 +1,23 @@
 #ifndef ROBOTOMYREQUESTFORM_HPP
 #define ROBOTOMYREQUESTFORM_HPP
 
+#include <cstdlib>
+#include <ctime>
 #include "AForm.hpp"
 
 class RobotomyRequestForm : public AForm {
 	private:
-		// const std::string name;
-		bool s;
-		// const unsigned int gradeSigned;
-		// const unsigned int gradeExecute;
+		std::string target;
 	public:
 		//Constructors
-		RobotomyRequestForm();
+		RobotomyRequestForm(std::string _target);
 		RobotomyRequestForm(const RobotomyRequestForm& a);
 		//Destructor
 		~RobotomyRequestForm();
 		//Operator overloaded
 		RobotomyRequestForm& operator= (const RobotomyRequestForm& a);
 		//Member functions
+		std::string getTarget() const;
 		void execute(const Bureaucrat& executor) const;
 };
 
