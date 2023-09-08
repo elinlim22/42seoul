@@ -8,14 +8,24 @@ Bureaucrat::Bureaucrat() : name("Default"), grade(1) {
 }
 
 Bureaucrat::Bureaucrat(unsigned int _grade) : name("Default") {
-	this->setGrade(_grade);
+	try {
+		this->setGrade(_grade);
+	} catch (std::exception& e) {
+		std::cout << this->name << ": Input Error: " << e.what();
+		std::exit(EXIT_FAILURE);
+	}
 }
 
 Bureaucrat::Bureaucrat(const std::string _name) : name(_name), grade(1) {
 }
 
 Bureaucrat::Bureaucrat(const std::string _name, unsigned int _grade) : name(_name) {
-	this->setGrade(_grade);
+	try {
+		this->setGrade(_grade);
+	} catch (std::exception& e) {
+		std::cout << this->name << ": Input Error: " << e.what();
+		std::exit(EXIT_FAILURE);
+	}
 }
 
 Bureaucrat::Bureaucrat(const Bureaucrat& a) : name(a.name) {
