@@ -5,7 +5,7 @@ int main(void) {
 	Intern someRandomIntern;
 	Bureaucrat A("Adam", 10);
 	AForm* rrf;
-	rrf = someRandomIntern.makeForm("PPresidential pardon", "Bender");
+	rrf = someRandomIntern.makeForm("shrubbery creation", "Bender");
 
 	A.signForm(*rrf);
 	A.executeForm(*rrf);
