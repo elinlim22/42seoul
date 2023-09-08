@@ -5,19 +5,17 @@
 
 class PresidentialPardonForm : public AForm {
 	private:
-	// 	const std::string name;
-		bool s;
-	// 	const unsigned int gradeSigned;
-	// 	const unsigned int gradeExecute;
+		std::string target;
 	public:
 		//Constructors
-		PresidentialPardonForm();
+		PresidentialPardonForm(std::string _target);
 		PresidentialPardonForm(const PresidentialPardonForm& a);
 		//Destructor
 		~PresidentialPardonForm();
 		//Operator overloaded
 		PresidentialPardonForm& operator= (const PresidentialPardonForm& a);
 		//Member functions
+		std::string getTarget() const;
 		void execute(const Bureaucrat& executor) const;
 };
 

@@ -33,7 +33,7 @@ AForm& AForm::operator= (const AForm& a) {
 }
 
 std::ostream& operator<< (std::ostream& out, const AForm& a) {
-	out << a.getName() << " form\n\tsigned: " << a.getSigned() << "\n\tgradeSigned: " << a.getGradeSigned() << "\n\tgradeExecute: " << a.getGradeExecute();
+	out << a.getName() << " form\n\tsigned: " << a.getSigned() << "\n\tgradeSigned: " << a.getGradeSigned() << "\n\tgradeExecute: " << a.getGradeExecute() << "\n\ttarget: " << a.getTarget();
 	return out;
 }
 
