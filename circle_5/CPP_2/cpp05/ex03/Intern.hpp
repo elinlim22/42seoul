@@ -8,13 +8,14 @@
 
 class Intern {
 	public:
-		// Constructor
+		// Constructors
 		Intern();
 		Intern(const Intern&);
 		// Destructor
 		~Intern();
 		// Operator overloaded
 		Intern& operator= (const Intern& a);
+        // Member function
 		AForm* makeForm(std::string _name, std::string _target);
 };
 
