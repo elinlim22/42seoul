@@ -12,9 +12,9 @@ class Bureaucrat {
 	public:
 		//Constructors
 		Bureaucrat();
-		Bureaucrat(unsigned int n);
+		Bureaucrat(unsigned int _grade);
 		Bureaucrat(const std::string& _name);
-		Bureaucrat(const std::string& _name, unsigned int n);
+		Bureaucrat(const std::string& _name, unsigned int _grade);
 		Bureaucrat(const Bureaucrat& a);
 		//Destructor
 		virtual ~Bureaucrat();

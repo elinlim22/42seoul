@@ -6,15 +6,25 @@
 Bureaucrat::Bureaucrat() : name("Default"), grade(1) {
 }
 
-Bureaucrat::Bureaucrat(unsigned int n) : name("Default") {
-	this->setGrade(n);
+Bureaucrat::Bureaucrat(unsigned int _grade) : name("Default") {
+	try {
+		this->setGrade(_grade);
+	} catch (std::exception& e) {
+		std::cout << this->name << ": Input Error: " << e.what();
+		std::exit(EXIT_FAILURE);
+	}
 }
 
 Bureaucrat::Bureaucrat(const std::string& _name) : name(_name), grade(1) {
 }
 
-Bureaucrat::Bureaucrat(const std::string& _name, unsigned int n) : name(_name) {
-	this->setGrade(n);
+Bureaucrat::Bureaucrat(const std::string& _name, unsigned int _grade) : name(_name) {
+	try {
+		this->setGrade(_grade);
+	} catch (std::exception& e) {
+		std::cout << this->name << ": Input Error: " << e.what();
+		std::exit(EXIT_FAILURE);
+	}
 }
 
 Bureaucrat::Bureaucrat(const Bureaucrat& a) : name(a.name) {
@@ -38,7 +48,7 @@ Bureaucrat& Bureaucrat::operator= (const Bureaucrat& a) {
 }
 
 std::ostream& operator<< (std::ostream& out, const Bureaucrat& a) {
-	out << a.getName() << ", bureaucrat grade " << a.getGrade() << ".\n";
+	out << a.getName() << ", bureaucrat grade " << a.getGrade() << ".";
 	return out;
 }
 

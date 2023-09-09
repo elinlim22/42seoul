@@ -33,7 +33,7 @@ Form& Form::operator= (const Form& a) {
 }
 
 std::ostream& operator<< (std::ostream& out, const Form& a) {
-	out << a.getName() << " form\n\tsigned: " << a.getSigned() << "\n\tgradeSigned: " << a.getGradeSigned() << "\n\tgradeExecute: " << a.getGradeExecute() << "\n";
+	out << a.getName() << " form\n\tsigned: " << a.getSigned() << "\n\tgradeSigned: " << a.getGradeSigned() << "\n\tgradeExecute: " << a.getGradeExecute();
 	return out;
 }
 
@@ -60,10 +60,10 @@ const std::string Form::getName() const {
 	return this->name;
 }
 
-void Form::beSigned(const Bureaucrat& b) { //점수가 충분히 높으면 Form의 상태를 Signed로 (this->s를 true로)
+void Form::beSigned(const Bureaucrat& b) {
 	if (b.getGrade() <= this->getGradeSigned() && !this->s) this->s = SIGNED;
 	else if (!this->s) throw GradeTooLowException();
-	else throw std::runtime_error("The form has been already signed\n");
+	else throw std::runtime_error("The form has been already signed.\n");
 }
 
 /* -------------------------------------------------------------------------- */

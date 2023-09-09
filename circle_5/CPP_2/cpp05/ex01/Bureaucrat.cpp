@@ -8,14 +8,24 @@ Bureaucrat::Bureaucrat() : name("Default"), grade(1) {
 }
 
 Bureaucrat::Bureaucrat(unsigned int _grade) : name("Default") {
-	this->setGrade(_grade);
+	try {
+		this->setGrade(_grade);
+	} catch (std::exception& e) {
+		std::cout << this->name << ": Input Error: " << e.what();
+		std::exit(EXIT_FAILURE);
+	}
 }
 
 Bureaucrat::Bureaucrat(const std::string _name) : name(_name), grade(1) {
 }
 
 Bureaucrat::Bureaucrat(const std::string _name, unsigned int _grade) : name(_name) {
-	this->setGrade(_grade);
+	try {
+		this->setGrade(_grade);
+	} catch (std::exception& e) {
+		std::cout << this->name << ": Input Error: " << e.what();
+		std::exit(EXIT_FAILURE);
+	}
 }
 
 Bureaucrat::Bureaucrat(const Bureaucrat& a) : name(a.name) {
@@ -39,7 +49,7 @@ Bureaucrat& Bureaucrat::operator= (const Bureaucrat& a) {
 }
 
 std::ostream& operator<< (std::ostream& out, const Bureaucrat& a) {
-	out << a.getName() << ", bureaucrat grade " << a.getGrade() << ".\n";
+	out << a.getName() << ", bureaucrat grade " << a.getGrade() << ".";
 	return out;
 }
 
@@ -76,7 +86,7 @@ void Bureaucrat::decrementGrade(unsigned int n) {
 	}
 }
 
-void Bureaucrat::signForm(Form& f) { //Form이 Signed되면(besigned) 메세지 출력 / Signed되지 않으면 다른 메세지 출력
+void Bureaucrat::signForm(Form& f) {
 	try {
 		f.beSigned(*this);
 		std::cout << this->name << " signed " << f.getName() << ".\n";
