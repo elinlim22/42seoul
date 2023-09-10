@@ -3,12 +3,54 @@
 int main(int argc, char* argv[]) {
 	std::string input = std::string(argv[1]);
 	ScalarConverter C;
+	char returnChar = 0;
+	int returnInt = 0;
+	float returnFloat = 0;
+	double returnDouble = 0;
 
 	/*
-		1. 판단 -> 리턴?플래그?
+		1. 판단 -> 플래그?
 		2. 출력할 수 없는 값들 예외처리
 		3. 값으로 모두 static cast
 
 	*/
+
+	try {
+		C.checkType(input);
+		/*
+			출력할 수 없는 값들 예외처리
+		*/
+		switch (C.getFlag()) {
+			case CFLAG:
+				returnChar = C.convertToChar(input);
+				break ;
+			case IFLAG:
+				returnInt = C.convertToInt(input);
+				break ;
+			case FFLAG:
+				returnFloat = C.convertToFloat(input);
+				break ;
+			case DFLAG:
+				returnDouble = C.convertToDouble(input);
+				break ;
+			default:
+				throw std::runtime_error("Nothing flagged");
+		}
+		/*
+			값으로 모두 static cast
+			주어진 것 : flag, 변수4개
+			흐름 : 플래그에 맞게 ... 어...
+		*/
+	} catch (std::exception& e) {
+		std::cout << "Error: " << e.what() << std::endl;
+		std::exit(EXIT_FAILURE);
+	}
+
+	std::cout << "char: " << returnChar << std::endl;
+	std::cout << "int: " << returnInt << std::endl;
+	std::cout << "float: " << returnFloat << std::endl;
+	std::cout << "double: " << returnDouble << std::endl;
+
+	return 0;
 
 }
