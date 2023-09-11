@@ -4,6 +4,13 @@
 /*                                Constructors                                */
 /* -------------------------------------------------------------------------- */
 ScalarConverter::ScalarConverter() : flag(0) {
+	list[0] = "0";
+	list[1] = "-inff";
+	list[2] = "+inff";
+	list[3] = "nanf";
+	list[4] = "-inf";
+	list[5] = "+inf";
+	list[6] = "nan";
 }
 
 ScalarConverter::ScalarConverter(const ScalarConverter& a) {
@@ -27,17 +34,17 @@ ScalarConverter& ScalarConverter::operator= (const ScalarConverter& a) {
 /* -------------------------------------------------------------------------- */
 /*                              Member functions                              */
 /* -------------------------------------------------------------------------- */
+void ScalarConverter::checkPrint(const std::string& source) const {
+	// switch ()
+}
+
 void ScalarConverter::checkType(const std::string& source) {
 	if (source.length() == 1 && !isdigit(source[0])) this->flag = CFLAG;
 	else {
-		std::istringstream iss(source);
-		float res;
-		if (iss >> res) {
-			if (!iss.fail() && source.find('f') != std::string::npos) this->flag = FFLAG;
-			else if (!iss.fail()) this->flag = IFLAG;
+		if (source.find('.') != std::string::npos) {
+			if (source.find('f') != std::string::npos) this->flag = FFLAG;
 			else this->flag = DFLAG;
-		}
-		else throw detectError();
+		} else this->flag = IFLAG;
 	}
 }
 
@@ -57,7 +64,10 @@ int ScalarConverter::convertToInt(const std::string& source) {
 
 float ScalarConverter::convertToFloat(const std::string& source) {
 	float ret;
-	std::istringstream iss(source);
+	std::string strWithoutF = source;
+	size_t fPosition = strWithoutF.find('f');
+	if (fPosition != std::string::npos)	strWithoutF.erase(fPosition, 1);
+	std::istringstream iss(strWithoutF);
 	iss >> ret;
 	return ret;
 }
@@ -73,5 +83,5 @@ double ScalarConverter::convertToDouble(const std::string& source) {
 /*                               Exception class                              */
 /* -------------------------------------------------------------------------- */
 const char* ScalarConverter::detectError::what() const throw() {
-	std::cout << "Cannot detect type" << std::endl;
+	return ("Cannot detect type");
 }

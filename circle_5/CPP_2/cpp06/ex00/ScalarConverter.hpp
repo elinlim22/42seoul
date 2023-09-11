@@ -14,6 +14,7 @@
 class ScalarConverter {
 	private:
 		int flag;
+		std::string list[7];
 	public:
 		// Constructors
 		ScalarConverter();
@@ -23,6 +24,7 @@ class ScalarConverter {
 		// Operator overloaded
 		ScalarConverter& operator= (const ScalarConverter& a);
 		// Member functions
+		void checkPrint(const std::string& source) const;
 		void checkType(const std::string& source);
 		int getFlag() const;
 		static char convertToChar(const std::string& source);
