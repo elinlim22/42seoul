@@ -14,7 +14,14 @@
 class ScalarConverter {
 	private:
 		int flag;
-		std::string list[7];
+		char returnChar;
+		int returnInt;
+		float returnFloat;
+		double returnDouble;
+		void convertToChar(const std::string& source);
+		void convertToInt(const std::string& source);
+		void convertToFloat(const std::string& source);
+		void convertToDouble(const std::string& source);
 	public:
 		// Constructors
 		ScalarConverter();
@@ -24,15 +31,25 @@ class ScalarConverter {
 		// Operator overloaded
 		ScalarConverter& operator= (const ScalarConverter& a);
 		// Member functions
-		void checkPrint(const std::string& source) const;
+		// void checkPrint(const std::string& source) const;
 		void checkType(const std::string& source);
+		void doCast(const std::string& source);
 		int getFlag() const;
-		static char convertToChar(const std::string& source);
-		static int convertToInt(const std::string& source);
-		static float convertToFloat(const std::string& source);
-		static double convertToDouble(const std::string& source);
+		void printValue() const;
 		// Exception class
 		class detectError : public std::exception {
+			public:
+				const char* what() const throw();
+		};
+		class Nonprintable : public std::exception {
+			public:
+				const char* what() const throw();
+		};
+		class InfinityPrint : public std::exception {
+			public:
+				const char* what() const throw();
+		};
+		class NanPrint : public std::exception {
 			public:
 				const char* what() const throw();
 		};

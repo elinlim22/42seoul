@@ -4,13 +4,7 @@
 /*                                Constructors                                */
 /* -------------------------------------------------------------------------- */
 ScalarConverter::ScalarConverter() : flag(0) {
-	list[0] = "0";
-	list[1] = "-inff";
-	list[2] = "+inff";
-	list[3] = "nanf";
-	list[4] = "-inf";
-	list[5] = "+inf";
-	list[6] = "nan";
+
 }
 
 ScalarConverter::ScalarConverter(const ScalarConverter& a) {
@@ -34,9 +28,15 @@ ScalarConverter& ScalarConverter::operator= (const ScalarConverter& a) {
 /* -------------------------------------------------------------------------- */
 /*                              Member functions                              */
 /* -------------------------------------------------------------------------- */
-void ScalarConverter::checkPrint(const std::string& source) const {
-	// switch ()
-}
+// void ScalarConverter::checkPrint(const std::string& source) const {
+// 	try {
+// 		if (source == list[0]) throw Nonprintable();
+// 		else if (source == list[1] || source == list[2] || source == list[4] || source == list[5]) throw InfinityPrint();
+// 		else if (source == list[3] || source == list[6]) throw NanPrint();
+// 	} catch (std::exception& e) {
+// 		std::cout << e.what() << std::endl;
+// 	}
+// }
 
 void ScalarConverter::checkType(const std::string& source) {
 	if (source.length() == 1 && !isdigit(source[0])) this->flag = CFLAG;
@@ -46,6 +46,31 @@ void ScalarConverter::checkType(const std::string& source) {
 			else this->flag = DFLAG;
 		} else this->flag = IFLAG;
 	}
+
+}
+
+void ScalarConverter::doCast(const std::string& source) {
+	try {
+		switch (getFlag()) {
+			case CFLAG:
+				convertToChar(source);
+				break ;
+			case IFLAG:
+				convertToInt(source);
+				break ;
+			case FFLAG:
+				convertToFloat(source);
+				break ;
+			case DFLAG:
+				convertToDouble(source);
+				break ;
+			default:
+				throw std::runtime_error("Nothing flagged");
+		}
+	} catch (std::exception& e) {
+		std::cout << "Error: " << e.what() << "\n";
+		std::exit(EXIT_FAILURE);
+	}
 }
 
 int ScalarConverter::getFlag() const {
@@ -53,30 +78,59 @@ int ScalarConverter::getFlag() const {
 }
 
 
-char ScalarConverter::convertToChar(const std::string& source) {
-	return source[0];
+void ScalarConverter::convertToChar(const std::string& source) {
+	this->returnChar = source[0];
+	// throw : x
+	this->returnInt = static_cast<int>(returnChar);
+	this->returnFloat = static_cast<float>(returnChar);
+	this->returnDouble = static_cast<double>(returnChar);
 }
 
-int ScalarConverter::convertToInt(const std::string& source) {
-	int ret = std::atoi(source.c_str());
-	return ret;
+void ScalarConverter::convertToInt(const std::string& source) {
+	this->returnInt = std::atoi(source.c_str());
+	// throw : x
+	if (returnInt == 0) throw Nonprintable();
+	else this->returnChar = static_cast<char>(returnInt);
+	this->returnFloat = static_cast<float>(returnInt);
+	this->returnDouble = static_cast<double>(returnInt);
 }
 
-float ScalarConverter::convertToFloat(const std::string& source) {
+void ScalarConverter::convertToFloat(const std::string& source) {
+	if (source == "nan") throw NanPrint();
+	else if (source == "+inff" || source == "-inff") throw InfinityPrint();
 	float ret;
+
 	std::string strWithoutF = source;
 	size_t fPosition = strWithoutF.find('f');
 	if (fPosition != std::string::npos)	strWithoutF.erase(fPosition, 1);
+
 	std::istringstream iss(strWithoutF);
 	iss >> ret;
-	return ret;
+	this->returnFloat = ret;
+	// throw : Infinity, nanf --> 적용시 함수 빠져나가는데..
+	this->returnInt = static_cast<int>(returnFloat);
+	this->returnDouble = static_cast<double>(returnFloat);
+	if (returnInt == 0) throw Nonprintable(); //?
+	else this->returnChar = static_cast<char>(returnInt);
 }
 
-double ScalarConverter::convertToDouble(const std::string& source) {
+void ScalarConverter::convertToDouble(const std::string& source) {
 	double ret;
 	std::istringstream iss(source);
 	iss >> ret;
-	return ret;
+	this->returnDouble = ret;
+	// throw : Infinity, nan --> 함수 빠져나가는 문제 어떡함
+	this->returnInt = static_cast<int>(returnDouble);
+	this->returnFloat = static_cast<float>(returnDouble);
+	if (returnInt == 0) throw Nonprintable(); //?
+	else this->returnChar = static_cast<char>(returnInt);
+}
+
+void ScalarConverter::printValue() const {
+	std::cout << "Char: " << this->returnChar << std::endl;
+	std::cout << "Int: " << this->returnInt << std::endl;
+	std::cout << "Float: " << this->returnFloat << std::endl;
+	std::cout << "Double: " << this->returnDouble << std::endl;
 }
 
 /* -------------------------------------------------------------------------- */
@@ -85,3 +139,16 @@ double ScalarConverter::convertToDouble(const std::string& source) {
 const char* ScalarConverter::detectError::what() const throw() {
 	return ("Cannot detect type");
 }
+
+const char* ScalarConverter::Nonprintable::what() const throw() {
+	return ("Non displayable");
+}
+
+const char* ScalarConverter::InfinityPrint::what() const throw() {
+	return ("Infinity");
+}
+
+const char* ScalarConverter::NanPrint::what() const throw() {
+	return ("Impossible");
+}
+
