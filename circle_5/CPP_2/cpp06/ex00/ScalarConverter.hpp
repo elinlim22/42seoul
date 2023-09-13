@@ -6,10 +6,15 @@
 #define FFLAG (1 << 2)
 #define DFLAG (1 << 3)
 
+#define NANP 0
+#define P_INFP 1
+#define N_INFP 2
+
 #include <iostream>
 #include <sstream>
 #include <exception>
 #include <cctype>
+#include <iomanip>
 
 class ScalarConverter {
 	private:
@@ -37,21 +42,23 @@ class ScalarConverter {
 		int getFlag() const;
 		void printValue() const;
 		// Exception class
-		class detectError : public std::exception {
+		// class detectError : public std::exception {
+		// 	public:
+		// 		const char* what() const throw();
+		// };
+		// class Nonprintable : public std::exception {
+		// 	public:
+		// 		const char* what() const throw();
+		// };
+		// class InfinityPrint : public std::exception {
+		// 	public:
+		// 		void
+		// 		// const char* what() const throw();
+		// };
+		class printException : public std::exception {
 			public:
-				const char* what() const throw();
-		};
-		class Nonprintable : public std::exception {
-			public:
-				const char* what() const throw();
-		};
-		class InfinityPrint : public std::exception {
-			public:
-				const char* what() const throw();
-		};
-		class NanPrint : public std::exception {
-			public:
-				const char* what() const throw();
+				void ePrint(int exType) throw();
+				// const char* what() const throw();
 		};
 };
 

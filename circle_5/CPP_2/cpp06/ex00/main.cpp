@@ -34,11 +34,11 @@ int main(int argc, char* argv[]) {
 	try {
 		// C.checkPrint(input);
 		C.checkType(input);
+		std::cout << "----Type : " << printFlag(C.getFlag()) << "----\n";
 		C.doCast(input);
 		/*
 			출력할 수 없는 값들 예외처리
 		*/
-		std::cout << "----Type : " << printFlag(C.getFlag()) << "----\n";
 		// switch (C.getFlag()) {
 		// 	case CFLAG:
 		// 		C.returnChar = C.convertToChar(input);
@@ -60,9 +60,9 @@ int main(int argc, char* argv[]) {
 			주어진 것 : flag, 변수4개
 			흐름 : 플래그에 맞게 ... 어... Double로 먼저 받기?
 		*/
-	} catch (std::exception& e) {
-		std::cout << "Error: " << e.what() << std::endl;
-		std::exit(EXIT_FAILURE);
+	} catch (ScalarConverter::printException& e) {
+		e.ePrint();
+		// std::exit(EXIT_FAILURE);
 	}
 
 	C.printValue();
