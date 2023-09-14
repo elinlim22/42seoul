@@ -1,20 +1,22 @@
 #ifndef SCALARCONVERTER_HPP
 #define SCALARCONVERTER_HPP
 
-#define CFLAG (1 << 0)
-#define IFLAG (1 << 1)
-#define FFLAG (1 << 2)
-#define DFLAG (1 << 3)
+#define CFLAG 1
+#define IFLAG 2
+#define FFLAG 3
+#define DFLAG 4
 
-#define NANP 0
-#define P_INFP 1
-#define N_INFP 2
+#define NANP 0 // NaN print
+#define P_INFP 1 // Positive infinity print
+#define N_INFP 2 // Negative infinity print
 
 #include <iostream>
-#include <sstream>
-#include <exception>
-#include <cctype>
-#include <iomanip>
+#include <sstream> // std::istringstream
+#include <exception> // std::exception
+#include <cctype> // isdigit
+#include <iomanip> // std::setprecision
+#include <cfloat> // FLT_MAX
+#include <cstdlib> // std::atoi
 
 class ScalarConverter {
 	private:
@@ -32,34 +34,25 @@ class ScalarConverter {
 		ScalarConverter();
 		ScalarConverter(const ScalarConverter& a);
 		// Destructor
-		~ScalarConverter();
+		virtual ~ScalarConverter();
 		// Operator overloaded
 		ScalarConverter& operator= (const ScalarConverter& a);
 		// Member functions
-		// void checkPrint(const std::string& source) const;
 		void checkType(const std::string& source);
 		void doCast(const std::string& source);
 		int getFlag() const;
 		void printValue() const;
 		// Exception class
-		// class detectError : public std::exception {
-		// 	public:
-		// 		const char* what() const throw();
-		// };
-		// class Nonprintable : public std::exception {
-		// 	public:
-		// 		const char* what() const throw();
-		// };
-		// class InfinityPrint : public std::exception {
-		// 	public:
-		// 		void
-		// 		// const char* what() const throw();
-		// };
 		class printException : public std::exception {
+			private:
+				int exType;
 			public:
-				void ePrint(int exType) throw();
-				// const char* what() const throw();
+				printException(int _exType);
+				void exPrint() throw();
 		};
 };
+
+bool isInt(const std::string& source);
+bool isFloatOrDouble(const std::string& input);
 
 #endif
