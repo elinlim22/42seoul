@@ -200,22 +200,18 @@ bool isFloatOrDouble(const std::string& input) {
 	if (fPosition != std::string::npos && strWithoutF[strWithoutF.length() - 1] == 'f')	strWithoutF.erase(fPosition, 1);
 
 	std::istringstream iss(strWithoutF);
-	float f;
-	double d;
 
 	// try float
+	float f;
 	iss >> f;
-	if (!iss.fail() && iss.eof()) {
-		return true;
-	}
+	if (!iss.fail() && iss.eof()) return true;
 
 	// else try double
+	double d;
 	iss.clear();
 	iss.str(input);
 	iss >> d;
-	if (!iss.fail() && iss.eof()) {
-		return true;
-	}
+	if (!iss.fail() && iss.eof()) return true;
 
 	return false;
 }
