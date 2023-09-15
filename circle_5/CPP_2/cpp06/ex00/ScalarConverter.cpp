@@ -1,14 +1,18 @@
 #include "ScalarConverter.hpp"
 
+int ScalarConverter::flag = 0;
+char ScalarConverter::returnChar = 0;
+int ScalarConverter::returnInt = 0;
+float ScalarConverter::returnFloat = 0.0f;
+double ScalarConverter::returnDouble = 0.0;
+
 /* -------------------------------------------------------------------------- */
 /*                                Constructors                                */
 /* -------------------------------------------------------------------------- */
-ScalarConverter::ScalarConverter() : flag(0), returnChar(0), returnInt(0), returnFloat(0), returnDouble(0) {
-
-}
+ScalarConverter::ScalarConverter() {}
 
 ScalarConverter::ScalarConverter(const ScalarConverter& a) {
-	*this = a;
+	static_cast<void>(a);
 }
 
 /* -------------------------------------------------------------------------- */
@@ -20,79 +24,25 @@ ScalarConverter::~ScalarConverter() {}
 /*                             Operator overloaded                            */
 /* -------------------------------------------------------------------------- */
 ScalarConverter& ScalarConverter::operator= (const ScalarConverter& a) {
-	if (this != &a) {
-		this->flag = a.flag;
-		this->returnChar = a.returnChar;
-		this->returnInt = a.returnInt;
-		this->returnFloat = a.returnFloat;
-		this->returnDouble = a.returnDouble;
-	}
+	static_cast<void>(a);
 	return *this;
 }
+
 /* -------------------------------------------------------------------------- */
 /*                              Member functions                              */
 /* -------------------------------------------------------------------------- */
-void ScalarConverter::checkType(const std::string& source) {
-	// Case literals - Char
-	if (source.length() == 1 && !isdigit(source[0])) this->flag = CFLAG;
 
-	// Case nan, inf, inff
-	else if (source == "nanf" || source == "+inff" || source == "-inff") this->flag = FFLAG;
-	else if (source == "nan" || source == "+inf" || source == "-inf") this->flag = DFLAG;
-
-	// Case ltierals - Float, Double
-	else if (source.find('.') != std::string::npos && isFloatOrDouble(source)) {
-		if (source[source.length() - 1] == 'f') this->flag = FFLAG;
-		else this->flag = DFLAG;
-	}
-
-	// Case literals - Int
-	else if (isInt(source))this->flag = IFLAG;
-}
-
-void ScalarConverter::doCast(const std::string& source) {
-	try {
-		switch (getFlag()) {
-			case CFLAG:
-				convertToChar(source);
-				break ;
-			case IFLAG:
-				convertToInt(source);
-				break ;
-			case FFLAG:
-				convertToFloat(source);
-				break ;
-			case DFLAG:
-				convertToDouble(source);
-				break ;
-			default:
-				throw std::runtime_error("Nothing flagged");
-		}
-	} catch (ScalarConverter::printException& e) {
-		e.exPrint();
-	} catch (std::exception& e) {
-		std::cerr << "Error: " << e.what() << std::endl;
-		std::exit(EXIT_FAILURE);
-	}
-}
-
-int ScalarConverter::getFlag() const {
-	return this->flag;
-}
-
-
+/* --------------------------------- private -------------------------------- */
 void ScalarConverter::convertToChar(const std::string& source) {
-	this->returnChar = source[0];
-	this->returnInt = static_cast<int>(returnChar);
-	this->returnFloat = static_cast<float>(returnChar);
-	this->returnDouble = static_cast<double>(returnChar);
+	returnChar = source[0];
 }
 
 void ScalarConverter::convertToInt(const std::string& source) {
-	this->returnInt = std::atoi(source.c_str());
-	this->returnChar = static_cast<char>(returnInt);
-	this->returnFloat = static_cast<float>(returnInt);
-	this->returnDouble = static_cast<double>(returnInt);
+	int i;
+	std::istringstream iss(source);
+	iss >> i;
+	if (!iss.fail() && iss.eof()) returnInt = i;
+	else throw std::runtime_error("invalid input");
 }
 
 void ScalarConverter::convertToFloat(const std::string& source) {
@@ -108,13 +58,11 @@ void ScalarConverter::convertToFloat(const std::string& source) {
 	size_t fPosition = strWithoutF.find('f');
 	if (fPosition != std::string::npos)	strWithoutF.erase(fPosition, 1);
 
-	float ret;
+	float f;
 	std::istringstream iss(strWithoutF);
-	iss >> ret;
-	this->returnFloat = ret;
-	this->returnInt = static_cast<int>(returnFloat);
-	this->returnDouble = static_cast<double>(returnFloat);
-	this->returnChar = static_cast<char>(returnFloat);
+	iss >> f;
+	if (!iss.fail() && iss.eof()) returnFloat = f;
+	else throw std::runtime_error("invalid input");
 }
 
 void ScalarConverter::convertToDouble(const std::string& source) {
@@ -123,38 +71,149 @@ void ScalarConverter::convertToDouble(const std::string& source) {
 	else if (source.find("inf") != std::string::npos) {
 		if (source[0] == '+') throw printException(P_INFP);
 		else if (source[0] == '-') throw printException(N_INFP);
-		else throw std::runtime_error("Wrong input");
 	}
 
-	double ret;
+	double d;
 	std::istringstream iss(source);
-	iss >> ret;
-	this->returnDouble = ret;
-	this->returnInt = static_cast<int>(returnDouble);
-	this->returnFloat = static_cast<float>(returnDouble);
-	this->returnChar = static_cast<char>(returnDouble);
+	iss >> d;
+	if (!iss.fail() && iss.eof()) returnDouble = d;
+	else throw std::runtime_error("invalid input");
 }
 
-void ScalarConverter::printValue() const {
-	if (std::isprint(this->returnChar)) std::cout << "Char: " << this->returnChar << std::endl;
-	else std::cout << "Char: Non displayable" << std::endl;
-	std::cout << "Int: " << this->returnInt << std::endl;
-	std::cout << std::fixed << std::setprecision(1) << "Float: ";
-	if (returnDouble >= 8388607 && returnDouble <= FLT_MAX)
-		std::cout << this->returnDouble << "f" << std::endl;
-	else
-		std::cout << this->returnFloat << "f" << std::endl;
-	std::cout << std::fixed << std::setprecision(1) << "Double: " << this->returnDouble << std::endl;
+/* --------------------------------- public --------------------------------- */
+void ScalarConverter::checkType(const std::string& source) {
+	try {
+		// Case literals - Char
+		if (source.length() == 1 && !isdigit(source[0])) flag = CFLAG;
+
+		// Case nan, inf, inff
+		else if (source == "nanf" || source == "+inff" || source == "-inff") flag = FFLAG;
+		else if (source == "nan" || source == "+inf" || source == "-inf") flag = DFLAG;
+
+		// Case ltierals - Float, Double
+		else if (source.find('.') != std::string::npos && isFloatOrDouble(source)) {
+			if (source[source.length() - 1] == 'f') flag = FFLAG;
+			else flag = DFLAG;
+		}
+
+		// Case literals - Int
+		else if (isAllDigit(source))flag = IFLAG;
+		else throw std::runtime_error("Nothing flagged");
+	} catch (std::exception& e) {
+		std::cerr << "Error: " << e.what() << std::endl;
+		std::exit(EXIT_FAILURE);
+	}
+}
+
+void ScalarConverter::convert(const std::string& source) {
+	try {
+		switch (getFlag()) {
+			case CFLAG:
+				convertToChar(source);
+				break ;
+			case IFLAG:
+				convertToInt(source);
+				break ;
+			case FFLAG:
+				convertToFloat(source);
+				break ;
+			case DFLAG:
+				convertToDouble(source);
+				break ;
+		}
+		doCast();
+	} catch (printException& e) {
+		e.exPrint();
+	} catch (std::exception& e) {
+		std::cerr << "Error: " << e.what() << std::endl;
+		std::exit(EXIT_FAILURE);
+	}
+}
+
+void ScalarConverter::doCast() {
+	switch (getFlag()) {
+		case CFLAG:
+			returnInt = static_cast<int>(returnChar);
+			returnFloat = static_cast<float>(returnChar);
+			returnDouble = static_cast<double>(returnChar);
+			break ;
+		case IFLAG:
+			returnChar = static_cast<char>(returnInt);
+			returnFloat = static_cast<float>(returnInt);
+			returnDouble = static_cast<double>(returnInt);
+			break ;
+		case FFLAG:
+			returnChar = static_cast<char>(returnFloat);
+			returnInt = static_cast<int>(returnFloat);
+			returnDouble = static_cast<double>(returnFloat);
+			break ;
+		case DFLAG:
+			returnChar = static_cast<char>(returnDouble);
+			returnInt = static_cast<int>(returnDouble);
+			returnFloat = static_cast<float>(returnDouble);
+			break ;
+	}
+}
+
+int ScalarConverter::getFlag() {
+	return flag;
+}
+
+void ScalarConverter::printValue(std::string input) {
+	std::cout << "Char: ";
+	{
+		// Char value print
+		if (returnInt < -128 || returnInt > 127) std::cout << "impossible" << std::endl;
+		else if (std::isprint(returnChar)) std::cout << returnChar << std::endl;
+		else std::cout << "Non displayable" << std::endl;
+	}
+	std::cout << "Int: ";
+	{
+		// Int value print
+		if (INT_MIN <= returnDouble && returnDouble <= INT_MAX)
+			std::cout << returnInt << std::endl;
+		else std::cout << "impossible" << std::endl;
+	}
+	std::cout << "Float: ";
+	{
+		// Float value print
+		if (8388607 <= returnDouble && returnDouble <= FLT_MAX)
+			std::cout << std::fixed << std::setprecision(1) << returnDouble << "f" << std::endl;
+		else if (FLT_MIN <= returnDouble && returnDouble <= 8388607)
+			std::cout << std::fixed << std::setprecision(1) << returnFloat << "f" << std::endl;
+		else
+			std::cout << "impossible" << std::endl;
+	}
+	std::cout << "Double: ";
+	{
+		// Double value print
+		std::ostringstream convertedDouble;
+			convertedDouble << std::fixed << std::setprecision(1) << returnDouble;
+		std::string dtos = convertedDouble.str();
+
+			if (dtos == input) std::cout << dtos << std::endl;
+		else std::cout << "impossible" << std::endl;
+	}
+	// if (returnInt < -128 || returnInt > 127) std::cout << "Char: impossible" << std::endl;
+	// else if (std::isprint(returnChar)) std::cout << "Char: " << returnChar << std::endl;
+	// else std::cout << "Char: Non displayable" << std::endl;
+	// std::cout << "Int: " << returnInt << std::endl;
+	// std::cout << std::fixed << std::setprecision(1) << "Float: ";
+	// if (returnDouble >= 8388607 && returnDouble <= FLT_MAX)
+	// 	std::cout << returnDouble << "f" << std::endl;
+	// else
+	// 	std::cout << returnFloat << "f" << std::endl;
+	// std::cout << std::fixed << std::setprecision(1) << "Double: " << returnDouble << std::endl;
 }
 
 /* -------------------------------------------------------------------------- */
 /*                               Exception class                              */
 /* -------------------------------------------------------------------------- */
-ScalarConverter::printException::printException(int _exType) {
+printException::printException(int _exType) {
 	this->exType = _exType;
 }
 
-void ScalarConverter::printException::exPrint() throw() {
+void printException::exPrint() throw() {
 	switch (this->exType) {
 		case NANP:
 			std::cout << "Char: impossible" << std::endl;
@@ -174,6 +233,7 @@ void ScalarConverter::printException::exPrint() throw() {
 			std::cout << "Float: -inff" << std::endl;
 			std::cout << "Double: -inf" << std::endl;
 			std::exit(EXIT_SUCCESS);
+		// case OVER:
 		default:
 			std::cerr << "Error: Exception type not specified" << std::endl;
 			std::exit(EXIT_FAILURE);
@@ -183,7 +243,7 @@ void ScalarConverter::printException::exPrint() throw() {
 /* -------------------------------------------------------------------------- */
 /*                               Other function                               */
 /* -------------------------------------------------------------------------- */
-bool isInt(const std::string& source) {
+bool isAllDigit(const std::string& source) {
 	size_t i = 0;
 	if (source[0] == '-' || source[0] == '+') ++i;
 	for (; i < source.length(); ++i) {
@@ -194,24 +254,33 @@ bool isInt(const std::string& source) {
 
 bool isFloatOrDouble(const std::string& input) {
 
-	// removing 'f'
-	std::string strWithoutF = input;
-	size_t fPosition = strWithoutF.find('f');
-	if (fPosition != std::string::npos && strWithoutF[strWithoutF.length() - 1] == 'f')	strWithoutF.erase(fPosition, 1);
+	// removing 'f' and '.'
+	std::string inputWithoutFandDot = input;
+	size_t fPosition = input.find('f');
+	size_t dotPosition = input.find('.');
 
-	std::istringstream iss(strWithoutF);
+	// 'f' exists && 'f' positions at the last of the string && '.' positions before 'f'
+	if (fPosition != std::string::npos && input[input.length() - 1] == 'f' && (fPosition - dotPosition) >= 2) {
+		inputWithoutFandDot.erase(fPosition, 1);
+	}
+	if (input.find('.') != std::string::npos && input[0] != '.') { // '.' exists && '.' does not positions at the first of the string
+		inputWithoutFandDot.erase(dotPosition, 1);
+	}
+	if (isAllDigit(inputWithoutFandDot)) return true;
+
+	// std::istringstream iss(inputWithoutFandDot);
 
 	// try float
-	float f;
-	iss >> f;
-	if (!iss.fail() && iss.eof()) return true;
+	// float f;
+	// iss >> f;
+	// if (!iss.fail() && iss.eof()) return true;
 
 	// else try double
-	double d;
-	iss.clear();
-	iss.str(input);
-	iss >> d;
-	if (!iss.fail() && iss.eof()) return true;
+	// double d;
+	// iss.clear();
+	// iss.str(input);
+	// iss >> d;
+	// if (!iss.fail() && iss.eof()) return true;
 
 	return false;
 }

@@ -9,6 +9,7 @@
 #define NANP 0 // NaN print
 #define P_INFP 1 // Positive infinity print
 #define N_INFP 2 // Negative infinity print
+// #define OVER 3
 
 #include <iostream>
 #include <sstream> // std::istringstream
@@ -20,16 +21,15 @@
 
 class ScalarConverter {
 	private:
-		int flag;
-		char returnChar;
-		int returnInt;
-		float returnFloat;
-		double returnDouble;
-		void convertToChar(const std::string& source);
-		void convertToInt(const std::string& source);
-		void convertToFloat(const std::string& source);
-		void convertToDouble(const std::string& source);
-	public:
+		static int flag;
+		static char returnChar;
+		static int returnInt;
+		static float returnFloat;
+		static double returnDouble;
+		static void convertToChar(const std::string& source);
+		static void convertToInt(const std::string& source);
+		static void convertToFloat(const std::string& source);
+		static void convertToDouble(const std::string& source);
 		// Constructors
 		ScalarConverter();
 		ScalarConverter(const ScalarConverter& a);
@@ -37,22 +37,26 @@ class ScalarConverter {
 		virtual ~ScalarConverter();
 		// Operator overloaded
 		ScalarConverter& operator= (const ScalarConverter& a);
+	public:
 		// Member functions
-		void checkType(const std::string& source);
-		void doCast(const std::string& source);
-		int getFlag() const;
-		void printValue() const;
-		// Exception class
-		class printException : public std::exception {
-			private:
-				int exType;
-			public:
-				printException(int _exType);
-				void exPrint() throw();
-		};
+		static void checkType(const std::string& source);
+		static void convert(const std::string& source);
+		static void doCast();
+		static int getFlag();
+		static void printValue(std::string input);
+
 };
 
-bool isInt(const std::string& source);
+bool isAllDigit(const std::string& source);
 bool isFloatOrDouble(const std::string& input);
+
+// Exception class
+class printException {
+	private:
+		int exType;
+	public:
+		printException(int _exType);
+		void exPrint() throw();
+};
 
 #endif
