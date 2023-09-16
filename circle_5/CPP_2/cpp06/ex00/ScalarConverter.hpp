@@ -9,7 +9,6 @@
 #define NANP 0 // NaN print
 #define P_INFP 1 // Positive infinity print
 #define N_INFP 2 // Negative infinity print
-// #define OVER 3
 
 #include <iostream>
 #include <sstream> // std::istringstream
@@ -30,6 +29,7 @@ class ScalarConverter {
 		static void convertToInt(const std::string& source);
 		static void convertToFloat(const std::string& source);
 		static void convertToDouble(const std::string& source);
+		static void doCast();
 		// Constructors
 		ScalarConverter();
 		ScalarConverter(const ScalarConverter& a);
@@ -38,10 +38,8 @@ class ScalarConverter {
 		// Operator overloaded
 		ScalarConverter& operator= (const ScalarConverter& a);
 	public:
-		// Member functions
 		static void checkType(const std::string& source);
 		static void convert(const std::string& source);
-		static void doCast();
 		static int getFlag();
 		static void printValue(std::string input);
 

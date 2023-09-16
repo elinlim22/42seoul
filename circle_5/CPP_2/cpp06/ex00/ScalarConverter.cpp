@@ -42,7 +42,7 @@ void ScalarConverter::convertToInt(const std::string& source) {
 	std::istringstream iss(source);
 	iss >> i;
 	if (!iss.fail() && iss.eof()) returnInt = i;
-	else throw std::runtime_error("invalid input");
+	else throw std::runtime_error("conversion failed");
 }
 
 void ScalarConverter::convertToFloat(const std::string& source) {
@@ -62,7 +62,7 @@ void ScalarConverter::convertToFloat(const std::string& source) {
 	std::istringstream iss(strWithoutF);
 	iss >> f;
 	if (!iss.fail() && iss.eof()) returnFloat = f;
-	else throw std::runtime_error("invalid input");
+	else throw std::runtime_error("conversion failed");
 }
 
 void ScalarConverter::convertToDouble(const std::string& source) {
@@ -77,7 +77,32 @@ void ScalarConverter::convertToDouble(const std::string& source) {
 	std::istringstream iss(source);
 	iss >> d;
 	if (!iss.fail() && iss.eof()) returnDouble = d;
-	else throw std::runtime_error("invalid input");
+	else throw std::runtime_error("conversion failed");
+}
+
+void ScalarConverter::doCast() {
+	switch (getFlag()) {
+		case CFLAG:
+			returnInt = static_cast<int>(returnChar);
+			returnFloat = static_cast<float>(returnChar);
+			returnDouble = static_cast<double>(returnChar);
+			break ;
+		case IFLAG:
+			returnChar = static_cast<char>(returnInt);
+			returnFloat = static_cast<float>(returnInt);
+			returnDouble = static_cast<double>(returnInt);
+			break ;
+		case FFLAG:
+			returnChar = static_cast<char>(returnFloat);
+			returnInt = static_cast<int>(returnFloat);
+			returnDouble = static_cast<double>(returnFloat);
+			break ;
+		case DFLAG:
+			returnChar = static_cast<char>(returnDouble);
+			returnInt = static_cast<int>(returnDouble);
+			returnFloat = static_cast<float>(returnDouble);
+			break ;
+	}
 }
 
 /* --------------------------------- public --------------------------------- */
@@ -130,31 +155,6 @@ void ScalarConverter::convert(const std::string& source) {
 	}
 }
 
-void ScalarConverter::doCast() {
-	switch (getFlag()) {
-		case CFLAG:
-			returnInt = static_cast<int>(returnChar);
-			returnFloat = static_cast<float>(returnChar);
-			returnDouble = static_cast<double>(returnChar);
-			break ;
-		case IFLAG:
-			returnChar = static_cast<char>(returnInt);
-			returnFloat = static_cast<float>(returnInt);
-			returnDouble = static_cast<double>(returnInt);
-			break ;
-		case FFLAG:
-			returnChar = static_cast<char>(returnFloat);
-			returnInt = static_cast<int>(returnFloat);
-			returnDouble = static_cast<double>(returnFloat);
-			break ;
-		case DFLAG:
-			returnChar = static_cast<char>(returnDouble);
-			returnInt = static_cast<int>(returnDouble);
-			returnFloat = static_cast<float>(returnDouble);
-			break ;
-	}
-}
-
 int ScalarConverter::getFlag() {
 	return flag;
 }
@@ -194,16 +194,6 @@ void ScalarConverter::printValue(std::string input) {
 			if (dtos == input) std::cout << dtos << std::endl;
 		else std::cout << "impossible" << std::endl;
 	}
-	// if (returnInt < -128 || returnInt > 127) std::cout << "Char: impossible" << std::endl;
-	// else if (std::isprint(returnChar)) std::cout << "Char: " << returnChar << std::endl;
-	// else std::cout << "Char: Non displayable" << std::endl;
-	// std::cout << "Int: " << returnInt << std::endl;
-	// std::cout << std::fixed << std::setprecision(1) << "Float: ";
-	// if (returnDouble >= 8388607 && returnDouble <= FLT_MAX)
-	// 	std::cout << returnDouble << "f" << std::endl;
-	// else
-	// 	std::cout << returnFloat << "f" << std::endl;
-	// std::cout << std::fixed << std::setprecision(1) << "Double: " << returnDouble << std::endl;
 }
 
 /* -------------------------------------------------------------------------- */
@@ -233,7 +223,6 @@ void printException::exPrint() throw() {
 			std::cout << "Float: -inff" << std::endl;
 			std::cout << "Double: -inf" << std::endl;
 			std::exit(EXIT_SUCCESS);
-		// case OVER:
 		default:
 			std::cerr << "Error: Exception type not specified" << std::endl;
 			std::exit(EXIT_FAILURE);
@@ -267,20 +256,6 @@ bool isFloatOrDouble(const std::string& input) {
 		inputWithoutFandDot.erase(dotPosition, 1);
 	}
 	if (isAllDigit(inputWithoutFandDot)) return true;
-
-	// std::istringstream iss(inputWithoutFandDot);
-
-	// try float
-	// float f;
-	// iss >> f;
-	// if (!iss.fail() && iss.eof()) return true;
-
-	// else try double
-	// double d;
-	// iss.clear();
-	// iss.str(input);
-	// iss >> d;
-	// if (!iss.fail() && iss.eof()) return true;
 
 	return false;
 }
