@@ -4,11 +4,12 @@
 class Data {
 	private:
 		int data;
+	public:
 		Data();
 		Data(const Data& a);
 		Data& operator= (const Data& a);
 		virtual ~Data();
-	public:
+		int getData() const;
 };
 
 #endif
