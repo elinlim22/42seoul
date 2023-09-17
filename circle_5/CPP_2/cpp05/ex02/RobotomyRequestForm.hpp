@@ -13,7 +13,7 @@ class RobotomyRequestForm : public AForm {
 		RobotomyRequestForm(std::string _target);
 		RobotomyRequestForm(const RobotomyRequestForm& a);
 		//Destructor
-		~RobotomyRequestForm();
+		virtual ~RobotomyRequestForm();
 		//Operator overloaded
 		RobotomyRequestForm& operator= (const RobotomyRequestForm& a);
 		//Member functions

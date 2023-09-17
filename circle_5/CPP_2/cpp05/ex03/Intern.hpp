@@ -12,7 +12,7 @@ class Intern {
 		Intern();
 		Intern(const Intern&);
 		// Destructor
-		~Intern();
+		virtual ~Intern();
 		// Operator overloaded
 		Intern& operator= (const Intern& a);
 		// Member function

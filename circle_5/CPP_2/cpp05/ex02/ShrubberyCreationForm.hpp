@@ -12,7 +12,7 @@ class ShrubberyCreationForm : public AForm {
 		ShrubberyCreationForm(std::string _target);
 		ShrubberyCreationForm(const ShrubberyCreationForm& a);
 		//Destructor
-		~ShrubberyCreationForm();
+		virtual ~ShrubberyCreationForm();
 		//Operator overloaded
 		ShrubberyCreationForm& operator= (const ShrubberyCreationForm& a);
 		//Member functions

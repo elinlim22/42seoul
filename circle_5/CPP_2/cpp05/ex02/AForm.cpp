@@ -60,7 +60,7 @@ const std::string AForm::getName() const {
 	return this->name;
 }
 
-void AForm::beSigned(const Bureaucrat& b) { //점수가 충분히 높으면 Form의 상태를 Signed로 (this->s를 true로)
+void AForm::beSigned(const Bureaucrat& b) {
 	if (b.getGrade() <= this->getGradeSigned() && this->s == UNSIGNED) this->s = SIGNED;
 	else if (this->s == UNSIGNED) throw GradeTooLowException();
 	else throw std::runtime_error("The form has been already signed.\n");

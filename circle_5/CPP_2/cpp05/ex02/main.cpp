@@ -6,7 +6,7 @@
 int main(void) {
 	Bureaucrat Adam("Adam", 1);
 	// ShrubberyCreationForm SForm("Tree");
-	// RobotomyRequestForm RForm("타겟");
+	// RobotomyRequestForm RForm("Target");
 	PresidentialPardonForm PForm("Target");
 
 	std::cout << Adam << std::endl;

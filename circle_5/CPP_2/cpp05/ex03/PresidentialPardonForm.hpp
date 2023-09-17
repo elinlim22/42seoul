@@ -11,7 +11,7 @@ class PresidentialPardonForm : public AForm {
 		PresidentialPardonForm(std::string _target);
 		PresidentialPardonForm(const PresidentialPardonForm& a);
 		//Destructor
-		~PresidentialPardonForm();
+		virtual ~PresidentialPardonForm();
 		//Operator overloaded
 		PresidentialPardonForm& operator= (const PresidentialPardonForm& a);
 		//Member functions

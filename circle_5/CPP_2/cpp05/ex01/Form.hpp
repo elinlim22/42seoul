@@ -15,7 +15,7 @@ class Form {
 		Form(std::string _name, unsigned int _gSign, unsigned int _gExec);
 		Form(const Form& a);
 		//Destructor
-		~Form();
+		virtual ~Form();
 		//Operator overloaded
 		Form& operator= (const Form& a);
 		//Member functions

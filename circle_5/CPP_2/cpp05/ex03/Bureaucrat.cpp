@@ -86,7 +86,7 @@ void Bureaucrat::decrementGrade(unsigned int n) {
 	}
 }
 
-void Bureaucrat::signForm(AForm& f) { //Form이 Signed되면(besigned) 메세지 출력 / Signed되지 않으면 다른 메세지 출력
+void Bureaucrat::signForm(AForm& f) {
 	try {
 		f.beSigned(*this);
 		std::cout << this->name << " signed " << f.getName() << ".\n";
