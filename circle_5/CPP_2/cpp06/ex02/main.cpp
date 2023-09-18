@@ -4,6 +4,8 @@
 #include "Base.hpp"
 
 #include <iostream>
+#include <cstdlib>
+#include <ctime>
 
 Base* generate(void) {
 	std::srand(static_cast<unsigned int>(std::time(0)));

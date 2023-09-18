@@ -16,6 +16,7 @@
 #include <cctype> // isdigit
 #include <iomanip> // std::setprecision
 #include <cfloat> // FLT_MAX
+#include <climits> // INT_MAX
 #include <cstdlib> // std::atoi
 
 class ScalarConverter {
