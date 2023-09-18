@@ -26,7 +26,7 @@ int main(int argc, char* argv[]) {
 	ScalarConverter::checkType(input);
 	// std::cout << "----Type : " << printFlag(ScalarConverter::getFlag()) << "----\n";
 	ScalarConverter::convert(input);
-	ScalarConverter::printValue(input);
+	ScalarConverter::printValue();
 
 	return 0;
 }

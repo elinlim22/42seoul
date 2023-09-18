@@ -77,7 +77,7 @@ void ScalarConverter::convertToDouble(const std::string& source) {
 	std::istringstream iss(source);
 	iss >> d;
 	if (!iss.fail() && iss.eof()) returnDouble = d;
-	else throw std::runtime_error("conversion failed");
+	else throw printException(IMPO);
 }
 
 void ScalarConverter::doCast() {
@@ -159,12 +159,12 @@ int ScalarConverter::getFlag() {
 	return flag;
 }
 
-void ScalarConverter::printValue(std::string input) {
+void ScalarConverter::printValue() {
 	std::cout << "Char: ";
 	{
 		// Char value print
 		if (returnInt < -128 || returnInt > 127) std::cout << "impossible" << std::endl;
-		else if (std::isprint(returnChar)) std::cout << returnChar << std::endl;
+		else if (std::isprint(returnChar)) std::cout << '\'' << returnChar << '\'' << std::endl;
 		else std::cout << "Non displayable" << std::endl;
 	}
 	std::cout << "Int: ";
@@ -179,7 +179,7 @@ void ScalarConverter::printValue(std::string input) {
 		// Float value print
 		if (8388607 <= returnDouble && returnDouble <= FLT_MAX)
 			std::cout << std::fixed << std::setprecision(1) << returnDouble << "f" << std::endl;
-		else if (FLT_MIN <= returnDouble && returnDouble <= 8388607)
+		else if (returnDouble <= 8388607)
 			std::cout << std::fixed << std::setprecision(1) << returnFloat << "f" << std::endl;
 		else
 			std::cout << "impossible" << std::endl;
@@ -187,12 +187,7 @@ void ScalarConverter::printValue(std::string input) {
 	std::cout << "Double: ";
 	{
 		// Double value print
-		std::ostringstream convertedDouble;
-			convertedDouble << std::fixed << std::setprecision(1) << returnDouble;
-		std::string dtos = convertedDouble.str();
-
-			if (dtos == input) std::cout << dtos << std::endl;
-		else std::cout << "impossible" << std::endl;
+		std::cout << std::fixed << std::setprecision(1) << returnDouble << std::endl;
 	}
 }
 
@@ -222,6 +217,12 @@ void printException::exPrint() throw() {
 			std::cout << "Int: impossible" << std::endl;
 			std::cout << "Float: -inff" << std::endl;
 			std::cout << "Double: -inf" << std::endl;
+			std::exit(EXIT_SUCCESS);
+		case IMPO:
+			std::cout << "Char: impossible" << std::endl;
+			std::cout << "Int: impossible" << std::endl;
+			std::cout << "Float: impossible" << std::endl;
+			std::cout << "Double: impossible" << std::endl;
 			std::exit(EXIT_SUCCESS);
 		default:
 			std::cerr << "Error: Exception type not specified" << std::endl;

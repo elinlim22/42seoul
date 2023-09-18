@@ -9,6 +9,7 @@
 #define NANP 0 // NaN print
 #define P_INFP 1 // Positive infinity print
 #define N_INFP 2 // Negative infinity print
+#define IMPO 3 // All impossible
 
 #include <iostream>
 #include <sstream> // std::istringstream
@@ -42,7 +43,7 @@ class ScalarConverter {
 		static void checkType(const std::string& source);
 		static void convert(const std::string& source);
 		static int getFlag();
-		static void printValue(std::string input);
+		static void printValue();
 
 };
 

@@ -8,7 +8,6 @@
 #include <ctime>
 
 Base* generate(void) {
-	std::srand(static_cast<unsigned int>(std::time(0)));
 	int rd = std::rand() % 3;
 	Base* ret;
 	switch (rd) {
@@ -63,6 +62,7 @@ void identify(Base& p) {
 }
 
 int main() {
+	std::srand(static_cast<unsigned int>(std::time(0)));
 	Base* rdClass = generate();
 	std::cout << "Pointer based check: ";
 	identify(rdClass);
