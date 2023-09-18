@@ -1,4 +1,4 @@
-CPP = c++ -Wall -Werror -Wextra -std=c++98
+CPP = c++ -Wall -Werror -Wextra -std=c++98 -pedantic-errors ## pedantic check
 OBJS = ${SRCS:.cpp=.o}
 
 all : ${NAME}
