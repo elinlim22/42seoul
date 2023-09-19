@@ -69,5 +69,21 @@ int main() {
 	std::cout << "Reference based check: ";
 	identify(*rdClass);
 
+	Base* rdClass2 = generate();
+	std::cout << "Pointer based check: ";
+	identify(rdClass2);
+	std::cout << "Reference based check: ";
+	identify(*rdClass2);
+
+	Base* rdClass3 = generate();
+	std::cout << "Pointer based check: ";
+	identify(rdClass3);
+	std::cout << "Reference based check: ";
+	identify(*rdClass3);
+
+	delete rdClass;
+	delete rdClass2;
+	delete rdClass3;
+
 	return 0;
 }
