@@ -19,6 +19,7 @@
 #include <cfloat> // FLT_MAX
 #include <climits> // INT_MAX
 #include <cstdlib> // std::atoi
+#include <cmath> //isinf
 
 class ScalarConverter {
 	private:

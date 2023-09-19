@@ -42,15 +42,15 @@ void ScalarConverter::convertToInt(const std::string& source) {
 	std::istringstream iss(source);
 	iss >> i;
 	if (!iss.fail() && iss.eof()) returnInt = i;
-	else throw std::runtime_error("conversion failed");
+	else throw std::runtime_error("Conversion failed");
 }
 
 void ScalarConverter::convertToFloat(const std::string& source) {
 	// Exception
 	if (source == "nanf") throw printException(NANP);
 	else if (source.find("inff") != std::string::npos) {
-		if (source[0] == '+') throw printException(P_INFP);
-		else if (source[0] == '-') throw printException(N_INFP);
+		if (source[0] == '-') throw printException(N_INFP);
+		else throw printException(P_INFP);
 	}
 
 	// removing 'f'
@@ -61,23 +61,21 @@ void ScalarConverter::convertToFloat(const std::string& source) {
 	float f;
 	std::istringstream iss(strWithoutF);
 	iss >> f;
-	if (!iss.fail() && iss.eof()) returnFloat = f;
-	else throw std::runtime_error("conversion failed");
+	returnFloat = f;
 }
 
 void ScalarConverter::convertToDouble(const std::string& source) {
 	// Exception
 	if (source == "nan") throw printException(NANP);
 	else if (source.find("inf") != std::string::npos) {
-		if (source[0] == '+') throw printException(P_INFP);
-		else if (source[0] == '-') throw printException(N_INFP);
+		if (source[0] == '-') throw printException(N_INFP);
+		else throw printException(P_INFP);
 	}
 
 	double d;
 	std::istringstream iss(source);
 	iss >> d;
-	if (!iss.fail() && iss.eof()) returnDouble = d;
-	else throw printException(IMPO);
+	returnDouble = d;
 }
 
 void ScalarConverter::doCast() {
@@ -112,8 +110,8 @@ void ScalarConverter::checkType(const std::string& source) {
 		if (source.length() == 1 && !isdigit(source[0])) flag = CFLAG;
 
 		// Case nan, inf, inff
-		else if (source == "nanf" || source == "+inff" || source == "-inff") flag = FFLAG;
-		else if (source == "nan" || source == "+inf" || source == "-inf") flag = DFLAG;
+		else if (source == "nanf" || source == "inff" || source == "+inff" || source == "-inff") flag = FFLAG;
+		else if (source == "nan" || source == "inf" || source == "+inf" || source == "-inf") flag = DFLAG;
 
 		// Case ltierals - Float, Double
 		else if (source.find('.') != std::string::npos && isFloatOrDouble(source)) {
@@ -177,17 +175,26 @@ void ScalarConverter::printValue() {
 	std::cout << "Float: ";
 	{
 		// Float value print
-		if (8388607 <= returnDouble && returnDouble <= FLT_MAX)
-			std::cout << std::fixed << std::setprecision(1) << returnDouble << "f" << std::endl;
-		else if (returnDouble <= 8388607)
-			std::cout << std::fixed << std::setprecision(1) << returnFloat << "f" << std::endl;
+		if (isinf(returnFloat)) {
+			if (returnFloat > 0) std::cout << "+";
+			else std::cout << "-";
+		}
+		if (returnDouble >= 999999.5 || returnDouble <= -999999.5)
+			std::cout << returnFloat << "f" << std::endl;
 		else
-			std::cout << "impossible" << std::endl;
+			std::cout << std::fixed << std::setprecision(1) << returnDouble << "f" << std::endl;
 	}
 	std::cout << "Double: ";
 	{
 		// Double value print
-		std::cout << std::fixed << std::setprecision(1) << returnDouble << std::endl;
+		if (isinf(returnDouble)) {
+			if (returnDouble > 0) std::cout << "+";
+			else std::cout << "-";
+		}
+		if (returnDouble >= 999999.5 || returnDouble <= -999999.5)
+			std::cout << returnDouble << std::endl;
+		else
+			std::cout << std::fixed << std::setprecision(1) << returnDouble << std::endl;
 	}
 }
 
