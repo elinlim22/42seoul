@@ -1,6 +1,6 @@
 template <typename T>
 Array<T>::Array() {
-	arr = new T[0];
+	arr = NULL;
 	_size = 0;
 }
 
@@ -40,7 +40,7 @@ size_t Array<T>::size() const {
 
 template <typename T>
 T& Array<T>::operator[] (const size_t& a) const {
-	if (a < 0 || this->size() <= a)
+	if (!this->size() || a < 0 || this->size() <= a)
 		throw OutOfBounds();
 	return arr[a];
 }
