@@ -1,18 +1,18 @@
-CPP = c++ -Wall -Werror -Wextra -std=c++98
+CXX = c++
+CXXFLAGS = -Wall -Werror -Wextra -std=c++98
 OBJS = ${SRCS:.cpp=.o}
 
 all : ${NAME}
 
 ${NAME} : ${OBJS} ${INCL}
-	@${CPP} ${OBJS} -o ${NAME}
+	@${CXX} ${CXXFLAGS} ${OBJS} -o ${NAME}
 
 %.o: %.cpp
-	@${CPP} -c $< -o $@
+	@${CXX} ${CXXFLAGS} -c $< -o $@
 
 re :
 	@make fclean
 	@make all
-	@make clean
 
 clean :
 	@rm -rf *.o
