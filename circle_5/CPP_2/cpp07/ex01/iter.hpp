@@ -2,8 +2,8 @@
 #define ITER_HPP
 #include <iostream>
 
-template <typename T>
-void iter(T* address, T length, void(*func)(T&)) {
+template <typename T1, typename T2>
+void iter(T1* address, size_t length, void(*func)(T2&)) {
 	for (; length > 0; length--, address++) {
 		func(*address);
 	}
