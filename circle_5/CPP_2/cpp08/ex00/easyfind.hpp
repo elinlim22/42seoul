@@ -2,7 +2,6 @@
 #define EASYFIND_HPP
 
 #include <iostream>
-#include <algorithm>
 
 template <typename T>
 bool easyfind(T& first, int second) {
@@ -11,10 +10,6 @@ bool easyfind(T& first, int second) {
 		if (*it == second) return true;
 	}
 	return false;
-
-	// typename T::iterator it = std::find(first.begin(), first.end(), second);
-	// if (it == first.end() && *first.end() != second) return false;
-	// else return true;
 }
 
 #endif
