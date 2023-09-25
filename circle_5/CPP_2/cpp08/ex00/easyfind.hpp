@@ -4,10 +4,9 @@
 #include <iostream>
 
 template <typename T>
-bool easyfind(T& first, int second) {
-	typename T::iterator it = first.begin();
-	for (; it != first.end(); ++it) {
-		if (*it == second) return true;
+bool easyfind(T& container, int target) {
+	for (typename T::iterator it = container.begin(); it != container.end(); ++it) {
+		if (*it == target) return true;
 	}
 	return false;
 }

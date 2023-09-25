@@ -15,7 +15,7 @@ int main() {
 	}
 	std::cout << easyfind(arrV, 5) << std::endl;
 	std::cout << easyfind(arrD, 5) << std::endl;
-	std::cout << easyfind(arrL, 5) << std::endl;
+	std::cout << easyfind(arrL, 6) << std::endl;
 
 	return 0;
 }
