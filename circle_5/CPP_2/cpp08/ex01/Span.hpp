@@ -1,8 +1,11 @@
 #ifndef SPAN_HPP
 #define SPAN_HPP
 
+#include <vector>
+
 class Span {
 	private:
+		std::vector<int> v;
 		unsigned int amount;
 		unsigned int* arr;
 		Span();
