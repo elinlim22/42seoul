@@ -33,6 +33,18 @@ void Span::addNumber(int n) {
 	numbers.push_back(n);
 }
 
+void Span::addNumbers(unsigned int range) {
+	if (this->numbers.size() + range > this->max) printError(FULL_NUMBERS);
+	std::srand(static_cast<unsigned int>(std::time(0)));
+	for (unsigned int i = 0; i < range; i++) {
+		int rd = std::rand() % range + 1;
+		numbers.push_back(rd);
+	}
+	// for (size_t i = 0; i < numbers.size(); i++) {
+	// 	std::cout << numbers[i] << " ";
+	// } std::cout << std::endl;
+}
+
 int Span::shortestSpan() const {
 	if (numbers.size() <= 1) printError(NOT_ENOUGH_NUMBERS);
 	std::vector<int> sortedNumbers;
