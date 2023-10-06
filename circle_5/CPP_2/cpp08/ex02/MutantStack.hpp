@@ -27,8 +27,6 @@ class MutantStack : public std::stack<T> {
 		typedef typename std::stack<T>::container_type::const_reverse_iterator const_reverse_iterator;
 		const_reverse_iterator rbegin() const;
 		const_reverse_iterator rend() const;
-
-		size_t size() const;
 };
 
 #include "MutantStack.tpp"

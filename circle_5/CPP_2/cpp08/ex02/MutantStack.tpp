@@ -61,7 +61,3 @@ typename MutantStack<T>::const_reverse_iterator MutantStack<T>::rend() const {
 	return this->c.rend();
 }
 
-template <typename T>
-size_t MutantStack<T>::size() const {
-	return this->c.size();
-}
