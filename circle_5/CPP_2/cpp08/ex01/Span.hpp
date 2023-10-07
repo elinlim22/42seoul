@@ -5,8 +5,6 @@
 #include <iostream>
 #include <stdexcept>
 #include <vector>
-#include <cstdlib>
-#include <ctime>
 
 #define NOT_ENOUGH_NUMBERS 1
 #define FULL_NUMBERS 2
@@ -16,17 +14,20 @@ class Span {
 		std::vector<int> numbers;
 		unsigned int max;
 		Span();
+		void printError(int flag) const;
 	public:
+		// OCCF
 		Span(unsigned int max);
 		Span(const Span& a);
 		Span& operator= (const Span& a);
 		virtual ~Span();
 
+		// Member functions
 		void addNumber(int n);
-		void addNumbers(unsigned int range);
+		void addNumbers(std::vector<int>::iterator begin, std::vector<int>::iterator end);
 		int shortestSpan() const;
 		int longestSpan() const;
-		void printError(int flag) const;
+		void printValue() const;
 };
 
 #endif

@@ -33,16 +33,9 @@ void Span::addNumber(int n) {
 	numbers.push_back(n);
 }
 
-void Span::addNumbers(unsigned int range) {
-	if (this->numbers.size() + range > this->max) printError(FULL_NUMBERS);
-	std::srand(static_cast<unsigned int>(std::time(0)));
-	for (unsigned int i = 0; i < range; i++) {
-		int rd = std::rand() % range + 1;
-		numbers.push_back(rd);
-	}
-	// for (size_t i = 0; i < numbers.size(); i++) {
-	// 	std::cout << numbers[i] << " ";
-	// } std::cout << std::endl;
+void Span::addNumbers(std::vector<int>::iterator begin, std::vector<int>::iterator end) {
+	if (end - begin + this->numbers.size() > this->max) printError(FULL_NUMBERS);
+	this->numbers.insert(numbers.end(), begin, end);
 }
 
 int Span::shortestSpan() const {
@@ -81,4 +74,10 @@ void Span::printError(int flag) const {
 		std::cerr << "Error: " << e.what() << std::endl;
 		std::exit(EXIT_FAILURE);
 	}
+}
+
+void Span::printValue() const {
+	for (size_t i = 0; i < numbers.size(); i++) {
+		std::cout << numbers[i] << " ";
+	} std::cout << std::endl;
 }
