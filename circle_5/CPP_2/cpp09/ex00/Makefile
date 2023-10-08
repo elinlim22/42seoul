@@ -1,5 +1,5 @@
-NAME =
-SRCS = ${addsuffix .cpp,  }
-INCL = ${addsuffix .hpp,  }
+NAME = btc
+SRCS = ${addsuffix .cpp, main BitcoinExchange }
+INCL = ${addsuffix .hpp, BitcoinExchange }
 
 include ../template.mk
