@@ -25,15 +25,102 @@ BitcoinExchange::~BitcoinExchange() {}
 /* -------------------------------------------------------------------------- */
 /*                              Member functions                              */
 /* -------------------------------------------------------------------------- */
-bool BitcoinExchange::checkFile(std::string& inputFile, const char* dataFile) const {
+/* --------------------------------- Private -------------------------------- */
+void BitcoinExchange::insertData(std::ifstream& dataBase) {
+	try {
+		std::string line;
+		std::string front;
+		float back;
 
+		while (std::getline(dataBase, line)) {
+			splitIntoStrAndFlt(line, ",", front, back);
+			exchangeRate[front] = back;
+		}
+	} catch (std::runtime_error& e) {
+		std::cerr << "Error: " << e.what() << std::endl;
+		std::exit(EXIT_FAILURE);
+	}
 }
 
-void BitcoinExchange::insertData(std::string& inputFile) {
+void BitcoinExchange::parseData(std::string& str) const {
+	try {
+		std::string front;
+		float back;
 
+		splitIntoStrAndFlt(str, " | ", front, back);
+
+		std::map<std::string, float>::const_iterator it = exchangeRate.find(checkDate(front));
+		if (it == exchangeRate.end()) // 날짜가 DB에 없으면
+			// 가장 가까운 값으로 설정
+		printData(it, checkValue(back));
+	} catch (std::runtime_error& e) {
+		std::cerr << "Error: " << e.what() << std::endl;
+		std::exit(EXIT_FAILURE);
+	} catch (std::exception& e) {
+		std::cerr << "Error: " << e.what() << std::endl;
+	}
 }
 
-void BitcoinExchange::execute(std::string& inputFile) {
-	if (!checkFile(inputFile, "data.csv")) throw std::runtime_error("File open error");
-
+std::string BitcoinExchange::checkDate(std::string& str) const {
+	std::string ret;
+	if (/* 달력 함수 */) {
+		throw printError(WRONGKEY);
+	} else return ret;
 }
+
+float BitcoinExchange::checkValue(float val) const{
+	if (val < 0) throw printError(WRONGVALUE_L);
+	else if (val > 1000) throw printError(WRONGVALUE_H);
+	return val;
+}
+
+void BitcoinExchange::printData(std::map<std::string, float>::const_iterator it, float price) const {
+	std::cout << it->first << " => " << price << " = " << price * it->second << std::endl;
+}
+
+/* --------------------------------- Public --------------------------------- */
+void BitcoinExchange::execute(std::string& _inputFile) {
+	std::ifstream inputFile(_inputFile);
+	std::ifstream dataBase("data.csv");
+	if (!inputFile.is_open() || !dataBase.is_open()) {
+		std::cerr << "Error: could not open file." << std::endl;
+		std::exit(EXIT_FAILURE);
+	}
+	insertData(dataBase);
+	std::string line;
+	while (std::getline(inputFile, line)) {
+		parseData(line);
+	}
+	inputFile.close();
+	dataBase.close();
+}
+
+/* -------------------------------------------------------------------------- */
+/*                               Exception class                              */
+/* -------------------------------------------------------------------------- */
+BitcoinExchange::printError::printError(int _flag) {
+	flag = _flag;
+}
+
+const char* BitcoinExchange::printError::what() const throw() {
+	switch(flag) {
+		case WRONGKEY:
+			return ("bad input");
+		case WRONGVALUE_L:
+			return ("not a positive number");
+		case WRONGVALUE_H:
+			return ("too large number");
+	}
+}
+
+/* -------------------------------------------------------------------------- */
+/*                              Utility function                              */
+/* -------------------------------------------------------------------------- */
+void splitIntoStrAndFlt(std::string& line, const char* del, std::string& front, float& back) {
+	size_t pos = line.find(del);
+	if (pos != std::string::npos) {
+		front = line.substr(0, pos);
+		std::istringstream iss(line.substr(pos + std::string(del).length()));
+		iss >> back;
+	} else throw std::runtime_error("Parse error");
+};
