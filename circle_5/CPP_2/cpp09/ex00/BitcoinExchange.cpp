@@ -75,7 +75,9 @@ std::string BitcoinExchange::checkDate(std::string& str) const {
 			if (day == 31 && !(month == 4 || month == 6 || month == 9 || month == 11)) return str;
 			else if (day <= 30 && (month == 4 || month == 6 || month == 9 || month == 11)) return str;
 		} // 아닐때 else로 넘어가나?
-	} else throw printError(WRONGKEY);
+		return str;
+	}
+	throw printError(WRONGKEY);
 }
 
 float BitcoinExchange::checkValue(float val) const{
