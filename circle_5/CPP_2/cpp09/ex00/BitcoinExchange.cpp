@@ -42,7 +42,7 @@ void BitcoinExchange::insertData(std::ifstream& dataBase) {
 	}
 }
 
-void BitcoinExchange::parseData(std::string& str) const {
+void BitcoinExchange::parseInput(std::string& str) const {
 	try {
 		std::string front;
 		float back;
@@ -50,8 +50,10 @@ void BitcoinExchange::parseData(std::string& str) const {
 		splitIntoStrAndFlt(str, " | ", front, back);
 
 		std::map<std::string, float>::const_iterator it = exchangeRate.find(checkDate(front));
-		if (it == exchangeRate.end()) // 날짜가 DB에 없으면
+		if (it == exchangeRate.end()) {
+			// 날짜가 DB에 없으면
 			// 가장 가까운 값으로 설정
+		}
 		printData(it, checkValue(back));
 	} catch (std::runtime_error& e) {
 		std::cerr << "Error: " << e.what() << std::endl;
@@ -62,10 +64,18 @@ void BitcoinExchange::parseData(std::string& str) const {
 }
 
 std::string BitcoinExchange::checkDate(std::string& str) const {
-	std::string ret;
-	if (/* 달력 함수 */) {
-		throw printError(WRONGKEY);
-	} else return ret;
+	unsigned int year;
+	unsigned int month;
+	unsigned int day;
+	if (splitIntoYMD(str, year, month, day)) {
+		if (month == 2) {
+			if (!IsLeapYear(year) && day <= 28) return str;
+			else if (IsLeapYear(year) && day <= 29) return str;
+		} else {
+			if (day == 31 && !(month == 4 || month == 6 || month == 9 || month == 11)) return str;
+			else if (day <= 30 && (month == 4 || month == 6 || month == 9 || month == 11)) return str;
+		} // 아닐때 else로 넘어가나?
+	} else throw printError(WRONGKEY);
 }
 
 float BitcoinExchange::checkValue(float val) const{
@@ -88,8 +98,9 @@ void BitcoinExchange::execute(std::string& _inputFile) {
 	}
 	insertData(dataBase);
 	std::string line;
+	std::getline(inputFile, line);
 	while (std::getline(inputFile, line)) {
-		parseData(line);
+		parseInput(line);
 	}
 	inputFile.close();
 	dataBase.close();
@@ -124,3 +135,19 @@ void splitIntoStrAndFlt(std::string& line, const char* del, std::string& front, 
 		iss >> back;
 	} else throw std::runtime_error("Parse error");
 };
+
+bool splitIntoYMD(std::string& date, unsigned int& year, unsigned int& month, unsigned int& day) {
+	std::istringstream iss(date);
+	char c;
+	iss >> year >> c >> month >> c >> day;
+	if (year < 1 || 9999 < year || month < 1 || 12 < month || day < 1 || 31 < day) return false;
+	return true;
+}
+
+bool IsLeapYear(int year) {
+	if ((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0)) {
+		return true;
+	} else {
+		return false;
+	}
+}
