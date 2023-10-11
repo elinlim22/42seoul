@@ -21,14 +21,6 @@ class BitcoinExchange {
 		std::string checkDate(std::string& str) const;
 		float checkValue(float val) const;
 		void printData(std::map<std::string, float>::const_iterator it, float price) const;
-		// Exception class
-		class printError : public std::exception {
-			private:
-				int flag;
-			public:
-				printError(int _flag);
-				const char* what() const throw();
-		};
 	public:
 		// OCCF
 		BitcoinExchange();
@@ -37,6 +29,14 @@ class BitcoinExchange {
 		virtual ~BitcoinExchange();
 		// Member function
 		void execute(std::string& inputFile);
+		// Exception class
+		class printError : public std::exception {
+			private:
+				int flag;
+			public:
+				printError(int _flag);
+				const char* what() const throw();
+		};
 };
 
 void splitIntoStrAndFlt(std::string& line, const char* del, std::string& front, float& back);

@@ -49,16 +49,19 @@ void BitcoinExchange::parseInput(std::string& str) const {
 
 		splitIntoStrAndFlt(str, " | ", front, back);
 
-		std::map<std::string, float>::const_iterator it = exchangeRate.find(checkDate(front));
+		std::map<std::string, float>::const_iterator it = exchangeRate.find(checkDate(front)); /// 안됨
 		if (it == exchangeRate.end()) {
 			// 날짜가 DB에 없으면
 			// 가장 가까운 값으로 설정
+			throw printError(3); //수정
 		}
 		printData(it, checkValue(back));
-	} catch (std::runtime_error& e) {
-		std::cerr << "Error: " << e.what() << std::endl;
-		std::exit(EXIT_FAILURE);
-	} catch (std::exception& e) {
+	}
+	//  catch (std::runtime_error& e) {
+	// 	std::cerr << "Error: " << e.what() << std::endl;
+	// 	std::exit(EXIT_FAILURE);
+	// }
+	catch (std::exception& e) {
 		std::cerr << "Error: " << e.what() << std::endl;
 	}
 }
@@ -77,7 +80,9 @@ std::string BitcoinExchange::checkDate(std::string& str) const {
 		} // 아닐때 else로 넘어가나?
 		return str;
 	}
-	throw printError(WRONGKEY);
+	// throw printError(WRONGKEY);
+	std::string errorString = "bad input => " + str;
+	throw std::runtime_error(errorString);
 }
 
 float BitcoinExchange::checkValue(float val) const{
@@ -120,9 +125,11 @@ const char* BitcoinExchange::printError::what() const throw() {
 		case WRONGKEY:
 			return ("bad input");
 		case WRONGVALUE_L:
-			return ("not a positive number");
+			return ("not a positive number.");
 		case WRONGVALUE_H:
-			return ("too large number");
+			return ("too large number.");
+		default:
+			return ("Wrong exception.");
 	}
 }
 
@@ -135,7 +142,14 @@ void splitIntoStrAndFlt(std::string& line, const char* del, std::string& front, 
 		front = line.substr(0, pos);
 		std::istringstream iss(line.substr(pos + std::string(del).length()));
 		iss >> back;
-	} else throw std::runtime_error("Parse error");
+	// } else throw std::runtime_error("Parse error");
+	// } else throw BitcoinExchange::printError(WRONGKEY);
+	} else {
+		std::string errorString = "bad input => " + line;
+		throw std::runtime_error(errorString);
+	}
+
+	// } else throw BitcoinExchange::printError(WRONG)
 };
 
 bool splitIntoYMD(std::string& date, unsigned int& year, unsigned int& month, unsigned int& day) {
