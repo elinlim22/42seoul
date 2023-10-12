@@ -51,7 +51,11 @@ void BitcoinExchange::parseInput(std::string& str) const {
 		splitIntoStrAndFlt(str, " | ", inputDate, inputPrice);
 
 		std::map<std::string, float>::const_iterator it = exchangeRate.lower_bound(checkDate(inputDate));
-		if (it == exchangeRate.end()) throw printError(NOKEY);
+		if (it == exchangeRate.end() || it->first != inputDate) {
+			if (it != exchangeRate.begin()) --it;
+			else throw printError(NOKEY);
+		}
+
 		printData(inputDate, it->second, checkPrice(inputPrice));
 	} catch (std::exception& e) {
 		std::cerr << "Error: " << e.what() << std::endl;
