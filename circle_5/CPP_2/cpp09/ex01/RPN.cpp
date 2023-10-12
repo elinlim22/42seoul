@@ -21,5 +21,17 @@ RPN::~RPN() {}
 /*                              Member functions                              */
 /* -------------------------------------------------------------------------- */
 void RPN::calculate(std::string& line) {
-	(void)line;
+	std::istringstream iss(line);
+	int input;
+	char c;
+	while (iss.eof()) {
+		// if (iss >> input) {
+		// 	std::cout << input << std::endl;
+		// 	// (void)iss;
+		// } else if (iss >> c) {
+		// 	std::cout << c << std::endl;
+		// 	// (void)iss;
+		// }
+
+	}
 }
