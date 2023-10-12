@@ -6,6 +6,7 @@
 #include <stdexcept>
 #include <sstream>
 #include <fstream>
+#include <cstdlib>
 
 #define NOKEY 0
 #define WRONGVALUE_L 1

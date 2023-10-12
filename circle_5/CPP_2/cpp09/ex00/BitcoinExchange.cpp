@@ -119,7 +119,7 @@ bool BitcoinExchange::IsLeapYear(int year) const {
 
 /* --------------------------------- Public --------------------------------- */
 void BitcoinExchange::execute(std::string& _inputFile) {
-	std::ifstream inputFile(_inputFile);
+	std::ifstream inputFile(_inputFile.c_str());
 	std::ifstream dataBase("data.csv");
 	if (!inputFile.is_open() || !dataBase.is_open()) {
 		std::cerr << "Error: could not open file." << std::endl;
