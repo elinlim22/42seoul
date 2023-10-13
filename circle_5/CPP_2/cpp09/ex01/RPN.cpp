@@ -11,7 +11,7 @@ RPN::RPN(const RPN& a) {
 
 RPN& RPN::operator= (const RPN& a) {
 	if (this != &a) {
-
+		this->stk = a.stk;
 	} return *this;
 }
 
