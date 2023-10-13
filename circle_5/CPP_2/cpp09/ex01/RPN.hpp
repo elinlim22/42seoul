@@ -17,7 +17,7 @@ class RPN {
 		RPN(const RPN& a);
 		RPN& operator=(const RPN& a);
 		virtual ~RPN();
-		// Member functions
+		// Member function
 		void doRPN(std::string& line);
 };
 

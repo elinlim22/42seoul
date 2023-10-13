@@ -26,15 +26,18 @@ void RPN::doRPN(std::string& line) {
 
 	try {
 		while (iss >> input) {
-			if (isdigit(input[0])) {
-				int check = std::atoi(input.c_str());
-				if (check < 0 || 10 <= check) throw std::exception();
+			int check = std::atoi(input.c_str());
+			if (input[0] == '0' || (input[0] != '0' && check != 0)) {
+				if (10 <= check) throw std::exception();
 				stk.push(check);
 			} else {
+				if (stk.size() < 2) throw std::exception();
 				calculate(input);
 			}
 		}
-		std::cout << stk.top() << std::endl;
+		if (stk.size() == 1)
+			std::cout << stk.top() << std::endl;
+		else throw std::exception();
 	} catch (std::exception&) {
 		std::cerr << "Error" << std::endl;
 		std::exit(EXIT_FAILURE);
@@ -62,6 +65,7 @@ void RPN::calculate(std::string& token) {
 				operand1 = operand1 * operand2;
 				break ;
 			case '/':
+				if (operand2 == 0) throw std::exception();
 				operand1 = operand1 / operand2;
 				break ;
 		}
