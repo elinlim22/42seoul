@@ -4,10 +4,13 @@
 #include <iostream>
 #include <stack>
 #include <sstream>
+#include <cstdlib>
+#include <stdexcept>
 
 class RPN {
 	private:
 		std::stack<int> stk;
+		void calculate(std::string& token);
 	public:
 		// OCCF
 		RPN();
@@ -15,7 +18,7 @@ class RPN {
 		RPN& operator=(const RPN& a);
 		virtual ~RPN();
 		// Member functions
-		void calculate(std::string& line);
+		void doRPN(std::string& line);
 };
 
 #endif
