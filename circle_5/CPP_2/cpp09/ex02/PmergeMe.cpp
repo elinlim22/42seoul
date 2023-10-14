@@ -96,6 +96,7 @@ void PmergeMe::insertion(int jnum) {
 		while (it != at && *it < toInsert) ++it;
 		sortedVector.insert(it, toInsert);
 	}
+// 이부분 jnum - 1 > 0 으로? (아니면1)하면 위 else if에 들어갈 일 없음 하지만 아래부분 고려 필요
 	if (jnum - 1 >= 0 && jnum - 1 > originalJnum)
 		insertion(jnum - 1);
 	originalJnum = jnum;
