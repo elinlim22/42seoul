@@ -70,9 +70,16 @@ void PmergeMe::doubling() {
 	// 앞을 기준으로 정렬(외부)
 	std::sort(pairs.begin(), pairs.end());
 
-	// 출력
+	// 출력 및 sortedvector에 그대로 넣기
 	for (size_t i = 0; i < pairs.size(); i++) {
 		std::cout << "[" << pairs[i].first << ", " << pairs[i].second << "] ";
+		sortedVector.push_back(pairs[i].first);
+		sortedVector.push_back(pairs[i].second);
+	} std::cout << std::endl;
+
+	// sortedVector 출력
+	for (size_t i = 0; i < sortedVector.size(); i++) {
+		std::cout << sortedVector[i] << " ";
 	} std::cout << std::endl;
 }
 
