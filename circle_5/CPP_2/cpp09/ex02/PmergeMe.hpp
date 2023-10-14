@@ -19,6 +19,7 @@ class PmergeMe {
 		void initData(std::string& input);
 		int JacobsthalNumber();
 		void doubling();
+		void insertion();
 	public:
 		// OCCF
 		PmergeMe();

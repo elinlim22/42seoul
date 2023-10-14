@@ -25,10 +25,6 @@ PmergeMe::~PmergeMe() {
 /* -------------------------------------------------------------------------- */
 /*                              Member functions                              */
 /* -------------------------------------------------------------------------- */
-// bool comparePairs(const std::pair<int, int>& a, const std::pair<int, int>& b) {
-// 	return std::max(a.first, a.second) < std::max(b.first, b.second);
-// }
-
 void PmergeMe::initData(std::string& input) {
 	std::istringstream iss(input);
 	std::string token;
@@ -83,7 +79,13 @@ void PmergeMe::doubling() {
 	} std::cout << std::endl;
 }
 
-int PmergeMe::JacobsthalNumber() {
+void PmergeMe::insertion() {
+	int index = JacobsthalNumber(); // 항상 index에 2배?
+
+	//sortedVector[index * 2] // 여기서부터 삽입정렬
+}
+
+int PmergeMe::JacobsthalNumber() { // 한번 1 뽑아내고나서 3부터 사용해야 함..
 	static int i1;
 	static int i2 = 1;
 	int i3 = i2 + i1 * 2;
