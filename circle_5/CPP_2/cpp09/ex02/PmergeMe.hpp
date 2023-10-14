@@ -13,13 +13,14 @@
 class PmergeMe {
 	private:
 		std::vector<int> originalVector;
+		std::vector<std::pair<int, int> > pairs;
 		std::vector<int> sortedVector;
 		std::deque<int> originalDeque;
 		std::deque<int> sortedDeque;
 		void initData(std::string& input);
 		int JacobsthalNumber();
 		void doubling();
-		void insertion();
+		void insertion(int prevJnum);
 	public:
 		// OCCF
 		PmergeMe();
