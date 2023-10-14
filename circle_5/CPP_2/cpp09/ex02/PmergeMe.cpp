@@ -122,13 +122,13 @@ void PmergeMe::insertion(int jnum) {
 
 	std::cout << "originalJnum:\t" << originalJnum << std::endl;
 
+	// 제약: b의 숫자가 0보다 작을 경우 / 이전 jnum과 같을 경우 / b의 숫자가 pairs 인덱스를 넘어갈 경우
+	if (jnum < 0 || jnum == originalJnum || static_cast<size_t>(jnum) > pairs.size()) return ;
 	if (jnum == 1) { // 초기 상태, b1을 맨 앞에 붙이기
-		sortedVector.insert(sortedVector.begin(), (pairs[0].second));
+		sortedVector.insert(sortedVector.begin(), pairs[0].second);
 		increasedIndex++;
 		std::cout << "---------------------" << std::endl;
 	} else {
-		// 제약: b의 숫자가 0보다 작을 경우 / 이전 jnum과 같을 경우 / b의 숫자가 pairs 인덱스를 넘어갈 경우
-		if (jnum < 0 || jnum == originalJnum || static_cast<size_t>(jnum) > pairs.size()) return ;
 
 		// toInsert값은 b(jnum)의 값
 		int toInsert = pairs[jnum - 1].second;
@@ -136,7 +136,6 @@ void PmergeMe::insertion(int jnum) {
 
 		std::vector<int>::iterator at = std::find(sortedVector.begin(), sortedVector.end(), pairs[jnum - 1].first);
 		for (; at != sortedVector.begin(); --at) { // at는 a(jnum)의 위치
-			// std::vector<int>::iterator it = sortedVector.begin() + at;
 			if (*at >= toInsert) {
 				sortedVector.insert(at, toInsert);
 				break ;
@@ -148,12 +147,15 @@ void PmergeMe::insertion(int jnum) {
 		}
 		std::cout << "---------------------" << std::endl;
 	}
-	insertion(jnum - 1);
-	originalJnum = jnum; // Jnum이 업데이트가 안된다... 왜? /////////////////////////////////Tester: ./PmergeMe 3 2 6 8 0 1 7 9 4 5
+	if (!(jnum - 1 < 0 || jnum - 1 == originalJnum || static_cast<size_t>(jnum - 1) > pairs.size()))
+		insertion(jnum - 1);
+	originalJnum = jnum + 1; // Jnum이 업데이트가 안된다... 왜?
 	std::cout << "---------------------" << std::endl;
 	std::cout << "---------------------" << std::endl;
 	insertion(JacobsthalNumber());
 }
+
+/////////////////////////////////Tester: ./PmergeMe 3 2 6 8 0 1 7 9 4 5
 
 int PmergeMe::JacobsthalNumber() { // 한번 1 뽑아내고나서 3부터 사용해야 함..
 	static int i1;
