@@ -21,6 +21,7 @@ class PmergeMe {
 		int JacobsthalNumber();
 		void pairing();
 		void insertion(int prevJnum);
+		void printResult();
 	public:
 		// OCCF
 		PmergeMe();
@@ -29,7 +30,6 @@ class PmergeMe {
 		virtual ~PmergeMe();
 		// Member function
 		void MIsort(std::string& input);
-		void printResult();
 };
 
 #endif
