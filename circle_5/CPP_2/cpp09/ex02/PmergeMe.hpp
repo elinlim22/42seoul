@@ -19,7 +19,7 @@ class PmergeMe {
 		std::deque<int> sortedDeque;
 		void initData(std::string& input);
 		int JacobsthalNumber();
-		void doubling();
+		void pairing();
 		void insertion(int prevJnum);
 	public:
 		// OCCF
@@ -33,6 +33,3 @@ class PmergeMe {
 };
 
 #endif
-
-	// if (!(jnum - 1 < 0 || jnum - 1 == originalJnum || static_cast<size_t>(jnum - 1) > pairs.size()))
-	// 	insertion(jnum - 1);
