@@ -9,6 +9,12 @@ int main(int argc, char* argv[]) {
 	}
 
 	PmergeMe a;
-	a.MIsort(input);
+	// PmergeMe b;
+	a.initData(input);
+	a.MIsort();
+	std::cout << "-----------" << std::endl;
+	PmergeMe b;
+	b.initData(input);
+	b.MIsort();
 	return 0;
 }
