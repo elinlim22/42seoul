@@ -20,29 +20,38 @@ PmergeMe& PmergeMe::operator= (const PmergeMe& a) {
 	} return *this;
 }
 
-PmergeMe::~PmergeMe() {
-	// delete 있을수도
-}
+PmergeMe::~PmergeMe() {}
 
 /* -------------------------------------------------------------------------- */
 /*                              Member functions                              */
 /* -------------------------------------------------------------------------- */
 /* --------------------------------- Common --------------------------------- */
-int PmergeMe::JacobsthalNumber() {
-	static int i1;
-	static int i2 = 1;
-	int i3 = i2 + i1 * 2;
-	i1 = i2;
-	i2 = i3;
-	return i3;
+int PmergeMe::JacobsthalNumber(int containerType) {
+	if (containerType == VEC) {
+		static int v1;
+		static int v2 = 1;
+		int v3 = v2 + v1 * 2;
+		v1 = v2;
+		v2 = v3;
+		return v3;
+	} else if (containerType == DEQ) {
+		static int d1;
+		static int d2 = 1;
+		int d3 = d2 + d1 * 2;
+		d1 = d2;
+		d2 = d3;
+		return d3;
+	} else throw std::runtime_error("Jacobsthal Number error: container type not specified");
 }
 
 void PmergeMe::initData(std::string& input) {
 	std::istringstream iss(input);
 	std::string token;
+	int i;
+
 	while (std::getline(iss, token, ' ')) {
 		try {
-			int i = std::stoi(token);
+			i = std::stoi(token);
 			if (i >= 0) {
 				originalVector.push_back(i);
 				originalDeque.push_back(i);
@@ -53,24 +62,34 @@ void PmergeMe::initData(std::string& input) {
 			throw std::runtime_error("Parsing error: Non-integer value found");
 		}
 	}
-	pairingVector();
-	pairingDeque();
+
+	// pairingVector();
+	// pairingDeque();
 }
 
 void PmergeMe::printResult() {
-	std::cout << "Vector result:\n\t";
-	for (size_t i = 0; i < sortedVector.size(); i++) {
-		std::cout << sortedVector[i] << " ";
-	} std::cout << std::endl;
-	std::cout << "Deque result:\n\t";
-	for (size_t i = 0; i < sortedDeque.size(); i++) {
-		std::cout << sortedDeque[i] << " ";
-	} std::cout << std::endl;
+	// std::cout << "Before:\t";
+	// for (size_t i = 0; i < originalVector.size(); ++i) {
+	// 	std::cout << originalVector[i] << " ";
+	// } std::cout << std::endl;
+	// std::cout << "After:\t";
+	// for (size_t i = 0; i < sortedVector.size(); i++) {
+	// 	std::cout << sortedVector[i] << " ";
+	// } std::cout << std::endl;
+	// std::cout << "Deque result>\n";
+	// for (size_t i = 0; i < sortedDeque.size(); i++) {
+	// 	std::cout << sortedDeque[i] << " ";
+	// } std::cout << std::endl;
+	// std::cout << std::endl;
 	if (std::is_sorted(sortedVector.begin(), sortedVector.end()) && std::is_sorted(sortedDeque.begin(), sortedDeque.end())) {
-		if (sortedVector.size() == originalVector.size() && sortedDeque.size() == originalDeque.size())
-			std::cout << "SUCCESS" << std::endl;
-		else throw std::runtime_error("Sorting error: numbers count does not match");
+		// if (sortedVector.size() == originalVector.size() && sortedDeque.size() == originalDeque.size())
+		// 	std::cout << "SUCCESS" << std::endl;
+		// else throw std::runtime_error("Sorting error: numbers count does not match");
+		if (!(sortedVector.size() == originalVector.size() && sortedDeque.size() == originalDeque.size()))
+			throw std::runtime_error("Sorting error: numbers count does not match");
 	} else throw std::runtime_error("Sorting error: failed to sort");
+	std::cout << "Time to process a range of " << originalVector.size() << " elements with std::vector :\t " << timeVector << " us" << std::endl;
+	std::cout << "Time to process a range of " << originalDeque.size() << " elements with std::deque :\t " << timeDeque << " us" << std::endl;
 }
 
 /* --------------------------------- Vector --------------------------------- */
@@ -82,7 +101,7 @@ void PmergeMe::pairingVector() {
 	for (size_t i = 0; i < originalVector.size() - 1; i += 2) {
 		pairsVector.push_back(std::make_pair(originalVector[i], originalVector[i + 1]));
 	}
-	for (size_t i = 0; i < originalVector.size(); ++i) {
+	for (size_t i = 0; i < pairsVector.size(); ++i) {
 		if (pairsVector[i].first < pairsVector[i].second) {
 			std::swap(pairsVector[i].first, pairsVector[i].second);
 		}
@@ -90,10 +109,14 @@ void PmergeMe::pairingVector() {
 
 	pairsVector = mergeSortVector(pairsVector);
 
+	// std::cout << "Vector pairs:\t";
+	// for (size_t i = 0; i < pairsVector.size(); i++) {
+	// 	std::cout << "[" << pairsVector[i].first << ", " << pairsVector[i].second << "] "; //////////////////////////////
+	// } std::cout << std::endl;
+
 	for (size_t i = 0; i < pairsVector.size(); i++) {
-		// std::cout << "[" << pairsVector[i].first << ", " << pairsVector[i].second << "] ";
 		sortedVector.push_back(pairsVector[i].first);
-	} std::cout << std::endl;
+	}
 
 	if (tmp != -1) {
 		std::vector<int>::iterator it = sortedVector.begin();
@@ -101,6 +124,11 @@ void PmergeMe::pairingVector() {
 		while (it != sortedVector.end() && *it < tmp) ++it;
 		sortedVector.insert(it, tmp);
 	}
+
+	// std::cout << "After Vector pairing:\n\t";
+	// for (size_t i = 0; i < sortedVector.size(); i++) {
+	// 	std::cout << sortedVector[i] << " ";
+	// } std::cout << std::endl;
 }
 
 std::vector<std::pair<int, int> > PmergeMe::mergeVector(const std::vector<std::pair<int, int> >& left, const std::vector<std::pair<int, int> >& right) {
@@ -149,7 +177,9 @@ void PmergeMe::insertionSortVector(int jnum) {
 	static int originalJnum = -1;
 
 	if (jnum == 1 && originalJnum == -1) {
-		sortedVector.insert(sortedVector.begin(), pairsVector[0].second);
+		std::vector<int>::iterator it = sortedVector.begin();
+		if (*it < pairsVector[0].second) ++it;
+		sortedVector.insert(it, pairsVector[0].second);
 	} else if (jnum > 1) {
 		int toInsert = pairsVector[jnum - 1].second;
 
@@ -172,7 +202,7 @@ void PmergeMe::pairingDeque() {
 	for (size_t i = 0; i < originalDeque.size() - 1; i += 2) {
 		pairsDeque.push_back(std::make_pair(originalDeque[i], originalDeque[i + 1]));
 	}
-	for (size_t i = 0; i < originalDeque.size(); ++i) {
+	for (size_t i = 0; i < pairsDeque.size(); ++i) {
 		if (pairsDeque[i].first < pairsDeque[i].second) {
 			std::swap(pairsDeque[i].first, pairsDeque[i].second);
 		}
@@ -180,10 +210,14 @@ void PmergeMe::pairingDeque() {
 
 	pairsDeque = mergeSortDeque(pairsDeque);
 
+	// std::cout << "Deque pairs:\t";
+	// for (size_t i = 0; i < pairsDeque.size(); i++) {
+	// 	std::cout << "[" << pairsDeque[i].first << ", " << pairsDeque[i].second << "] "; //////////////////////////////
+	// } std::cout << std::endl;
+
 	for (size_t i = 0; i < pairsDeque.size(); i++) {
-		// std::cout << "[" << pairsDeque[i].first << ", " << pairsDeque[i].second << "] ";
 		sortedDeque.push_back(pairsDeque[i].first);
-	} std::cout << std::endl;
+	}
 
 	if (tmp != -1) {
 		std::deque<int>::iterator it = sortedDeque.begin();
@@ -191,6 +225,11 @@ void PmergeMe::pairingDeque() {
 		while (it != sortedDeque.end() && *it < tmp) ++it;
 		sortedDeque.insert(it, tmp);
 	}
+
+	// std::cout << "After Deque pairing:\n\t";
+	// for (size_t i = 0; i < sortedDeque.size(); i++) {
+	// 	std::cout << sortedDeque[i] << " ";
+	// } std::cout << std::endl;
 }
 
 std::deque<std::pair<int, int> > PmergeMe::mergeDeque(const std::deque<std::pair<int, int> >& left, const std::deque<std::pair<int, int> >& right) {
@@ -236,12 +275,24 @@ std::deque<std::pair<int, int> > PmergeMe::mergeSortDeque(const std::deque<std::
 }
 
 void PmergeMe::insertionSortDeque(int jnum) {
+	// std::cout << "Sorting status >> ";
+	// for (size_t i = 0; i < sortedDeque.size(); i++) {
+	// 	std::cout << sortedDeque[i] << " ";
+	// } std::cout << std::endl;
+	// std::cout << std::endl;
+	// std::cout << "jnum:\t\t" << jnum << std::endl;
 	static int originalJnum = -1;
+	// std::cout << "originalJnum:\t" << originalJnum << std::endl;
 
 	if (jnum == 1 && originalJnum == -1) {
-		sortedDeque.insert(sortedDeque.begin(), pairsDeque[0].second);
+		// std::cout << "[[[\ttoInsert: " << pairsDeque[0].second << "\t]]]" << std::endl;
+		std::deque<int>::iterator it = sortedDeque.begin();
+		if (*it < pairsDeque[0].second) ++it;
+		sortedDeque.insert(it, pairsDeque[0].second);
+		// std::cout << std::endl;
 	} else if (jnum > 1) {
 		int toInsert = pairsDeque[jnum - 1].second;
+		// std::cout << "[[[\ttoInsert: " << toInsert << "\t]]]" << std::endl;
 
 		std::deque<int>::iterator at = std::find(sortedDeque.begin(), sortedDeque.end(), pairsDeque[jnum - 1].first);
 		std::deque<int>::iterator it = sortedDeque.begin();
@@ -251,6 +302,7 @@ void PmergeMe::insertionSortDeque(int jnum) {
 	if (jnum - 1 > 1 && jnum - 1 > originalJnum)
 		insertionSortDeque(jnum - 1);
 	originalJnum = jnum;
+	// std::cout << "--------stop---------" << std::endl;
 }
 
 
@@ -258,25 +310,32 @@ void PmergeMe::insertionSortDeque(int jnum) {
 void PmergeMe::MIsort(std::string& input) {
 	try {
 		initData(input);
-		std::cout << "Vector input size:\t" << originalVector.size() << std::endl;
-		std::cout << "Deque input size:\t" << originalDeque.size() << std::endl;
-		std::cout << "pairsVector size:\t" << pairsVector.size() << std::endl;
-		std::cout << "pairsDeque size:\t" << pairsDeque.size() << std::endl;
+		// std::cout << "Vector input size:\t" << originalVector.size() << std::endl;
+		// std::cout << "Deque input size:\t" << originalDeque.size() << std::endl;
+		// std::cout << "pairsVector size:\t" << pairsVector.size() << std::endl;
+		// std::cout << "pairsDeque size:\t" << pairsDeque.size() << std::endl;
 		// Vector sorting
-		for (int i = JacobsthalNumber(); static_cast<size_t>(i) <= pairsVector.size(); i = JacobsthalNumber()) {
+		clock_t startVector = clock();
+		pairingVector();
+		for (int i = JacobsthalNumber(VEC); static_cast<size_t>(i) <= pairsVector.size(); i = JacobsthalNumber(VEC)) {
 			insertionSortVector(i);
 		}
 		if (originalVector.size() != sortedVector.size()) {
 			insertionSortVector(pairsVector.size());
 		}
+		clock_t endVector = clock();
+		timeVector = (static_cast<double>(endVector - startVector) / CLOCKS_PER_SEC) * 1000000.0;
 		// Deque sorting
-		for (int i = JacobsthalNumber(); static_cast<size_t>(i) <= pairsDeque.size(); i = JacobsthalNumber()) {
+		pairingDeque();
+		clock_t startDeque = clock();
+		for (int i = JacobsthalNumber(DEQ); static_cast<size_t>(i) <= pairsDeque.size(); i = JacobsthalNumber(DEQ)) {
 			insertionSortDeque(i);
 		}
 		if (originalDeque.size() != sortedDeque.size()) {
 			insertionSortDeque(pairsDeque.size());
 		}
-		std::cout << std::endl;
+		clock_t endDeque = clock();
+		timeDeque = (static_cast<double>(endDeque - startDeque) / CLOCKS_PER_SEC) * 1000000.0;
 		printResult();
 	} catch (std::exception& e) {
 		std::cerr << "Error: " << e.what() << std::endl;

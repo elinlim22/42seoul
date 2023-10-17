@@ -7,7 +7,6 @@ int main(int argc, char* argv[]) {
 		input += std::string(argv[i]);
 		input += " ";
 	}
-	// std::cout << input << std::endl;
 
 	PmergeMe a;
 	a.MIsort(input);

@@ -9,6 +9,11 @@
 #include <sstream>
 #include <algorithm>
 #include <utility>
+#include <ctime>
+#include <iomanip>
+
+#define VEC 0
+#define DEQ 1
 
 class PmergeMe {
 	private:
@@ -17,13 +22,15 @@ class PmergeMe {
 		std::vector<int> originalVector;
 		std::vector<std::pair<int, int> > pairsVector;
 		std::vector<int> sortedVector;
+		double timeVector;
 		// Deque
 		std::deque<int> originalDeque;
 		std::deque<std::pair<int, int> > pairsDeque;
 		std::deque<int> sortedDeque;
+		double timeDeque;
 		/* ---------------------------- Member functions ---------------------------- */
 		// Common
-		int JacobsthalNumber();
+		int JacobsthalNumber(int containerType);
 		void initData(std::string& input);
 		void printResult();
 		// Vector
