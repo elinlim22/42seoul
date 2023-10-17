@@ -58,70 +58,70 @@
 // 	// insertion(JacobsthalNumber());
 // }
 
-void PmergeMe::insertionSortVector(int jnum) {
-	static int originalJnum = -1;
+// void PmergeMe::insertionSortVector(int jnum) {
+// 	static int originalJnum = -1;
 
-	if (jnum == 1 && originalJnum == -1) {
-		sortedVector.insert(sortedVector.begin(), pairsVector[0].second);
-	} else if (jnum > 1) {
-		int toInsert = pairsVector[jnum - 1].second;
+// 	if (jnum == 1 && originalJnum == -1) {
+// 		sortedVector.insert(sortedVector.begin(), pairsVector[0].second);
+// 	} else if (jnum > 1) {
+// 		int toInsert = pairsVector[jnum - 1].second;
 
-		std::vector<int>::iterator at = std::find(sortedVector.begin(), sortedVector.end(), pairsVector[jnum - 1].first);
-		std::vector<int>::iterator it = sortedVector.begin();
-		while (it != at && *it < toInsert) ++it;
-		sortedVector.insert(it, toInsert);
-	}
-	if (jnum - 1 > 1 && jnum - 1 > originalJnum)
-		insertionSortVector(jnum - 1);
-	originalJnum = jnum;
-}
+// 		std::vector<int>::iterator at = std::find(sortedVector.begin(), sortedVector.end(), pairsVector[jnum - 1].first);
+// 		std::vector<int>::iterator it = sortedVector.begin();
+// 		while (it != at && *it < toInsert) ++it;
+// 		sortedVector.insert(it, toInsert);
+// 	}
+// 	if (jnum - 1 > 1 && jnum - 1 > originalJnum)
+// 		insertionSortVector(jnum - 1);
+// 	originalJnum = jnum;
+// }
 
-int PmergeMe::JacobsthalNumber(int containerType) {
-	if (containerType == VEC) {
-		static int v1;
-		static int v2 = 1;
-		int v3 = v2 + v1 * 2;
-		v1 = v2;
-		v2 = v3;
-		return v3;
-	} else if (containerType == DEQ) {
-		static int d1;
-		static int d2 = 1;
-		int d3 = d2 + d1 * 2;
-		d1 = d2;
-		d2 = d3;
-		return d3;
-	} else throw std::runtime_error("Jacobsthal Number error: container type not specified");
-}
+// int PmergeMe::JacobsthalNumber(int containerType) {
+// 	if (containerType == VEC) {
+// 		static int v1;
+// 		static int v2 = 1;
+// 		int v3 = v2 + v1 * 2;
+// 		v1 = v2;
+// 		v2 = v3;
+// 		return v3;
+// 	} else if (containerType == DEQ) {
+// 		static int d1;
+// 		static int d2 = 1;
+// 		int d3 = d2 + d1 * 2;
+// 		d1 = d2;
+// 		d2 = d3;
+// 		return d3;
+// 	} else throw std::runtime_error("Jacobsthal Number error: container type not specified");
+// }
 
-void PmergeMe::MIsort(std::string& input) {
-	try {
-		initData(input);
-		std::cout << "Vector input size:\t" << originalVector.size() << std::endl;
-		std::cout << "Deque input size:\t" << originalDeque.size() << std::endl;
-		std::cout << "pairsVector size:\t" << pairsVector.size() << std::endl;
-		std::cout << "pairsDeque size:\t" << pairsDeque.size() << std::endl;
-		// Vector sorting
-		for (int i = JacobsthalNumber(VEC); static_cast<size_t>(i) <= pairsVector.size(); i = JacobsthalNumber(VEC)) {
-			insertionSortVector(i);
-		}
-		if (originalVector.size() != sortedVector.size()) {
-			insertionSortVector(pairsVector.size());
-		}
-		// Deque sorting
-		for (int i = JacobsthalNumber(DEQ); static_cast<size_t>(i) <= pairsDeque.size(); i = JacobsthalNumber(DEQ)) {
-			insertionSortDeque(i);
-		}
-		if (originalDeque.size() != sortedDeque.size()) {
-			insertionSortDeque(pairsDeque.size());
-		}
-		std::cout << std::endl;
-		printResult();
-	} catch (std::exception& e) {
-		std::cerr << "Error: " << e.what() << std::endl;
-		std::exit(EXIT_FAILURE);
-	}
-}
+// void PmergeMe::MIsort(std::string& input) {
+// 	try {
+// 		initData(input);
+// 		std::cout << "Vector input size:\t" << originalVector.size() << std::endl;
+// 		std::cout << "Deque input size:\t" << originalDeque.size() << std::endl;
+// 		std::cout << "pairsVector size:\t" << pairsVector.size() << std::endl;
+// 		std::cout << "pairsDeque size:\t" << pairsDeque.size() << std::endl;
+// 		// Vector sorting
+// 		for (int i = JacobsthalNumber(VEC); static_cast<size_t>(i) <= pairsVector.size(); i = JacobsthalNumber(VEC)) {
+// 			insertionSortVector(i);
+// 		}
+// 		if (originalVector.size() != sortedVector.size()) {
+// 			insertionSortVector(pairsVector.size());
+// 		}
+// 		// Deque sorting
+// 		for (int i = JacobsthalNumber(DEQ); static_cast<size_t>(i) <= pairsDeque.size(); i = JacobsthalNumber(DEQ)) {
+// 			insertionSortDeque(i);
+// 		}
+// 		if (originalDeque.size() != sortedDeque.size()) {
+// 			insertionSortDeque(pairsDeque.size());
+// 		}
+// 		std::cout << std::endl;
+// 		printResult();
+// 	} catch (std::exception& e) {
+// 		std::cerr << "Error: " << e.what() << std::endl;
+// 		std::exit(EXIT_FAILURE);
+// 	}
+// }
 
 
 /* Error case

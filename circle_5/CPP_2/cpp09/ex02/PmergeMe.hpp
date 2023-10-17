@@ -23,19 +23,17 @@ class PmergeMe {
 		std::vector<std::pair<int, int> > pairsVector;
 		std::vector<int> sortedVector;
 		double timeVector;
+		static int originalJnumVector;
 		// Deque
 		std::deque<int> originalDeque;
 		std::deque<std::pair<int, int> > pairsDeque;
 		std::deque<int> sortedDeque;
 		double timeDeque;
-		static int originalJnumVector;
 		static int originalJnumDeque;
 		/* ---------------------------- Member functions ---------------------------- */
 		// Common
-		// int JacobsthalNumber(int containerType);
 		int JacobsthalNumber(int j1, int j2);
 		void printResult();
-		// void resetJnum(int& jnum);
 		// Vector
 		void pairingVector();
 		std::vector<std::pair<int, int> > mergeVector(const std::vector<std::pair<int, int> >& left, const std::vector<std::pair<int, int> >& right);
@@ -54,7 +52,6 @@ class PmergeMe {
 		PmergeMe& operator= (const PmergeMe& a);
 		virtual ~PmergeMe();
 		/* ----------------------------- Member function ---------------------------- */
-		// void MIsort(std::string& input);
 		void initData(std::string& input);
 		void MIsort();
 };

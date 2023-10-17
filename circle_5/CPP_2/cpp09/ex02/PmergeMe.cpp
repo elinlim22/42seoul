@@ -26,14 +26,18 @@ PmergeMe::PmergeMe(const PmergeMe& a) {
 	*this = a;
 }
 
-PmergeMe& PmergeMe::operator= (const PmergeMe& a) { ///////////////
+PmergeMe& PmergeMe::operator= (const PmergeMe& a) {
 	if (this != &a) {
 		originalVector = a.originalVector;
+		pairsVector = a.pairsVector;
+		sortedVector = a.sortedVector;
+		timeVector = a.timeVector;
+		originalJnumVector = a.originalJnumVector;
 		originalDeque = a.originalDeque;
-		timeVector = 0;
-		timeDeque = 0;
-		originalJnumVector = -1;
-		originalJnumDeque = -1;
+		pairsDeque = a.pairsDeque;
+		sortedDeque = a.sortedDeque;
+		timeDeque = a.timeDeque;
+		originalJnumDeque = a.originalJnumDeque;
 	} return *this;
 }
 
@@ -43,46 +47,34 @@ PmergeMe::~PmergeMe() {}
 /*                              Member functions                              */
 /* -------------------------------------------------------------------------- */
 /* --------------------------------- Common --------------------------------- */
-// int PmergeMe::JacobsthalNumber(int containerType) {
-// 	if (containerType == VEC) {
-// 		static int v1;
-// 		static int v2 = 1;
-// 		int v3 = v2 + v1 * 2;
-// 		v1 = v2;
-// 		v2 = v3;
-// 		return v3;
-// 	} else if (containerType == DEQ) {
-// 		static int d1;
-// 		static int d2 = 1;
-// 		int d3 = d2 + d1 * 2;
-// 		d1 = d2;
-// 		d2 = d3;
-// 		return d3;
-// 	} else throw std::runtime_error("Jacobsthal Number error: Container type not specified");
-// }
 int PmergeMe::JacobsthalNumber(int j1, int j2) {
 	return (j2 + j1 * 2);
 }
 
 void PmergeMe::initData(std::string& input) {
-	if (!originalVector.empty() || !originalDeque.empty()) throw std::runtime_error("Init error: Data already exists");
+	try {
+		if (!originalVector.empty() || !originalDeque.empty()) throw std::runtime_error("Init error: Data already exists");
 
-	std::istringstream iss(input);
-	std::string token;
-	int i;
+		std::istringstream iss(input);
+		std::string token;
+		int i;
 
-	while (std::getline(iss, token, ' ')) {
-		try {
-			i = std::stoi(token);
-			if (i >= 0) {
-				originalVector.push_back(i);
-				originalDeque.push_back(i);
-			} else {
-				throw std::runtime_error("Parsing error: Negative integer value found");
+		while (std::getline(iss, token, ' ')) {
+			try {
+				i = std::stoi(token);
+				if (i >= 0) {
+					originalVector.push_back(i);
+					originalDeque.push_back(i);
+				} else {
+					throw std::runtime_error("Parsing error: Negative integer value found");
+				}
+			} catch (const std::invalid_argument& e) {
+				throw std::runtime_error("Parsing error: Non-integer value found");
 			}
-		} catch (const std::invalid_argument& e) {
-			throw std::runtime_error("Parsing error: Non-integer value found");
 		}
+	} catch (std::exception& e) {
+		std::cerr << "Error: " << e.what() << std::endl;
+		std::exit(EXIT_FAILURE);
 	}
 }
 
@@ -287,12 +279,13 @@ void PmergeMe::insertionSortDeque(int jnum) {
 void PmergeMe::MIsort() {
 	try {
 		if (originalVector.empty() || originalDeque.empty()) throw std::runtime_error("Input error: Input has not been passed to constructor");
+		if (timeVector != 0 && timeDeque != 0) {
+			printResult();
+			return ;
+		}
 		// Vector sorting
 		clock_t startVector = clock();
 		pairingVector();
-		// for (int i = JacobsthalNumber(VEC); static_cast<size_t>(i) <= pairsVector.size(); i = JacobsthalNumber(VEC)) {
-		// 	insertionSortVector(i);
-		// }
 		for (int j1 = 0, j2 = 1; static_cast<size_t>(j2) <= pairsVector.size();) {
 			insertionSortVector(j2);
 			int next = JacobsthalNumber(j1, j2);
@@ -308,9 +301,6 @@ void PmergeMe::MIsort() {
 		// Deque sorting
 		pairingDeque();
 		clock_t startDeque = clock();
-		// for (int i = JacobsthalNumber(DEQ); static_cast<size_t>(i) <= pairsDeque.size(); i = JacobsthalNumber(DEQ)) {
-		// 	insertionSortDeque(i);
-		// }
 		for (int j1 = 0, j2 = 1; static_cast<size_t>(j2) <= pairsDeque.size();) {
 			insertionSortDeque(j2);
 			int next = JacobsthalNumber(j1, j2);
