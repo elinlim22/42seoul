@@ -86,7 +86,6 @@ void PmergeMe::printResult() {
 
 	if (!(sortedVector.size() == originalVector.size() && sortedDeque.size() == originalDeque.size()))
 		throw std::runtime_error("Sorting error: Numbers count does not match");
-	// if (!std::is_sorted(sortedVector.begin(), sortedVector.end()) || !std::is_sorted(sortedDeque.begin(), sortedDeque.end()))
 	if (!isSorted(sortedVector) || !isSorted(sortedDeque))
 		throw std::runtime_error("Sorting error: Failed to sort");
 	std::cout << "Time to process a range of " << originalVector.size() << " elements with std::vector :\t " << timeVector << " us" << std::endl;
