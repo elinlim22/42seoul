@@ -118,10 +118,11 @@ void PmergeMe::pairingVector() {
 	}
 
 	if (tmp != -1) {
-		std::vector<int>::iterator it = sortedVector.begin();
+		// std::vector<int>::iterator it = sortedVector.begin();
 
-		while (it != sortedVector.end() && *it < tmp) ++it;
-		sortedVector.insert(it, tmp);
+		// while (it != sortedVector.end() && *it < tmp) ++it;
+		// sortedVector.insert(it, tmp);
+		sortedVector.insert(binarySearchVector(sortedVector, tmp, sortedVector.end()), tmp);
 	}
 }
 
@@ -176,13 +177,28 @@ void PmergeMe::insertionSortVector(int jnum) {
 		int toInsert = pairsVector[jnum - 1].second;
 
 		std::vector<int>::iterator at = std::find(sortedVector.begin(), sortedVector.end(), pairsVector[jnum - 1].first);
-		std::vector<int>::iterator it = sortedVector.begin();
-		while (it != at && *it < toInsert) ++it;
-		sortedVector.insert(it, toInsert);
+		// std::vector<int>::iterator it = sortedVector.begin();
+		// while (it != at && *it < toInsert) ++it;
+		// sortedVector.insert(it, toInsert);
+		sortedVector.insert(binarySearchVector(sortedVector, toInsert, at), toInsert);
 	}
 	if (jnum - 1 > 1 && jnum - 1 > originalJnumVector)
 		insertionSortVector(jnum - 1);
 	originalJnumVector = jnum;
+}
+
+std::vector<int>::iterator PmergeMe::binarySearchVector(std::vector<int>& arr, int toInsert, std::vector<int>::iterator right) {
+	std::vector<int>::iterator left = arr.begin();
+
+	while (left < right) {
+		std::vector<int>::iterator mid = left + (right - left) / 2;
+		if (*mid < toInsert) {
+			left = mid + 1;
+		} else {
+			right = mid;
+		}
+	}
+	return left;
 }
 
 /* ---------------------------------- Deque --------------------------------- */
@@ -207,10 +223,11 @@ void PmergeMe::pairingDeque() {
 	}
 
 	if (tmp != -1) {
-		std::deque<int>::iterator it = sortedDeque.begin();
+		// std::deque<int>::iterator it = sortedDeque.begin();
 
-		while (it != sortedDeque.end() && *it < tmp) ++it;
-		sortedDeque.insert(it, tmp);
+		// while (it != sortedDeque.end() && *it < tmp) ++it;
+		// sortedDeque.insert(it, tmp);
+		sortedDeque.insert(binarySearchDeque(sortedDeque, tmp, sortedDeque.end()), tmp);
 	}
 }
 
@@ -265,15 +282,29 @@ void PmergeMe::insertionSortDeque(int jnum) {
 		int toInsert = pairsDeque[jnum - 1].second;
 
 		std::deque<int>::iterator at = std::find(sortedDeque.begin(), sortedDeque.end(), pairsDeque[jnum - 1].first);
-		std::deque<int>::iterator it = sortedDeque.begin();
-		while (it != at && *it < toInsert) ++it;
-		sortedDeque.insert(it, toInsert);
+		// std::deque<int>::iterator it = sortedDeque.begin();
+		// while (it != at && *it < toInsert) ++it;
+		// sortedDeque.insert(it, toInsert);
+		sortedDeque.insert(binarySearchDeque(sortedDeque, toInsert, at), toInsert);
 	}
 	if (jnum - 1 > 1 && jnum - 1 > originalJnumDeque)
 		insertionSortDeque(jnum - 1);
 	originalJnumDeque = jnum;
 }
 
+std::deque<int>::iterator PmergeMe::binarySearchDeque(std::deque<int>& arr, int toInsert, std::deque<int>::iterator right) {
+	std::deque<int>::iterator left = arr.begin();
+
+	while (left < right) {
+		std::deque<int>::iterator mid = left + (right - left) / 2;
+		if (*mid < toInsert) {
+			left = mid + 1;
+		} else {
+			right = mid;
+		}
+	}
+	return left;
+}
 
 /* --------------------------------- Public --------------------------------- */
 void PmergeMe::MIsort() {
@@ -299,8 +330,8 @@ void PmergeMe::MIsort() {
 		timeVector = (static_cast<double>(endVector - startVector) / CLOCKS_PER_SEC) * 1000000.0;
 
 		// Deque sorting
-		pairingDeque();
 		clock_t startDeque = clock();
+		pairingDeque();
 		for (int j1 = 0, j2 = 1; static_cast<size_t>(j2) <= pairsDeque.size();) {
 			insertionSortDeque(j2);
 			int next = JacobsthalNumber(j1, j2);

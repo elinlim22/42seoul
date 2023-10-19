@@ -11,9 +11,5 @@ int main(int argc, char* argv[]) {
 	PmergeMe a;
 	a.initData(input);
 	a.MIsort();
-	std::cout << "-----------" << std::endl;
-	PmergeMe b(a);
-	// b.initData(input);
-	b.MIsort();
 	return 0;
 }

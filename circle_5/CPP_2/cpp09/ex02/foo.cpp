@@ -219,3 +219,21 @@ After: 79 141 321 526 [...]
 Time to process a range of 3000 elements with std::[..] : 62.14389 us
 Time to process a range of 3000 elements with std::[..] : 69.27212 us
 */
+
+
+// template <typename Container>
+// typename Container::iterator binarySearchInsert(Container& container, int value, typename Container::iterator right) {
+//     typename Container::iterator left = container.begin();
+
+//     while (left < right) {
+//         typename Container::iterator mid = left + (right - left) / 2;
+
+//         if (*mid < value) {
+//             left = mid + 1;
+//         } else {
+//             right = mid;
+//         }
+//     }
+
+//     return left;
+// }
