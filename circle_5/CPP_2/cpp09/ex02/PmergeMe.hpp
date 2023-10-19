@@ -36,8 +36,6 @@ class PmergeMe {
 		void printResult();
 		template <typename T>
 		bool isSorted(T& arr) const;
-		// bool isSortedVector(std::vector<int>& arr) const;
-		// bool isSortedDeque(std::deque<int>& arr) const;
 		// Vector
 		void pairingVector();
 		std::vector<std::pair<int, int> > mergeVector(const std::vector<std::pair<int, int> >& left, const std::vector<std::pair<int, int> >& right);

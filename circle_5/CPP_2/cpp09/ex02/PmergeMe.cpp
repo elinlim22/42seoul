@@ -51,32 +51,6 @@ int PmergeMe::JacobsthalNumber(int j1, int j2) {
 	return (j2 + j1 * 2);
 }
 
-// void PmergeMe::initData(std::string& input) {
-// 	try {
-// 		if (!originalVector.empty() || !originalDeque.empty()) throw std::runtime_error("Init error: Data already exists");
-
-// 		std::istringstream iss(input);
-// 		std::string token;
-// 		int i;
-
-// 		while (std::getline(iss, token, ' ')) {
-// 			try {
-// 				i = std::stoi(token);
-// 				if (i >= 0) {
-// 					originalVector.push_back(i);
-// 					originalDeque.push_back(i);
-// 				} else {
-// 					throw std::runtime_error("Parsing error: Negative integer value found");
-// 				}
-// 			} catch (const std::invalid_argument& e) {
-// 				throw std::runtime_error("Parsing error: Non-integer value found");
-// 			}
-// 		}
-// 	} catch (std::exception& e) {
-// 		std::cerr << "Error: " << e.what() << std::endl;
-// 		std::exit(EXIT_FAILURE);
-// 	}
-// }
 void PmergeMe::initData(std::string& input) {
 	try {
 		if (!originalVector.empty() || !originalDeque.empty()) throw std::runtime_error("Init error: Data already exists");
@@ -119,17 +93,6 @@ void PmergeMe::printResult() {
 	std::cout << "Time to process a range of " << originalDeque.size() << " elements with std::deque :\t " << timeDeque << " us" << std::endl;
 }
 
-// bool PmergeMe::isSortedVector(std::vector<int>& arr) const {
-// 	for (size_t i = 0; i < arr.size() - 1; ++i) {
-// 		if (arr[i] > arr[i + 1]) return false;
-// 	} return true;
-// }
-
-// bool PmergeMe::isSortedDeque(std::deque<int>& arr) const {
-// 	for (size_t i = 0; i < arr.size() - 1; ++i) {
-// 		if (arr[i] > arr[i + 1]) return false;
-// 	} return true;
-// }
 template <typename T>
 bool PmergeMe::isSorted(T& arr) const {
 	for (size_t i = 0; i < arr.size() - 1; ++i) {
