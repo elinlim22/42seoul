@@ -39,11 +39,13 @@ class PmergeMe {
 		std::vector<std::pair<int, int> > mergeVector(const std::vector<std::pair<int, int> >& left, const std::vector<std::pair<int, int> >& right);
 		std::vector<std::pair<int, int> > mergeSortVector(const std::vector<std::pair<int, int> >& arr);
 		void insertionSortVector(int prevJnum);
+		std::vector<int>::iterator binarySearchVector(std::vector<int>& arr, int toInsert, std::vector<int>::iterator right);
 		// Deque
 		void pairingDeque();
 		std::deque<std::pair<int, int> > mergeDeque(const std::deque<std::pair<int, int> >& left, const std::deque<std::pair<int, int> >& right);
 		std::deque<std::pair<int, int> > mergeSortDeque(const std::deque<std::pair<int, int> >& arr);
 		void insertionSortDeque(int prevJnum);
+		std::deque<int>::iterator binarySearchDeque(std::deque<int>& arr, int toInsert, std::deque<int>::iterator right);
 	public:
 		/* ---------------------------------- OCCF ---------------------------------- */
 		PmergeMe();
