@@ -7,8 +7,6 @@
 #include <stdexcept>
 #include <cstdlib>
 #include <sstream>
-#include <string>
-#include <cmath>
 #include <algorithm>
 #include <utility>
 #include <ctime>
@@ -36,6 +34,10 @@ class PmergeMe {
 		// Common
 		int JacobsthalNumber(int j1, int j2);
 		void printResult();
+		template <typename T>
+		bool isSorted(T& arr) const;
+		// bool isSortedVector(std::vector<int>& arr) const;
+		// bool isSortedDeque(std::deque<int>& arr) const;
 		// Vector
 		void pairingVector();
 		std::vector<std::pair<int, int> > mergeVector(const std::vector<std::pair<int, int> >& left, const std::vector<std::pair<int, int> >& right);
