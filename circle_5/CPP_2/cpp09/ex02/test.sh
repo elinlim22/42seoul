@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [ "$#" -ne 3 ]; then
-	echo "Usage: $0 <repeat> <arg1> <arg2>"
+	echo "Usage: $0 <arg1> <arg2> <repeat>"
 	echo "  arg1:   count of numbers"
 	echo "  arg2:   range of numbers"
 	echo "  repeat: Number of times to run the program"
