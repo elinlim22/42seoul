@@ -9,21 +9,16 @@ int main(int argc, char *argv[])
 		std::exit(EXIT_FAILURE);
 	}
 
-	Span sp = Span(100000);
-	sp.addNumber(1);
-	sp.addNumber(4);
-	sp.addNumber(2);
-	sp.addNumber(3);
-	sp.addNumber(5);
-	std::cout << "sp value >>> ";
-	sp.printValue();
-	std::cout << std::endl;
-
-	Span sp2 = Span(5);
-	sp2 = sp; // -> sp2 now have max size 1000 and sp value
-	std::cout << "sp2 value >>> ";
-	sp.printValue();
-	std::cout << std::endl;
+	// // Subject main test
+	// Span sp = Span(5);
+	// sp.addNumber(6);
+	// sp.addNumber(3);
+	// sp.addNumber(17);
+	// sp.addNumber(9);
+	// sp.addNumber(11);
+	// std::cout << sp.shortestSpan() << std::endl;
+	// std::cout << sp.longestSpan() << std::endl;
+	// return 0;
 
 	// Making a random sequence of numbers
 	std::vector<int> v;
@@ -38,15 +33,15 @@ int main(int argc, char *argv[])
 		int rd = std::rand() % range + 1;
 		v.push_back(rd);
 	}
+
+	Span sp = Span(count);
 	sp.addNumbers(v.begin(), v.end());
 
-	// std::cout << "sp value now >>> ";
-	// sp.printValue();
-	// std::cout << std::endl;
+	std::cout << "sp value now >>> ";
+	sp.printValue();
+	std::cout << std::endl;
 
-	std::cout << sp.shortestSpan() << std::endl;
-	std::cout << sp.longestSpan() << std::endl;
+	std::cout << "Shortest Span: " << sp.shortestSpan() << std::endl;
+	std::cout << "Longest Span: " << sp.longestSpan() << std::endl;
 	return 0;
 }
-
-// Test case : $>./Span 1000000000 99995
