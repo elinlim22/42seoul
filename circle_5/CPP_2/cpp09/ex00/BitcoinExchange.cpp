@@ -37,7 +37,7 @@ void BitcoinExchange::insertData(std::ifstream& dataBase) {
 			splitIntoStrAndFlt(line, ",", date, value);
 			exchangeRate[date] = value;
 		}
-	} catch (std::runtime_error& e) { // data.csv parse error
+	} catch (std::runtime_error& e) {
 		std::cerr << "Error: " << e.what() << std::endl;
 		std::exit(EXIT_FAILURE);
 	}
@@ -66,7 +66,7 @@ std::string BitcoinExchange::checkDate(std::string& str) const {
 	unsigned int year;
 	unsigned int month;
 	unsigned int day;
-	if (splitIntoYMD(str, year, month, day)) { // split and check
+	if (splitIntoYMD(str, year, month, day)) {
 		if (month == 2) {
 			if (!IsLeapYear(year) && day <= 28) return str;
 			else if (IsLeapYear(year) && day <= 29) return str;
