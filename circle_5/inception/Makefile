@@ -1,25 +1,44 @@
-CXX = c++
-CXXFLAGS = -Wall -Werror -Wextra -std=c++98
-OBJS = ${SRCS:.cpp=.o}
+NAME = inception
+SRC_DIR = ./srcs
+DOCKER_COMPOSE_FILE = $(SRC_DIR)/docker-compose.yml
+DOCKER_COMPOSE = sudo docker-compose -f $(DOCKER_COMPOSE_FILE)
+VOLUME_MOUNTPOINT = /home/hyeslim/data
+NETWORKS = srcs_nginx-wordpress srcs_wordpress-mariadb
 
-all : ${NAME}
+$(NAME) : all
 
-${NAME} : ${OBJS} ${INCL}
-	@${CXX} ${CXXFLAGS} ${OBJS} -o ${NAME}
+all : up
 
-%.o: %.cpp
-	@${CXX} ${CXXFLAGS} -c $< -o $@
+fclean : clean
+	rm -rf $(VOLUME_MOUNTPOINT)
 
-re :
-	@make fclean
-	@make all
+clean : stop
+	docker rm $$(docker ps -qa); \
+	docker rmi -f $$(docker images -q); \
+	docker volume rm $$(docker volume ls -q); \
+	docker network rm $(NETWORKS)
 
-clean :
-	@rm -rf *.o
-	@rm -rf *.replace
+re : fclean
+	docker pull alpine:3.17.5
+	mkdir -p $(VOLUME_MOUNTPOINT)/mariadb $(VOLUME_MOUNTPOINT)/wordpress
+	$(DOCKER_COMPOSE) build --no-cache
+	$(DOCKER_COMPOSE) up -d
 
-fclean :
-	@make clean
-	@rm -rf ${NAME}
+up :
+	docker pull alpine:3.17.5
+	mkdir -p $(VOLUME_MOUNTPOINT)/mariadb $(VOLUME_MOUNTPOINT)/wordpress
+	$(DOCKER_COMPOSE) up -d --build
 
-.PHONY : all re clean fclean
+down :
+	$(DOCKER_COMPOSE) down
+
+start :
+	$(DOCKER_COMPOSE) start
+
+restart :
+	$(DOCKER_COMPOSE) restart
+
+stop :
+	$(DOCKER_COMPOSE) stop
+
+.PHONY: all clean re up down start restart stop
