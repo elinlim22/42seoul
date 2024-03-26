@@ -66,7 +66,7 @@ int main(int argc, char* argv[]) {
 		printerror(FATAL_ERROR);
 
 	while (1) {
-		current_fds = w_fds = r_fds; // 클라이언트의 존재유무는 r_fds에 남아있으므로, r_fds 기준으로 복사
+		r_fds = w_fds = current_fds; // 클라이언트의 존재유무는 current_fds에 남아있으므로, current_fds 기준으로 복사
 		if (select(max + 1, &r_fds, &w_fds, NULL, NULL) < 0)
 			continue; // 오류가 있으면 넘어가서 다시 FD세트를 정리.
 		for (int socket = 0; socket <= max; socket++) { // 오류가 없으면 이벤트가 있는 소켓을 찾아본다.
