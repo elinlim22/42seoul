@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="src/style.css">
+    <link rel="icon" href="src/assets/main_icon.png">
+    <title>Transcendence</title>
+    <script type="importmap">
+        {
+          "imports": {
+            "three": "https://unpkg.com/three@0.161.0/build/three.module.js",
+            "three/addons/": "https://unpkg.com/three@0.161.0/examples/jsm/"
+          }
+        }
+    </script>
+</head>
+<body>
+    <div class="background-cover">
+        <div class="background-cover__bubble bubble__one"></div>
+        <div class="background-cover__bubble bubble__two"></div>
+        <div class="background-cover__bubble bubble__three"></div>
+        <div class="background-cover__bubble bubble__four"></div>
+        <div class="background-cover__bubble bubble__five"></div>
+    </div>
+    <div id="app"></div>
+    <script src="./src/app.js" type="module"></script>
+</body>
+</html>

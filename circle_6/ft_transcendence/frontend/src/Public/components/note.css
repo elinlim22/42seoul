@@ -1,0 +1,23 @@
+.note__discriptions {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    overflow-y: auto;
+}
+
+.note__item--circle {
+    display: flex;
+    align-items: center;
+}
+
+.note__item--circle div:first-child {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background-color: rgb(var(--font-color));
+    margin-right: 10px;
+}
+
+.note__indent {
+    margin-left: 25px;
+}

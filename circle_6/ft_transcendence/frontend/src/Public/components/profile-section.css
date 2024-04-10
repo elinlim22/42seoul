@@ -1,0 +1,175 @@
+.profile-section {
+    min-width: 362px;
+    width: 362px;
+    height: 100%;
+    top: 81px;
+    left: -6px;
+    border: 1px;
+    border-right: 1px solid #9860E0;
+    display: flex;
+    flex-direction: column;
+    padding: 30px 0;
+}
+
+.profile-section__profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.profile-section__profile--avatar {
+    background: #D9D9D9;
+    width: 272px;
+    height: 272px;
+    border-radius: 50%;
+    box-shadow: 0px 0px 20px 0px #00000040;
+    background-size: cover;
+    cursor: pointer;
+}
+
+.profile-section__profile--info {
+    width: 70%;
+    margin-top: 20px;
+    cursor: default;
+    word-break: break-all;
+}
+
+.profile-section__profile--info > div {
+    font-weight: 800;
+    font-size: 30px;
+    margin-bottom: 30px;
+}
+
+.profile-section__profile--info > div:first-child {
+    font-weight: 400;
+    font-size: 13px;
+    margin-bottom: 5px;
+    color: rgb(255, 114, 114);
+}
+
+.profile-section__profile--info > div:nth-child(2) {
+    display: flex;
+}
+
+.profile-section__profile--info > div:nth-child(2) div:first-child {
+    margin-right: 5px;
+}
+
+.profile-section__profile--info > div:nth-child(2) div:last-child {
+    width: 30px;
+    background-image: url("../../assets/editProfile.svg");
+    background-size: cover;
+    cursor: pointer;
+}
+
+.profile-section__profile--info > div:last-child {
+    font-weight: 400;
+    font-size: 20px;
+}
+
+.profile-section__friends {
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-grow: 1;
+    cursor: default;
+}
+
+.profile-section__friends--block {
+    width: 316px;
+    height: 446px;
+    top: 512px;
+    left: 19px;
+    border: 1px solid #9546FC;
+    display: flex;
+    flex-direction: column;
+    padding: 30px 20px;
+    color: white;
+    flex-grow: 1;
+}
+
+.profile-section__friends--header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 25px;
+    margin-bottom: 20px;
+}
+
+.profile-section__friends--header button {
+    color: white;
+    font-size: 25px;
+    border-radius: 50%;
+}
+
+.profile-section__friends--header button div {
+    width: 26px;
+    height: 25px;
+    background-image: url("../../assets/addFriend.svg");
+    background-size: cover;
+}
+
+.profile-section__friends--list {
+    overflow-y: auto;
+    flex-grow: 1;
+}
+
+.profile-section__friends--msg {
+    font-size: 20px;
+}
+
+.profile-section__friends--item {
+    color: white;
+    background: #9546FC80;
+    height: 54px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.profile-section__friends--profile {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+}
+
+.profile-section__friends--profile div:first-child {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #D9D9D9;
+    background-size: cover;
+}
+
+.profile-section__friends--profile div:last-child {
+    margin-left: 10px;
+}
+
+.profile-section__friends--status {
+    display: flex;
+    align-items: center;
+    font-size: 10px;
+    color: #787878;
+}
+
+.profile-section__friends--status div:last-child {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: #787878;
+    margin-left: 2px;
+    position: relative;
+    top: 1px;
+}
+
+.profile-section__friends--status.online {
+    color: #2FBB2C;
+}
+
+.profile-section__friends--status.online div:last-child {
+    background-color: #2FBB2C;
+}

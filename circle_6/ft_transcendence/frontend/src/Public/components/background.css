@@ -1,0 +1,58 @@
+.background-cover {
+    min-width: var(--min-width-size);
+    min-height: var(--min-height-size);
+    overflow: hidden;
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: linear-gradient(116.57deg, #C599FF 0%, rgba(197, 153, 255, 0.14) 100.74%);
+    z-index: -1;
+}
+
+.background-cover__bubble {
+    position: absolute;
+    border-radius: 50%;
+    box-shadow: 0px 0px 80px 50px #FFFFFF4D inset;
+}
+
+.bubble__one {
+    background: #FFFFFF0F;
+    width: 734px;
+    height: 734px;
+    top: -192px;
+    left: calc(-203px + 144px);
+}
+
+.bubble__two {
+    background: #FFF38526;
+    width: 559px;
+    height: 559px;
+    top: calc(-192px + 474px);
+    left: -203px;
+}
+
+.bubble__three {
+    background: #FFFFFF0F;
+    width: 280px;
+    height: 280px;
+    top: calc(-192px + 898px);
+    left: calc(-203px + 554px);
+}
+
+.bubble__four {
+    background: #FFF38526;
+    width: 506px;
+    height: 506px;
+    top: calc(-192px + 9px);
+    right: -180px;
+}
+
+.bubble__five {
+    background: #FFF38526;
+    width: 734px;
+    height: 734px;
+    top: calc(-192px + 766px);
+    right: -130px;
+}

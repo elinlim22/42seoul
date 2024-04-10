@@ -1,0 +1,61 @@
+@import "Public/reset.css";
+
+/* Font CDN */
+@import url('https://fonts.cdnfonts.com/css/poetsen-one');
+
+/* variables */
+@import "Public/variables.css";
+
+/* Components */
+@import "Public/components/background.css";
+@import "Public/components/header.css";
+@import "Public/components/profile-section.css";
+@import "Public/components/main-section.css";
+@import "Public/components/modal.css";
+@import "Public/components/note.css";
+
+/* Modal */
+@import "Profile/profile-modal.css";
+@import "Profile/friend-modal.css";
+@import "Game/game-modal.css";
+@import "Chat/chat-modal.css";
+
+/* screens */
+@import "Login/login.css";
+@import "Home/home.css";
+@import "Chat/chat.css";
+@import "Game/game.css";
+@import "Rank/rank.css";
+
+#app {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    min-width: var(--min-width-size);
+    min-height: var(--min-height-size);
+    height: 100vh;
+    font-family: var(--main-font);
+    color: rgb(var(--font-color));
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
+    user-drag: none;
+}
+
+.wrapper {
+    min-height: 0;
+    display: flex;
+    justify-content: stretch;
+    flex-grow: 1;
+}
+
+* {
+    font-family: var(--main-font);
+}

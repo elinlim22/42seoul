@@ -1,0 +1,83 @@
+version: "3.8"
+
+services:
+  nginx:
+    build: ./nginx
+    image: "frontend:pong-beat-makers"
+    container_name: "frontend"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx/conf.d/:/etc/nginx/conf.d
+      - ./frontend:/usr/share/nginx/html
+    env_file:
+      - ./env/user-management.env
+    ports:
+      - 443:443
+    depends_on:
+      - chatting
+      - game
+      - user-management
+    restart: always
+
+  chatting:
+    build: ./chatting
+    image: "chatting:pong-beat-makers"
+    container_name: "chatting"
+    env_file:
+      - ./env/chatting.env
+    depends_on:
+      chatting_db:
+        condition: service_healthy
+    restart: always
+
+  chatting_db:
+    image: "postgres:16.2-alpine3.18"
+    container_name: "chatting-db"
+    env_file:
+      - ./env/chatting_db.env
+    healthcheck:
+      interval: 5s
+      test: ["CMD", "pg_isready", "-U", "chatting"]
+    restart: always
+
+  game:
+    build: ./game
+    image: "game:pong-beat-makers"
+    container_name: "game"
+    env_file:
+      - ./env/game.env
+    depends_on:
+      game_db:
+        condition: service_healthy
+    restart: always
+
+  game_db:
+    image: "postgres:16.2-alpine3.18"
+    container_name: "game-db"
+    env_file:
+      - ./env/game_db.env
+    healthcheck:
+      interval: 5s
+      test: ["CMD", "pg_isready", "-U", "game"]
+    restart: always
+
+  user-management:
+    build: ./user-management
+    image: "user-management:pong-beat-makers"
+    container_name: "user-management"
+    env_file:
+      - ./env/user-management.env
+    depends_on:
+      user-management_db:
+        condition: service_healthy
+    restart: always
+
+  user-management_db:
+    image: "postgres:16.2-alpine3.18"
+    container_name: "user-management-db"
+    env_file:
+      - ./env/user-management_db.env
+    healthcheck:
+      interval: 5s
+      test: ["CMD", "pg_isready", "-U", "user-management"]
+    restart: always

@@ -1,0 +1,12 @@
+.idea
+.git
+.gitignore
+.dockerignore
+Dockerfile
+*.md
+**/__pycache__/
+
+venv
+.env
+db.sqlite3
+**/migrations/

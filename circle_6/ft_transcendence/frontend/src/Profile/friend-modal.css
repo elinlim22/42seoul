@@ -1,0 +1,216 @@
+.friend-modal__container {
+    position: absolute;
+    background-color: rgb(var(--sub-color));
+    width: 770px;
+    height: 570px;
+    box-shadow: 0px 0px 50px 0px rgba(0, 0, 0, 0.5);
+    padding: 45px;
+    display: flex;
+    animation: bottomPadeInModal .8s ease-in-out forwards;
+}
+
+.friend-modal__wrapper {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.friend-modal__wrapper:not(:last-child) {
+    width: 250px;
+    border-right: 1px solid #FFFFFF4D;
+}
+
+.friend-modal__wrapper:last-child {
+    flex-grow: 1;
+}
+
+.friend-modal__box {
+    display: flex;
+    flex-direction: column;
+}
+
+.friend-modal__box:first-child {
+    border-bottom: 1px solid #FFFFFF4D;
+}
+
+.friend-modal__avatar {
+    width: 215px;
+    height: 215px;
+    border-radius: 50%;
+    background-color: #D9D9D9;
+    box-shadow: 0px 0px 20px 0px #00000040;
+    background-size: cover;
+}
+
+.friend-modal__info {
+    color: white;
+    margin: 20px 10px;
+}
+
+.friend-modal__info--nickname {
+    font-size: 25px;
+    margin-bottom: 20px;
+}
+
+.friend-modal__info--status {
+    font-size: 15px;
+    word-break: break-all;
+}
+
+.friend-modal__game-info {
+    margin: 20px 10px;
+    color: #FFFFFF99;
+}
+
+.friend-modal__game-info > div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-right: 40px;
+    margin-bottom: 20px;
+}
+
+.friend-modal__controll > button:not(:last-child) {
+    margin-right: 10px;
+}
+
+.friend-modal__btn {
+    width: 100px;
+    height: 45px;
+    border-radius: 10px;
+    background-color: white;
+    color: rgba(var(--sub-color) / 70%);
+    font-size: 18px;
+}
+
+.friend-modal__btn:disabled {
+    filter: brightness(.5);
+    cursor: default;
+}
+
+.friend-modal__header {
+    color: white;
+    font-size: 20px;
+    margin-left: 20px;
+    margin-bottom: 20px;
+}
+
+.friend-modal__history-list {
+    height: 100%;
+    margin-left: 20px;
+    overflow-y: auto;
+}
+
+.friend-modal__history-list > div:not(:last-child) {
+    margin-bottom: 10px;
+}
+
+.friend-modal__history-item {
+    background-color: #FFFFFF80;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    color: rgba(var(--sub-color) / 60%);
+    font-size: 18px;
+}
+
+.history-item__profiles--avatar {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background-color: #D9D9D9;
+    background-size: cover;
+}
+
+.history-item__profiles {
+    width: 120px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.history-item__status {
+    color: #3B005F;
+}
+
+@keyframes bottomPadeInModal {
+    0% {
+        transform: translateY(800px);
+    }
+    60% {
+        transform: translateY(-20px);
+    }
+    100% {
+        transform: none;
+    }
+}
+
+/*
+* search friend
+*/
+
+.search-friend__container {
+    position: absolute;
+    background-color: rgb(var(--sub-color));
+    width: 770px;
+    height: 570px;
+    box-shadow: 0px 0px 50px 0px rgba(0, 0, 0, 0.5);
+    padding: 45px 60px;
+    display: flex;
+    animation: bottomPadeInModal .8s ease-in-out forwards;
+    flex-direction: column;
+}
+
+.search-friend__header {
+    color: white;
+    font-size: 25px;
+    margin-bottom: 15px;
+}
+
+.search-friend__body {
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.search-friend__body--input {
+    height: 50px;
+    border-radius: 10px;
+    background-color: #FFFFFF80;
+    padding: 10px 20px;
+    font-size: 18px;
+}
+
+.search-friend__body--input::placeholder {
+    color: #0000004D;
+}
+
+.search-friend__body--list {
+    min-height: 0;
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-content: flex-start;
+    flex-wrap: wrap;
+    flex-grow: 1;
+    overflow-y: auto;
+}
+
+.profile__search--btn {
+    all: unset;
+    cursor: pointer;
+    padding: 5px 5px;
+    width: 30px;
+    height: 30px;
+    font-size: 30px;
+    margin-bottom: 10px;
+    &:hover {
+        transform: scale(2);
+    }
+}
+
+.profile__result--list {
+    margin-top: 15px;
+}

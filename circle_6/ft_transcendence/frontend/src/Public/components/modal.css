@@ -1,0 +1,110 @@
+.modal {
+    position: absolute;
+    z-index: 998;
+    cursor: default;
+}
+
+.modal__container {
+    position: absolute;
+    min-width: var(--min-width-size);
+    min-height: var(--min-height-size);
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal__background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    opacity: .3;
+}
+
+.modal__btn {
+    background: white;
+    font-size: 18px;
+    padding: 10px 20px;
+    border-radius: 10px;
+    color: rgba(var(--sub-color) / 70%);
+    margin-top: 20px;
+}
+
+div[data-image="bird"] {
+    background-image: url('../../assets/bird.svg');
+}
+
+div[data-image="cat"] {
+    background-image: url('../../assets/cat.svg');
+}
+
+div[data-image="crocodile"] {
+    background-image: url('../../assets/crocodile.svg');
+}
+
+div[data-image="whale"] {
+    background-image: url('../../assets/whale.svg');
+}
+
+div[data-image="deer"] {
+    background-image: url('../../assets/deer.svg');
+}
+
+div[data-image="upload"] {
+    background-color: #00000000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+div[data-image="upload"]:before {
+    position: absolute;
+    content: "";
+    width: 20%;
+    height: 20%;
+    background-image: url('../../assets/upload.svg');
+    background-size: cover;
+}
+
+.modal__btn:disabled {
+    filter: brightness(.5);
+    cursor: default;
+}
+
+.ingAnimation::after {
+    content: "";
+    animation: isIng 2s ease-in infinite;
+}
+
+.warnColor {
+    color: rgb(var(--warn-color)) !important;
+}
+
+@keyframes isIng {
+    0% {
+        content: "";
+    }
+    50% {
+        content: ".";
+    }
+    100% {
+        content: "..";
+    }
+}
+
+.modal__fade-in-modal {
+    animation: fadeInModal .3s ease-in-out forwards;
+}
+
+@keyframes fadeInModal {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}

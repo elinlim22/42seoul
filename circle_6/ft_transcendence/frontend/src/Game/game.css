@@ -1,0 +1,82 @@
+.game__header {
+    color: #8457BF;
+    font-size: 30px;
+    width: 95%;
+    margin-top: 20px;
+}
+
+.game__header:not(:first-child) {
+    margin-top: 40px;
+}
+
+.game__body {
+    width: 95%;
+    padding: 50px 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.game__body:not(:last-child) {
+    border-bottom: 1px solid #9546FC80;
+}
+
+.game__playbtn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    transition: .05s ease-out;
+}
+
+.game__playbtn:hover > div {
+    color: rgb(var(--point-color));
+}
+
+.game__playbtn:hover i {
+    color: rgb(var(--point-color));
+    filter: drop-shadow(0px 0px 10px rgba(0, 0, 0, 0.25));
+}
+
+.game__playbtn:hover > div:first-child {
+    background-color: rgba(var(--point-color) / 10%);
+}
+
+.game__playbtn--picture {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background-color: #FFFFFF1A;
+    box-shadow: 0px 0px 50px 0px #FFFFFF80 inset;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.game__playbtn--picture i {
+    font-size: 80px;
+    color: white;
+}
+
+.game__playbtn--text {
+    font-size: 30px;
+    color: white;
+}
+
+.game__manual--text {
+    color: #8457BF;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.game__manual--picture {
+    width: 325px;
+    height: 235px;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.howto-game-three {
+    background-image: url(../assets/howto_game_three.png);
+}

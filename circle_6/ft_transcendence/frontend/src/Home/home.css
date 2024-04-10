@@ -1,0 +1,151 @@
+.home__header {
+    margin-bottom: 35px;
+}
+
+.home__header--text {
+    font-size: 60px;
+    color: white;
+    text-shadow: 0px -8px 10px rgba(var(--point-color) / 50%), 0px 8px 10px #9546FC;
+}
+
+.home__body {
+    border-top: 1px solid #9546FC80;
+    display: flex;
+    padding: 10px;
+    align-self: normal;
+    overflow: auto;
+}
+
+.home__body--half {
+    width: 50%;
+    display: grid;
+    align-items: flex-end;
+}
+
+.left {
+    border-right: 1px solid #9546FC80;
+}
+
+.home__body--box {
+    width: 95%;
+    background-color: #C599FF80;
+    align-items: center;
+    padding: 10px 10px 30px 10px;
+    margin: auto auto 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.home__body--box-title {
+    font-size: 25px;
+    color: white;
+    padding-bottom: 10px;
+    margin: 10px;
+}
+
+.home__body--box-container {
+    width: 95%;
+    height: 15vh;
+    font-size: 15px;
+    display: flex;
+    justify-content: space-between;
+    margin: auto;
+}
+
+.home__body--box-contents {
+    width: 33%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.home__body--box-pic {
+    width: 200px;
+    height: 150px;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.home__body--box-pic-mini {
+    width: 70px;
+    height: 70px;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.wasd {
+    background-image: url('../assets/wasd.png');
+}
+
+.arrow {
+    background-image: url('../assets/arrow.png');
+}
+
+.home__body--box-text {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.add-friend-one {
+    background-image: url('../assets/add_friend_one.png');
+}
+
+.add-friend-two {
+    background-image: url('../assets/add_friend_two.png');
+}
+
+.add-friend-three {
+    background-image: url('../assets/add_friend_three.png');
+}
+
+.new-chat-one {
+    background-image: url('../assets/new_chat_one.png');
+}
+
+.new-chat-two {
+    background-image: url('../assets/new_chat_two.png');
+}
+
+.new-chat-three {
+    background-image: url('../assets/new_chat_three.png');
+}
+
+.set-2fa-one {
+    background-image: url('../assets/set_2fa_one.png');
+}
+
+.set-2fa-two {
+    background-image: url('../assets/set_2fa_two.png');
+}
+
+.set-2fa-three {
+    background-image: url('../assets/set_2fa_three.jpeg');
+}
+
+.home__body__rank-contents {
+    font-size: 23px;
+    color: #351361;
+    align-self: center;
+    margin-bottom: 20px;
+}
+
+.home__body__rank-contents--detail {
+    font-size: 30px;
+    color: #35136199;
+    align-self: center;
+    margin-bottom: 10px;
+}
+
+.home__footer {
+    width: 95%;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    line-height: 25px;
+    color: #AE6FFF99;
+    border-top: 1px solid #9546FC80;
+}

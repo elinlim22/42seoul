@@ -1,0 +1,10 @@
+:root {
+    --main-color: 174 111 255;
+    --sub-color: 53 19 97;
+    --font-color: 150 111 201;
+    --point-color: 255 243 133;
+    --warn-color: 240 132 150;
+    --min-width-size: 1500px;
+    --min-height-size: 1000px;
+    --main-font: 'Poetsen One', sans-serif;
+}

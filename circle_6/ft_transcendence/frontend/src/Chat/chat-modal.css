@@ -1,0 +1,219 @@
+.chat__container {
+    position: absolute;
+    background-color: rgb(var(--sub-color));
+    width: 630px;
+    height: 830px;
+    padding: 70px 50px;
+    display: flex;
+    flex-direction: column;
+}
+
+.chat__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #9544ff;
+    height: 72px;
+    min-height: 72px;
+    padding: 0 20px;
+    box-shadow: 0px 4px 4px 0px #00000080;
+}
+
+.chat__header--profile {
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    color: white;
+    font-size: 25px;
+}
+
+.chat__header--avatar {
+    min-width: 49px;
+    width: 49px;
+    height: 49px;
+    border-radius: 50%;
+    background-color: #D9D9D9D9;
+    margin-right: 15px;
+    background-size: cover;
+}
+
+.chat__header--name {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding: 5px 0;
+}
+
+.chat__header--controlls {
+    min-width: 232px;
+    width: 232px;
+}
+
+.chat__header--btn {
+    width: 111px;
+    height: 43px;
+    background-color: white;
+    border-radius: 10px;
+    font-size: 18px;
+    color: #351361B2;
+}
+
+.chat__header--btn:disabled {
+    filter: brightness(.5);
+    cursor: default;
+}
+
+.chat__header--btn:not(:last-child) {
+    margin-right: 5px;
+}
+
+.chat__body {
+    min-height: 0;
+    flex-grow: 1;
+    background-color: #FFFFFF4D;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 20px 10px;
+    height: 100%;
+}
+
+.chatbox {
+    word-break: break-all;
+    display: flex;
+    align-items: center;
+    min-height: 59px;
+}
+
+.chatbox.message_me {
+    justify-content: flex-end;
+}
+
+.chatbox:not(:last-child) {
+    margin-bottom: 10px;
+}
+
+.chatbox__invite-btn {
+    background-color: #cfa9ff;
+    padding: 15px 70px;
+    border-radius: 10px;
+    font-size: 18px;
+    color: rgb(var(--sub-color));
+    filter: drop-shadow(0px 0px 10px rgba(0, 0, 0, 0.25));
+}
+
+.chatbox__invite-btn:disabled {
+    color: gray;
+    filter: brightness(.7);
+    cursor: default;
+}
+
+.chatbox__system {
+    background-color: rgba(var(--sub-color) / 70%);
+    padding: 10px;
+    margin: 5px 0;
+    text-align: center;
+}
+
+.chatbox__message {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    border-radius: 25px;
+    min-width: 300px;
+    font-size: 28px;
+    max-width: 60%;
+}
+
+.chatbox.message_you .chatbox__message {
+    background-color: #351361;
+    color: white;
+}
+
+.chatbox.message_you .chatbox__message:after {
+    content: url(../assets/bubbletale.svg);
+    position: absolute;
+    width: 25px;
+    bottom: 0px;
+    left: -13px;
+    filter: invert(10%) sepia(78%) saturate(2449%) hue-rotate(255deg) brightness(92%) contrast(104%);
+}
+
+.chatbox.message_me .chatbox__message {
+    background-color: #FFF385;
+    color: #3B005FB0;
+    order: 1;
+}
+
+.chatbox.message_me .chatbox__message:after {
+    content: url(../assets/bubbletale.svg);
+    position: absolute;
+    width: 25px;
+    bottom: 0px;
+    right: -10px;
+    filter: invert(91%) sepia(42%) saturate(2096%) hue-rotate(307deg) brightness(121%) contrast(110%);
+    transform: rotateY(180deg);
+}
+
+.chatbox__info {
+    align-self: flex-end;
+    margin: 0 5px;
+    margin-bottom: 10px;
+}
+
+.chat__body--frame {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding: 0 20px;
+}
+
+.chat__body--controller {
+    display: flex;
+    height: 120px;
+    min-height: 120px;
+    background-color: white;
+    box-shadow: 0px 4px 4px 0px #00000040 inset;
+    border-radius: 10px;
+    margin-top: 10px;
+}
+
+.chat__controller--text {
+    flex-grow: 1;
+    padding: 10px;
+}
+
+.chat__controller--text textarea {
+    width: 100%;
+    height: 100%;
+    font-size: 18px;
+    resize: none;
+    outline: none;
+    border: none;
+}
+
+.chat__controller--text textarea::placeholder {
+    color: #0000004D;
+}
+
+.chat__controller--btn {
+    width: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+.chat__controller--btn button {
+    width: 110px;
+    background-color: #351361;
+    color: white;
+    font-size: 18px;
+    padding: 10px 15px;
+    border-radius: 10px;
+}
+
+.chat__search--error {
+    margin-top: 5%;
+    font-size: 25px;
+}
